@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Login (Guest) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+<style>
+  /* screen-local: CSS-only password reveal (no JS frameworks) */
+  .pw .input[type="text"]{display:none}
+  .pw:has(#pwshow:checked) .input[type="password"]{display:none}
+  .pw:has(#pwshow:checked) .input[type="text"]{display:block}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner">
+    <a class="brand" href="01-landing.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a class="nav-link" href="02-directory.html">Find Doctors</a>
+      <a class="nav-link" href="04-emergency.html">Emergency Info</a>
+    </nav>
+    <div class="row mla">
+      <label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label>
+      <label class="btn btn-quiet btn-ico burger" for="drawer-nav" data-controls="drawer-nav" aria-label="Open menu">☰</label>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="container" style="padding-block:var(--mp-space-2xl)">
+  <div class="grid" style="max-width:1024px;margin-inline:auto;align-items:start">
+    <!-- AUTH CARD -->
+    <div class="c-12 md-c-6 card card-pad" style="padding:var(--mp-space-lg)">
+      <h1 style="font-size:24px">Welcome back</h1>
+      <p class="muted mt-s" style="font-size:14px">Sign in with the account you registered. After login you'll land on the workspace for <em>your role from the database</em> — never a guessed destination.</p>
+
+      <!-- Feedback set (§15): server-level auth failure → Retry banner -->
+      <div class="retry-banner mt-m" role="alert" style="display:none">
+        <span class="ico">⚠</span><span class="txt"><strong>Auth service hiccup.</strong> <span class="muted">Nothing wrong with your password — we just couldn't reach the server.</span></span><button class="btn btn-primary">Retry</button>
+      </div>
+
+      <form novalidate aria-describedby="auth-note">
+        <div class="field is-invalid">
+          <label class="label req" for="lg-email">Email</label>
+          <input class="input" id="lg-email" type="email" value="not-an-email" aria-describedby="lg-email-err" aria-invalid="true">
+          <!-- Inline error (feedback §15) -->
+          <span class="field-error" id="lg-email-err"><span aria-hidden="true">✕</span> Enter a valid email address.</span>
+        </div>
+
+        <div class="field pw">
+          <label class="label req" for="lg-pw">Password</label>
+          <input class="input" id="lg-pw" type="password" value="sessiondemo1" aria-describedby="lg-pw-hint">
+          <input class="input" type="text" tabindex="-1" aria-hidden="true" value="sessiondemo1">
+          <label class="check" style="min-height:24px"><input type="checkbox" id="pwshow"><span class="caption">Show password</span></label>
+          <span class="hint" id="lg-pw-hint">Session-based auth with HTTP-only cookies; accounts stay locked after repeated failures (rate-limited).</span>
+        </div>
+
+        <div class="spread">
+          <label class="switch"><input type="checkbox" checked><span style="font-size:14px">Remember me</span></label>
+          <a href="07-forgot-reset.html" style="font-size:14px;font-weight:600">Forgot password?</a>
+        </div>
+
+        <div class="row mt-b">
+          <button class="btn btn-primary" style="flex:1" type="submit">Sign in</button>
+          <!-- Loading/submitting variant demo (button disabled + spinner + text swap) -->
+          <button class="btn btn-primary is-disabled" disabled aria-label="Signing in, please wait"><span class="spinner" aria-hidden="true"></span> Signing in…</button>
+        </div>
+        <p class="caption mt-m" id="auth-note">Pending accounts are intercepted to the approval screen automatically. Suspended or archived accounts cannot sign in — support contact is shown instead.</p>
+        <div class="divider"></div>
+        <p class="row" style="font-size:14px">No account? <a href="06-register.html" style="font-weight:600">Register (patient, doctor, pharmacist)</a></p>
+        <p class="caption">Admin accounts are provisioned by the clinic — they don't self-register.</p>
+      </form>
+    </div>
+
+    <!-- TRUST RAIL (desktop only) -->
+    <aside class="c-12 md-c-6 stack hide-sm" aria-label="Why MediPath is safe" style="padding-top:var(--mp-space-xl)">
+      <div class="card card-pad row-lg"><span style="font-size:26px" aria-hidden="true">🔒</span><p style="font-size:14px"><strong>Doctor-verified only.</strong> Providers appear in booking after the admin reviews their license and authority.</p></div>
+      <div class="card card-pad row-lg"><span style="font-size:26px" aria-hidden="true">🧪</span><p style="font-size:14px"><strong>Safety gates on every prescription</strong> — allergy &amp; interaction rules run twice: at prescribing and again before dispensing.</p></div>
+      <div class="card card-pad row-lg"><span style="font-size:26px" aria-hidden="true">🚨</span><p style="font-size:14px"><strong>Emergency first, AI second.</strong> Red-flag keywords trigger deterministic escalation instantly.</p></div>
+    </aside>
+  </div>
+</main>
+
+<footer class="mt-xl" style="background:var(--mp-surface);border-top:1px solid var(--mp-border)">
+  <div class="container" style="padding-block:var(--mp-space-lg)"><p class="caption"><a href="04-emergency.html">Emergency info</a> stays open to guests — no login needed. MediPath · {{CURRENCY}} per clinic settings.</p></div>
+</footer>
+
+<aside class="drawer drawer--nav" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">MediPath menu</span><label class="x-close" for="drawer-nav" aria-label="Close menu">✕</label></div>
+  <nav class="stack-sm" aria-label="Mobile primary" style="margin-top:var(--mp-space-md)">
+    <a class="nav-link" href="02-directory.html">Find Doctors</a>
+    <a class="nav-link" href="04-emergency.html">Emergency Info</a>
+    <a class="btn btn-outline btn-block" href="06-register.html">Register</a>
+    <a class="btn btn-emergency btn-block" href="04-emergency.html">🚨 Emergency info</a>
+  </nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

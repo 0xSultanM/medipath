@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Profile, Password &amp; Settings (Patient) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">FK</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Patient workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Patient portal</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">🏠</span>Dashboard</a>
+      <a class="s-link" href="../guest/02-directory.html"><span class="ico">🔍</span>Find Doctors</a>
+      <a class="s-link" href="03-appointments.html"><span class="ico">🗂</span>My Appointments</a>
+      <a class="s-link" href="04-symptom-checker.html"><span class="ico">🤖</span>AI Symptom Checker</a>
+      <a class="s-link" href="05-prescriptions.html"><span class="ico">💊</span>My Prescriptions</a>
+      <a class="s-link" href="06-bills.html"><span class="ico">🧾</span>My Bills</a>
+      <a class="s-link" href="07-allergies-medications.html"><span class="ico">⚠️</span>Allergies &amp; Medicines</a>
+      <a class="s-link is-active" href="08-profile-settings.html" aria-current="page"><span class="ico">⚙️</span>Settings</a>
+      <a class="s-link" href="../guest/05-login.html"><span class="ico">↩</span>Log out</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar"><h1>Profile &amp; settings</h1></div>
+
+    <!-- IDs card -->
+    <div class="grid">
+      <div class="card card-pad c-12 sm-c-6"><h2 class="h4">Immutable identifiers</h2>
+        <div class="def-row mt-s"><dt>Patient ID</dt><dd class="mono">PT-0119 — never reused, records key on it</dd></div>
+        <div class="def-row"><dt>Walk-in claim code</dt><dd class="mono">WI-4821-KD <button class="btn btn-ghost" style="min-height:28px;padding:2px 8px;font-size:12px">Copy</button></dd></div>
+        <p class="caption">Bring this code when visiting without an appointment; staff link the visit to you.</p></div>
+      <div class="card card-pad c-12 sm-c-6"><h2 class="h4">Account</h2>
+        <div class="def-row mt-s"><dt>Email verified</dt><dd><span class="badge badge-success"><span class="dot"></span>Yes</span></dd></div>
+        <div class="def-row"><dt>Last sign-in</dt><dd class="tabular">23 Nov, 8:58 AM · this device</dd></div>
+        <button class="btn btn-danger-outline mt-m">Sign out all other sessions</button></div>
+    </div>
+
+    <!-- PROFILE -->
+    <div class="card card-pad">
+      <h2 class="h4">Personal details</h2>
+      <div class="grid tight mt-s">
+        <div class="field c-12 sm-c-6" style="margin:0"><label class="label req" for="pf-name">Full name</label><input class="input" id="pf-name" value="Farhana Karim"></div>
+        <div class="field c-12 sm-c-6" style="margin:0"><label class="label req" for="pf-phone">Phone</label><input class="input" id="pf-phone" type="tel" value="+880 1711-223344"></div>
+        <div class="field c-12 sm-c-4" style="margin:0"><label class="label" for="pf-age">Age</label><input class="input" id="pf-age" type="number" value="41"></div>
+        <div class="field c-12 sm-c-4" style="margin:0"><label class="label" for="pf-sex">Gender</label><select class="select" id="pf-sex"><option>Female</option><option>Male</option><option>Other</option><option>Prefer not to say</option></select></div>
+        <div class="field c-12 sm-c-4" style="margin:0"><label class="label" for="pf-cond">Primary condition</label><input class="input" id="pf-cond" value="Hypertension (managed)"></div>
+      </div>
+      <div class="row mt-b"><button class="btn btn-primary">Save changes</button><span class="saving-inline"><span class="spinner" aria-hidden="true"></span> Saving…</span><button class="btn btn-ghost">Discard</button></div>
+      <!-- unsaved-changes demo -->
+      <div class="alert alert-warning mt-m"><span class="a-ico">⚠</span><span><strong>Unsaved changes.</strong> Leaving now discards them.</span><button class="btn btn-quiet mla" style="min-height:36px">Stay</button><button class="btn btn-danger-outline" style="min-height:36px">Discard</button></div>
+    </div>
+
+    <!-- PASSWORD -->
+    <div class="card card-pad">
+      <h2 class="h4">Change password</h2>
+      <div class="grid tight">
+        <div class="field c-12 sm-c-4" style="margin-top:0"><label class="label req" for="pw-cur">Current password</label><input class="input" id="pw-cur" type="password"></div>
+        <div class="field c-12 sm-c-4" style="margin-top:0"><label class="label req" for="pw-new">New password</label><input class="input" id="pw-new" type="password" aria-describedby="pw-rq"></div>
+        <div class="field c-12 sm-c-4 is-invalid" style="margin-top:0"><label class="label req" for="pw-conf">Confirm new</label><input class="input" id="pw-conf" type="password" aria-invalid="true" aria-describedby="pw-conf-e"><span class="field-error" id="pw-conf-e"><span aria-hidden="true">✕</span> Doesn’t match the new password.</span></div>
+        <ul id="pw-rq" class="caption" style="display:flex;flex-wrap:wrap;gap:12px"><li>✓ 8+ chars</li><li>✓ number</li><li>✓ symbol</li><li>✓ uppercase</li></ul>
+      </div>
+      <p class="caption">On success every other session is revoked instantly (DB-backed sessions) and the activity log records the change.</p>
+    </div>
+
+    <!-- PREFERENCES -->
+    <div class="card card-pad">
+      <h2 class="h4">Preferences</h2>
+      <div class="grid">
+        <div class="c-12 md-c-6 stack-sm">
+          <span class="label">Notifications</span>
+          <label class="switch" style="min-height:36px"><input type="checkbox" checked><span style="font-size:14px">In-app</span></label>
+          <label class="switch" style="min-height:36px"><input type="checkbox" checked><span style="font-size:14px">Email (reminders, prescription status)</span></label>
+          <label class="switch" style="min-height:36px"><input type="checkbox"><span style="font-size:14px">SMS (only appointment + billing)</span></label>
+        </div>
+        <div class="c-12 md-c-6 stack-sm">
+          <span class="label">Appearance &amp; locale</span>
+          <div class="row" role="radiogroup" aria-label="Theme">
+            <span class="chip chip-select"><strong>✓</strong> System</span><span class="chip chip-select">Light</span><span class="chip chip-select">Dark</span>
+          </div>
+          <div class="field" style="margin:0"><label class="label" for="set-lang">Language</label><select class="select" id="set-lang"><option>English</option><option>বাংla (Bangla)</option><option>Français</option></select></div>
+          <div class="field" style="margin:0"><label class="label" for="set-tz">Timezone</label><select class="select" id="set-tz"><option>(GMT+6) Asia/Dhaka</option><option>(GMT+0) UTC</option></select></div>
+          <div class="field" style="margin:0"><label class="label" for="set-df">Date format</label><select class="select" id="set-df"><option>DD MMM YYYY (23 Nov 2026)</option><option>YYYY-MM-DD (2026-11-23)</option><option>MM/DD/YYYY</option></select></div>
+        </div>
+      </div>
+      <button class="btn btn-primary mt-b">Save preferences</button>
+      <p class="caption mt-m">Currency is a clinic-wide setting managed by the Admin — patients see amounts in the configured {{CURRENCY}} token, never a hardcoded symbol.</p>
+    </div>
+  </main>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Patient portal</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link" href="01-dashboard.html">🏠 Dashboard</a><a class="nav-link" href="../guest/02-directory.html">🔍 Find Doctors</a><a class="nav-link" href="03-appointments.html">🗂 My Appointments</a><a class="nav-link" href="04-symptom-checker.html">🤖 AI Symptom Checker</a><a class="nav-link" href="05-prescriptions.html">💊 My Prescriptions</a><a class="nav-link" href="06-bills.html">🧾 My Bills</a><a class="nav-link" href="07-allergies-medications.html">⚠️ Allergies &amp; Medicines</a><a class="nav-link is-active" href="08-profile-settings.html">⚙️ Settings</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

@@ -1,0 +1,252 @@
+// ============================================================================
+// Chatbot widget (§11) — pinned disclaimer, aria-live stream, emergency variant
+// ============================================================================
+
+.bot-fab {
+  position: fixed;
+  right: var(--mp-space-base);
+  bottom: var(--mp-space-base);
+  z-index: var(--mp-z-chatbot);
+
+  // Never let the assistant FAB cover a drawer/modal action (e.g. Apply filters).
+  html:has(.drawer.is-open) &,
+  html:has(.modal-stage) & { display: none; }
+
+  button {
+    display: grid;
+    place-items: center;
+    width: var(--mp-chatbot-fab);
+    height: var(--mp-chatbot-fab);
+    border-radius: 50%;
+    cursor: pointer;
+    background: var(--mp-primary);
+    color: var(--mp-on-primary);
+    box-shadow: var(--mp-shadow-lg);
+    font-size: 22px;
+    border: 0;
+
+    &:hover { background: var(--mp-primary-hover); }
+  }
+}
+
+.bot-panel {
+  position: fixed;
+  right: var(--mp-space-base);
+  bottom: calc(var(--mp-space-base) + 64px);
+  z-index: var(--mp-z-chatbot);
+  width: min(380px, calc(100vw - 32px));
+  height: min(560px, 70vh);
+  display: flex;
+  flex-direction: column;
+  background: var(--mp-surface);
+  border: 1px solid var(--mp-border);
+  border-radius: var(--mp-radius-card);
+  box-shadow: var(--mp-shadow-lg);
+  overflow: hidden;
+
+  &:not(.is-open) { display: none; }
+}
+
+@media (max-width: 639.98px) {
+  // Mobile: full-height drawer (§11)
+  .bot-panel {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+}
+
+.bot-head {
+  display: flex;
+  align-items: center;
+  gap: var(--mp-space-md);
+  padding: var(--mp-space-md) var(--mp-space-base);
+  background: var(--mp-ink);
+  color: var(--mp-text-inverse);
+
+  .t { font-weight: 700; color: var(--mp-text-inverse); }
+  .s { font-size: 12px; opacity: .85; color: var(--mp-text-inverse); }
+
+  .bot-x {
+    margin-left: auto;
+    min-width: var(--mp-touch);
+    min-height: var(--mp-touch);
+    border-radius: var(--mp-radius-input);
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--mp-text-inverse);
+    cursor: pointer;
+    font-size: 18px;
+
+    &:hover { background: var(--mp-sidebar-item-hover); }
+  }
+}
+
+[data-theme='dark'] .bot-head {
+  background: var(--mp-surface-muted);
+  color: var(--mp-text-heading);
+
+  .t, .s { color: var(--mp-text-heading); }
+  .bot-x { color: var(--mp-text-heading); }
+}
+
+// Pinned, non-dismissible disclaimer (§11) — always in the a11y tree.
+.bot-disclaimer {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: var(--mp-space-sm) var(--mp-space-base);
+  background: var(--mp-warning-weak-bg);
+  border-bottom: 1px solid var(--mp-warning-weak-border);
+  color: var(--mp-warning-text);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.bot-stream {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--mp-space-base);
+  display: flex;
+  flex-direction: column;
+  gap: var(--mp-space-md);
+  background: var(--mp-bg);
+}
+
+.msg {
+  max-width: 86%;
+  padding: 10px 14px;
+  border-radius: var(--mp-radius-card);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.msg-bot { align-self: flex-start; background: var(--mp-surface); border: 1px solid var(--mp-border); }
+.msg-user { align-self: flex-end; background: var(--mp-primary); color: var(--mp-on-primary); }
+
+.msg-caption {
+  font-size: 11px;
+  color: var(--mp-text-muted);
+  display: block;
+  margin-top: 4px;
+}
+
+// EMERGENCY scope — in-stream red-flag alert. This is one of the sanctioned
+// locations in DESIGN-RATIONALE §3.
+.msg-emergency {
+  align-self: stretch;
+  max-width: 100%;
+  background: var(--mp-emergency);
+  color: var(--mp-on-emergency);
+  border: 2px solid var(--mp-emergency-deep);
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  gap: var(--mp-space-md);
+
+  .em-title {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    font-size: 13px;
+  }
+
+  .em-calls { display: flex; flex-wrap: wrap; gap: var(--mp-space-sm); }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: var(--mp-touch);
+    padding: 8px 16px;
+    border-radius: var(--mp-radius-input);
+    background: var(--mp-surface);
+    color: var(--mp-emergency);
+    font-weight: 700;
+    text-decoration: none;
+    border: 0;
+
+    &:hover { background: var(--mp-emergency-deep); color: var(--mp-on-emergency); }
+  }
+}
+
+.msg-skeleton {
+  align-self: flex-start;
+  display: flex;
+  gap: 6px;
+  padding: 12px 16px;
+  background: var(--mp-surface);
+  border: 1px solid var(--mp-border);
+  border-radius: var(--mp-radius-card);
+
+  i {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--mp-border-strong);
+    animation: bounce 1.2s infinite;
+
+    &:nth-child(2) { animation-delay: .15s; }
+    &:nth-child(3) { animation-delay: .3s; }
+  }
+}
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-6px); }
+}
+
+.bot-chips {
+  display: flex;
+  gap: 8px;
+  padding: var(--mp-space-sm) var(--mp-space-base);
+  overflow-x: auto;
+  background: var(--mp-surface);
+  border-top: 1px solid var(--mp-border);
+
+  button {
+    flex: none;
+    min-height: 36px;
+    border: 1px solid var(--mp-border);
+    border-radius: var(--mp-radius-pill);
+    background: var(--mp-surface);
+    color: var(--mp-primary-text);
+    padding: 4px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover { background: var(--mp-primary-weak-bg); border-color: var(--mp-primary-weak-border); }
+  }
+}
+
+.bot-input {
+  display: flex;
+  gap: var(--mp-space-sm);
+  padding: var(--mp-space-md) var(--mp-space-base);
+  background: var(--mp-surface);
+  border-top: 1px solid var(--mp-border);
+
+  .input { flex: 1; }
+  .btn { flex: none; }
+}
+
+.bot-error {
+  border-top: 1px solid var(--mp-danger-weak-border);
+  background: var(--mp-danger-weak-bg);
+  color: var(--mp-danger-text);
+  padding: var(--mp-space-sm) var(--mp-space-base);
+  display: flex;
+  align-items: center;
+  gap: var(--mp-space-sm);
+  font-size: 13px;
+
+  .txt { flex: 1; }
+}

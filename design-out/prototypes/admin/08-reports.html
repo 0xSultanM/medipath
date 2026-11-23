@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Reports &amp; Analytics (Admin) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">SA</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Admin workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Administration</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">📊</span>Dashboard</a>
+      <a class="s-link" href="02-users.html"><span class="ico">👥</span>Users</a>
+      <a class="s-link" href="03-approvals.html"><span class="ico">✅</span>Approvals</a>
+      <a class="s-link" href="04-doctors.html"><span class="ico">🩺</span>Doctors</a>
+      <a class="s-link" href="05-patients.html"><span class="ico">🧑</span>Patients</a>
+      <a class="s-link" href="06-appointments.html"><span class="ico">📅</span>Appointments</a>
+      <a class="s-link" href="07-records.html"><span class="ico">🗂</span>Records</a>
+      <a class="s-link is-active" href="08-reports.html" aria-current="page"><span class="ico">📈</span>Reports</a>
+      <a class="s-link" href="09-activity.html"><span class="ico">🧾</span>Activity Log</a>
+      <a class="s-link" href="10-faq-reviews.html"><span class="ico">💬</span>FAQs &amp; Reviews</a>
+      <a class="s-link" href="11-safety-console.html"><span class="ico">🛡</span>Emergency &amp; AI Rules</a>
+      <a class="s-link" href="12-settings.html"><span class="ico">⚙️</span>System Settings</a>
+      <a class="s-link" href="13-data.html"><span class="ico">💾</span>Data Management</a>
+      <a class="s-link" href="14-security.html"><span class="ico">🔐</span>Admin Security</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar">
+      <h1>Reports &amp; analytics</h1>
+      <div class="row mla" role="group" aria-label="Export">
+        <button class="btn btn-outline">⬇ CSV</button>
+        <button class="btn btn-outline btn-pdf is-loading"><span class="spinner" aria-hidden="true"></span><span class="txt">Building PDF…</span></button>
+      </div>
+    </div>
+    <div class="row" role="group" aria-label="Range"><span class="chip chip-select"><strong>✓</strong> 30d</span><span class="chip chip-select">90d</span><span class="chip chip-select">Year</span><span class="caption">exports stream server-side; CSVs neutralise formula injection</span></div>
+
+    <section class="dataview">
+      <div class="dv-bar"><span class="dv-name">Data view · 7 report sections (each fetches independently)</span>
+        <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-rp" id="dv-rp-s" checked><label for="dv-rp-s">Success</label><input class="st-skeleton" type="radio" name="dv-rp" id="dv-rp-k"><label for="dv-rp-k">Skeleton</label><input class="st-empty" type="radio" name="dv-rp" id="dv-rp-e"><label for="dv-rp-e">Empty</label><input class="st-error" type="radio" name="dv-rp" id="dv-rp-r"><label for="dv-rp-r">Error</label></div></div>
+      <div class="dv-host">
+        <div data-state="success">
+          <div class="grid">
+            <!-- 1 monthly revenue -->
+            <div class="card card-pad c-12 md-c-6">
+              <div class="spread"><h2 class="h4">1 · Monthly revenue</h2><span class="money">{{CURRENCY}} 1.19M</span></div>
+              <div class="bars mt-m" aria-hidden="true"><i style="height:35%"></i><i style="height:44%"></i><i style="height:40%"></i><i style="height:58%"></i><i style="height:62%"></i><i style="height:70%"></i><i style="height:66%"></i><i style="height:80%"></i><i style="height:75%"></i><i style="height:88%"></i><i style="height:82%"></i><i style="height:95%"></i></div>
+              <p class="caption">consultations + dispensing; commission shown separately in Settings revenue %.</p>
+            </div>
+            <!-- 2 patient growth -->
+            <div class="card card-pad c-12 md-c-6">
+              <div class="spread"><h2 class="h4">2 · Patient growth</h2><span class="kpi k-label" style="all:unset">+68 (30d)</span></div>
+              <div class="bars mt-m" aria-hidden="true"><i class="alt" style="height:20%"></i><i class="alt" style="height:28%"></i><i class="alt" style="height:34%"></i><i class="alt" style="height:30%"></i><i class="alt" style="height:46%"></i><i class="alt" style="height:52%"></i><i class="alt" style="height:60%"></i><i class="alt" style="height:66%"></i><i class="alt" style="height:64%"></i><i class="alt" style="height:76%"></i><i class="alt" style="height:84%"></i><i class="alt" style="height:90%"></i></div>
+              <p class="caption">registrations vs walk-ins split available in CSV.</p>
+            </div>
+            <!-- 3 rx completion -->
+            <div class="card card-pad c-12 md-c-6">
+              <h2 class="h4">3 · Prescription completion</h2>
+              <div class="def-row mt-s"><dt>Saved → dispensed</dt><dd><strong>91%</strong> · 3,410 / 3,747</dd></div>
+              <div class="progress good" style="margin-top:8px"><span style="width:91%"></span></div>
+              <div class="def-row"><dt>Refused at gate</dt><dd>0.8% (31)</dd></div>
+              <div class="def-row"><dt>Median time to dispense</dt><dd class="tabular">4h 12m</dd></div>
+            </div>
+            <!-- 4 invoice collection -->
+            <div class="card card-pad c-12 md-c-6">
+              <h2 class="h4">4 · Invoice collection</h2>
+              <div class="def-row mt-s"><dt>Paid</dt><dd class="money">{{CURRENCY}} 1.08M</dd></div>
+              <div class="def-row"><dt>Pending</dt><dd class="money">{{CURRENCY}} 96.4K</dd></div>
+              <div class="def-row"><dt>Refunded</dt><dd class="money">({{CURRENCY}} 14.9K)</dd></div>
+              <p class="caption">aging buckets ≤30 / 31–60 / &gt;60 exported per row.</p>
+            </div>
+            <!-- 5 stock health -->
+            <div class="card card-pad c-12 md-c-6">
+              <h2 class="h4">5 · Stock health &amp; expiry risk</h2>
+              <div class="row mt-s"><span class="badge badge-danger"><span class="dot"></span>1 out</span><span class="badge badge-danger"><span class="dot"></span>2 critical</span><span class="badge badge-warning"><span class="dot"></span>14 low</span><span class="badge badge-warning"><span class="dot"></span>2 expiring ≤30d</span></div>
+              <ul class="list-quiet mt-s" style="font-size:13px"><li>Insulin Glargine — out · cold chain</li><li>Salbutamol Inhaler — 2 left · exp 14 Dec</li></ul>
+            </div>
+            <!-- 6 conversion/cancellation -->
+            <div class="card card-pad c-12 md-c-6">
+              <h2 class="h4">6 · Appointment conversion &amp; cancellation</h2>
+              <div class="def-row mt-s"><dt>Pending → accepted</dt><dd><strong>86%</strong></dd></div>
+              <div class="def-row"><dt>Accepted → completed</dt><dd><strong>93%</strong></dd></div>
+              <div class="def-row"><dt>Cancellation rate</dt><dd><strong>7.2%</strong> <span class="caption">(pt 5.1% · doc 2.1%)</span></dd></div>
+            </div>
+            <!-- 7 leaderboard -->
+            <div class="card card-pad c-12 md-c-12">
+              <h2 class="h4">7 · Top-doctor leaderboard (30d)</h2>
+              <div class="tbl-wrap mt-s" style="border:0"><table class="tbl">
+                <thead><tr><th>#</th><th>Doctor</th><th>Visits</th><th>Completion</th><th>Rating</th><th>Revenue share</th></tr></thead>
+                <tbody>
+                  <tr><td data-label="#" class="num">1</td><td data-label="Doctor">Dr. Maya Haddad <span class="caption" data-src="db:specialties.name">Cardiothoracic Surgery</span></td><td data-label="Visits" class="num">84</td><td data-label="Completion" class="num">97%</td><td data-label="Rating" class="num tabular">4.9 ★</td><td data-label="Share" class="num money">{{CURRENCY}} 168,000.00</td></tr>
+                  <tr><td data-label="#" class="num">2</td><td data-label="Doctor">Dr. Ayesha Rahman <span class="caption" data-src="db:specialties.name">Cardiology</span></td><td data-label="Visits" class="num">71</td><td data-label="Completion" class="num">95%</td><td data-label="Rating" class="num tabular">4.8 ★</td><td data-label="Share" class="num money">{{CURRENCY}} 85,200.00</td></tr>
+                  <tr><td data-label="#" class="num">3</td><td data-label="Doctor">Dr. Kofi Mensah <span class="caption" data-src="db:specialties.name">Pediatrics</span></td><td data-label="Visits" class="num">66</td><td data-label="Completion" class="num">92%</td><td data-label="Rating" class="num tabular">4.9 ★</td><td data-label="Share" class="num money">{{CURRENCY}} 59,400.00</td></tr>
+                </tbody>
+              </table></div>
+            </div>
+          </div>
+        </div>
+        <div data-state="skeleton" aria-hidden="true"><div class="grid"><div class="sk" style="height:180px;border-radius:12px"></div><div class="sk" style="height:180px;border-radius:12px"></div><div class="sk" style="height:180px;border-radius:12px"></div><div class="sk" style="height:180px;border-radius:12px"></div></div></div>
+        <div data-state="empty"><div class="empty"><span class="glyph">📈</span><p>No data for the selected range — widen it or pick another period.</p></div></div>
+        <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt"><strong>3 of 7 sections failed.</strong> <span class="muted">The healthy ones above still render; failed tiles show inline Retry, and export uses only succeeded datasets with a warning header.</span></span><button class="btn btn-primary">Retry all</button></div></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Admin</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link" href="01-dashboard.html">📊 Dashboard</a><a class="nav-link" href="02-users.html">👥 Users</a><a class="nav-link" href="03-approvals.html">✅ Approvals</a><a class="nav-link" href="04-doctors.html">🩺 Doctors</a><a class="nav-link" href="05-patients.html">🧑 Patients</a><a class="nav-link" href="06-appointments.html">📅 Appointments</a><a class="nav-link" href="07-records.html">🗂 Records</a><a class="nav-link is-active" href="08-reports.html">📈 Reports</a><a class="nav-link" href="09-activity.html">🧾 Activity</a><a class="nav-link" href="10-faq-reviews.html">💬 FAQ &amp; Reviews</a><a class="nav-link" href="11-safety-console.html">🛡 Safety</a><a class="nav-link" href="12-settings.html">⚙️ Settings</a><a class="nav-link" href="13-data.html">💾 Data</a><a class="nav-link" href="14-security.html">🔐 Security</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

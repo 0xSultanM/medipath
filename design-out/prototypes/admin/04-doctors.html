@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Doctors CRUD (Admin) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+<style>/* typed-confirm gate (CSS demo): danger button inert until checkbox "typed" stands in for exact-match validation */
+  #m-arch:has(#typed-ok:checked) .type-gate{pointer-events:auto;opacity:1}
+  .type-gate{pointer-events:none;opacity:.5}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+<input type="checkbox" id="m-arch" class="hidden-check modal-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">SA</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Admin workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Administration</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">📊</span>Dashboard</a>
+      <a class="s-link" href="02-users.html"><span class="ico">👥</span>Users</a>
+      <a class="s-link" href="03-approvals.html"><span class="ico">✅</span>Approvals</a>
+      <a class="s-link is-active" href="04-doctors.html" aria-current="page"><span class="ico">🩺</span>Doctors</a>
+      <a class="s-link" href="05-patients.html"><span class="ico">🧑</span>Patients &amp; Portal</a>
+      <a class="s-link" href="06-appointments.html"><span class="ico">📅</span>Appointments</a>
+      <a class="s-link" href="07-records.html"><span class="ico">🗂</span>Records</a>
+      <a class="s-link" href="08-reports.html"><span class="ico">📈</span>Reports</a>
+      <a class="s-link" href="09-activity.html"><span class="ico">🧾</span>Activity Log</a>
+      <a class="s-link" href="10-faq-reviews.html"><span class="ico">💬</span>FAQs &amp; Reviews</a>
+      <a class="s-link" href="11-safety-console.html"><span class="ico">🛡</span>Emergency &amp; AI Rules</a>
+      <a class="s-link" href="12-settings.html"><span class="ico">⚙️</span>System Settings</a>
+      <a class="s-link" href="13-data.html"><span class="ico">💾</span>Data Management</a>
+      <a class="s-link" href="14-security.html"><span class="ico">🔐</span>Admin Security</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar"><h1>Doctors</h1><button class="btn btn-primary mla">+ Add doctor</button></div>
+
+    <section class="dataview">
+      <div class="dv-bar"><span class="dv-name">Data view · Doctor records</span>
+        <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-dc" id="dv-dc-s" checked><label for="dv-dc-s">Success</label><input class="st-skeleton" type="radio" name="dv-dc" id="dv-dc-k"><label for="dv-dc-k">Skeleton</label><input class="st-empty" type="radio" name="dv-dc" id="dv-dc-e"><label for="dv-dc-e">Empty</label><input class="st-error" type="radio" name="dv-dc" id="dv-dc-r"><label for="dv-dc-r">Error</label></div></div>
+      <div class="dv-host">
+        <div data-state="success">
+          <div class="tbl-wrap"><table class="tbl">
+            <thead><tr><th>Doctor</th><th>Specialty</th><th>License</th><th>Fee</th><th>Verification</th><th>Bookings</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td data-label="Doctor"><strong>Dr. Ayesha Rahman</strong></td><td data-label="Specialty" data-src="db:specialties.name">Cardiology</td><td data-label="License" class="mono">CMB-443721</td><td data-label="Fee" class="num money">{{CURRENCY}} 1,200.00</td><td data-label="Verification"><span class="badge badge-verified">✓ verified</span></td><td data-label="Bookings" class="num">112</td><td data-label="Actions"><div class="row"><button class="btn btn-ghost">Edit</button><label class="btn btn-ghost" for="m-arch" style="color:var(--mp-danger-text)">Archive…</label></div></td></tr>
+              <tr><td data-label="Doctor"><strong>Dr. Tariq Ahmed</strong></td><td data-label="Specialty" data-src="db:specialties.name">Cardiology</td><td data-label="License" class="mono">CMB-771200</td><td data-label="Fee" class="num money">{{CURRENCY}} 750.00</td><td data-label="Verification"><span class="badge badge-warning"><span class="dot"></span>under_review</span></td><td data-label="Bookings" class="num">0</td><td data-label="Actions"><div class="row"><button class="btn btn-ghost">Edit</button><a class="btn btn-outline" href="03-approvals.html" style="min-height:36px;padding:4px 12px;font-size:13px">Verify →</a></div></td></tr>
+              <tr><td data-label="Doctor"><strong>Dr. Erik V.</strong> <span class="caption">archived 20 Oct</span></td><td data-label="Specialty" data-src="db:specialties.name">Psychiatry</td><td data-label="License" class="mono">CMB-330019</td><td data-label="Fee" class="num money muted">—</td><td data-label="Verification"><span class="badge badge-danger">revoked</span></td><td data-label="Bookings" class="num">19</td><td data-label="Actions"><div class="row"><button class="btn btn-ghost">Restore</button></div></td></tr>
+            </tbody>
+          </table>
+          <nav class="pager" aria-label="Pagination"><span class="caption">page 1/6</span><div class="pgs"><a class="pg is-on">1</a><a class="pg">2</a></div><a class="pg" aria-label="Next">→</a></nav></div>
+        </div>
+        <div data-state="skeleton" aria-hidden="true"><div class="card card-pad"><div class="sk sk-line" style="width:25%"></div><div class="sk sk-box"></div><div class="sk sk-box" style="width:80%"></div></div></div>
+        <div data-state="empty"><div class="empty"><span class="glyph">🩺</span><p>No doctor records yet.</p><button class="btn btn-primary">+ Add doctor</button></div></div>
+        <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt">Records failed to load.</span><button class="btn btn-primary">Retry</button></div></div>
+      </div>
+    </section>
+    <p class="caption" id="archive-demo">Archiving is a <strong>soft</strong> delete: records link forever, directory &amp; booking hide instantly. Hard-delete paths don't exist in the codebase.</p>
+  </main>
+</div>
+
+<!-- TYPED-CONFIRM + DEPENDENCY COUNTS (COMPONENT-SPEC §13) -->
+<div class="modal-stage" role="dialog" aria-modal="true" aria-labelledby="ma2-t">
+  <div class="modal modal--danger" id="m-arch">
+    <div class="modal-head"><span style="font-size:26px" aria-hidden="true">🗄️</span><div><h2 id="ma2-t" class="modal-title" style="color:var(--mp-danger-text)">Archive Dr. Ayesha Rahman?</h2><p class="caption">She disappears from directory, booking and future prescriptions.</p></div><label class="modal-x" for="m-arch" aria-label="Close">✕</label></div>
+    <div class="modal-body">
+      <div class="dep-counts" role="group" aria-label="Linked records">
+        <span class="dep">🔗 112 appointments</span><span class="dep">🔗 341 prescriptions</span><span class="dep">🔗 56 reviews</span><span class="dep">2 active schedules</span>
+      </div>
+      <p style="font-size:14px;margin-top:8px">Existing records remain readable to patients &amp; pharmacy forever. This cannot be undone except by “Restore”, also logged.</p>
+      <div class="field"><label class="label req" for="typed-name">Type the doctor's name to confirm</label><input class="input mono" id="typed-name" autocomplete="off" placeholder="Ayesha Rahman"></div>
+      <label class="check" style="min-height:28px"><input type="checkbox" id="typed-ok"><span class="caption">(demo switch standing in for the exact-match validator; enabling it simulates a correct typed name)</span></label>
+    </div>
+    <div class="modal-foot"><label class="btn btn-quiet" for="m-arch">Cancel</label><label class="btn btn-danger type-gate" for="m-arch" aria-disabled="true">Archive doctor</label></div>
+  </div>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Admin</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link" href="01-dashboard.html">📊 Dashboard</a><a class="nav-link" href="02-users.html">👥 Users</a><a class="nav-link" href="03-approvals.html">✅ Approvals</a><a class="nav-link is-active" href="04-doctors.html">🩺 Doctors</a><a class="nav-link" href="05-patients.html">🧑 Patients</a><a class="nav-link" href="06-appointments.html">📅 Appointments</a><a class="nav-link" href="07-records.html">🗂 Records</a><a class="nav-link" href="08-reports.html">📈 Reports</a><a class="nav-link" href="09-activity.html">🧾 Activity</a><a class="nav-link" href="10-faq-reviews.html">💬 FAQ &amp; Reviews</a><a class="nav-link" href="11-safety-console.html">🛡 Safety</a><a class="nav-link" href="12-settings.html">⚙️ Settings</a><a class="nav-link" href="13-data.html">💾 Data</a><a class="nav-link" href="14-security.html">🔐 Security</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

@@ -1,0 +1,86 @@
+# ---------------------------------------------------------------------------
+# Secrets — never commit real environment files or credentials
+# ---------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+!**/.env.example
+!**/.env.dusk.example
+*.pem
+*.key
+auth.json
+.vercel/
+
+# ---------------------------------------------------------------------------
+# Operating system / editor
+# ---------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.fleet/
+.nova/
+.zed/
+.phpactor.json
+
+# ---------------------------------------------------------------------------
+# Laravel application build/runtime artifacts
+# ---------------------------------------------------------------------------
+medipath/vendor/
+medipath/node_modules/
+medipath/public/build/
+medipath/public/hot/
+medipath/public/storage/
+medipath/bootstrap/cache/*.php
+medipath/storage/*.key
+medipath/storage/logs/*
+!medipath/storage/logs/.gitignore
+medipath/storage/framework/cache/data/*
+!medipath/storage/framework/cache/data/.gitignore
+medipath/storage/framework/sessions/*
+!medipath/storage/framework/sessions/.gitignore
+medipath/storage/framework/views/*
+!medipath/storage/framework/views/.gitignore
+medipath/storage/app/private/*
+!medipath/storage/app/private/.gitignore
+medipath/storage/app/public/*
+!medipath/storage/app/public/.gitignore
+medipath/storage/pail/
+medipath/database/*.sqlite
+medipath/database/*.sqlite-journal
+medipath/.phpunit.result.cache
+medipath/.phpunit.cache/
+
+# Browser test evidence is generated locally. Curated copies live in
+# Docs/screenshots and are committed.
+medipath/tests/Browser/screenshots/
+
+# ---------------------------------------------------------------------------
+# Graphify — publish the graph, not machine-specific state or caches
+# ---------------------------------------------------------------------------
+graphify-out/cache/
+graphify-out/.graphify_python
+graphify-out/.graphify_root
+graphify-out/.graphify_chunk_*.json
+graphify-out/.graphify_cached.json
+graphify-out/.graphify_uncached.txt
+graphify-out/.graphify_partial.txt
+graphify-out/.graphify_incremental.json
+graphify-out/.graphify_detect.json
+graphify-out/.graphify_ast.json
+graphify-out/.graphify_semantic.json
+graphify-out/.graphify_semantic_new.json
+graphify-out/.graphify_extract.json
+graphify-out/.graphify_analysis.json
+graphify-out/.graphify_old.json
+graphify-out/.needs_update
+!graphify-out/.graphify_labels.json
+
+# ---------------------------------------------------------------------------
+# Local archives / logs / coverage
+# ---------------------------------------------------------------------------
+*.log
+*.zip
+*.tar.gz
+coverage/
+.phpunit.cache/

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Approval Queue &amp; Doctor Verification (Admin) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+<style>.rej-panel{display:none}.tabbed:has(#rej-open:checked) .rej-panel{display:block}</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">SA</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Admin workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Administration</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">📊</span>Dashboard</a>
+      <a class="s-link" href="02-users.html"><span class="ico">👥</span>Users</a>
+      <a class="s-link is-active" href="03-approvals.html" aria-current="page"><span class="ico">✅</span>Approvals &amp; Verification<span class="cnt tabular">7</span></a>
+      <a class="s-link" href="04-doctors.html"><span class="ico">🩺</span>Doctors</a>
+      <a class="s-link" href="05-patients.html"><span class="ico">🧑</span>Patients &amp; Portal</a>
+      <a class="s-link" href="06-appointments.html"><span class="ico">📅</span>Appointments</a>
+      <a class="s-link" href="07-records.html"><span class="ico">🗂</span>Records</a>
+      <a class="s-link" href="08-reports.html"><span class="ico">📈</span>Reports</a>
+      <a class="s-link" href="09-activity.html"><span class="ico">🧾</span>Activity Log</a>
+      <a class="s-link" href="10-faq-reviews.html"><span class="ico">💬</span>FAQs &amp; Reviews</a>
+      <a class="s-link" href="11-safety-console.html"><span class="ico">🛡</span>Emergency &amp; AI Rules</a>
+      <a class="s-link" href="12-settings.html"><span class="ico">⚙️</span>System Settings</a>
+      <a class="s-link" href="13-data.html"><span class="ico">💾</span>Data Management</a>
+      <a class="s-link" href="14-security.html"><span class="ico">🔐</span>Admin Security</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar"><h1>Approvals &amp; verification</h1></div>
+
+    <section class="dataview tabbed">
+      <div class="dv-bar"><span class="dv-name">Data view · Queues</span>
+        <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-apq" id="dv-apq-s" checked><label for="dv-apq-s">Success</label><input class="st-skeleton" type="radio" name="dv-apq" id="dv-apq-k"><label for="dv-apq-k">Skeleton</label><input class="st-empty" type="radio" name="dv-apq" id="dv-apq-e"><label for="dv-apq-e">Empty</label><input class="st-error" type="radio" name="dv-apq" id="dv-apq-r"><label for="dv-apq-r">Error</label></div></div>
+      <div class="dv-host">
+        <div data-state="success">
+          <div class="tabs" role="tablist">
+            <input class="t1" type="radio" name="apq" id="ap1" checked><label class="tab1" for="ap1">Pending sign-ups <span class="cnt">3</span></label>
+            <input class="t2" type="radio" name="apq" id="ap2"><label class="tab2" for="ap2">Doctor verification <span class="cnt">4</span></label>
+          </div>
+
+          <!-- SIGN-UP QUEUE -->
+          <div class="pane p1 mt-m">
+            <article class="card card-pad">
+              <div class="spread" style="flex-wrap:wrap;gap:var(--mp-space-md)">
+                <div><strong>Dr. Sara Nekisi</strong> · <span data-src="db:specialties.name">Dermatology</span> · requested <time class="caption" datetime="2026-11-22">22 Nov 16:42</time>
+                  <div class="caption">license <span class="mono">#CMB-993812</span> · authority Central Medical Board · 7 yrs</div></div>
+                <div class="row"><button class="btn btn-quiet">Preview credential ⧉</button></div>
+              </div>
+              <div class="card card-pad mt-m" style="background:var(--mp-surface-muted)"><p class="caption" role="img" aria-label="Credential document preview page 1">Credential document · private-disk preview renders here (watermarked, admin-only)</p></div>
+              <div class="row mt-m">
+                <button class="btn btn-primary">Approve</button>
+                <label class="btn btn-danger-outline" for="rej-open">Reject with reason…</label>
+                <input type="radio" name="dummy" id="rej-open" class="hidden-check">
+              </div>
+              <div class="rej-panel mt-m">
+                <div class="field"><label class="label req">Rejection reason (required, shown to applicant)</label><textarea class="textarea" style="min-height:60px" placeholder="e.g., license page 2 missing"></textarea><span class="hint">Writes queue decision + notifies the pending account (reason panel on their screen).</span></div>
+                <button class="btn btn-danger">Send rejection</button>
+              </div>
+            </article>
+            <article class="card card-pad mt-m">
+              <div class="spread" style="flex-wrap:wrap"><div><strong>Ravi Kumar</strong> · <span data-src="db:roles.label">Pharmacist</span><div class="caption">license <span class="mono">PL-55210</span> · Pharmacy Council</div></div><div class="row"><button class="btn btn-quiet">Preview ⧉</button><button class="btn btn-primary">Approve</button><button class="btn btn-danger-outline">Reject…</button></div></div>
+            </article>
+            <p class="caption mt-m">Approving is atomic: status → approved, profile activation, queue item closed, notification + activity log — one transaction.</p>
+          </div>
+
+          <!-- DOCTOR VERIFICATION (3 decisions) -->
+          <div class="pane p2 mt-m" hidden>
+            <div class="tbl-wrap"><table class="tbl">
+              <thead><tr><th>Doctor</th><th>Specialty</th><th>Status</th><th>Decisions</th></tr></thead>
+              <tbody>
+                <tr><td data-label="Doctor"><strong>Dr. Ayesha Rahman</strong> <span class="badge badge-verified">✓ Verified</span></td><td data-label="Specialty" data-src="db:specialties.name">Cardiology</td><td data-label="Status"><span class="badge badge-success">verified</span> <span class="caption">since 02 Sep</span></td><td data-label="Decisions"><div class="row"><button class="btn btn-ghost" style="color:var(--mp-danger-text)">Revoke…</button></div></td></tr>
+                <tr><td data-label="Doctor"><strong>Dr. Omar Farooq</strong></td><td data-label="Specialty" data-src="db:specialties.name">Orthopedic Surgery</td><td data-label="Status"><span class="badge badge-warning"><span class="dot"></span>under_review</span></td><td data-label="Decisions"><div class="row"><button class="btn btn-primary" style="min-height:36px;padding:4px 12px;font-size:13px">Approve &amp; verify</button><button class="btn btn-outline" style="min-height:36px;padding:4px 12px;font-size:13px">Request resubmission</button><button class="btn btn-ghost" style="min-height:36px;font-size:13px;color:var(--mp-danger-text)">Revoke</button></div></td></tr>
+                <tr><td data-label="Doctor"><strong>Dr. Lena Costa</strong></td><td data-label="Specialty" data-src="db:specialties.name">Cardiology</td><td data-label="Status"><span class="badge badge-success">verified</span></td><td data-label="Decisions"><button class="btn btn-ghost" style="min-height:36px">History</button></td></tr>
+                <tr><td data-label="Doctor"><strong>Dr. Erik V.</strong></td><td data-label="Specialty" data-src="db:specialties.name">Psychiatry</td><td data-label="Status"><span class="badge badge-danger">revoked</span> <span class="caption">14 Nov — license lapsed</span></td><td data-label="Decisions"><button class="btn btn-ghost" style="min-height:36px">Re-verify…</button></td></tr>
+              </tbody>
+            </table></div>
+            <ul class="list-quiet mt-m" style="font-size:13px">
+              <li><strong>Approve &amp; verify</strong> → booking opens for patients; snapshot of license kept on the profile.</li>
+              <li><strong>Request resubmission</strong> → stays under_review with an itemised reason; doctors see it in their settings page.</li>
+              <li><strong>Revoke</strong> → bookings hide instantly; existing completed records remain; future Rx actions blocked; reason logged.</li>
+            </ul>
+          </div>
+        </div>
+        <div data-state="skeleton" aria-hidden="true"><div class="card card-pad"><div class="sk sk-line" style="width:30%"></div><div class="sk sk-box"></div></div></div>
+        <div data-state="empty"><div class="empty"><span class="glyph">🎉</span><h3 class="h3">Both queues clear</h3><p>New credential submissions appear here in real time.</p></div></div>
+        <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt">Queue load failed — decisions are never lost, DB queue is source of truth.</span><button class="btn btn-primary">Retry</button></div></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Admin</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link" href="01-dashboard.html">📊 Dashboard</a><a class="nav-link" href="02-users.html">👥 Users</a><a class="nav-link is-active" href="03-approvals.html">✅ Approvals</a><a class="nav-link" href="04-doctors.html">🩺 Doctors</a><a class="nav-link" href="05-patients.html">🧑 Patients</a><a class="nav-link" href="06-appointments.html">📅 Appointments</a><a class="nav-link" href="07-records.html">🗂 Records</a><a class="nav-link" href="08-reports.html">📈 Reports</a><a class="nav-link" href="09-activity.html">🧾 Activity</a><a class="nav-link" href="10-faq-reviews.html">💬 FAQ &amp; Reviews</a><a class="nav-link" href="11-safety-console.html">🛡 Safety</a><a class="nav-link" href="12-settings.html">⚙️ Settings</a><a class="nav-link" href="13-data.html">💾 Data</a><a class="nav-link" href="14-security.html">🔐 Security</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

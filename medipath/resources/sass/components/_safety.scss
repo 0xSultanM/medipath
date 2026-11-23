@@ -1,0 +1,154 @@
+// ============================================================================
+// Safety / Emergency page kit (§12) — SCOPED RED ZONE
+// Emergency red (#B91C1C) may appear ONLY within emergency UI regions:
+// call cards, red-flag accordion glyphs, time-bounded banner, emergency alert.
+// Routine destructive UI uses the danger family.
+// ============================================================================
+
+.emg-banner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mp-space-md);
+  align-items: center;
+  padding: var(--mp-space-md) var(--mp-space-base);
+  background: var(--mp-emergency);
+  color: var(--mp-on-emergency);
+  border-radius: var(--mp-radius-card);
+  font-weight: 600;
+
+  .win { font-size: 12px; font-weight: 500; opacity: .9; }
+  a { color: var(--mp-on-emergency); font-weight: 700; }
+}
+
+.call-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--mp-space-md);
+}
+@media (min-width: 640px) { .call-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 992px) { .call-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.call-card {
+  display: flex;
+  align-items: center;
+  gap: var(--mp-space-md);
+  padding: var(--mp-space-md) var(--mp-space-base);
+  border: 2px solid var(--mp-emergency);
+  border-radius: var(--mp-radius-card);
+  background: var(--mp-emergency-weak-bg);
+  color: var(--mp-emergency-text-on-weak);
+  text-decoration: none;
+  min-height: 72px;
+
+  &:hover { background: var(--mp-emergency); color: var(--mp-on-emergency); }
+  &:hover .cc-cat { color: var(--mp-on-emergency); }
+
+  .cc-ico {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--mp-emergency);
+    color: var(--mp-on-emergency);
+    font-size: 20px;
+    flex: none;
+  }
+
+  .cc-body { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .cc-num { display: block; font-size: 20px; font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .cc-cat {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--mp-emergency-deep);
+  }
+}
+
+.flag-acc {
+  border: 1px solid var(--mp-border);
+  border-radius: var(--mp-radius-card);
+  background: var(--mp-surface);
+  overflow: hidden;
+
+  summary {
+    display: flex;
+    align-items: center;
+    gap: var(--mp-space-md);
+    min-height: var(--mp-touch);
+    padding: var(--mp-space-md) var(--mp-space-base);
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--mp-text-heading);
+    list-style: none;
+
+    &::-webkit-details-marker { display: none; }
+    &::after { content: "+"; margin-left: auto; font-size: 20px; color: var(--mp-text-muted); }
+  }
+
+  &[open] summary::after { content: "–"; }
+
+  .f-body {
+    padding: 0 var(--mp-space-base) var(--mp-space-base);
+    font-size: 14px;
+
+    li {
+      padding: 6px 0;
+      border-top: 1px dashed var(--mp-border);
+
+      &::before {
+        content: "⚠";
+        color: var(--mp-emergency);
+        margin-right: 8px;
+      }
+    }
+  }
+}
+
+.offline-note {
+  display: flex;
+  gap: var(--mp-space-md);
+  align-items: flex-start;
+  padding: var(--mp-space-md) var(--mp-space-base);
+  border: 1px dashed var(--mp-border-strong);
+  border-radius: var(--mp-radius-card);
+  background: var(--mp-surface-muted);
+  color: var(--mp-text-muted);
+  font-size: 13px;
+}
+
+.alert-emergency {
+  background: var(--mp-emergency);
+  border-color: var(--mp-emergency-deep);
+  color: var(--mp-on-emergency);
+  font-weight: 600;
+}
+
+.safety-panel {
+  border: 1px solid var(--mp-danger-weak-border);
+  background: var(--mp-danger-weak-bg);
+  border-radius: var(--mp-radius-card);
+  padding: var(--mp-space-base);
+  color: var(--mp-danger-text);
+
+  .sp-title {
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: var(--mp-space-sm);
+  }
+}
+
+.safety-panel.is-warning {
+  border-color: var(--mp-warning-weak-border);
+  background: var(--mp-warning-weak-bg);
+  color: var(--mp-warning-text);
+}
+
+.safety-panel.is-emergency {
+  border: 2px solid var(--mp-emergency);
+  background: var(--mp-emergency-weak-bg);
+  color: var(--mp-emergency-text-on-weak);
+}

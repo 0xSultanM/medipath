@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Pharmacy Dashboard — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <span class="badge badge-primary hide-sm" data-src="db:roles.label">Pharmacist</span>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">NT</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Pharmacy workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Pharmacy · Nadia T.</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link is-active" href="01-dashboard.html" aria-current="page"><span class="ico">🏠</span>Dashboard</a>
+      <a class="s-link" href="02-pending-rx.html"><span class="ico">📥</span>Pending Prescriptions<span class="cnt tabular">6</span></a>
+      <a class="s-link" href="05-inventory.html"><span class="ico">📦</span>Medicine Inventory</a>
+      <a class="s-link" href="06-alerts.html"><span class="ico">🔔</span>Stock &amp; Expiry Alerts<span class="cnt tabular">3</span></a>
+      <a class="s-link" href="07-invoices.html"><span class="ico">🧾</span>Billing &amp; Invoices</a>
+      <a class="s-link" href="08-workflow-tracker.html"><span class="ico">🧭</span>Workflow Tracker</a>
+      <a class="s-link" href="../guest/05-login.html"><span class="ico">↩</span>Log out</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar"><h1>Pharmacy dashboard</h1><span class="caption mla">Approved pharmacists only (middleware pharmacist.approved); dispensing couples to stock + billing atomically.</span></div>
+
+    <!-- 3 KPIs — data view -->
+    <section class="dataview">
+      <div class="dv-bar"><span class="dv-name">Data view · Pharmacy KPIs</span>
+        <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-pk" id="dv-pk-s" checked><label for="dv-pk-s">Success</label><input class="st-skeleton" type="radio" name="dv-pk" id="dv-pk-k"><label for="dv-pk-k">Skeleton</label><input class="st-empty" type="radio" name="dv-pk" id="dv-pk-e"><label for="dv-pk-e">Empty</label><input class="st-error" type="radio" name="dv-pk" id="dv-pk-r"><label for="dv-pk-r">Error</label></div></div>
+      <div class="dv-host">
+        <div data-state="success">
+          <div class="grid">
+            <div class="kpi c-12 sm-c-4 is-alert"><span class="k-label">Pending prescriptions</span><span class="k-value">6</span><span class="k-foot"><span class="k-delta down">oldest 26h</span></span></div>
+            <div class="kpi c-12 sm-c-4 is-bad"><span class="k-label">Low/critical stock items</span><span class="k-value">3</span><span class="k-foot"><span class="k-delta down">1 out-of-stock</span></span></div>
+            <div class="kpi c-12 sm-c-4"><span class="k-label">Billed today</span><span class="k-value money" style="font-size:22px">{{CURRENCY}} 9,860.00</span><span class="k-foot"><span class="k-delta up">▲ 14 invoices</span></span></div>
+          </div>
+        </div>
+        <div data-state="skeleton" aria-hidden="true"><div class="grid"><div class="kpi"><span class="sk sk-line" style="width:45%"></span><span class="sk" style="height:34px"></span></div><div class="kpi"><span class="sk sk-line" style="width:45%"></span><span class="sk" style="height:34px"></span></div><div class="kpi"><span class="sk sk-line" style="width:45%"></span><span class="sk" style="height:34px"></span></div></div></div>
+        <div data-state="empty"><div class="empty"><span class="glyph">💊</span><p>Quiet shift — nothing pending right now.</p></div></div>
+        <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt">KPI fetch failed; queues load independently.</span><button class="btn btn-primary">Retry</button></div></div>
+      </div>
+    </section>
+
+    <div class="grid" style="align-items:start">
+      <!-- OLDEST-5 PENDING QUEUE -->
+      <section class="c-12 lg-c-7 card card-pad">
+        <div class="spread"><h2 class="h4">Oldest 5 pending</h2><a class="btn btn-ghost" style="min-height:36px;font-size:13px" href="02-pending-rx.html">Full queue →</a></div>
+        <ul class="list-quiet mt-m" style="font-size:14px">
+          <li><div><strong class="mono">Rx-2148</strong> — Farhana Karim <span class="caption">PT-0119</span><div class="caption">Dr. Okafor · 26h ago · ⚠ 1 item needs override re-check</div></div><span class="badge badge-danger mla"><span class="dot"></span>partial stock</span><a class="btn btn-primary" style="min-height:36px;padding:4px 12px;font-size:13px" href="03-safety-gate.html">Review &amp; Dispense</a></li>
+          <li><div><strong class="mono">Rx-2231</strong> — Farhana Karim<div class="caption">Dr. Rahman · 2h ago</div></div><span class="badge badge-success mla"><span class="dot"></span>all in stock</span><a class="btn btn-primary" style="min-height:36px;padding:4px 12px;font-size:13px" href="03-safety-gate.html">Review &amp; Dispense</a></li>
+          <li><div><strong class="mono">Rx-2234</strong> — Anwar Hussain<div class="caption">Dr. Rahman · 1h ago</div></div><span class="badge badge-neutral mla">stock n/a (0 items?)</span><button class="btn btn-ghost" style="min-height:36px">Inspect</button></li>
+        </ul>
+      </section>
+      <!-- URGENT STOCK QUEUE -->
+      <section class="c-12 lg-c-5 card card-pad">
+        <div class="spread"><h2 class="h4">Urgent stock queue</h2><a class="btn btn-ghost" style="min-height:36px;font-size:13px" href="06-alerts.html">Alerts →</a></div>
+        <ul class="list-quiet mt-m" style="font-size:14px">
+          <li><div><strong>Salbutamol Inhaler 100mcg</strong><div class="caption">critical · 2 left · threshold 10</div></div><div class="progress bad mla" style="width:70px"><span style="width:8%"></span></div><a class="btn btn-outline" style="min-height:36px;padding:4px 12px;font-size:13px" href="05-inventory.html">Restock</a></li>
+          <li><div><strong>Insulin Glargine</strong><div class="caption">out-of-stock · cold-chain item</div></div><span class="badge badge-danger mla"><span class="dot"></span>0</span><a class="btn btn-outline" style="min-height:36px;padding:4px 12px;font-size:13px" href="05-inventory.html">Restock</a></li>
+          <li><div><strong>Amoxicillin-clav 625mg</strong><div class="caption">expiry in 12 days · qty 30</div></div><span class="badge badge-warning mla"><span class="dot"></span>upcoming</span></li>
+        </ul>
+        <p class="caption">Daily scheduler sweep populates both queues; stock never goes below 0 (CHECK enforced, row-locked).</p>
+      </section>
+    </div>
+  </main>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Pharmacy</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link is-active" href="01-dashboard.html">🏠 Dashboard</a><a class="nav-link" href="02-pending-rx.html">📥 Pending Rx <span class="cnt">6</span></a><a class="nav-link" href="05-inventory.html">📦 Inventory</a><a class="nav-link" href="06-alerts.html">🔔 Alerts <span class="cnt">3</span></a><a class="nav-link" href="07-invoices.html">🧾 Invoices</a><a class="nav-link" href="08-workflow-tracker.html">🧭 Workflow</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

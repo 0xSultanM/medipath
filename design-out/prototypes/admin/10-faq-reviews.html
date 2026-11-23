@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · FAQ Manager &amp; Review Moderation (Admin) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">SA</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Admin workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Administration</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">📊</span>Dashboard</a>
+      <a class="s-link" href="02-users.html"><span class="ico">👥</span>Users</a>
+      <a class="s-link" href="03-approvals.html"><span class="ico">✅</span>Approvals</a>
+      <a class="s-link" href="04-doctors.html"><span class="ico">🩺</span>Doctors</a>
+      <a class="s-link" href="05-patients.html"><span class="ico">🧑</span>Patients</a>
+      <a class="s-link" href="06-appointments.html"><span class="ico">📅</span>Appointments</a>
+      <a class="s-link" href="07-records.html"><span class="ico">🗂</span>Records</a>
+      <a class="s-link" href="08-reports.html"><span class="ico">📈</span>Reports</a>
+      <a class="s-link" href="09-activity.html"><span class="ico">🧾</span>Activity Log</a>
+      <a class="s-link is-active" href="10-faq-reviews.html" aria-current="page"><span class="ico">💬</span>FAQs &amp; Reviews<span class="cnt tabular">3</span></a>
+      <a class="s-link" href="11-safety-console.html"><span class="ico">🛡</span>Emergency &amp; AI Rules</a>
+      <a class="s-link" href="12-settings.html"><span class="ico">⚙️</span>System Settings</a>
+      <a class="s-link" href="13-data.html"><span class="ico">💾</span>Data Management</a>
+      <a class="s-link" href="14-security.html"><span class="ico">🔐</span>Admin Security</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar"><h1>Knowledge base &amp; moderation</h1></div>
+
+    <section class="dataview tabbed">
+      <div class="dv-bar"><span class="dv-name">Data view · FAQ + review queues</span>
+        <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-fq" id="dv-fq-s" checked><label for="dv-fq-s">Success</label><input class="st-skeleton" type="radio" name="dv-fq" id="dv-fq-k"><label for="dv-fq-k">Skeleton</label><input class="st-empty" type="radio" name="dv-fq" id="dv-fq-e"><label for="dv-fq-e">Empty</label><input class="st-error" type="radio" name="dv-fq" id="dv-fq-r"><label for="dv-fq-r">Error</label></div></div>
+      <div class="dv-host">
+        <div data-state="success">
+          <div class="tabs" role="tablist">
+            <input class="t1" type="radio" name="fr" id="fr1" checked><label class="tab1" for="fr1">Chatbot FAQs <span class="cnt">42</span></label>
+            <input class="t2" type="radio" name="fr" id="fr2"><label class="tab2" for="fr2">Review moderation <span class="cnt">3</span></label>
+          </div>
+
+          <!-- FAQ MANAGER -->
+          <div class="pane p1 mt-m">
+            <div class="card card-pad">
+              <h2 class="h4">New / edit FAQ</h2>
+              <div class="grid tight mt-s">
+                <div class="field c-12" style="margin:0"><label class="label req" for="faq-q">Question</label><input class="input" id="faq-q" value="How do I reschedule an appointment?"></div>
+                <div class="field c-12" style="margin:0"><label class="label req" for="faq-a">Answer</label><textarea class="textarea" id="faq-a">Open My Appointments → Accepted → Reschedule…</textarea></div>
+                <div class="field c-12 sm-c-4" style="margin:0"><label class="label" for="faq-c">Category</label><select class="select" id="faq-c"><option>Booking</option><option>Billing</option><option>Prescriptions</option><option>Account</option></select></div>
+                <div class="field c-12 sm-c-4" style="margin:0"><label class="label" for="faq-k">Keywords (FULLTEXT boosters)</label><input class="input" id="faq-k" value="reschedule, move, change slot"></div>
+                <div class="c-12 sm-c-4" style="align-self:end"><label class="switch"><input type="checkbox" checked><span>Published</span></label></div>
+                <div class="c-12"><button class="btn btn-primary">Save &amp; reindex</button><span class="saving-inline"><span class="spinner" aria-hidden="true"></span> Saving…</span><span class="caption" style="margin-left:8px">Chatbot retrieval is instant on publish; unpublishing removes it from answers but not from history.</span></div>
+              </div>
+            </div>
+            <div class="tbl-wrap mt-m"><table class="tbl">
+              <thead><tr><th>Question</th><th class="hide-xs">Category</th><th>Hits (30d)</th><th>Published</th><th>Actions</th></tr></thead>
+              <tbody>
+                <tr><td data-label="Q">What is the cancellation policy?</td><td data-label="Cat">Booking</td><td data-label="Hits" class="num">118</td><td data-label="Pub"><label class="switch"><input type="checkbox" checked><span class="sr-only">Published</span></label></td><td data-label="Act"><button class="btn btn-ghost">Edit</button></td></tr>
+                <tr><td data-label="Q">Where is the clinic / parking?</td><td data-label="Cat">Account</td><td data-label="Hits" class="num">44</td><td data-label="Pub"><label class="switch"><input type="checkbox" checked><span class="sr-only">Published</span></label></td><td data-label="Act"><button class="btn btn-ghost">Edit</button></td></tr>
+                <tr><td data-label="Q">Draft: insurance partners</td><td data-label="Cat">Billing</td><td data-label="Hits" class="num muted">—</td><td data-label="Pub"><label class="switch"><input type="checkbox"><span class="sr-only">Unpublished</span></label></td><td data-label="Act"><button class="btn btn-ghost">Edit</button></td></tr>
+              </tbody>
+            </table></div>
+          </div>
+
+          <!-- REVIEW MODERATION -->
+          <div class="pane p2 mt-m" hidden>
+            <div class="stack">
+              <article class="card card-pad">
+                <div class="spread" style="flex-wrap:wrap"><div class="row"><strong>Jamia L.</strong> <span class="stars" aria-label="5 of 5">★★★★★</span> <span class="caption">Dr. Rahman · APT-3210 · 14 Nov</span></div><span class="badge badge-success"><span class="dot"></span>approved</span></div>
+                <p class="mt-s" style="font-size:14px">Explained my ECG line by line…</p>
+              </article>
+              <article class="card card-pad" style="border-left:4px solid var(--mp-warning)">
+                <div class="spread" style="flex-wrap:wrap"><div class="row"><strong>Sam Okoye</strong> <span class="stars" aria-label="4 of 5">★★★★<span class="off">★</span></span> <span class="caption">Dr. Costa · APT-3351 · yesterday</span></div><span class="badge badge-warning"><span class="dot"></span>pending</span></div>
+                <p class="mt-s" style="font-size:14px">Great visit — btw the pharmacy on Ring Rd closes early, told my friend Priya (PT-0288) about it here…</p>
+                <div class="field mt-s"><label class="label" for="mod-note">Moderation note (stored, not public)</label><textarea class="textarea" id="mod-note" style="min-height:56px" placeholder="why hidden/rejected"></textarea></div>
+                <div class="row"><button class="btn btn-primary">Approve</button><button class="btn btn-danger-outline">Hide &amp; reject</button><span class="caption">reject writes reviewer id + note; patient notified.</span></div>
+              </article>
+              <article class="card card-pad" style="border-left:4px solid var(--mp-danger)">
+                <div class="spread" style="flex-wrap:wrap"><div><strong>Anonymous-ish</strong> <span class="stars" aria-label="1 of 5">★<span class="off">★★★★</span></span> <span class="caption">contains another patient's name</span></div><span class="badge badge-danger">hidden_rejected</span></div>
+                <p class="caption">Privacy rule: reviews naming other patients can't be published; the rating still counts toward the doctor's private stats.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+        <div data-state="skeleton" aria-hidden="true"><div class="card card-pad"><div class="sk sk-line"></div><div class="sk sk-box"></div></div></div>
+        <div data-state="empty"><div class="empty"><span class="glyph">💬</span><p>Nothing to moderate — queue clear and no FAQs? Add one to give the chatbot a base.</p><button class="btn btn-primary">Create first FAQ</button></div></div>
+        <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt">Queue failed to load.</span><button class="btn btn-primary">Retry</button></div></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Admin</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link" href="01-dashboard.html">📊 Dashboard</a><a class="nav-link" href="02-users.html">👥 Users</a><a class="nav-link" href="03-approvals.html">✅ Approvals</a><a class="nav-link" href="04-doctors.html">🩺 Doctors</a><a class="nav-link" href="05-patients.html">🧑 Patients</a><a class="nav-link" href="06-appointments.html">📅 Appointments</a><a class="nav-link" href="07-records.html">🗂 Records</a><a class="nav-link" href="08-reports.html">📈 Reports</a><a class="nav-link" href="09-activity.html">🧾 Activity</a><a class="nav-link is-active" href="10-faq-reviews.html">💬 FAQ &amp; Reviews</a><a class="nav-link" href="11-safety-console.html">🛡 Safety</a><a class="nav-link" href="12-settings.html">⚙️ Settings</a><a class="nav-link" href="13-data.html">💾 Data</a><a class="nav-link" href="14-security.html">🔐 Security</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

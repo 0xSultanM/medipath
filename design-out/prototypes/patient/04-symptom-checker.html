@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · AI Symptom Checker (Patient) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+<style>.intake:has(#consent:not(:checked)) .submit-gate{opacity:.55;pointer-events:none}</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+<input type="checkbox" id="m-emg" class="hidden-check modal-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">FK</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Patient workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Patient portal</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">🏠</span>Dashboard</a>
+      <a class="s-link" href="../guest/02-directory.html"><span class="ico">🔍</span>Find Doctors</a>
+      <a class="s-link" href="03-appointments.html"><span class="ico">🗂</span>My Appointments</a>
+      <a class="s-link is-active" href="04-symptom-checker.html" aria-current="page"><span class="ico">🤖</span>AI Symptom Checker</a>
+      <a class="s-link" href="05-prescriptions.html"><span class="ico">💊</span>My Prescriptions</a>
+      <a class="s-link" href="06-bills.html"><span class="ico">🧾</span>My Bills</a>
+      <a class="s-link" href="07-allergies-medications.html"><span class="ico">⚠️</span>Allergies &amp; Medicines</a>
+      <a class="s-link" href="08-profile-settings.html"><span class="ico">⚙️</span>Settings</a>
+      <a class="s-link" href="../guest/05-login.html"><span class="ico">↩</span>Log out</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar"><h1>AI Symptom Checker</h1></div>
+
+    <!-- Disclaimer gate (pinned, non-dismissible) -->
+    <div class="bot-disclaimer" style="position:static;border-radius:var(--mp-radius-card);border:1px solid var(--mp-warning-weak-border)">⚠ General guidance only — <strong>not a diagnosis and not dosing advice</strong>. Deterministic red-flag rules run first; matching any stops this flow and routes you to emergency help.</div>
+
+    <div class="grid" style="align-items:start">
+      <!-- ===== INTAKE ===== -->
+      <form class="intake c-12 lg-c-5 card card-pad stack" style="gap:0" aria-label="Symptom intake">
+        <h2 class="h4">1 · Describe what you feel</h2>
+        <div class="field"><span class="label">Symptoms (multi-select)</span>
+          <div class="row" role="group" aria-label="Symptoms">
+            <span class="chip chip-select"><strong>✓</strong> Sore throat</span><span class="chip chip-select"><strong>✓</strong> Fever 3 days</span><span class="chip chip-select">Fatigue</span><span class="chip chip-select">Cough</span><span class="chip chip-select">+ add</span>
+          </div>
+        </div>
+        <div class="grid tight">
+          <div class="field c-12 sm-c-6" style="margin-top:0"><label class="label" for="sy-region">Body region</label><select class="select" id="sy-region"><option>Throat / neck</option><option>Chest</option><option>Abdomen</option><option>Head</option><option>Limbs</option><option>Whole body</option></select></div>
+          <div class="field c-12 sm-c-6" style="margin-top:0"><label class="label" for="sy-dur">Duration</label><select class="select" id="sy-dur"><option>&lt; 1 day</option><option selected>2–5 days</option><option>1–2 weeks</option><option>&gt; 2 weeks</option></select></div>
+          <div class="field c-12 sm-c-6" style="margin-top:0"><label class="label" for="sy-sev">Severity (1 mild – 10 worst)</label><input class="input" id="sy-sev" type="range" min="1" max="10" value="4"><span class="hint tabular">4 / 10 — moderate</span></div>
+          <div class="field c-12 sm-c-6" style="margin-top:0"><label class="label" for="sy-onset">Onset</label><select class="select" id="sy-onset"><option>Gradual</option><option selected>Sudden</option><option>Comes and goes</option></select></div>
+        </div>
+        <label class="check"><input type="checkbox" id="consent"><span style="font-size:14px">I understand this is decision support, not emergency care, and consent to storing this check in my history. <em>Red-flag keywords stop everything and show help first.</em></span></label>
+        <div class="row mt-b">
+          <button class="btn btn-primary submit-gate" type="submit" style="flex:1">Run symptom check</button>
+          <label class="btn btn-danger submit-gate" for="m-emg" title="demo of the Stage-1 rule match path">Simulate red-flag match</label>
+        </div>
+        <p class="caption">Stage-1: <span class="mono">RedFlagEngine</span> (DB rules, instant). Stage-2: AI triage only if Stage-1 is clear — with rule-based fallback + Retry if AI is down.</p>
+      </form>
+
+      <!-- ===== RESULTS ===== -->
+      <section class="c-12 lg-c-7 dataview">
+        <div class="dv-bar">
+          <span class="dv-name">Data view · Check result <span class="muted">(symptom_checks + symptom_specialty_maps)</span></span>
+          <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-sy" id="dv-sy-s" checked><label for="dv-sy-s">Success</label><input class="st-skeleton" type="radio" name="dv-sy" id="dv-sy-k"><label for="dv-sy-k">Analyzing</label><input class="st-empty" type="radio" name="dv-sy" id="dv-sy-e"><label for="dv-sy-e">No result</label><input class="st-error" type="radio" name="dv-sy" id="dv-sy-r"><label for="dv-sy-r">AI down</label></div>
+        </div>
+        <div class="dv-host">
+          <div data-state="success">
+            <div class="card card-pad stack" style="gap:var(--mp-space-md)">
+              <div class="spread"><h2 class="h3">Guidance</h2><span class="badge badge-warning"><span class="dot"></span>Short-term monitoring</span></div>
+              <p style="font-size:14px">Fever + sore throat for 3 days is commonly viral. See a clinician if fever &gt;3 days persists, swallowing fluids becomes hard, or symptoms worsen. No red-flag phrase matched.</p>
+              <div>
+                <h3 class="h4">Questions to ask your doctor</h3>
+                <ul class="list-quiet" style="font-size:14px"><li>• Do I need a throat swab (strep test)?</li><li>• What fever pattern should trigger an earlier visit?</li><li>• Any medicine conflicts with my current meds?</li></ul>
+              </div>
+              <div class="alert alert-info"><span class="a-ico">🎯</span><span>Recommended specialty: <strong data-src="db:specialties.name">ENT (Otolaryngology)</strong> — cross-validated from the symptom map, top-3 verified doctors below.</span></div>
+              <div class="row">
+                <a class="btn btn-outline" href="../guest/02-directory.html?spec=ent">Browse specialists</a>
+                <a class="btn btn-primary" href="02-booking.html">Book ENT visit</a>
+              </div>
+              <div class="divider"></div>
+              <div class="doctor-grid">
+                <article class="card doc-card card-hover" style="gap:8px"><div class="doc-top"><span class="avatar avatar-initials" style="width:40px;height:40px;font-size:13px" aria-hidden="true">SH</span><div style="min-width:0"><h3 class="h4" style="font-size:15px">Dr. Sana H.</h3><div class="doc-meta"><span data-src="db:specialties.name">ENT</span> · 10 yrs</div></div></div><div class="doc-stats"><div class="doc-stat"><span class="stars">★★★★<span class="off">★</span></span><span class="caption">4.6 (34)</span></div></div><div class="doc-next" style="font-size:12px">⚡ Tomorrow 11:30</div></article>
+                <article class="card doc-card card-hover" style="gap:8px"><div class="doc-top"><span class="avatar avatar-initials" style="width:40px;height:40px;font-size:13px" aria-hidden="true">JT</span><div style="min-width:0"><h3 class="h4" style="font-size:15px">Dr. Jonah T.</h3><div class="doc-meta"><span data-src="db:specialties.name">ENT</span> · 7 yrs</div></div></div><div class="doc-stats"><div class="doc-stat"><span class="stars">★★★★★</span><span class="caption">4.8 (19)</span></div></div><div class="doc-next" style="font-size:12px">⚡ Thu 14:00</div></article>
+              </div>
+              <p class="caption">AI output is general guidance (no diagnosis, no dosing). Your checks are owner-only readable.</p>
+            </div>
+          </div>
+          <div data-state="skeleton" aria-hidden="true"><div class="card card-pad"><div class="row"><span class="spinner spinner-lg" aria-hidden="true"></span><strong>Analyzing — Stage-1 rules clear, Stage-2 AI thinking…</strong></div><div class="sk sk-line" style="width:60%"></div><div class="sk sk-box"></div><div class="sk sk-box" style="width:70%"></div></div></div>
+          <div data-state="empty"><div class="empty"><span class="glyph">🤖</span><h3 class="h3">No result yet</h3><p>Fill the intake and run a check — guidance, specialty and doctor options appear here.</p></div></div>
+          <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt"><strong>AI triage unavailable — deterministic fallback in use.</strong> <span class="muted">Rule-based urgency: “Short-term monitoring”. Specialty map result: <strong data-src="db:specialties.name">ENT</strong> (still valid, rule-derived).</span></span><button class="btn btn-primary">Retry AI</button><button class="btn btn-quiet">Use fallback</button></div></div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<!-- ============ EMERGENCY ESCALATION MODAL (emergency scope, halt UI) ============ -->
+<div class="modal-stage" role="alertdialog" aria-modal="true" aria-labelledby="me-t">
+  <div class="modal modal-emoji modal--emergency">
+    <div class="emg-banner" style="border-radius:0;background:var(--mp-emergency)">
+      <span style="font-size:26px" aria-hidden="true">🚨</span>
+      <div><strong id="me-t" style="font-size:18px;text-transform:uppercase;letter-spacing:.04em">Red flag detected — stop and get help now</strong>
+      <p style="font-size:14px">Your inputs matched rule “crushing chest pain spreading to arm/jaw” (category: <span data-src="db:emergency_alert_rules.category">cardiac</span>, severity: <span data-src="db:emergency_alert_rules.severity">critical</span>). This checker will not continue triage.</p></div>
+    </div>
+    <div class="modal-body">
+      <p style="font-weight:600">Call one of these immediately:</p>
+      <div class="doctor-grid">
+        <a class="call-card" href="tel:911"><span class="cc-ico" aria-hidden="true">📞</span><span><span class="cc-cat">Emergency services</span><span class="cc-num">911</span></span></a>
+        <a class="call-card" href="tel:+8801700000000"><span class="cc-ico" aria-hidden="true">🚑</span><span><span class="cc-cat">Nearest ER transfer</span><span class="cc-num">+880 1700-000000</span></span></a>
+      </div>
+      <div class="flag-acc" open><summary>While you wait</summary><div class="f-body"><ul style="list-style:none"><li>Stop activity; sit or semi-recline. Do not drive yourself.</li><li>Unlock the door; keep your phone open.</li><li>If prescribed nitroglycerin, take as directed.</li></ul></div></div>
+      <p class="caption">Action directive stored server-side; escalation written to the activity log; your doctor can see the alert context if you continue care.</p>
+    </div>
+    <div class="modal-foot" style="justify-content:stretch">
+      <label class="btn btn-quiet" for="m-emg">I'm safe — this wasn't an emergency</label>
+      <a class="btn btn-emergency mla" href="tel:911">📞 Call 911 now</a>
+    </div>
+  </div>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Patient portal</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link" href="01-dashboard.html">🏠 Dashboard</a><a class="nav-link" href="../guest/02-directory.html">🔍 Find Doctors</a><a class="nav-link" href="03-appointments.html">🗂 My Appointments</a><a class="nav-link is-active" href="04-symptom-checker.html">🤖 AI Symptom Checker</a><a class="nav-link" href="05-prescriptions.html">💊 My Prescriptions</a><a class="nav-link" href="06-bills.html">🧾 My Bills</a><a class="nav-link" href="07-allergies-medications.html">⚠️ Allergies &amp; Medicines</a><a class="nav-link" href="08-profile-settings.html">⚙️ Settings</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

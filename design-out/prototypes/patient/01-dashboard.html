@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Patient Dashboard — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+<input type="checkbox" id="drawer-notif" class="hidden-check">
+<input type="checkbox" id="m-cancel" class="hidden-check modal-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" data-controls="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <span class="badge badge-primary hide-sm" data-src="db:roles.label">Patient</span>
+    <div class="row mla">
+      <label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label>
+      <label class="bell" for="drawer-notif" data-controls="drawer-notif" aria-label="Notifications, 4 unread">🔔<span class="b-dot tabular">4</span></label>
+      <span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">FK</span>
+    </div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Patient workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role" data-src="db:roles.label">Patient portal</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link is-active" href="01-dashboard.html" aria-current="page"><span class="ico">🏠</span>Dashboard</a>
+      <a class="s-link" href="../guest/02-directory.html"><span class="ico">🔍</span>Find Doctors</a>
+      <a class="s-link" href="03-appointments.html"><span class="ico">📅</span>My Appointments<span class="cnt tabular">2</span></a>
+      <a class="s-link" href="04-symptom-checker.html"><span class="ico">🤖</span>AI Symptom Checker</a>
+      <a class="s-link" href="05-prescriptions.html"><span class="ico">💊</span>My Prescriptions<span class="cnt tabular">1</span></a>
+      <a class="s-link" href="06-bills.html"><span class="ico">🧾</span>My Bills</a>
+      <a class="s-link" href="07-allergies-medications.html"><span class="ico">⚠️</span>Allergies &amp; Medicines</a>
+      <a class="s-link" href="03-appointments.html"><span class="ico">⭐</span>Reviews</a>
+      <a class="s-link" href="#" onclick="document.getElementById('drawer-notif').checked=true;return false"><span class="ico">🔔</span>Notifications<span class="cnt tabular">4</span></a>
+      <a class="s-link" href="08-profile-settings.html"><span class="ico">⚙️</span>Settings</a>
+    </nav>
+    <div class="mla" style="margin-top:auto;padding-top:var(--mp-space-lg)"></div>
+    <div class="s-role">Signed in as</div>
+    <a class="s-link" href="08-profile-settings.html"><span class="avatar avatar-initials" style="width:26px;height:26px;font-size:10px" aria-hidden="true">FK</span>Farhana Karim</a>
+    <a class="s-link" href="../guest/05-login.html"><span class="ico">↩</span>Log out</a>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar"><h1>Good afternoon, Farhana</h1><span class="caption mla tabular">Sun 23 Nov 2026 · 4:12 PM</span></div>
+
+    <!-- NEXT APPOINTMENT -->
+    <section class="card card-pad" aria-labelledby="nx">
+      <div class="spread">
+        <div class="row-lg" style="min-width:0">
+          <span class="avatar avatar-initials" aria-hidden="true">AR</span>
+          <div style="min-width:0">
+            <h2 id="nx" class="h3">Dr. Ayesha Rahman <span class="badge badge-success" data-src="db:appointments.status"><span class="dot"></span>Accepted</span></h2>
+            <p class="muted" style="font-size:14px"><span data-src="db:specialties.name">Cardiology</span> · Mon 24 Nov, 4:30 PM · Central Clinic, Room 204 · <span class="mono" data-src="db:appointments.id">APT-3391</span></p>
+            <p class="caption mt-s">Cancellation cutoff: 6h before slot (server setting).</p>
+          </div>
+        </div>
+        <div class="row" style="flex:none">
+          <a class="btn btn-outline" href="02-booking.html?mode=reschedule">Reschedule</a>
+          <label class="btn btn-danger-outline" for="m-cancel">Cancel</label>
+        </div>
+      </div>
+    </section>
+
+    <!-- KPI ROW — data view ×4 (COMPONENT-SPEC §3) -->
+    <section class="dataview">
+      <div class="dv-bar">
+        <span class="dv-name">Data view · Patient KPIs <span class="muted">(server-aggregated)</span></span>
+        <div class="dv-switch" role="radiogroup" aria-label="Preview data state">
+          <input class="st-success" type="radio" name="dv-kpi" id="dv-kpi-s" checked><label for="dv-kpi-s">Success</label>
+          <input class="st-skeleton" type="radio" name="dv-kpi" id="dv-kpi-k"><label for="dv-kpi-k">Skeleton</label>
+          <input class="st-empty" type="radio" name="dv-kpi" id="dv-kpi-e"><label for="dv-kpi-e">Empty</label>
+          <input class="st-error" type="radio" name="dv-kpi" id="dv-kpi-r"><label for="dv-kpi-r">Error + Retry</label>
+        </div>
+      </div>
+      <div class="dv-host">
+        <div data-state="success">
+          <div class="grid">
+            <div class="kpi c-6 md-c-3"><span class="k-label">Upcoming visits</span><span class="k-value">2</span><span class="k-foot"><span class="k-delta up">▲ +1 vs last month</span><span class="k-spark" aria-hidden="true"><svg viewBox="0 0 88 32" fill="none"><polyline points="0,26 12,22 24,24 36,14 48,16 60,8 72,10 88,4" stroke="currentColor" stroke-width="2"/></svg></span></span></div>
+            <div class="kpi c-6 md-c-3"><span class="k-label">Prescriptions</span><span class="k-value">1</span><span class="k-foot"><span class="k-delta flat">pending dispense</span><span class="k-spark" aria-hidden="true"><svg viewBox="0 0 88 32" fill="none"><polyline points="0,20 22,18 44,20 66,12 88,10" stroke="currentColor" stroke-width="2"/></svg></span></span></div>
+            <div class="kpi c-6 md-c-3 is-alert"><span class="k-label">Outstanding bills</span><span class="k-value money" style="font-size:22px">{{CURRENCY}} 2,450.00</span><span class="k-foot"><span class="k-delta down">2 unpaid</span><span class="k-spark" aria-hidden="true"><svg viewBox="0 0 88 32" fill="none"><polyline points="0,8 22,12 44,10 66,18 88,22" stroke="currentColor" stroke-width="2"/></svg></span></span></div>
+            <div class="kpi c-6 md-c-3"><span class="k-label">Symptom checks</span><span class="k-value">3</span><span class="k-foot"><span class="k-delta up">▲ +2</span><span class="k-spark" aria-hidden="true"><svg viewBox="0 0 88 32" fill="none"><polyline points="0,28 22,24 44,26 66,16 88,12" stroke="currentColor" stroke-width="2"/></svg></span></span></div>
+          </div>
+        </div>
+        <div data-state="skeleton" aria-hidden="true"><div class="grid"><div class="kpi"><span class="sk sk-line" style="width:40%"></span><span class="sk" style="height:34px"></span><span class="sk sk-line" style="width:60%"></span></div><div class="kpi"><span class="sk sk-line" style="width:40%"></span><span class="sk" style="height:34px"></span><span class="sk sk-line" style="width:60%"></span></div><div class="kpi"><span class="sk sk-line" style="width:40%"></span><span class="sk" style="height:34px"></span><span class="sk sk-line" style="width:60%"></span></div><div class="kpi"><span class="sk sk-line" style="width:40%"></span><span class="sk" style="height:34px"></span><span class="sk sk-line" style="width:60%"></span></div></div></div>
+        <div data-state="empty"><div class="empty"><span class="glyph">📊</span><h3 class="h3">Your numbers will appear after your first visit</h3><p>Book an appointment or run a symptom check to get started.</p><a class="btn btn-primary" href="../guest/02-directory.html">Find a doctor</a></div></div>
+        <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt"><strong>KPIs couldn't be loaded.</strong> <span class="muted">Each tile refetches independently.</span></span><button class="btn btn-primary">Retry</button></div></div>
+      </div>
+    </section>
+
+    <!-- QUICK ACTIONS + AI NOTE -->
+    <div class="grid">
+      <div class="c-12 md-c-8 card card-pad">
+        <h2 class="h4">Quick actions</h2>
+        <div class="row mt-m">
+          <a class="btn btn-outline" href="02-booking.html">Book appointment</a>
+          <a class="btn btn-outline" href="04-symptom-checker.html">Check symptoms</a>
+          <a class="btn btn-outline" href="05-prescriptions.html">My prescriptions</a>
+          <a class="btn btn-outline" href="07-allergies-medications.html">Update allergies</a>
+        </div>
+        <div class="alert alert-info mt-l"><span class="a-ico">ℹ</span><span>The AI Symptom Checker provides general guidance, <strong>not a diagnosis</strong>. Red-flag symptoms are escalated by deterministic rules, instantly, without waiting for AI.</span></div>
+      </div>
+      <section class="c-12 md-c-4 dataview">
+        <div class="dv-bar"><span class="dv-name">Recent activity</span>
+          <div class="dv-switch"><input class="st-success" type="radio" name="dv-act" id="dv-act-s" checked><label for="dv-act-s">Success</label><input class="st-skeleton" type="radio" name="dv-act" id="dv-act-k"><label for="dv-act-k">Skeleton</label><input class="st-empty" type="radio" name="dv-act" id="dv-act-e"><label for="dv-act-e">Empty</label><input class="st-error" type="radio" name="dv-act" id="dv-act-r"><label for="dv-act-r">Error</label></div>
+        </div>
+        <div class="dv-host">
+          <div data-state="success"><ul class="list-quiet" style="font-size:13px">
+            <li>✓ Appointment confirmed <span class="mono mla">APT-3391</span></li>
+            <li>💊 Prescription issued by Dr. Rahman <span class="muted mla">21 Nov</span></li>
+            <li>🧾 Invoice paid <span class="money mla">{{CURRENCY}} 800.00</span></li>
+            <li>🤖 Symptom check: “sore throat” → ENT <span class="muted mla">18 Nov</span></li>
+            <li>⚠ Allergy added: Penicillin <span class="muted mla">12 Nov</span></li>
+          </ul></div>
+          <div data-state="skeleton" aria-hidden="true"><div class="sk sk-line"></div><div class="sk sk-line"></div><div class="sk sk-line"></div><div class="sk sk-line"></div></div>
+          <div data-state="empty"><div class="empty"><span class="glyph">🕑</span><p>No recent activity</p></div></div>
+          <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt">Activity feed failed</span><button class="btn btn-primary">Retry</button></div></div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<!-- CANCEL CONFIRM MODAL (ReasonRequired variant, §13) -->
+<div class="modal-stage" role="dialog" aria-modal="true" aria-labelledby="mc-t">
+  <div class="modal">
+    <div class="modal-head"><span style="font-size:26px" aria-hidden="true">📅</span><div><h2 id="mc-t" class="modal-title">Cancel this appointment?</h2><p class="caption">Dr. Ayesha Rahman · Mon 24 Nov, 4:30 PM</p></div><label class="modal-x" for="m-cancel" aria-label="Close">✕</label></div>
+    <div class="modal-body">
+      <p style="font-size:14px">The slot returns to availability immediately. Cancellations inside the 6-hour cutoff are recorded and visible to the doctor.</p>
+      <div class="field"><label class="label req" for="cancel-reason">Reason (required)</label><select class="select" id="cancel-reason"><option value="">Select a reason…</option><option>Schedule conflict</option><option>Feeling better</option><option>Found another doctor</option><option>Other</option></select><span class="hint">Reasons improve clinic planning; never shared publicly.</span></div>
+    </div>
+    <div class="modal-foot"><label class="btn btn-quiet" for="m-cancel">Keep appointment</label><button class="btn btn-danger">Cancel appointment</button></div>
+  </div>
+</div>
+
+<!-- NOTIFICATION DRAWER (right) -->
+<aside class="drawer drawer--right drawer--notif" role="dialog" aria-label="Notifications" aria-modal="false">
+  <div class="d-title"><span class="h3">Notifications <span class="badge badge-neutral tabular">4 new</span></span><label class="x-close" for="drawer-notif" aria-label="Close notifications">✕</label></div>
+  <div class="card" aria-live="polite">
+    <div class="notif-item is-unread"><span class="n-cat">✅</span><div><strong style="font-size:14px">Appointment accepted</strong><p class="caption">Dr. Rahman confirmed Mon 4:30 PM.</p></div><time class="n-time" datetime="2026-11-23T13:20">13:20</time></div>
+    <div class="notif-item is-unread"><span class="n-cat">💊</span><div><strong style="font-size:14px">Prescription dispensed</strong><p class="caption">Rx-2214 ready at the pharmacy counter.</p></div><time class="n-time" datetime="2026-11-22T17:02">17:02</time></div>
+    <div class="notif-item is-unread"><span class="n-cat">🧾</span><div><strong style="font-size:14px">Invoice unpaid</strong><p class="caption">INV-2026-0139 · <span class="money">{{CURRENCY}} 2,450.00</span></p></div><time class="n-time" datetime="2026-11-21T09:00">1 day</time></div>
+    <div class="notif-item"><span class="n-cat">ℹ️</span><div><strong style="font-size:14px">Reminder</strong><p class="caption">Arrive 10 min early; bring current medicine boxes.</p></div><time class="n-time" datetime="2026-11-20T18:00">3 days</time></div>
+  </div>
+  <a class="btn btn-outline btn-block mt-m" href="08-profile-settings.html">Notification settings</a>
+</aside>
+
+<!-- ROLE SIDEBAR DRAWER (mobile) -->
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Patient portal</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm" aria-label="Mobile workspace">
+    <a class="nav-link is-active" href="01-dashboard.html">🏠 Dashboard</a>
+    <a class="nav-link" href="../guest/02-directory.html">🔍 Find Doctors</a>
+    <a class="nav-link" href="03-appointments.html">📅 My Appointments <span class="cnt">2</span></a>
+    <a class="nav-link" href="04-symptom-checker.html">🤖 AI Symptom Checker</a>
+    <a class="nav-link" href="05-prescriptions.html">💊 My Prescriptions <span class="cnt">1</span></a>
+    <a class="nav-link" href="06-bills.html">🧾 My Bills</a>
+    <a class="nav-link" href="07-allergies-medications.html">⚠️ Allergies &amp; Medicines</a>
+    <a class="nav-link" href="08-profile-settings.html">⚙️ Settings</a>
+    <a class="nav-link" href="../guest/05-login.html">↩ Log out</a>
+  </nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+<label class="backdrop backdrop--notif" for="drawer-notif" aria-hidden="true"></label>
+</body>
+</html>

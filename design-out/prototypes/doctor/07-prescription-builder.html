@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Prescription Builder (Doctor) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+<style>
+  /* screen-local: override gate — save blocked until justification typed (CSS demo) */
+  .ov-gate{display:none}
+  .builder:has(#ov-check:checked) .ov-gate{display:inline-block}
+  /* live search dropdown demo always visible in success state */
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+<input type="checkbox" id="drawer-side" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">AR</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Doctor workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Dr. Ayesha Rahman</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">🏠</span>Dashboard</a>
+      <a class="s-link" href="02-schedule-leave.html"><span class="ico">🗓</span>Schedule &amp; Leave</a>
+      <a class="s-link" href="03-requests.html"><span class="ico">📥</span>Requests</a>
+      <a class="s-link" href="04-patients.html"><span class="ico">🧑</span>Patients</a>
+      <a class="s-link is-active" href="07-prescription-builder.html" aria-current="page"><span class="ico">💊</span>Prescribe</a>
+      <a class="s-link" href="06-walkin.html"><span class="ico">🚪</span>Walk-In</a>
+      <a class="s-link" href="08-reviews.html"><span class="ico">⭐</span>Reviews</a>
+      <a class="s-link" href="../guest/05-login.html"><span class="ico">↩</span>Log out</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <!-- PATIENT HEADER -->
+    <div class="card card-pad">
+      <div class="spread" style="flex-wrap:wrap;gap:var(--mp-space-md)">
+        <div class="row-lg"><span class="avatar avatar-initials" style="width:44px;height:44px" aria-hidden="true">FK</span>
+          <div><strong>Farhana Karim</strong> <span class="mono caption">PT-0119</span> <span class="caption">· 41F · Hypertension</span>
+            <div class="caption">Visit: APT-3391 today 09:00 · Rx draft <span class="mono">Rx-2232</span> · doctor_id derived server-side from session, never posted</div></div></div>
+        <div class="row"><button class="btn btn-ghost">Switch patient</button><a class="btn btn-outline" href="05-patient-detail.html">Open chart</a></div>
+      </div>
+      <!-- allergy strip -->
+      <div class="retry-banner mt-m" role="alert" style="background:var(--mp-danger-weak-bg)">
+        <span class="ico">⚠️</span><span class="txt"><strong>Allergy alert:</strong> Penicillin — <strong>Severe</strong> (β-lactam class match) · Peanuts — Severe. Adding a class-matched drug hard-blocks Save until you justify an override.</span>
+      </div>
+    </div>
+
+    <div class="grid builder" style="align-items:start">
+      <!-- LEFT: MEDICINE SEARCH + ROWS -->
+      <section class="c-12 lg-c-7 stack">
+        <div class="card card-pad">
+          <label class="label req" for="md-search">Add medicine — live pharmacy stock</label>
+          <div class="input-icon mt-s"><span class="ico" aria-hidden="true">🔍</span><input class="input" id="md-search" type="search" value="amlo" aria-describedby="md-live"></div>
+          <span id="md-live" class="sr-only">3 stock results below, updating as you type (debounced)</span>
+          <section class="dataview mt-m" style="padding:var(--mp-space-md)">
+            <div class="dv-bar"><span class="dv-name">Data view · Stock search</span>
+              <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-md" id="dv-md-s" checked><label for="dv-md-s">Success</label><input class="st-skeleton" type="radio" name="dv-md" id="dv-md-k"><label for="dv-md-k">Loading</label><input class="st-empty" type="radio" name="dv-md" id="dv-md-e"><label for="dv-md-e">No match</label><input class="st-error" type="radio" name="dv-md" id="dv-md-r"><label for="dv-md-r">Error</label></div></div>
+            <div class="dv-host">
+              <div data-state="success">
+                <ul class="list-quiet" style="font-size:14px">
+                  <li><div style="min-width:0"><strong>Amlodipine 5 mg</strong> <span class="caption">g: Amlodipine besylate · class: CCB</span><div class="caption">manufacturer: Acme Pharma · batch AP-7731 · exp 2027-04</div></div>
+                    <span class="badge badge-success"><span class="dot"></span>stock 240</span>
+                    <button class="btn btn-primary" style="min-height:36px;padding:4px 12px;font-size:13px">Add</button>
+                    <label class="btn btn-ghost" for="drawer-side" style="min-height:36px;padding:4px 12px;font-size:13px">Side effects</label></li>
+                  <li><div><strong>Amlodipine 10 mg</strong> <span class="caption">same ingredient — double-dose risk with row 1</span></div><span class="badge badge-warning"><span class="dot"></span>stock 14 (low)</span><button class="btn btn-outline" style="min-height:36px;padding:4px 12px;font-size:13px">Add</button><label class="btn btn-ghost" for="drawer-side" style="min-height:36px;padding:4px 12px;font-size:13px">Side effects</label></li>
+                  <li><div><strong>Amoxicillin 500 mg</strong> <span class="caption">β-lactam</span></div><span class="badge badge-danger"><span class="dot"></span>ALLERGY MATCH</span><span class="badge badge-neutral">stock 0</span><button class="btn btn-ghost" disabled aria-label="Blocked: patient allergy and out of stock">Blocked</button></li>
+                </ul>
+              </div>
+              <div data-state="skeleton" aria-hidden="true"><div class="sk sk-line"></div><div class="sk sk-line" style="width:75%"></div></div>
+              <div data-state="empty"><div class="empty" style="padding:var(--mp-space-lg)"><span class="glyph">💊</span><p>No medicine matches “<strong>zzz</strong>”. Check spelling or search by generic name / brand alias.</p></div></div>
+              <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt">Stock lookup failed — <strong>you can still type the medicine name</strong>; pharmacy verifies at dispensing.</span><button class="btn btn-primary">Retry</button></div></div>
+            </div>
+          </section>
+        </div>
+
+        <!-- ITEM ROWS -->
+        <div class="tbl-wrap">
+          <div class="tbl-head"><h2 class="h4">Prescription items</h2><span class="caption">qty validated against stock at save AND dispense</span></div>
+          <table class="tbl"><thead><tr><th>Medicine</th><th>Dosage</th><th>Schedule</th><th>Days</th><th>Qty</th><th>Stock</th><th></th></tr></thead>
+          <tbody>
+            <tr><td data-label="Medicine"><strong>Amlodipine 5 mg</strong></td><td data-label="Dosage"><input class="input" style="min-height:36px;width:110px" value="1 tab"></td><td data-label="Schedule"><input class="input" style="min-height:36px;width:150px" value="Morning, after food"></td><td data-label="Days"><input class="input num" style="min-height:36px;width:70px" value="30"></td><td data-label="Qty"><input class="input num" style="min-height:36px;width:70px" value="30"></td><td data-label="Stock"><span class="badge badge-success">240</span></td><td data-label="Remove"><button class="btn btn-ghost" style="min-height:36px;color:var(--mp-danger-text)">✕</button></td></tr>
+            <tr><td data-label="Medicine"><strong>Paracetamol 500 mg</strong></td><td data-label="Dosage"><input class="input" style="min-height:36px;width:110px" value="1–2 tab"></td><td data-label="Schedule"><input class="input" style="min-height:36px;width:150px" value="q6h if fever"></td><td data-label="Days"><input class="input num" style="min-height:36px;width:70px" value="5"></td><td data-label="Qty"><input class="input num" style="min-height:36px;width:70px" value="10"></td><td data-label="Stock"><span class="badge badge-warning">low 22</span></td><td data-label="Remove"><button class="btn btn-ghost" style="min-height:36px;color:var(--mp-danger-text)">✕</button></td></tr>
+          </tbody></table>
+        </div>
+      </section>
+
+      <!-- RIGHT: SAFETY PANELS + NOTES + ACTIONS -->
+      <section class="c-12 lg-c-5 stack">
+        <div class="card card-pad" style="border-left:4px solid var(--mp-danger)">
+          <h2 class="h3" style="color:var(--mp-danger-text)">⚠ Allergy conflict — blocks save</h2>
+          <p class="mt-s" style="font-size:14px"><strong>Amlodipine 5 mg</strong>: no conflict ✓ (CCB). <strong>Paracetamol</strong>: no conflict ✓.<br>If Amoxicillin is re-added: <em>class match “Penicillin (β-lactams)”</em> → hard block.</p>
+          <div class="divider"></div>
+          <span class="micro">Override path (sealed — logged with your user &amp; timestamp)</span>
+          <div class="field mt-s"><label class="label req" for="ov-text">Clinical justification (required, ≥20 chars)</label><textarea class="textarea" id="ov-text" style="min-height:70px" placeholder="e.g., culture-confirmed; desensitisation protocol; cardiology co-sign obtained 23 Nov"></textarea></div>
+          <label class="check" style="min-height:28px"><input type="checkbox" id="ov-check"><span style="font-size:14px">I accept responsibility and confirm a co-sign exists in the chart.</span></label>
+          <p class="caption mt-s">Without override + justification, <strong>Save stays disabled</strong> for blocked items.</p>
+        </div>
+
+        <div class="card card-pad" style="border-left:4px solid var(--mp-warning)">
+          <h2 class="h3" style="color:var(--mp-warning-text)">🧪 Drug interactions (pairwise matrix)</h2>
+          <ul class="list-quiet" style="font-size:14px">
+            <li><span class="badge badge-warning">moderate</span> <div>Amlodipine × Paracetamol — additive hypotensive effect rare; monitor. <span class="caption mla">not blocking</span></div></li>
+            <li><span class="badge badge-danger">major</span> <div>Amlodipine × Simvastatin &gt;20 mg — rhabdo risk. <span class="caption">example of what would appear if simvastatin were current-med</span></div></li>
+          </ul>
+          <p class="caption">Severity: minor · moderate · major · contraindicated (matrix row <span class="mono">drug_interactions</span>).</p>
+        </div>
+
+        <div class="card card-pad">
+          <h2 class="h4">Notes</h2>
+          <div class="field"><label class="label" for="nt-pat">Patient-facing notes <span class="caption">(appears on patient portal &amp; Rx PDF)</span></label><textarea class="textarea" id="nt-pat" style="min-height:64px">Continue low-salt diet; bring home BP readings next visit.</textarea></div>
+          <div class="field"><label class="label" for="nt-phm">Pharmacy-facing notes <span class="caption">(dispensing staff only — never patient-visible)</span></label><textarea class="textarea" id="nt-phm" style="min-height:64px">Dispense as 30-day strip; counsel on dizziness in first week.</textarea></div>
+        </div>
+
+        <div class="card card-pad row-lg" style="flex-wrap:wrap">
+          <button class="btn btn-primary" style="flex:1;min-width:180px">Save prescription</button>
+          <button class="btn btn-primary is-disabled ov-gate" disabled style="flex:1"><span class="spinner" aria-hidden="true"></span> Saving…</button>
+          <button class="btn btn-outline btn-pdf" style="min-width:150px">⬇ Rx PDF</button>
+          <div class="mt-s" style="width:100%">
+            <label class="check"><input type="checkbox"><span style="font-size:13px">Auto-generate AI safety summary (decision support; deterministic checks above remain the source of truth — fallback+Retry if AI down)</span></label>
+          </div>
+        </div>
+        <p class="caption">On save: items + notes + license snapshot written atomically; patient, pharmacy and admin all read the same record; PDF template shared across roles.</p>
+      </section>
+    </div>
+  </main>
+</div>
+
+<!-- SIDE-EFFECT DRAWER (right slide-over) -->
+<aside class="drawer drawer--side drawer--right" role="dialog" aria-label="Side effects — Amlodipine 5 mg" aria-modal="false">
+  <div class="d-title"><span class="h3">Amlodipine 5 mg <span class="badge badge-primary">CCB</span></span><label class="x-close" for="drawer-side" aria-label="Close">✕</label></div>
+  <h3 class="h4 mt-m">Common</h3>
+  <ul class="list-quiet" style="font-size:14px"><li>Ankle swelling (peripheral oedema)</li><li>Flushing, headache</li><li>Dizziness, esp. first week</li></ul>
+  <h3 class="h4 mt-m">Serious — counsel to stop &amp; call</h3>
+  <ul class="list-quiet" style="font-size:14px"><li>Chest pain worsening after dose increases</li><li>Severe hypotension / fainting</li></ul>
+  <div class="alert alert-info mt-m"><span class="a-ico">📋</span><span><strong>Administration:</strong> with or without food; same time daily; do not crush with other CCBs.</span></div>
+  <p class="caption mt-m">Text is the <span class="mono">medicines.side_effects_common/serious</span> DB content, shown verbatim to prescriber and inside the PDF. <button class="btn btn-quiet" style="min-height:36px">Copy summary to notes</button></p>
+</aside>
+<label class="backdrop backdrop--side" for="drawer-side" aria-hidden="true"></label>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Doctor workspace</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link" href="01-dashboard.html">🏠 Dashboard</a><a class="nav-link" href="02-schedule-leave.html">🗓 Schedule &amp; Leave</a><a class="nav-link" href="03-requests.html">📥 Requests</a><a class="nav-link" href="04-patients.html">🧑 Patients</a><a class="nav-link is-active" href="07-prescription-builder.html">💊 Prescribe</a><a class="nav-link" href="06-walkin.html">🚪 Walk-In</a><a class="nav-link" href="08-reviews.html">⭐ Reviews</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

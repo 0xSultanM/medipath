@@ -1,0 +1,117 @@
+// ============================================================================
+// Notification bell + panel (§10)
+// ============================================================================
+
+.bell {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--mp-touch);
+  height: var(--mp-touch);
+  border-radius: var(--mp-radius-input);
+  border: 1px solid var(--mp-border);
+  background: var(--mp-surface);
+  cursor: pointer;
+  font-size: 18px;
+  text-decoration: none;
+  color: var(--mp-text-body);
+
+  &:hover { border-color: var(--mp-primary); }
+
+  .b-dot {
+    position: absolute;
+    top: 4px; right: 4px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    border-radius: var(--mp-radius-pill);
+    background: var(--mp-danger);
+    color: var(--mp-on-primary);
+    font-size: 11px;
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+    font-variant-numeric: tabular-nums;
+    border: 2px solid var(--mp-surface);
+  }
+}
+
+.notif-panel {
+  width: min(400px, 92vw);
+  max-height: min(560px, 80vh);
+  display: flex;
+  flex-direction: column;
+  background: var(--mp-surface);
+  border: 1px solid var(--mp-border);
+  border-radius: var(--mp-radius-card);
+  box-shadow: var(--mp-shadow-lg);
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: calc(var(--mp-touch) + 8px);
+  z-index: var(--mp-z-drawer);
+}
+@media (max-width: 767.98px) {
+  .notif-panel { display: none; }
+}
+
+.notif-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--mp-space-md);
+  padding: var(--mp-space-md) var(--mp-space-base);
+  border-bottom: 1px solid var(--mp-border);
+  background: var(--mp-surface-muted);
+}
+
+.notif-list {
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+.notif-item {
+  display: flex;
+  gap: var(--mp-space-md);
+  padding: var(--mp-space-md) var(--mp-space-base);
+  border-bottom: 1px solid var(--mp-border);
+  align-items: flex-start;
+
+  &:last-child { border-bottom: 0; }
+  &.is-unread { background: var(--mp-primary-weak-bg); }
+  &.is-unread .n-title a { color: var(--mp-primary-text-on-weak); }
+
+  .n-cat {
+    width: 32px; height: 32px;
+    border-radius: var(--mp-radius-pill);
+    display: grid;
+    place-items: center;
+    flex: none;
+    font-size: 15px;
+    background: var(--mp-surface-muted);
+    border: 1px solid var(--mp-border);
+  }
+
+  .n-body { flex: 1; min-width: 0; }
+  .n-title { font-weight: 600; font-size: 14px; color: var(--mp-text-heading); }
+  .n-text { font-size: 13px; color: var(--mp-text-muted); }
+  .n-time { font-size: 12px; color: var(--mp-text-muted); white-space: nowrap; }
+  .n-actions { display: flex; gap: 4px; }
+}
+
+.notif-panel-foot {
+  padding: var(--mp-space-md) var(--mp-space-base);
+  border-top: 1px solid var(--mp-border);
+  background: var(--mp-surface-muted);
+}
+
+// The generic drawer rule makes every .btn full width; inline actions must hug.
+.notif-drawer-body .btn:not(.btn-block) { width: auto; }
+.notif-drawer-body .notif-panel-head { flex: none; }
+.notif-drawer-body .notif-panel-foot { flex: none; }
+
+.notif-fab {
+  position: relative;
+  display: inline-flex;
+}

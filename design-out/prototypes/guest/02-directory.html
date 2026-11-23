@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Doctor Directory (Guest) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+<input type="checkbox" id="drawer-filters" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner">
+    <a class="brand" href="01-landing.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a class="nav-link is-active" href="02-directory.html" aria-current="page">Find Doctors</a>
+      <a class="nav-link" href="04-emergency.html">Emergency Info</a>
+    </nav>
+    <div class="row mla">
+      <label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label>
+      <a class="btn btn-ghost hide-sm" href="05-login.html">Log in</a>
+      <a class="btn btn-primary hide-sm" href="06-register.html">Register</a>
+      <label class="btn btn-quiet btn-ico burger" for="drawer-nav" data-controls="drawer-nav" aria-label="Open menu">☰</label>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="container stack" style="padding-block:var(--mp-space-lg)">
+  <div class="spread">
+    <div>
+      <h1>Find a doctor</h1>
+      <p class="muted" style="font-size:14px">Showing only verified profiles. Results &amp; filters are server-side and URL-synced (deep-linkable).</p>
+    </div>
+    <a class="cta-emergency hide-sm" href="04-emergency.html">🚨 Emergency</a>
+  </div>
+
+  <!-- ============ FILTER BAR (§5) — desktop inline / <992 hides secondary; <768 → drawer ============ -->
+  <form class="filter-bar" aria-label="Doctor filters">
+    <div class="field" style="margin:0">
+      <label class="label" for="f-q">Search</label>
+      <div class="input-icon"><span class="ico" aria-hidden="true">🔍</span><input class="input" id="f-q" type="search" role="searchbox" placeholder="Name, specialty, condition… (debounced 300ms)" value="cardio"></div>
+    </div>
+    <div class="field f-hide-sm" style="margin:0">
+      <label class="label" for="f-spec">Specialty</label><!-- options: db specialties.name -->
+      <select class="select" id="f-spec"><option>All specialties</option><option data-src="db:specialties.name" selected>Cardiology</option><option data-src="db:specialties.name">Internal Medicine</option><option data-src="db:specialties.name">Cardiothoracic Surgery</option></select>
+    </div>
+    <div class="field f-hide-sm" style="margin:0">
+      <label class="label" for="f-rate">Minimum rating</label>
+      <input class="input" id="f-rate" type="range" min="0" max="5" step="0.5" value="4"><span class="hint tabular" id="f-rate-out">4.0 ★ and up</span>
+    </div>
+    <div class="f-hide-sm">
+      <label class="switch"><input type="checkbox" checked><span>Available today</span></label>
+    </div>
+    <div class="field" style="margin:0">
+      <label class="label" for="f-sort">Sort by</label>
+      <select class="select" id="f-sort"><option>Next available</option><option>Rating</option><option>Experience</option><option>Fee: low to high</option></select>
+    </div>
+    <!-- <768px: everything below opens the right-hand filter slide-over -->
+    <label class="btn btn-outline only-lg" for="drawer-filters" style="grid-column:auto" data-controls="drawer-filters" aria-expanded="false" aria-controls="filter-drawer-el">Filters <span class="badge badge-primary tabular" aria-label="2 active filters">2</span></label>
+  </form>
+
+  <div class="spread">
+    <div class="active-filters" role="toolbar" aria-label="Active filters">
+      <span class="tag-filter">cardio <button aria-label="Remove search term cardio">✕</button></span>
+      <span class="tag-filter">Specialty: <span data-src="db:specialties.name">Cardiology</span> <button aria-label="Remove specialty filter">✕</button></span>
+      <button class="btn btn-ghost">Clear all filters</button>
+    </div>
+    <p class="caption" role="status" aria-live="polite"><strong class="tabular">8</strong> verified doctors · page <span class="tabular">1</span>/3</p>
+  </div>
+
+  <!-- ============ DOCTOR GRID — data view ×4 (1/2/3 cols) ============ -->
+  <section class="dataview" aria-label="Doctor results">
+    <div class="dv-bar">
+      <span class="dv-name">Data view · Search results <span class="muted">(GET /doctors?spec=cardio&amp;min=4&amp;today=1&amp;page=1)</span></span>
+      <div class="dv-switch" role="radiogroup" aria-label="Preview data state">
+        <input class="st-success" type="radio" name="dv-res" id="dv-res-s" checked><label for="dv-res-s">Success</label>
+        <input class="st-skeleton" type="radio" name="dv-res" id="dv-res-k"><label for="dv-res-k">Skeleton</label>
+        <input class="st-empty" type="radio" name="dv-res" id="dv-res-e"><label for="dv-res-e">Empty</label>
+        <input class="st-error" type="radio" name="dv-res" id="dv-res-r"><label for="dv-res-r">Error + Retry</label>
+      </div>
+    </div>
+    <div class="dv-host">
+      <div data-state="success">
+        <div class="doctor-grid">
+          <article class="card doc-card card-hover"><div class="doc-top"><span class="avatar avatar-initials" aria-hidden="true">AR</span><div style="min-width:0"><h3 class="h3 doc-name"><a href="03-doctor-profile.html" style="color:inherit;text-decoration:none">Dr. Ayesha Rahman</a><span class="badge badge-verified">✓ Verified</span></h3><div class="doc-meta"><span class="chip" style="min-height:28px;padding:2px 10px" data-src="db:specialties.name">Cardiology</span></div><div class="doc-meta mt-s">12 yrs · Central Clinic</div></div></div><div class="doc-stats"><div class="doc-stat"><span class="stars" aria-label="Rated 4.8 out of 5">★★★★<span class="off">★</span></span><span class="muted tabular">4.8 <span class="caption">(56)</span></span></div><div class="doc-stat"><span class="muted">Fee</span><span class="money">{{CURRENCY}} 1,200.00</span></div></div><div class="doc-next">⚡ Today, 4:30 PM</div><div class="doc-actions"><a class="btn btn-outline" href="03-doctor-profile.html">Profile</a><a class="btn btn-primary" href="05-login.html">Book</a></div></article>
+          <article class="card doc-card card-hover"><div class="doc-top"><span class="avatar avatar-initials" aria-hidden="true">IO</span><div style="min-width:0"><h3 class="h3 doc-name"><a href="03-doctor-profile.html" style="color:inherit;text-decoration:none">Dr. Ibrahim Okafor</a><span class="badge badge-verified">✓ Verified</span></h3><div class="doc-meta"><span class="chip" style="min-height:28px;padding:2px 10px" data-src="db:specialties.name">Internal Medicine</span></div><div class="doc-meta mt-s">15 yrs · City Care</div></div></div><div class="doc-stats"><div class="doc-stat"><span class="stars" aria-label="Rated 4.5 out of 5">★★★★<span class="off">★</span></span><span class="muted tabular">4.5 <span class="caption">(41)</span></span></div><div class="doc-stat"><span class="muted">Fee</span><span class="money">{{CURRENCY}} 800.00</span></div></div><div class="doc-next">⚡ Today, 6:00 PM</div><div class="doc-actions"><a class="btn btn-outline" href="03-doctor-profile.html">Profile</a><a class="btn btn-primary" href="05-login.html">Book</a></div></article>
+          <article class="card doc-card card-hover"><div class="doc-top"><span class="avatar avatar-initials" aria-hidden="true">MH</span><div style="min-width:0"><h3 class="h3 doc-name"><a href="03-doctor-profile.html" style="color:inherit;text-decoration:none">Dr. Maya Haddad</a><span class="badge badge-verified">✓ Verified</span></h3><div class="doc-meta"><span class="chip" style="min-height:28px;padding:2px 10px" data-src="db:specialties.name">Cardiothoracic Surgery</span></div><div class="doc-meta mt-s">18 yrs · Heart Institute</div></div></div><div class="doc-stats"><div class="doc-stat"><span class="stars" aria-label="Rated 4.9 out of 5">★★★★★</span><span class="muted tabular">4.9 <span class="caption">(120)</span></span></div><div class="doc-stat"><span class="muted">Fee</span><span class="money">{{CURRENCY}} 2,000.00</span></div></div><div class="doc-next" style="background:var(--mp-warning-weak-bg);border-color:var(--mp-warning-weak-border);color:var(--mp-warning-text)">Fully booked · next opening Mon 11:00 AM</div><div class="doc-actions"><a class="btn btn-outline" href="03-doctor-profile.html">Profile</a><button class="btn btn-primary" disabled aria-describedby="fb-note">Book</button></div></article>
+          <article class="card doc-card card-hover"><div class="doc-top"><span class="avatar avatar-initials" aria-hidden="true">TA</span><div style="min-width:0"><h3 class="h3 doc-name"><a href="03-doctor-profile.html" style="color:inherit;text-decoration:none">Dr. Tariq Ahmed</a><span class="badge badge-verified">✓ Verified</span></h3><div class="doc-meta"><span class="chip" style="min-height:28px;padding:2px 10px" data-src="db:specialties.name">Cardiology</span></div><div class="doc-meta mt-s">8 yrs · Green Leaves Branch</div></div></div><div class="doc-stats"><div class="doc-stat"><span class="stars" aria-label="Rated 4.3 out of 5">★★★★<span class="off">★</span></span><span class="muted tabular">4.3 <span class="caption">(17)</span></span></div><div class="doc-stat"><span class="muted">Fee</span><span class="money">{{CURRENCY}} 750.00</span></div></div><div class="doc-next">⚡ Tomorrow, 9:15 AM</div><div class="doc-actions"><a class="btn btn-outline" href="03-doctor-profile.html">Profile</a><a class="btn btn-primary" href="05-login.html">Book</a></div></article>
+          <article class="card doc-card card-hover"><div class="doc-top"><span class="avatar avatar-initials" aria-hidden="true">LC</span><div style="min-width:0"><h3 class="h3 doc-name"><a href="03-doctor-profile.html" style="color:inherit;text-decoration:none">Dr. Lena Costa</a><span class="badge badge-verified">✓ Verified</span></h3><div class="doc-meta"><span class="chip" style="min-height:28px;padding:2px 10px" data-src="db:specialties.name">Cardiology</span></div><div class="doc-meta mt-s">11 yrs · Central Clinic</div></div></div><div class="doc-stats"><div class="doc-stat"><span class="stars" aria-label="Rated 4.7 out of 5">★★★★<span class="off">★</span></span><span class="muted tabular">4.7 <span class="caption">(63)</span></span></div><div class="doc-stat"><span class="muted">Fee</span><span class="money">{{CURRENCY}} 1,100.00</span></div></div><div class="doc-next">⚡ Thu, 2:00 PM</div><div class="doc-actions"><a class="btn btn-outline" href="03-doctor-profile.html">Profile</a><a class="btn btn-primary" href="05-login.html">Book</a></div></article>
+          <article class="card doc-card card-hover"><div class="doc-top"><span class="avatar avatar-initials" aria-hidden="true">RS</span><div style="min-width:0"><h3 class="h3 doc-name"><a href="03-doctor-profile.html" style="color:inherit;text-decoration:none">Dr. Ravi Sharma</a><span class="badge badge-verified">✓ Verified</span></h3><div class="doc-meta"><span class="chip" style="min-height:28px;padding:2px 10px" data-src="db:specialties.name">Internal Medicine</span></div><div class="doc-meta mt-s">6 yrs · City Care</div></div></div><div class="doc-stats"><div class="doc-stat"><span class="stars" aria-label="Rated 4.6 out of 5">★★★★<span class="off">★</span></span><span class="muted tabular">4.6 <span class="caption">(9)</span></span></div><div class="doc-stat"><span class="muted">Fee</span><span class="money">{{CURRENCY}} 700.00</span></div></div><div class="doc-next">⚡ Today, 7:30 PM</div><div class="doc-actions"><a class="btn btn-outline" href="03-doctor-profile.html">Profile</a><a class="btn btn-primary" href="05-login.html">Book</a></div></article>
+        </div>
+        <span id="fb-note" class="sr-only">Booking disabled: no open slots in the next 7 days.</span>
+        <nav class="pager" aria-label="Pagination">
+          <a class="pg is-off" aria-disabled="true" tabindex="-1">←</a>
+          <div class="pgs"><a class="pg is-on" aria-current="page">1</a><a class="pg">2</a><a class="pg">3</a></div>
+          <a class="pg" aria-label="Next page">→</a>
+        </nav>
+      </div>
+      <div data-state="skeleton" aria-hidden="true">
+        <div class="doctor-grid">
+          <div class="card doc-card"><div class="doc-top"><span class="sk sk-av"></span><div style="flex:1"><div class="sk sk-title"></div><div class="sk sk-line" style="width:40%"></div></div></div><div class="sk sk-line"></div><div class="sk sk-box"></div><div class="sk" style="height:44px"></div></div>
+          <div class="card doc-card"><div class="doc-top"><span class="sk sk-av"></span><div style="flex:1"><div class="sk sk-title"></div><div class="sk sk-line" style="width:40%"></div></div></div><div class="sk sk-line"></div><div class="sk sk-box"></div><div class="sk" style="height:44px"></div></div>
+          <div class="card doc-card"><div class="doc-top"><span class="sk sk-av"></span><div style="flex:1"><div class="sk sk-title"></div><div class="sk sk-line" style="width:40%"></div></div></div><div class="sk sk-line"></div><div class="sk sk-box"></div><div class="sk" style="height:44px"></div></div>
+          <div class="card doc-card"><div class="doc-top"><span class="sk sk-av"></span><div style="flex:1"><div class="sk sk-title"></div><div class="sk sk-line" style="width:40%"></div></div></div><div class="sk sk-line"></div><div class="sk sk-box"></div><div class="sk" style="height:44px"></div></div>
+        </div>
+      </div>
+      <div data-state="empty">
+        <div class="empty"><span class="glyph">🔍</span><h3 class="h3">No doctors match these filters</h3><p>Try widening the rating, removing “Available today”, or searching a related specialty such as <span data-src="db:specialties.name">Internal Medicine</span>.</p><div class="row"><button class="btn btn-primary">Clear all filters</button><a class="btn btn-outline" href="01-landing.html">Back to home</a></div></div>
+      </div>
+      <div data-state="error">
+        <div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt"><strong>Search failed.</strong> <span class="muted">Your filters were kept. Last successful results: 14:02.</span></span><button class="btn btn-primary">Retry</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- weekday availability picker lives inside drawer & desktop filter row (SlotPicker §8 legend re-used) -->
+  <section class="card card-pad" aria-labelledby="wk-h">
+    <h2 class="h4" id="wk-h">Availability by weekday (server: doctor_leaves + doctor_schedules)</h2>
+    <div class="weekdays mt-s" role="group" aria-label="Weekday picker">
+      <label><input type="checkbox" checked><span>Sun</span></label><label><input type="checkbox" checked><span>Mon</span></label>
+      <label><input type="checkbox"><span>Tue</span></label><label><input type="checkbox" checked><span>Wed</span></label>
+      <label><input type="checkbox" checked><span>Thu</span></label><label><input type="checkbox" checked><span>Fri</span></label>
+      <label><input type="checkbox"><span>Sat</span></label>
+    </div>
+  </section>
+</main>
+
+<footer class="mt-xl" style="background:var(--mp-surface);border-top:1px solid var(--mp-border)">
+  <div class="container" style="padding-block:var(--mp-space-lg)">
+    <p class="caption">MediPath — amounts shown in the clinic's configured currency ({{CURRENCY}}). Role labels &amp; specialties are database-driven. <a href="04-emergency.html">Emergency info</a></p>
+  </div>
+</footer>
+
+<!-- ============ FILTER DRAWER (right slide-over, <768) ============ -->
+<aside id="filter-drawer-el" class="drawer drawer--filters drawer--right" role="dialog" aria-label="Filters" aria-modal="false">
+  <div class="d-title"><span class="h3">Filters</span><label class="x-close" for="drawer-filters" aria-label="Close filters">✕</label></div>
+  <div class="field"><label class="label" for="fd-spec">Specialty</label><select class="select" id="fd-spec"><option>All specialties</option><option data-src="db:specialties.name" selected>Cardiology</option><option data-src="db:specialties.name">Internal Medicine</option></select></div>
+  <div class="field"><label class="label">Availability weekday</label><div class="weekdays"><label><input type="checkbox" checked><span>Su</span></label><label><input type="checkbox" checked><span>Mo</span></label><label><input type="checkbox" checked><span>Tu</span></label><label><input type="checkbox"><span>We</span></label><label><input type="checkbox" checked><span>Th</span></label><label><input type="checkbox" checked><span>Fr</span></label><label><input type="checkbox"><span>Sa</span></label></div></div>
+  <label class="switch"><input type="checkbox" checked><span>Available today</span></label>
+  <div class="field"><label class="label" for="fd-rate">Minimum rating</label><input class="input" id="fd-rate" type="range" min="0" max="5" step="0.5" value="4"><span class="hint">4.0 ★ and up</span></div>
+  <div class="field"><label class="label" for="fd-sort">Sort by</label><select class="select" id="fd-sort"><option>Next available</option><option>Rating</option><option>Fee</option></select></div>
+  <button class="btn btn-ghost btn-block">Clear all</button>
+  <label class="btn btn-primary btn-block" for="drawer-filters">Apply (2)</label>
+</aside>
+<label class="backdrop backdrop--filters" for="drawer-filters" aria-hidden="true"></label>
+
+<aside class="drawer drawer--nav" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">MediPath menu</span><label class="x-close" for="drawer-nav" aria-label="Close menu">✕</label></div>
+  <nav class="stack-sm" aria-label="Mobile primary" style="margin-top:var(--mp-space-md)">
+    <a class="nav-link" href="02-directory.html" aria-current="page">Find Doctors</a>
+    <a class="nav-link" href="04-emergency.html">Emergency Info</a>
+    <a class="btn btn-primary btn-block" href="05-login.html">Log in</a>
+    <a class="btn btn-outline btn-block" href="06-register.html">Register</a>
+    <a class="btn btn-emergency btn-block" href="04-emergency.html">🚨 Emergency — call now</a>
+  </nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

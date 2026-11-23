@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Appointment Requests (Doctor) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+<style>.rq-reject{display:none}.dataview:has(#rq-show-rej:checked) .rq-reject{display:block}</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">AR</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Doctor workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Dr. Ayesha Rahman</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">🏠</span>Dashboard</a>
+      <a class="s-link" href="02-schedule-leave.html"><span class="ico">🗓</span>Schedule &amp; Leave</a>
+      <a class="s-link is-active" href="03-requests.html" aria-current="page"><span class="ico">📥</span>Requests<span class="cnt tabular">4</span></a>
+      <a class="s-link" href="04-patients.html"><span class="ico">🧑</span>Patients</a>
+      <a class="s-link" href="07-prescription-builder.html"><span class="ico">💊</span>Prescribe</a>
+      <a class="s-link" href="06-walkin.html"><span class="ico">🚪</span>Walk-In</a>
+      <a class="s-link" href="08-reviews.html"><span class="ico">⭐</span>Reviews</a>
+      <a class="s-link" href="../guest/05-login.html"><span class="ico">↩</span>Log out</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main">
+    <div class="topbar"><h1>Appointment requests</h1></div>
+
+    <section class="dataview tabbed">
+      <div class="dv-bar"><span class="dv-name">Data view · Requests queue</span>
+        <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-rq" id="dv-rq-s" checked><label for="dv-rq-s">Success</label><input class="st-skeleton" type="radio" name="dv-rq" id="dv-rq-k"><label for="dv-rq-k">Skeleton</label><input class="st-empty" type="radio" name="dv-rq" id="dv-rq-e"><label for="dv-rq-e">Empty</label><input class="st-error" type="radio" name="dv-rq" id="dv-rq-r"><label for="dv-rq-r">Error</label></div></div>
+      <div class="dv-host">
+        <div data-state="success">
+          <div class="tabs" role="tablist">
+            <input class="t1" type="radio" name="rqtab" id="q1" checked><label class="tab1" for="q1">Pending <span class="cnt">4</span></label>
+            <input class="t2" type="radio" name="rqtab" id="q2"><label class="tab2" for="q2">Today <span class="cnt">2</span></label>
+            <input class="t3" type="radio" name="rqtab" id="q3"><label class="tab3" for="q3">Upcoming <span class="cnt">7</span></label>
+            <input class="t4" type="radio" name="rqtab" id="q4"><label class="tab4" for="q4">Completed <span class="cnt">28</span></label>
+            <input class="t5" type="radio" name="rqtab" id="q5"><label class="tab5" for="q5">Cancelled <span class="cnt">5</span></label>
+          </div>
+
+          <!-- PENDING with inline accept / reject-with-reason -->
+          <div class="pane p1 mt-m">
+            <div class="stack">
+              <div class="card card-pad" style="border-left:4px solid var(--mp-warning)">
+                <div class="spread" style="flex-wrap:wrap;gap:var(--mp-space-md)">
+                  <div><strong>Farhana Karim</strong> <span class="mono caption">PT-0119</span> <span class="caption">· ⚠ allergy on file</span>
+                    <div class="caption mt-s">Mon 24 Nov · 4:30 PM · Follow-up: “BP still high mornings” · requested 3h ago</div></div>
+                  <div class="row"><button class="btn btn-primary">Accept</button><label class="btn btn-danger-outline" for="rq-show-rej" aria-pressed="false">Reject…</label><a class="btn btn-ghost" href="05-patient-detail.html">Chart</a></div>
+                </div>
+                <div class="rq-reject mt-m">
+                  <div class="field"><label class="label req" for="rej-1">Reason shown to patient (required)</label><textarea class="textarea" id="rej-1" style="min-height:70px" placeholder="e.g., slot conflicts with approved conference leave — try Mon 5:00 PM."></textarea></div>
+                  <div class="row"><button class="btn btn-danger">Send rejection</button><label class="btn btn-quiet" for="rq-show-rej">Cancel</label><span class="caption">Patient notified + activity logged; slot released.</span></div>
+                </div>
+              </div>
+              <div class="card card-pad">
+                <div class="spread" style="flex-wrap:wrap;gap:var(--mp-space-md)">
+                  <div><strong>Devi Rao</strong> <span class="mono caption">PT-0288</span>
+                    <div class="caption mt-s">Mon 24 Nov · 5:00 PM · “occasional chest discomfort” · requested 1h ago</div>
+                    <div class="alert alert-info mt-s" style="padding:8px 12px"><span class="a-ico">🤖</span><span>Linked symptom check ran <strong>Stage-1 clear</strong>; urgency: short-term monitoring.</span></div></div>
+                  <div class="row"><button class="btn btn-primary">Accept</button><button class="btn btn-danger-outline">Reject</button><a class="btn btn-ghost" href="04-symptom-context.html" style="display:none"></a></div>
+                </div>
+              </div>
+              <div class="card card-pad">
+                <div class="spread" style="flex-wrap:wrap;gap:var(--mp-space-md)">
+                  <div><strong>Sam Okoye</strong> <span class="mono caption">PT-0342</span><div class="caption mt-s">Tue 25 Nov · 10:00 AM · Second opinion · conflicts your leave Tue 25 — auto-flagged</div></div>
+                  <div class="row"><button class="btn btn-primary">Accept</button><button class="btn btn-danger-outline">Reject</button></div>
+                </div>
+              </div>
+              <div class="card card-pad">
+                <div class="spread" style="flex-wrap:wrap;gap:var(--mp-space-md)">
+                  <div><strong>Walk-in APT-3402</strong> <span class="mono caption">WI-9931</span><div class="caption mt-s">today 11:00 AM · front-desk registered</div></div>
+                  <div class="row"><button class="btn btn-primary">Accept</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TODAY -->
+          <div class="pane p2" hidden>
+            <div class="tbl-wrap mt-m"><table class="tbl"><thead><tr><th>Time</th><th>Patient</th><th>Reason</th><th>Status</th><th>Actions</th></tr></thead><tbody>
+              <tr><td data-label="Time" class="tabular">10:00</td><td data-label="Patient">Anwar Hussain <span class="mono caption">PT-0155</span></td><td data-label="Reason">Palpitations</td><td data-label="Status"><span class="badge badge-success"><span class="dot"></span>Confirmed</span></td><td data-label="Actions"><div class="row"><a class="btn btn-ghost" href="05-patient-detail.html">Chart</a><button class="btn btn-primary">Start consult</button></div></td></tr>
+              <tr><td data-label="Time" class="tabular">11:00</td><td data-label="Patient">Walk-in <span class="mono caption">WI-9931</span></td><td data-label="Reason">General check</td><td data-label="Status"><span class="badge badge-warning"><span class="dot"></span>Pending</span></td><td data-label="Actions"><button class="btn btn-primary">Accept</button></td></tr>
+            </tbody></table></div>
+          </div>
+
+          <!-- UPCOMING -->
+          <div class="pane p3" hidden>
+            <div class="tbl-wrap mt-m"><table class="tbl"><thead><tr><th>Slot</th><th>Patient</th><th>Status</th><th>Actions</th></tr></thead><tbody>
+              <tr><td data-label="Slot" class="tabular">Mon 24 · 4:30</td><td data-label="Patient">Farhana Karim</td><td data-label="Status"><span class="badge badge-success">Accepted</span></td><td data-label="Actions"><a class="btn btn-ghost" style="color:var(--mp-danger-text)">Cancel w/ notice</a></td></tr>
+              <tr><td data-label="Slot" class="tabular">Sun 29 · 10:00</td><td data-label="Patient">Mei Ling</td><td data-label="Status"><span class="badge badge-success">Accepted</span></td><td data-label="Actions"><a class="btn btn-ghost">Details</a></td></tr>
+            </tbody></table><p class="caption" style="padding:12px 16px">7 upcoming · page 1/4 (server pagination)</p></div>
+          </div>
+
+          <!-- COMPLETED + mark completed demo -->
+          <div class="pane p4" hidden>
+            <div class="tbl-wrap mt-m"><table class="tbl"><thead><tr><th>Date</th><th>Patient</th><th>Status</th><th>Actions</th></tr></thead><tbody>
+              <tr><td data-label="Date" class="tabular">Sun 23 · 09:00</td><td data-label="Patient">Farhana Karim</td><td data-label="Status"><span class="badge badge-info">Completed</span></td><td data-label="Actions"><div class="row"><a class="btn btn-ghost" href="07-prescription-builder.html">Prescription</a><a class="btn btn-ghost" href="05-patient-detail.html">Chart</a></div></td></tr>
+              <tr><td data-label="Date" class="tabular">Sun 23 · 15:00</td><td data-label="Patient">Ayesha B. (different pt)</td><td data-label="Status"><span class="badge badge-success"><span class="dot"></span>In visit</span></td><td data-label="Actions"><button class="btn btn-primary">Mark completed</button></td></tr>
+            </tbody></table></div>
+          </div>
+
+          <!-- CANCELLED -->
+          <div class="pane p5" hidden>
+            <div class="tbl-wrap mt-m"><table class="tbl"><thead><tr><th>Date</th><th>Patient</th><th>By</th><th>Reason</th></tr></thead><tbody>
+              <tr><td data-label="Date" class="tabular">Fri 21</td><td data-label="Patient">Tomas W.</td><td data-label="By">Patient</td><td data-label="Reason">Schedule conflict</td></tr>
+              <tr><td data-label="Date" class="tabular">Wed 19</td><td data-label="Patient">Rina Das</td><td data-label="By">Doctor</td><td data-label="Reason">Conference leave</td></tr>
+            </tbody></table></div>
+          </div>
+        </div>
+        <div data-state="skeleton" aria-hidden="true"><div class="card card-pad"><div class="sk sk-line" style="width:25%"></div><div class="sk sk-box"></div><div class="sk sk-box" style="width:80%"></div></div></div>
+        <div data-state="empty"><div class="empty"><span class="glyph">📭</span><h3 class="h3">Queue is clear</h3><p>New booking requests land here and as a notification; typical reply within a few hours.</p></div></div>
+        <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt"><strong>Queue couldn't load.</strong> <span class="muted">No decisions were lost — the DB queue is the source of truth.</span></span><button class="btn btn-primary">Retry</button></div></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Doctor workspace</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link" href="01-dashboard.html">🏠 Dashboard</a><a class="nav-link" href="02-schedule-leave.html">🗓 Schedule &amp; Leave</a><a class="nav-link is-active" href="03-requests.html">📥 Requests <span class="cnt">4</span></a><a class="nav-link" href="04-patients.html">🧑 Patients</a><a class="nav-link" href="07-prescription-builder.html">💊 Prescribe</a><a class="nav-link" href="06-walkin.html">🚪 Walk-In</a><a class="nav-link" href="08-reviews.html">⭐ Reviews</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

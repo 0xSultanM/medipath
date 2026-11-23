@@ -1,0 +1,1461 @@
+Admin
+a) adminAuthAndLogout()
+Build the hardened Admin authentication gate, strict Admin-only route and API authorization
+middleware, and secure logout flow. Permit Admin portal entry exclusively for active, non-suspended,
+non-archived accounts whose authentic database role is Admin—never permitting public self
+registration as Admin and never allowing any non-Admin role to reach Admin APIs or Admin
+Settings via direct URL entry. Hydrate the Admin session with real database role identity (never
+hardcoded labels), deliver secure HTTP-only cookies, enforce strict inactivity session timeouts
+appropriate for administrative privilege, and record every Admin sign-in and sign-out event inside
+the immutable activity log. Construct the responsive Admin sidebar layout grouping Dashboard &
+Overview, User Approvals & Doctor Verification, Doctors, Patients & Patient Portal, Appointments &
+Clinical Records, Revenue & Analytics, Chatbot FAQs & Reviews, Emergency & AI Rules, System
+Settings, Data Management, and Admin Security, collapsing cleanly into a mobile-accessible drawer
+on small screens. On Logout, revoke the server session immediately, clear cookies and memory
+caches, and route cleanly to Login.
+
+b) adminLoadMasterDashboard()
+Build the Admin Master Dashboard presenting high-level executive KPIs computed strictly through
+indexed server-side SQL aggregations rather than loading raw database tables into the browser or
+calculating revenue percentages purely on the page. Display five core authoritative KPI totals: Total
+Active Patients, Total Verified Doctors, Total Prescriptions Issued, Total Active Medicines in
+Inventory, and Total Clinic Revenue alongside Admin Commission Revenue calculated directly on the
+server using the validated stored revenue percentage from system settings (never falling back silently
+to a hardcoded 10 percent and never displaying hardcoded dollar signs—formatting all financial
+figures strictly with the active global currency setting). Include quick date-range toggles (Today, Last
+7 Days, Last 30 Days, This Year), skeleton loaders during aggregation, independent error boundaries
+with working Retry buttons per metric section, and responsive stacking on mobile viewports.
+
+c) adminViewSystemOverview()
+Build the real-time System Overview operational health panel integrated with the Admin Dashboard
+to surface urgent clinic bottlenecks requiring immediate administrative attention. Query bounded live
+counts and top-priority alert lists on the server for four live operational indicators: Active Verified
+Doctors currently on duty, Active Patients registered and engaged recently, Pending Prescriptions
+currently awaiting pharmacy dispensing, and Low & Critical Stock Alerts plus Upcoming Expiring
+Medicines—plus a live badge count of Pending User Sign-Ups and Unverified Doctor Credential
+
+applications waiting in the Admin approval queue. Provide direct drill-down links from each overview
+metric straight to the corresponding management screen (such as clicking Pending Sign-Ups to jump
+directly into the approval queue), render Admin system alert notifications cleanly, and wrap every
+panel in skeleton loading, empty-state, and Retry recovery handlers.
+
+d) adminManageUsers()
+Build the comprehensive User Management directory enabling the Admin to list, search, filter,
+inspect, edit, suspend, reactivate, and safely archive/delete user accounts across the platform, closing
+the missing user governance gap. Enforce mandatory server-side pagination, explicit column allow
+lists (never exposing password hashes), and indexed filters for search text (name, email, phone), role
+(Patient, Doctor, Pharmacist, Admin), and account status (Pending, Approved, Rejected, Suspended,
+Archived). Display each user's authentic database role (never hardcoded), verification status,
+registration date, and last login timestamp. Allow Admin to edit basic user contact details with full
+validation, suspend or unsuspend non-self accounts (immediately revoking all active sessions of a
+suspended user so they are kicked out instantly), and safely remove accounts only after passing strict
+protection checks: never allow an Admin to suspend or delete their own currently logged-in account
+or the final remaining active Admin account, require a typed confirmation dialog, and automatically
+block hard deletion in favor of soft-archiving whenever the user has linked appointments,
+prescriptions, or invoices. Build mobile-friendly stacked user cards below 640 pixels with full
+keyboard accessibility, loading skeletons, empty states, and Retry error handling.
+
+e) adminApproveOrRejectPendingSignups()
+Build the dedicated Pending Sign-Up Approval Queue screen—permanently fixing Bug 1 where
+pending accounts created during Guest sign-up had no administrative screen for approval or
+rejection. List all pending registration requests submitted by Guests with server-side pagination and
+filters by requested role (Doctor, Pharmacist, or moderated Patient) and submission date. For each
+pending applicant, display full name, email, phone, requested role, submission timestamp, submitted
+license details, and a secure temporary preview link for uploaded credential documents. Provide
+explicit Approve and Reject actions: approving a Pharmacist or Patient runs an atomic database
+transaction updating account status to approved, closing the approval queue item with Admin
+reviewer ID and timestamp, creating a welcome notification, and logging the approval in the activity
+log; approving a Doctor coordinates directly with Doctor Credential Verification so a Doctor account
+only gains active access when both account approval and credential verification are confirmed.
+Rejecting any applicant requires entering a concise non-sensitive review reason saved atomically onto
+the request so the applicant sees clear feedback on their Account Pending Approval screen and cannot
+gain portal access.
+
+f) adminAssignAndChangeUserRoles()
+Build the controlled Role Assignment and Role Change workflow inside User Management allowing
+an authorized Admin to assign or update a user's role strictly among the four persisted authenticated
+roles (Patient, Doctor, Pharmacist, Admin) while protecting database integrity and preventing
+privilege leaks. Enforce strict safety guardrails inside an atomic transaction: forbid an Admin from
+demoting their own account or removing the sole remaining Admin account; when promoting or
+switching a user into Doctor or Pharmacist, require valid license details and ensure the corresponding
+doctor or pharmacist profile row is created or reactivated cleanly; when changing a user into Patient,
+ensure a linked patient record exists with a valid unique user ID to patient ID link; immediately
+revoke the target user's existing login sessions so stale role permissions expire immediately and the
+user re-authenticates with their new real role; and write a high-severity role-change audit entry
+capturing old role, new role, acting Admin ID, and reason.
+
+g) adminVerifyDoctorCredentials()
+Build the dedicated Doctor Credential Verification workspace—permanently closing Bug 1 and Bug 11
+—where Admins review submitted medical licenses before any Doctor can appear publicly or access
+clinical features. Display a server-paginated queue of unverified and under-review Doctors showing
+full name, email, specialty, years of experience, submitted medical license number, licensing
+authority, and a secure authenticated viewer to inspect the privately stored credential proof document
+(never exposing raw credential files on public URLs). Provide three structured verification decisions:
+Approve & Verify (executes an atomic database transaction marking doctor verification status as
+verified, setting user account status to approved, publishing the Doctor automatically into the public
+Doctor Directory view, dispatching an activation notification, and logging the verification event),
+Request Resubmission or Reject (requires a structured review reason saved onto the verification
+record, keeping account access locked and showing clear guidance on the pending screen), and
+Revoke Verification (for verified doctors needing compliance hold, immediately hiding them from
+public search and revoking active clinical sessions). Include automated RBAC and verification tests
+proving that only verified approved Doctors appear in public search and can create prescriptions.
+
+h) adminAddDoctorRecord()
+Build the Admin Add Doctor workflow enabling the clinic administrator to onboard a verified Doctor
+directly from the Admin portal without requiring them to go through public self-registration. Collect
+and strictly validate full name, unique email address, phone number, authentic medical specialty
+from the clinic catalog, years of experience (0 to 70), consultation fee (strictly positive numeric
+formatted in global currency), medical license number, licensing authority, biography, optional
+profile photo, and either an initial verified status toggle or a temporary setup password/invite reset
+
+link sent securely by email. Execute creation inside a single atomic database transaction inserting
+both the user record (with authentic Doctor role and securely hashed password) and the linked doctor
+record with license details and audit trail entry, rolling back completely on duplicate email or license
+conflict. Display clear inline validation messages and Retry recovery.
+
+i) adminEditDoctorRecord()
+Build the Admin Edit Doctor screen allowing the Admin to update any existing Doctor's profile
+information, authentic specialty, years of experience, consultation fee, phone number, biography,
+license details, or active/verification status with full server-side validation and atomic persistence.
+Ensure every edit updates both the linked user display fields and the doctor table in one transaction
+so the public Doctor Directory, Doctor Public Profile, Patient Booking flows, and Doctor Dashboard
+reflect updated details instantaneously. Log every administrative modification in the activity log with
+before-and-after field summaries, display clear validation feedback, and support Retry recovery on
+save failure.
+
+j) adminRemoveOrArchiveDoctor()
+Build the safe Doctor Removal and Archiving workflow—permanently fixing Bug 16 where deleting a
+doctor lacked confirmation and broke linked clinical records. When the Admin clicks Remove on any
+Doctor, first run a server dependency check counting linked appointments, prescriptions, reviews,
+and clinical notes, and open a strict confirmation dialog displaying that exact dependency summary
+and requiring the Admin to type the Doctor's name or confirm explicitly. If the Doctor has zero linked
+clinical records, permit confirmed safe deletion inside an atomic transaction; if ANY linked
+prescription, appointment, or review exists, strictly block hard deletion so clinical and legal history is
+never corrupted or orphaned, and execute a clean Soft Archive instead (stamping archived
+timestamp, marking account inactive, revoking active login sessions immediately, removing the
+Doctor from public directory search and future booking, while preserving historical prescriptions and
+invoices intact for Patients and audits). Record the exact archive or deletion event in the activity log.
+
+k) adminRegisterPatientRecord()
+Build the Admin Register Patient workflow enabling front-desk administrators to register a new
+patient directly—either creating a full linked login account plus clinical patient record together, or
+creating a walk-in clinical patient record with a secure claimable walk-in code so the patient can link
+a login account later. Strictly validate full name, phone number (E.164 format), age (integer 0 to 130),
+gender, optional email address, primary condition, initial allergies, and current medicines. Check for
+duplicate email or duplicate phone records before saving, execute all inserts inside one atomic
+database transaction guaranteeing the immutable patient ID and optional unique user ID link remain
+clean, and log the registration in the activity log with clear inline error feedback and Retry recovery.
+
+l) adminEditPatientRecord()
+Build the Admin Edit Patient screen allowing authorized Admins to update any Patient's
+demographics (full name, phone number, age, gender, condition, email, active status) and manage
+linked account status with strict client and server validation. Execute updates atomically across the
+patient record and its linked user account when present so there is never a mismatch between login
+profile data and clinical chart headers, record before-and-after changes in the immutable activity log,
+and show clear validation and Retry error messages.
+
+m) adminRemoveOrArchivePatient()
+Build the safe Patient Removal and Archiving workflow—permanently closing Bug 16 for patient
+records—enforcing mandatory typed confirmation and relational integrity protection. Before
+executing any removal, query linked appointments, prescriptions, and invoices strictly by immutable
+patient ID and display the exact linked record counts inside the confirmation modal. Block hard
+deletion automatically whenever any prescription, appointment, or invoice is attached to that patient
+ID, offering and executing a clean Soft Archive instead (setting archived timestamp, disabling login
+access, revoking active sessions, hiding the archived patient from active booking queues while
+preserving all historical prescriptions, financial invoices, and audit trails completely intact). Permit
+hard deletion strictly when zero linked clinical or financial records exist, always inside an atomic
+transaction logged in the activity log.
+
+n) adminOperatePatientPortal()
+Build the centralized Admin Patient Portal allowing Administrators to search patients by name,
+immutable patient ID, phone, or email, filter strictly by patient workflow status (Registered, Active
+Visit, Prescribed, Dispensed, Discharged, Archived), and inspect any selected patient's complete
+prescription history and billing history tied strictly by immutable patient ID—never matching
+invoices by patient name and always formatting all monetary totals using the global dynamic
+currency setting rather than a hardcoded dollar sign. Enforce server-side pagination, explicit column
+allow-lists, skeleton loaders, responsive mobile card layouts, empty states, and localized Retry
+controls across both the patient directory and the nested prescription/billing history tabs.
+
+o) adminViewAndManageAllAppointments()
+Build the global Appointments Oversight screen enabling Admins to view, search, filter, and
+intervene on appointments across all Doctors and Patients. Support server-side pagination and multi
+facet filtering by status (pending, accepted, rejected, cancelled, completed), Doctor, Patient, and date
+range, displaying dates and times in the system timezone. Allow authorized Admins to cancel or
+reassign/reschedule problematic bookings (such as when a Doctor has an unexpected emergency
+absence) inside an atomic transaction that updates appointment status, releases or re-locks slots
+
+cleanly, notifies both the affected Patient and Doctor in-app, and logs the administrative override in
+the activity log. Include loading skeletons, empty states, mobile card layouts, and Retry error
+handling.
+
+p) adminViewAllClinicalAndBillingRecords()
+Build the read-only global oversight views allowing Admins to inspect all Prescriptions, all Medicine
+Inventory items (including stock alerts and expiry flags), and all Invoices across the clinic from
+cleanly separated, server-paginated tabs without ever fetching unbounded full tables. Provide
+targeted filters on each tab (prescription ID, patient ID, doctor, dispensing status; medicine name,
+category, low-stock or expired status; invoice ID, patient ID, payment status, date range), always
+matching invoices strictly by immutable patient ID and rendering every monetary column through
+the shared global currency formatter. Include quick PDF viewing/downloading for prescriptions and
+invoices for auditing, skeleton loaders, empty states, mobile-responsive tables, and Retry error
+recovery.
+
+q) adminConfigureRevenuePercentage()
+Build the Revenue Percentage Configuration control inside Admin financial settings—permanently
+fixing Bug 10 where empty revenue values silently fell back to 10 percent and calculations ran only in
+the browser interface. Provide a strictly validated numeric input requiring a non-empty decimal value
+strictly bounded between 0 and 100 inclusive; reject empty strings, negative numbers, values above
+100, and non-numeric text on the client, on the server API, and via a database check constraint.
+Persist the validated percentage directly in the system settings table along with an effective-from
+timestamp and activity log entry recording previous and updated percentages. Connect this stored
+setting directly to server-side SQL financial queries in both the Admin Master Dashboard and Admin
+Reports & Analytics so net clinic commission and doctor payout splits are computed accurately and
+consistently on the server using the exact persisted percentage.
+
+r) adminViewReportsAndAnalytics()
+Build the comprehensive Admin Reports and Analytics workspace backed entirely by parameterized
+server-side SQL aggregation endpoints (never fetching raw row dumps to crunch in client memory)
+and supporting custom date-range selection (Last 30 Days, Quarter, Year, Custom Start/End Dates).
+Render seven clear, structured analytical sections using crisp sortable print-ready tables and optional
+clear visual summaries: Monthly Revenue Breakdown (gross billed, discounts, refunded totals, net
+collected, and server-calculated Admin revenue share using the stored percentage and global dynamic
+currency formatting), Patient Growth & Active Visit Trends, Prescription Completion Rate (issued
+versus dispensed versus pending), Invoice Completion & Payment Collection Breakdown (paid versus
+pending versus refunded), Medicine Stock Health & Expiry Risk Report, Appointment Conversion &
+
+Cancellation Metrics, and Top Performing Doctors Leaderboard (ranked by completed visits, verified
+ratings, and generated revenue). Provide skeleton loaders per report section, clean empty states for
+dates with no activity, mobile-friendly scrolling/card tables, and independent Retry buttons.
+
+s) adminExportAnalyticsReports()
+Build the server-generated Report Export engine directly integrated into Admin Reports & Analytics,
+allowing Admins to export the currently filtered date-range analytics cleanly in both CSV and PDF
+formats. Generate CSV files server-side with strict RFC-compliant quoting, UTF-8 encoding, and
+spreadsheet formula-injection neutralization (prefixing cells starting with equals, plus, minus, or at
+sign) so exported financial spreadsheets are completely safe to open. Generate PDF reports server
+side displaying clinic header, selected date range, active system currency label, generation timestamp,
+acting Admin name, and cleanly paginated structured tables matching the exact on-screen server
+numbers. Stream files directly with clear timestamped filenames, log every report export inside the
+activity log, show export progress states, and provide Retry recovery on export errors.
+
+t) adminViewFilteredActivityLog()
+Build the immutable System Activity Log viewer giving Admins full forensic visibility into critical
+actions performed across all five roles (registrations, logins, failed lockouts, role changes, approvals,
+rejections, doctor verifications, appointment changes, walk-in registrations, prescriptions created,
+medicines dispensed, stock adjustments, invoices created, payment updates, record archives, settings
+changes, and data exports). Enforce strict server-side pagination and multi-facet filtering by actor
+role, actor user search, action category, target entity type, and date/time range. Display timestamp
+formatted in system timezone, actor name and authentic role, exact action label, target record ID, and
+concise structured detail summary—strictly read-only so no user (not even Admin) can edit or delete
+audit entries via the UI. Include skeleton loaders, empty states, mobile-stacked log cards, and Retry
+recovery.
+
+u) adminManageChatbotFaqs()
+Build the Chatbot FAQ Knowledge Base Manager enabling Admins to add, edit, publish/unpublish,
+reorder, categorize, and safely delete FAQ entries that directly power both the Guest and Patient FAQ
+Chatbot widgets. Validate every FAQ item strictly on client and server for non-empty question title,
+clear plain-language answer text, category tag, search keywords, and published status toggle. Enforce
+confirmation before deleting an FAQ item, persist every create/update/delete cleanly to the database
+while automatically updating the full-text search index so newly published FAQs become searchable
+in the chatbot immediately and unpublished drafts stay completely hidden from Guests and Patients.
+Include server-side pagination, search filtering, skeleton loaders, empty states, activity logging, and
+Retry error recovery.
+
+v) adminModerateDoctorReviews()
+Build the Doctor Review and Rating Moderation Queue allowing Admins to inspect patient-submitted
+reviews, filter by moderation status (Pending Review, Approved, Rejected/Hidden) and target
+Doctor, and approve, hide, or reject abusive, spam, or policy-violating reviews. Execute every
+moderation status change inside an atomic database transaction that updates the review's
+moderation status and optional internal moderation note, immediately recalculates the target
+Doctor's verified average star rating and approved review count from exclusively approved non
+hidden reviews so public profiles and Doctor dashboards remain mathematically exact, and records
+the moderation decision in the activity log. Include pagination, loading skeletons, empty states,
+confirmation dialogs for hiding reviews, and Retry error recovery.
+
+w) adminManageEmergencyRulesAndSpecialtyMapping()
+Build the Clinical Safety Configuration Console giving Admins full control over two vital safety
+critical datasets—directly closing Bug 24 across Guest, Patient, and Doctor flows. In Tab One
+(Emergency Contacts & Alert Rules), allow Admins to configure clinic and national emergency hotline
+numbers, ER address and entrance instructions, active time-bounded clinic emergency alert banners,
+and deterministic red-flag symptom keywords/phrases with severity levels and immediate action
+directives; changes persist immediately and govern the Guest Emergency Page, Guest/Patient FAQ
+Chatbot emergency overrides, and Patient AI Symptom Checker emergency escalations. In Tab Two
+(Symptom-to-Specialty Mapping), allow Admins to manage the authoritative mapping between
+clinical symptom categories/keywords and verified clinic medical specialties so Patient AI Specialist
+Recommendations always map accurately to real active clinic specialties. Validate every rule against
+empty triggers or duplicate conflicting mappings, log all safety-rule changes in the activity log, and
+show clear confirmation and Retry recovery.
+
+x) adminManageGlobalSystemSettings()
+Build the Global System Settings control panel locked strictly to the Admin role and aligned one-to
+one with the Admin navigation menu, permanently resolving Bugs 6, 7, and 9 across the entire
+platform. Persist real global clinic settings into the database system settings table: clinic name and
+official PDF header contact details, active Currency Code and display locale (propagating immediately
+across Guest fees, Patient bills, Doctor fees, Pharmacist billing, and Admin revenue reports with zero
+hardcoded dollar signs anywhere), default platform Language, default clinic Timezone, default Date
+Format, optional toggle controlling whether new Patient registrations auto-approve or require
+moderation, and appointment cancellation cutoff hours. Validate every field against strict allow-lists
+on client and server, save via genuine database transactions rather than mock messages, immediately
+broadcast or refresh updated configuration for active views, log settings modifications in the activity
+
+log, and show Retry recovery on errors.
+
+y) adminManageDataExportImportAndBackup()
+Build the real, database-backed Data Management workspace—permanently fixing Bug 6 where
+export, import, and Danger Zone controls previously showed empty placeholder messages. Provide
+three strictly controlled administrative tools: (1) Scoped CSV Data Export allowing Admin to export
+clean, formula-safe CSV files for Patients, Doctors, Medicines, Prescriptions, or Invoices; (2)
+Validated CSV Data Import (primarily for bulk Medicine Inventory or FAQ seeding) executing a
+mandatory two-step Dry-Run Preview followed by an Atomic Transactional Commit—validating every
+row against exact field rules (prices, quantities, future expiry dates, emails) before inserting a single
+record and returning a downloadable row-by-row error report if any row fails; and (3) On-Demand
+Logical Database Backup Snapshot export generating a structured timestamped JSON/SQL archive
+downloadable strictly by authenticated Admin and logged as a high-security audit event. Protect any
+Danger Zone maintenance operations (such as purging expired sessions or archiving old test data)
+with explicit Admin password re-entry plus typed confirmation phrase so destructive actions can
+never execute accidentally.
+
+z) adminManageProfileAndSecurity()
+Build the Admin Profile and Password Security page allowing the logged-in Admin to update their
+own display name, contact phone, and profile photo, and execute genuine database-backed password
+changes requiring current password verification, strict strong password validation, atomic revocation
+of all other active Admin sessions, and audit logging. Display the real database role as Admin (never
+hardcoded), provide an active sessions overview showing current Admin login devices with a one
+click Revoke Other Sessions control, enforce complete field validation, and include Retry error
+handling on all security mutations.
+
+1. Guest (Not Logged In)
+a) guestPublicAccessAndSessionGuard()
+Build the unauthenticated public entry shell and strict security perimeter for the Healthcare
+Management Web Platform so visitors who are not logged in can browse public clinic resources while
+being completely locked out of private clinical records. First, establish the five and only five system
+roles—Guest (unauthenticated session state), Patient, Doctor, Pharmacist, and Admin—and enforce
+database row-level security so unauthenticated requests can never read the users, patients,
+prescriptions, appointments, or invoices tables; any direct attempt to query private endpoints without
+valid authentication must immediately return an unauthorized error. Second, create three strictly
+sanitized public read views accessible to Guests: verified active doctor profiles (containing only
+display name, authentic medical specialty pulled dynamically from the database rather than a
+hardcoded General Physician label, experience, bio, photo, consultation fee, rating summary, and
+next available schedule preview), published FAQ entries, and active emergency contacts. Third,
+establish a global currency and display configuration loader that reads the active currency symbol,
+locale, timezone, and date format directly from the Admin-managed system settings table and applies
+dynamic currency formatting across the entire application so no literal dollar sign ever appears
+hardcoded on any screen. Fourth, build a global network error and retry handler across every data
+fetching view so failed requests display a clear explanation and a functional Retry button that re
+fetches data without reloading the browser. Fifth, construct a mobile-first, WCAG 2.1 AA compliant
+navigation bar with links to Find Doctors, Emergency Info, Login, and Register, collapsing cleanly
+into a keyboard-accessible slide-over menu below 768 pixels with minimum 44 by 44 pixel touch
+targets, skip-to-content support, and strong text contrast. Sixth, align route guards so
+unauthenticated visitors attempting to visit any Patient, Doctor, Admin, or Pharmacist route—
+including any Settings route—are automatically redirected to Login rather than seeing an exposed
+route.
+
+b) guestRegisterAccount()
+Build the public multi-role account registration page and backend intake workflow accepting full
+name, email address, password, confirm password, phone number, and requested role. Restrict the
+selectable requested roles strictly to Patient, Doctor, or Pharmacist; never display Admin in the
+registration form and permanently reject any tampered request attempting to register as Admin or
+attempting to pre-approve its own account status. Enforce strict client-side and server-side form
+validation with clear inline error messages beneath each field: valid trimmed lowercase email format,
+strong password policy requiring minimum length, uppercase, lowercase, digit, and special character,
+
+valid phone format, and clean human name characters. Dynamically display role-specific verification
+inputs whenever the user selects Doctor or Pharmacist: require a valid medical or pharmacy license
+number, issuing authority name, years of experience, specialty selected from the clinic catalog for
+Doctors, and a credential proof document upload checked for file type and maximum size and stored
+privately rather than publicly. When the user selects Patient, collect optional age validated strictly
+between 0 and 130, gender, and an optional walk-in claim code issued earlier by a Doctor or Admin
+so a returning walk-in patient can immediately link their new login account to their existing patient
+record. Execute the entire registration workflow inside one single atomic database transaction with
+full rollback on any failure: first insert the user record with a securely hashed password and reject
+duplicate emails cleanly; second force account status to pending and verification status to unverified
+for every Doctor and Pharmacist request while setting Patient accounts to approved unless clinic
+policy mandates moderation; third create and bind the one-to-one linked role profile row (creating or
+claiming the linked patient record via permanent user ID to patient ID linkage, or creating the
+unverified doctor or pharmacist profile); fourth insert a pending approval queue entry for Admin
+review and write an audit entry to the activity log. If any step fails, roll back every database write and
+remove uploaded files so zero orphan records remain. Immediately after commit, route approved
+Patients to the Patient dashboard and route pending Doctors or Pharmacists exclusively to the
+Account Pending Approval screen.
+
+c) guestLogin()
+Build the unified Login page and server authentication workflow used by Patients, Doctors, Admins,
+and Pharmacists to enter their respective workspaces safely. Validate email format and non-empty
+password inputs on both client and server, include an accessible password visibility toggle, support an
+optional safe relative return URL strictly restricted to internal paths to block open redirects, and
+apply brute-force rate limiting that temporarily throttles repeated failed login attempts per account
+and per network address while returning generic invalid-credential messaging to prevent email
+enumeration. During server authentication, execute a strict ordered gate before issuing any active
+session: verify the password hash in constant time; block suspended or archived accounts with a clear
+support message; block rejected applications while displaying the non-sensitive review reason
+provided by Admin; and intercept any account whose status is still pending—or any Doctor whose
+credentials are not yet verified by Admin, or any Pharmacist not yet approved by Admin—by issuing
+only a restricted pending-status token and routing them straight to the Account Pending Approval
+screen instead of granting portal access. For fully approved and verified users, hydrate the session
+strictly from real database records so the real user role, real doctor specialty, and linked patient ID or
+doctor ID are attached dynamically rather than hardcoded, issue secure HTTP-only session cookies
+
+rather than unsafe browser storage tokens, log the successful sign-in event, and route each role
+cleanly to its exact dedicated workspace and role-scoped settings path. Include automated login and
+role-gate tests proving that unverified Doctors and Pharmacists cannot access clinical endpoints,
+suspended users are blocked, invalid credentials fail cleanly, and approved users land only on their
+authorized role dashboard.
+
+d) guestForgotAndResetPassword()
+Build a secure two-step Forgot Password and Reset Password workflow accessible directly from the
+Login page without requiring authentication. In Step One (Forgot Password), accept a validated email
+address, enforce hourly request rate limits, and always respond with an identical neutral
+confirmation message regardless of whether the email exists in the system so attackers cannot
+discover valid user emails. When an active non-archived user matches, generate a cryptographically
+random single-use recovery token, store only a one-way cryptographic hash of that token with a 30minute expiration timestamp while invalidating any older unused reset tokens for that user inside
+one transaction, and send the recovery link containing the raw token via the configured email service.
+In Step Two (Reset Password), verify the token against the server as soon as the user lands on the
+reset page; if the token is missing, malformed, expired, or already used, immediately show an
+expired-link notice with a direct button to request a new link rather than rendering an unusable form.
+For valid tokens, enforce the same strong password policy and password confirmation matching used
+during registration, reject reuse of the existing password, and execute a single atomic database
+transaction that updates the hashed password, marks the reset token consumed so it can never be
+replayed, immediately revokes all active login sessions across all devices for that user, and records the
+security event in the activity log. Show clear network error retry banners if submission fails and
+redirect to Login with a confirmation notice upon completion.
+
+e) guestChatWithFaqChatbot()
+Build an accessible floating clinic FAQ chatbot widget available to unauthenticated Guests across
+public pages, powered strictly by Admin-published FAQ entries and protected by mandatory medical
+safety rules. Permanently pin a non-dismissible medical disclaimer inside the top of the chatbot
+header stating clearly that the assistant provides general clinic information only, does not provide
+medical diagnosis or treatment, and must never replace a licensed doctor's decision. Before
+processing any message through FAQ search or language generation, run a deterministic server-side
+emergency red-flag check against the Admin-maintained emergency alert rules table for severe
+symptoms such as chest pain, breathing difficulty, stroke signs, severe bleeding, unconsciousness,
+allergic shock, or crisis distress; whenever a red-flag phrase matches, immediately bypass standard
+FAQ output, render a high-contrast emergency alert banner inside the conversation stream with one
+
+tap emergency phone links, and link directly to the Emergency Information page. When no
+emergency is detected, validate message length, rate limit public requests, query only published FAQ
+records using bounded full-text relevance search returning at most five matching entries rather than
+loading the entire table, and synthesize or return clear answers grounded solely in those published
+entries while explicitly refusing requests for personal medication prescriptions or medical diagnoses.
+If the AI service times out or fails, gracefully fall back to returning the top matching database FAQ
+entry alongside a Retry button. Keep Guest conversations ephemeral in browser session memory
+without writing Guest text to clinical patient tables, ensure full screen-reader live announcements and
+full-height mobile drawer ergonomics, and export this widget cleanly so Role 2 can extend it for
+authenticated Patients without duplicating chatbot code.
+
+f) guestBrowseDoctorDirectory()
+Build the public Doctor Directory page allowing unauthenticated visitors to browse verified, active
+clinic doctors with fast server-side pagination, loading skeletons, empty states, and strict privacy
+protection. Query exclusively from the sanitized public doctor view filtered strictly to approved users
+whose doctor credentials are verified by Admin and who are neither suspended nor archived; never
+expose doctor personal emails, private phone numbers, raw medical license documents, or unverified
+applicants. Enforce bounded server-side pagination accepting validated page number and page size
+parameters so the directory never fetches every doctor row in one unbounded query, and return total
+counts alongside page metadata. Display each doctor in a clean responsive grid (one column on small
+mobile phones, two columns on tablets, three columns on desktops) showing their profile photo or
+initials fallback, full name linked to their public profile, authentic medical specialty from the database
+rather than a hardcoded label, years of experience, average star rating with total approved review
+count, consultation fee formatted dynamically using the active system currency setting, next open
+working day summary, and a View Profile button. Render matched skeleton cards while loading so
+the layout never jumps, render a clear empty-state message when zero verified doctors match, and
+display an inline Retry recovery state on network failure. Design this directory component with an
+extensible action slot so Role 2 can reuse the exact same doctor grid while adding a direct Book
+Appointment button without duplicating directory code.
+
+g) guestSearchAndFilterDoctors()
+Build the interactive Search and Filter controller layered directly on top of the public Doctor
+Directory so Guests can narrow verified doctors simultaneously by name search, medical specialty,
+schedule availability, minimum star rating, and sort order. Provide a debounced text search input
+matching doctor names and specialties using parameterized indexed database search to prevent
+injection attacks and eliminate full-table scans. Populate the specialty filter dynamically from the
+
+active specialty catalog rather than hardcoded lists. Implement the availability filter supporting
+specific weekday selection and an Available Today toggle evaluated server-side against the doctor
+schedules table while automatically excluding any doctor who has an approved leave day recorded on
+that date. Implement a minimum rating filter validated strictly between 0 and 5 stars, plus an allow
+listed sort selector supporting highest rating, most experience, lowest fee, highest fee, and
+alphabetical name. Synchronize all active search and filter parameters directly with the browser URL
+query string so filtered views survive page refresh, browser back navigation, and link sharing.
+Automatically reset pagination back to page one whenever any filter changes, cancel stale in-flight
+network requests when users type quickly so outdated results never overwrite fresh ones, display
+removable active filter tags with a Clear All Filters reset button, and collapse secondary filters into a
+tidy mobile drawer below 768 pixels while keeping the search box visible at the top. Make this filter
+controller reusable by Role 2 and deep-linkable from the Patient AI specialist recommendation
+feature.
+
+h) guestViewDoctorPublicProfile()
+Build the Doctor Public Profile detail page reachable from any card in the Doctor Directory,
+displaying complete public professional details, a read-only weekly schedule preview, and paginated
+moderated patient reviews. Validate the doctor identifier strictly as a valid unique ID and return a
+clean not-found page if the doctor does not exist, is pending approval, is unverified, or has been
+archived—never leaking whether a hidden account exists. Display the doctor's avatar, full name, real
+role badge and authentic medical specialty from the database, verified credential status indicator,
+years of experience, biography, consultation fee formatted using the global currency setting, and
+overall average rating with a five-star through one-star breakdown summary. Render a read-only
+seven-day upcoming availability table derived from the doctor's working schedule minus recorded
+leave days, strictly omitting any booked patient identities or private appointment details. Below the
+schedule, load paginated reviews filtered strictly to reviews approved by Admin moderation and never
+hidden, showing only rating, review comment, formatted date, and a privacy-safe reviewer display
+label such as first name and last initial with zero patient email, phone, or medical record exposure.
+Isolate profile loading from review loading so that if reviews fail to fetch, the doctor profile remains
+visible with an independent Retry button for reviews. Provide a prominent Sign In to Book
+Appointment button that sends Guests to Login carrying a safe return path pointing straight to the
+Patient booking workflow pre-selected with this doctor.
+
+i) guestViewEmergencyInfoAndAlerts()
+Build a dedicated, zero-authentication Emergency Contact and Emergency Alert Information page
+accessible immediately from a permanent emergency link in the public header and from every
+
+emergency chatbot escalation. Fetch structured emergency data from the Admin-managed emergency
+configuration and active emergency alert rules tables, displaying national ambulance hotlines, the
+clinic 24-hour emergency desk phone number, poison control and crisis numbers, physical
+emergency entrance directions, active time-bounded clinic emergency alerts (automatically hiding
+expired alerts), and categorized life-threatening red-flag symptoms (cardiac, respiratory, neurological
+stroke indicators, severe bleeding or trauma, anaphylaxis, and urgent pediatric warning signs) paired
+with immediate plain-language instructions. Pin a high-contrast medical safety directive at the top
+stating clearly that anyone experiencing a life-threatening emergency must call emergency services
+immediately or go to the nearest emergency room rather than waiting for online booking or chatbot
+guidance. Render every emergency phone number as a large, high-contrast one-tap callable link with
+generous mobile touch targets. Ship a minimal verified static emergency contact fallback bundle
+directly inside the application so even if the backend server or internet connection drops, the
+Emergency page still displays critical emergency instructions immediately alongside a non-blocking
+banner and a Retry button for live clinic alerts. Reuse this exact emergency alert display structure
+when the Patient AI symptom checker escalates a serious condition.
+
+j) guestViewPendingApprovalScreen()
+Build the Account Pending Approval holding page shown immediately after a Doctor or Pharmacist
+signs up and whenever an unapproved or unverified account attempts to log in. Restrict access strictly
+to sessions carrying a scoped pending-status token issued during registration or blocked login,
+redirecting anonymous visitors cleanly to Login. Lock down every authenticated Patient, Doctor,
+Admin, and Pharmacist API route and frontend page so a pending-status token is strictly rejected
+with a clear pending-approval error code and bounced right back to this screen even if the user types
+another URL manually. Display the user's authentic requested role from the database, masked license
+reference, exact submission date formatted in the system timezone, and a clear three-stage progress
+indicator showing Account Submitted, Admin Credential Review in Progress, and Portal Activation
+Pending. Include a rate-limited Check Approval Status button that re-queries live status from the
+server: if still pending, update the status timestamp accessibly; if Admin has approved the account
+and verified doctor credentials, display a clear confirmation banner prompting the user to sign in
+fresh to activate their full role workspace; if Admin rejected the account, display the rejection notice
+and non-sensitive review reason. Include a working Sign Out button that clears the pending cookie
+completely, a Retry handler for network hiccups, and helpful public links to Emergency Info and the
+public Doctor Directory.
+
+Patient (Registered User)
+a) patientSessionLoginAndLogout()
+Extend the Guest login foundation to manage the authenticated Patient session lifecycle, strict role
+scoped access control, and clean logout flow. Upon successful Patient authentication, verify that the
+user's real database role is Patient, account status is approved, and account is neither suspended nor
+archived; immediately verify and bind the user's linked patient record identifier into the server
+session context so every downstream Patient request automatically knows the authenticated patient's
+immutable unique ID without trusting any client-supplied patient ID parameter. Lock down all
+Patient routes and API endpoints strictly to the Patient role so Doctors, Pharmacists, or
+unauthenticated visitors cannot read private Patient portal screens, and ensure Patients can never
+access Doctor, Pharmacist, or Admin endpoints or read other patients' profiles, prescriptions,
+appointments, or bills. Build a persistent authenticated Patient navigation shell displaying the
+Patient's real name, authentic Patient role label (never hardcoded), unread notification bell badge,
+mobile-friendly drawer navigation tested down to 360 pixels, and a dedicated Logout action. When
+Logout is clicked, call the server logout endpoint to revoke the active refresh session in the database,
+clear all HTTP-only session cookies, wipe cached private clinical data from client state memory so
+shared devices never leak medical history via the browser back button, record the logout event, and
+redirect cleanly to the Login page.
+b) patientRegisterAndLinkRecord()
+Establish and enforce the permanent one-to-one relational link between a Patient's login user account
+and their clinical patient record so every prescription, appointment, allergy entry, medical history
+item, and invoice belongs unambiguously to one verified Patient identity. Permanently resolve the
+missing account-to-patient link defect by ensuring that every Patient user account created during
+registration either automatically creates a linked patient record carrying a unique non-null foreign
+key to the user ID or atomically claims an existing walk-in patient record previously created at the
+clinic by a Doctor or Admin using a secure one-time walk-in claim code verified against matching
+date of birth or phone number. Build a dedicated Link Existing Clinic Record recovery panel inside
+the Patient onboarding state in case a legacy migrated user logs in without a linked patient ID: allow
+them to either create their new clinical patient profile in one atomic transaction or enter a clinic
+issued claim code to attach their historical walk-in visits without duplicating patient records. Enforce
+a strict database uniqueness rule so two different user logins can never attach to the same patient
+record and one user login can never spawn duplicate patient records. Ensure every subsequent
+Patient feature—prescriptions, appointments, bills, allergies, and symptom history—reads and filters
+exclusively by this verified server-side patient ID.
+
+c) patientManageProfile()
+Build the Patient Profile Management screen allowing the logged-in Patient to view and update their
+full name, phone number, age (or date of birth deriving age automatically), gender, and profile photo,
+with every change persisted directly to the database rather than displaying fake success notices.
+Display the user's real database role as Patient and never show any hardcoded physician role string.
+Enforce complete client-side and server-side validation before saving: full name between 2 and 100
+valid characters, phone number matching international E.164 formatting rules, age strictly bounded
+as an integer between 0 and 130 (rejecting negative numbers, zero-only typos where invalid, or
+absurd values above 130), gender restricted to allow-listed choices, and profile photo uploads checked
+for valid image formats (JPEG, PNG, WebP) and safe file size limits with automatic removal of old
+unused photo files. Persist profile updates inside a single atomic transaction updating the shared user
+display columns and the linked patient record simultaneously so the Patient's updated name and
+phone stay completely synchronized across Doctor patient lists, Pharmacist billing headers, and
+Admin portals. Display a clear saving spinner, field-level validation feedback, an explicit Retry banner
+on network failure, and an unsaved-changes confirmation warning if the user attempts to leave mid
+edit.
+d) patientManageAllergiesAndMedications()
+Build a dedicated Clinical Safety Profile section inside the Patient workspace where the logged-in
+Patient can add, edit, and remove their known allergies (medicine, food, and environmental allergies
+along with severity level such as mild, moderate, or severe and reaction notes) and their current
+ongoing medicines (medicine name, dosage strength, frequency, and start date). Persist every allergy
+and current medication into structured child tables linked directly to the authenticated patient ID
+rather than storing unstructured free-text blobs, enabling automated clinical safety cross-checks
+downstream. Validate every field cleanly to prevent blank entries, duplicate active allergy entries for
+the same substance, or overly long strings, and show clear loading skeletons, empty-state prompts
+encouraging patients to keep allergies up to date, and error retry recovery. Explicitly connect this
+structured data to Role 3 and Role 4: whenever a Doctor opens this patient's chart or runs allergy and
+drug-interaction checks before prescribing, and whenever a Pharmacist reviews a pending
+prescription before dispensing, the system automatically reads these exact live Patient allergy and
+current medicine entries and triggers visible safety warnings if a conflict exists. Include a clear
+patient-facing note reminding the user to confirm major medication changes directly with their
+doctor.
+e) patientChangePassword()
+Build a fully functional Change Password workflow inside the Patient Security area that genuinely
+
+updates the user's hashed credentials in the database rather than showing a placeholder confirmation
+message. Require three validated fields: current password, new password, and confirm new
+password. Enforce the shared strong password policy (minimum length, uppercase, lowercase,
+number, and special character) on both frontend and backend, reject any new password identical to
+the current password, and require exact verification of the current password hash on the server before
+permitting any modification. Apply rate limiting against repeated failed current-password attempts to
+prevent hijacked-session takeovers. Execute the password update inside an atomic transaction that
+writes the newly hashed password, records the password-change timestamp, invalidates all other
+active login sessions on other devices while cleanly rotating the current session token so the user
+stays safely signed in on their active browser, and appends a password-changed entry to the activity
+log. Show inline accessible error messages for wrong current passwords or policy violations, plus a
+network Retry control on transient failures.
+f) patientLaunchAuthenticatedFaqChatbot()
+Reuse the exact safety-guarded FAQ chatbot widget built in Guest Role 1 inside the authenticated
+Patient layout without duplicating chatbot code, extending it strictly with Patient-aware navigation
+shortcuts. Keep the permanent non-dismissible medical disclaimer banner and the deterministic
+server-side emergency red-flag interceptor active on every message so serious symptoms immediately
+trigger the high-contrast emergency alert override. Allow authenticated Patients to ask general clinic
+workflow questions (such as how to reschedule appointments, how to download prescription or
+invoice PDFs, or clinic operating hours) sourced strictly from Admin-published FAQs, and enhance
+responses with safe deep links straight to their own Patient workspace pages like My Appointments,
+My Prescriptions, My Bills, or the structured AI Symptom Checker. Continue enforcing strict anti
+diagnosis boundaries inside the FAQ chatbot, guiding medical symptom questions directly into the
+dedicated AI Symptom Checker rather than answering clinical diagnosis questions inside general
+FAQ chat.
+g) patientBrowseDoctorsWithBookingContext()
+Reuse the sanitized, paginated Doctor Directory grid component established in Guest Role 1 inside
+the authenticated Patient portal so zero directory layout, pagination, or card-rendering code is
+duplicated. Keep strict server-side pagination, verified-and-active doctor filtering, dynamic system
+currency formatting on consultation fees, real database specialties, loading skeletons, empty states,
+and Retry error recovery intact. Inject authenticated Patient action buttons onto each doctor card so
+the Patient can either open the full doctor profile (including approved reviews and weekly
+availability) or click a direct Book Appointment button that transitions immediately into the Patient
+booking flow pre-selected with that exact doctor. Highlight whether the Patient has previously
+
+completed an appointment with a given doctor so returning patients can easily locate their preferred
+specialist for follow-up care.
+h) patientSearchAndFilterDoctorsAuthenticated()
+Reuse the exact URL-synchronized Search and Filter controller built in Guest Role 1 inside the
+authenticated Patient Doctor Directory without rewriting query logic or filter markup. Support
+combined server-side filtering by doctor name, dynamic specialty catalog, specific working day or
+Available Today status (automatically excluding doctors on recorded leave), minimum star rating,
+and safe allow-listed sort order, with automatic page reset to page one and stale request cancellation.
+Connect this authenticated filter view directly to the Patient AI Specialist Recommendation workflow
+so clicking a recommended specialty automatically opens the Patient Doctor Directory pre-filtered to
+that exact specialty and sorted by highest verified rating and nearest availability, complete with one
+tap mobile filter drawer ergonomics.
+i) patientCheckSymptomsWithAi()
+Build the AI Symptom Checker inside the Patient portal as a structured, guided clinical intake
+experience protected by rigorous medical safety guardrails. Before the Patient can enter symptoms,
+render a prominent, permanently visible medical disclaimer explaining clearly that AI symptom
+analysis is strictly for preliminary educational guidance, is not a confirmed medical diagnosis, and
+never replaces evaluation by a licensed doctor. Collect structured symptom inputs rather than an
+unsafe unstructured box alone: selected primary symptoms and affected body region, plain-language
+symptom description (validated for length), symptom duration, self-rated severity level (mild,
+moderate, severe), onset speed (sudden or gradual), and optional consent toggle to include the
+Patient's saved age, gender, allergies, and current medications as read-only context. On submission,
+run a mandatory two-stage server pipeline: Stage One runs a deterministic rule-based emergency red
+flag engine loaded directly from the Admin-maintained emergency alert rules table; Stage Two—
+executed ONLY when no critical emergency override triggers—invokes the structured AI triage
+evaluator constrained by strict system rules forbidding definitive diagnosis or prescription drug
+dosing, outputting structured possible non-diagnostic explanations, urgency guidance (self-care
+monitoring, routine doctor visit, or prompt clinic consultation), recommended questions to ask a
+doctor, and a mapped specialty category. Persist the check summary to the Patient's private symptom
+check log with strict owner-only access, provide clear loading indicators and a Retry button if the AI
+service times out, and ensure full keyboard and mobile accessibility.
+j) patientGetSpecialistRecommendation()
+Build the Specialist Recommendation module directly integrated with the output of the AI Symptom
+Checker and anchored strictly to the Admin-managed symptom-to-specialty mapping table. Instead
+
+of allowing the AI model to invent arbitrary or unavailable department names, cross-validate every
+AI-suggested clinical category against the clinic's authoritative Admin-configured symptom-to
+specialty mapping catalog so every recommendation maps deterministically to a real specialty offered
+by verified active doctors in the platform. Display the primary recommended specialty (and up to two
+secondary relevant specialties where appropriate), a plain-language explanation of why that specialty
+fits the reported symptom category, and a live preview of the top three verified available doctors in
+that specialty showing their real specialty, rating, next available working slot, and dynamically
+formatted consultation fee. Provide two direct actions: a Browse All Recommended Specialists button
+that routes straight into the authenticated Patient Doctor Directory pre-filtered to that exact
+specialty, and a Book With This Doctor button next to each previewed doctor that opens the
+appointment booking page pre-populated with the doctor and an optional summary note of the
+symptom check so the Doctor has context during the consultation.
+k) patientShowSymptomEmergencyAlert()
+Build the high-priority Emergency Alert escalation screen and modal interceptor triggered
+automatically whenever Stage One of the AI Symptom Checker—or any critical severity flag returned
+by symptom evaluation—matches an Admin-configured life-threatening emergency rule (such as
+chest pain radiating to arm or jaw, acute shortness of breath, sudden facial droop or slurred speech,
+uncontrolled bleeding, loss of consciousness, severe allergic swelling, or acute self-harm crisis).
+Immediately halt routine specialist booking prompts, lock focus onto an accessible high-contrast
+emergency alert panel with urgent screen-reader alert announcements, and reuse the exact Admin
+managed emergency hotlines, one-tap callable ambulance links, nearest clinic emergency room
+directions, and immediate stabilization instructions powered by the Guest Emergency Information
+data layer. Clearly display the exact red-flag symptom that triggered the warning and explicitly
+instruct the Patient not to wait for an online appointment or rely on AI output. Include a clear
+secondary link to view full clinic emergency contacts while ensuring the medical disclaimer and
+emergency action numbers remain unmissable on small mobile screens.
+l) patientBookAppointment()
+Build the Appointment Booking workflow allowing the logged-in Patient to select a verified active
+Doctor, choose an available calendar date, pick an open time slot, enter an optional brief visit reason,
+and confirm the booking safely without double-booking races. First, dynamically fetch the chosen
+Doctor's real schedule slots for the selected date from the server, automatically graying out past dates,
+non-working weekdays, Doctor leave dates, and already booked time slots so the Patient can only
+select genuinely open intervals. Display the Doctor's verified name, real specialty, and consultation
+fee formatted with the global currency setting. On submit, validate all inputs server-side (valid
+
+verified doctor ID, future date and time slot matching the doctor's live schedule, visit reason length
+bounds) and execute a single atomic database transaction with row-level concurrency locking and a
+database unique constraint on doctor ID plus appointment date plus start time for active bookings:
+verify the slot is still unbooked and the doctor is not on leave, verify the Patient does not already have
+an overlapping appointment at that exact time, insert the appointment linked strictly to the
+authenticated server-side patient ID with initial status set to pending, insert an in-app notification for
+the Doctor announcing the new appointment request, and write an audit log entry. If another patient
+books that exact slot milliseconds earlier, roll back cleanly and display a clear slot-taken message
+prompting the Patient to pick another slot. On mobile viewports down to 360 pixels, stack date picker
+and time slot chips into clean touch-friendly rows, show loading and Retry states, and include
+automated booking tests proving successful booking, double-booking rejection, leave-day rejection,
+and doctor notification creation.
+m) patientCancelAppointment()
+Build the Patient Appointment Cancellation workflow accessible directly from any upcoming pending
+or accepted appointment inside the Patient's appointment history. Enforce strict ownership
+verification on the server so a Patient can cancel exclusively their own appointments linked to their
+authenticated patient ID, and block cancellation of appointments that are already completed,
+rejected, cancelled, or past the clinic's configurable cancellation cutoff window. Require an explicit
+confirmation dialog summarizing the Doctor name, appointment date, time slot, and an optional
+cancellation reason input so no appointment is cancelled accidentally by a single stray tap. On
+confirmation, run a single atomic database transaction that verifies the current appointment status is
+cancellable, transitions the status cleanly to cancelled with cancellation timestamp and actor
+metadata (identifying the Patient as canceller), releases the time slot immediately back into the
+Doctor's bookable availability pool, inserts a cancellation notification into the Doctor's in-app
+notification feed, and records the action in the activity log. Update the appointment list immediately
+with accessible status feedback and provide Retry handling if the cancellation request fails due to
+connectivity loss.
+n) patientRescheduleAppointment()
+Build the Patient Appointment Rescheduling workflow allowing a logged-in Patient to move an
+eligible upcoming pending or accepted appointment to a new available date and time slot with the
+same Doctor without losing clinical booking history or creating duplicate appointments. Enforce
+strict server ownership checks and allow rescheduling only for upcoming appointments not yet
+completed, cancelled, or rejected. Present the Doctor's live available calendar dates and open time
+slots using the same leave-aware slot loader used during initial booking, clearly distinguishing the
+
+current booked slot from newly available choices. Upon confirmation, execute one atomic database
+transaction with concurrency locking: verify the original appointment still belongs to the
+authenticated Patient and remains eligible, verify the newly chosen date and time slot is genuinely
+open and not on a Doctor leave day, release the old slot and bind the new date and time while
+transitioning status back to pending (so the Doctor explicitly reviews and accepts the changed time)
+and incrementing a reschedule counter while preserving the previous slot timestamp in audit history,
+insert an in-app notification alerting the Doctor of the rescheduled request, and commit cleanly. If
+the new slot is claimed simultaneously by another patient, roll back completely so the Patient's
+original appointment remains intact and unharmed.
+o) patientViewAppointmentHistoryAndStatus()
+Build the Patient Appointment History and Status Tracker displaying every appointment belonging
+strictly to the logged-in Patient's server-verified patient ID—never fetching other patients'
+appointments and never running unbounded queries. Support server-side pagination, status filter
+tabs (All, Pending, Accepted, Rejected, Cancelled, Completed), and date-range sorting so upcoming
+visits appear first by default and past visits remain easily searchable. Display clear, accessible plain
+text status indicators for all five lifecycle states (pending, accepted, rejected, cancelled, completed),
+Doctor full name and authentic specialty, appointment date and time formatted strictly in the user's
+preferred timezone and date format setting, Doctor rejection note if rejected, and contextual inline
+action buttons matching each state (Cancel and Reschedule for eligible upcoming bookings; Leave
+Review for completed appointments not yet reviewed; View Linked Prescription when a prescription
+exists for that visit). Provide layout-matched table/card skeleton loaders during fetching, a friendly
+empty state with a direct Book First Appointment CTA when zero visits exist, responsive card
+stacking below 640 pixels so tables never overflow horizontally on phones, and a localized error alert
+with a working Retry button whenever fetching fails.
+p) patientReceiveNotifications()
+Build the persistent in-app Notification Center and real-time unread counter for the logged-in
+Patient, permanently fixing the missing notifications defect. Create a structured notifications feed
+filtered strictly to the authenticated user ID and triggered automatically by real cross-role events:
+when a Doctor accepts or rejects an appointment request, when a Doctor cancels or updates a visit,
+when a Doctor creates a new prescription for the Patient, when a Pharmacist marks a prescription
+ready or dispensed, and when a Pharmacist creates a new bill or updates payment status. Display an
+accessible bell indicator in the Patient header showing the exact unread notification count, opening a
+clean dropdown panel and a full paginated Notifications history view. Each notification displays its
+event category, concise plain-language message, formatted relative and absolute timestamp,
+
+read/unread indicator, and a direct click-through link taking the Patient straight to the relevant
+appointment, prescription, or bill while automatically marking that notification read on the server.
+Provide a working Mark All as Read button, filter toggles for All versus Unread, respect the Patient's
+persisted notification channel preferences from Patient Settings, show clean loading skeletons and
+empty states, and offer Retry recovery on poll or fetch failures.
+q) patientViewOwnPrescriptions()
+Build the Patient My Prescriptions page listing every prescription issued strictly to the logged-in
+Patient's verified linked patient ID, permanently resolving both the missing account-to-patient link
+defect and unbounded row-fetching issues. Query only prescriptions belonging to the authenticated
+patient ID with server-side pagination, optional filter by dispensing status (Pending Dispense versus
+Dispensed/Completed) and date range, and explicit column projection. For each prescription, display
+the unique prescription ID, issue date formatted using the active date format, prescribing Doctor's
+authentic name and real medical specialty (derived from the Doctor's own ID rather than any
+hardcoded first doctor), dispensing status, and expandable clinical details showing every prescribed
+medicine item with exact dosage strength, daily schedule, treatment duration, and Doctor clinical
+instructions/notes. Show clean skeleton loaders while loading, an informative empty state when no
+prescriptions have been issued yet, responsive mobile card layouts on narrow screens, Retry error
+recovery, and a clearly visible Download Prescription PDF button attached directly to every
+prescription row.
+r) patientDownloadPrescriptionPdf()
+Build the Patient Prescription PDF download capability—permanently fixing the defect where
+prescription PDF downloads were never triggered in the interface—so Patients can reliably download
+an official, cleanly formatted clinical prescription document for any prescription they own. Attach an
+active, accessible Download PDF button directly on every prescription list item and detail modal
+inside My Prescriptions. When clicked, request a server-authenticated PDF endpoint that verifies
+strictly that the requested prescription ID belongs to the logged-in Patient's linked patient ID
+(returning forbidden for any other patient's prescription ID), loads the verified clinic header,
+prescription reference number, issue date, Patient full name, age, gender, linked patient ID,
+prescribing Doctor full name, real medical specialty, verified medical license number, complete
+medicine table (medicine name, dosage, schedule, duration), Doctor clinical notes, and dispensing
+status. Generate a crisp, printable PDF stream using the shared deterministic Prescription PDF
+builder reused by Role 3 so Patient and Doctor always receive identical authentic clinical documents,
+trigger an immediate browser file download with a clear filename containing the prescription ID,
+show a button loading state during generation, and surface a clear inline Retry message if PDF
+
+generation fails.
+s) patientViewOwnBills()
+Build the Patient My Bills page so the logged-in Patient automatically sees every invoice belonging
+strictly to their authenticated patient ID on page load—permanently fixing both the defect requiring
+manual invoice ID entry to see any bills and the dangerous bug where invoices were matched by
+patient name and leaked between two patients sharing the same name. Query the invoices table
+strictly by the server-verified immutable patient ID foreign key with server-side pagination, status
+filtering (All, Pending, Paid, Refunded), and summary totals (total billed, total paid, outstanding
+balance) calculated server-side and formatted exclusively using the global dynamic currency setting
+with zero hardcoded dollar signs. Display each invoice with its unique invoice ID, billing date
+formatted according to user preferences, itemized medicines and quantities, discount applied, net
+payable amount in dynamic currency, payment method, current payment status (paid, pending, or
+refunded), and an immediate Download Invoice PDF action. Include skeleton loaders, an empty state
+when no bills exist, mobile-stacked invoice cards below 640 pixels, and a working Retry alert on load
+failure.
+t) patientSearchOwnInvoiceById()
+Build the Invoice ID Search bar integrated directly atop the Patient My Bills table so the logged-in
+Patient can quickly locate a specific bill by typing a full or partial invoice ID while keeping strict
+ownership isolation intact. Execute every search strictly on the server combining the parameterized
+invoice ID filter with the mandatory authenticated patient ID predicate so even if a Patient types an
+exact invoice ID belonging to someone else, the server returns zero results rather than leaking
+another patient's financial data. Debounce search input cleanly, reset pagination to page one on
+search changes, provide a one-click Clear Search reset button, show an informative no-matching
+invoice empty state when nothing matches, and preserve URL query state so bookmarked invoice
+lookups work smoothly alongside Retry error handling.
+u) patientDownloadInvoicePdf()
+Build the Patient Invoice PDF download workflow enabling the logged-in Patient to download a
+clean, official billing receipt for any of their own invoices. Place a clear Download Invoice PDF button
+on every bill row and invoice detail drawer inside My Bills. Verify strictly on the server that the
+requested invoice belongs to the authenticated Patient's linked patient ID before generating the PDF,
+reusing the exact shared Invoice PDF generator used by the Pharmacist in Role 5 so figures, line
+items, discounts, tax/net totals, dynamic system currency formatting, payment method, and payment
+status (paid, pending, refunded) match identically across Patient and Pharmacy records. Stream the
+file cleanly to the browser with a descriptive filename containing the invoice ID, show per-button
+
+loading feedback while preparing the download, and display an actionable Retry message on failure.
+v) patientSubmitDoctorReviewAndRating()
+Build the Doctor Review and Rating submission workflow allowing a logged-in Patient to submit an
+authentic one-to-five star rating and written review exclusively for Doctors with whom they have a
+verified completed appointment. Enforce strict server-side eligibility checks: verify the authenticated
+patient ID has at least one appointment with status set to completed for the target doctor ID, and
+enforce a database uniqueness constraint preventing duplicate spam reviews for the same completed
+appointment (allowing clean editing of their own prior review if clinic policy permits, or one review
+per completed visit). Validate the star rating strictly as an integer between 1 and 5 and validate the
+written comment for safe length bounds and sanitized plain text. Save the review atomically with an
+initial moderation status controlled by clinic moderation rules (feeding directly into Admin's review
+moderation queue) while recalculating the Doctor's verified average rating and approved review
+count accurately in the database whenever approved. Display accessible keyboard-navigable star
+rating controls, clear confirmation explaining whether the review is live immediately or pending
+moderation, and Retry handling on submission errors.
+w) patientManageSettings()
+Build the dedicated Patient Settings workspace accessible exclusively through the Patient sidebar and
+locked strictly to the Patient settings route so role menus and routes match one-to-one, permanently
+resolving the broken settings-buttons defect and the mismatched menu-versus-route defect. Persist
+every single setting genuinely into the database inside a user preferences record linked to the
+authenticated Patient user ID: notification preferences (toggle in-app and email alerts independently
+for appointment status updates, prescription readiness, and newly created bills), appearance theme
+preference (light, dark, or system default applied immediately across the session and remembered
+across logins), preferred interface language (selected from supported languages), timezone selection
+(applied across appointment times and notification timestamps), and preferred date format (such as
+DD/MM/YYYY, MM/DD/YYYY, or YYYY-MM-DD applied across prescriptions, visits, and invoices).
+Validate every preference strictly against allow-listed options on the server, persist updates via real
+authenticated save calls rather than mock messages, reflect saved preferences immediately in the
+active interface without needing a manual refresh, expose links to Profile Management and Password
+Change inside the Settings navigation tabs, and display clear save confirmations alongside Retry error
+handling if persistence fails.
+
+Doctor
+a) doctorVerifiedLoginAndLogout()
+Build the strict Doctor authentication gate, verified-only workspace session middleware, and clean
+logout lifecycle extending the Guest login foundation. Permit active Doctor portal access ONLY when
+all four server-side conditions hold simultaneously: the user's authentic database role is Doctor,
+account status is approved by Admin, doctor credential verification status is explicitly marked verified
+by Admin after checking the medical license number, and the doctor record is neither suspended nor
+archived. Any Doctor attempting to sign in while pending or unverified must be routed strictly to the
+Account Pending Approval screen and blocked with a forbidden response from every Doctor API
+endpoint. Once authenticated, bind the Doctor's real immutable doctor ID, user ID, and live database
+specialty directly inside the server session context—eliminating every possibility of hardcoded
+General Physician labels or defaulting to the first doctor in the database. Construct the responsive
+Doctor sidebar shell exposing Dashboard, Schedule, Appointment Requests, Patients, Medicines,
+Prescriptions, Reviews, Notifications, and Doctor Settings matching route guards one-to-one. On
+Logout, revoke the refresh session server-side, clear secure cookies, wipe clinical patient data from
+client memory, log the logout event, and redirect to Login.
+
+b) doctorManageProfile()
+Build the Doctor Profile Management page enabling the logged-in verified Doctor to view and update
+their medical specialty, years of experience, clinic phone number, consultation fee, professional
+biography, and profile photo, saving every edit permanently to the database. Display the Doctor's
+authentic role as Doctor and live specialty pulled from the database—never hardcoding General
+Physician—while displaying their verified medical license number and verification badge as read-only
+Admin-verified fields (requiring Admin re-verification if license details ever need correction). Enforce
+strict frontend and backend validation: specialty chosen from the approved clinic catalog, years of
+experience bounded as an integer between 0 and 70, valid E.164 phone format, positive consultation
+fee formatted dynamically using the global currency setting, biography within clean character limits,
+and validated image uploads for profile photos. Persist edits atomically across user display fields and
+the doctor profile table so changes immediately propagate to the public Doctor Directory, Doctor
+Public Profile, Patient Booking screens, and Prescription PDF headers. Provide clear validation
+errors, save indicators, and Retry recovery on failure.
+
+c) doctorManageScheduleAndLeave()
+Build the Doctor Schedule and Leave Management workspace allowing the logged-in Doctor to
+configure recurring weekly working days, daily time-slot blocks with configurable slot duration (such
+
+as 15, 20, or 30 minutes), break windows, and specific future leave dates or date ranges. Validate
+every schedule rule strictly on both client and server: end time must always occur after start time, no
+two working blocks on the same weekday may overlap, slot duration must divide cleanly within
+sensible clinical bounds, and leave end date must be on or after leave start date. Whenever a Doctor
+saves a new leave day or shortens working hours, automatically check the appointments table inside
+the same server workflow for any existing pending or accepted patient appointments conflicting with
+the removed hours: warn the Doctor with the exact count and list of affected appointments before
+committing, and require explicit handling (either keeping existing confirmed bookings honored or
+cancelling/notifying affected patients cleanly). Persist schedule and leave updates atomically so
+Patient slot pickers and Guest/Patient Available Today filters reflect changes instantaneously. Design
+the weekly schedule builder with clean mobile-responsive stacked weekday cards down to 360 pixels,
+full keyboard accessibility, and Retry error recovery.
+
+d) doctorViewAppointmentRequests()
+Build the Doctor Appointment Requests and Calendar Queue displaying appointments assigned
+strictly to the logged-in Doctor's own server-verified doctor ID—never fetching appointments
+belonging to other doctors and never running unfiltered full-table reads. Support server-side
+pagination, quick filter tabs (Pending Requests, Today's Accepted Visits, Upcoming, Completed,
+Cancelled/Rejected), and date-range search. Display each request with Patient full name, age, gender,
+linked patient ID, requested date and time slot formatted in the Doctor's timezone preference, brief
+patient visit reason, current appointment status, quick link to inspect the Patient's full clinical details
+and allergy summary before deciding, and clear inline Accept or Reject controls for pending requests.
+Show skeleton loading rows during fetch, a clear empty state when no requests await action,
+responsive mobile cards below 640 pixels, and a localized Retry banner on API error.
+
+e) doctorRespondToAppointmentRequest()
+Build the Accept, Reject, and Complete Appointment action workflow allowing the logged-in Doctor
+to act strictly on appointments owned by their authenticated doctor ID. For accepting a pending
+appointment, run an atomic transaction that verifies the appointment is still pending and does not
+collide with another accepted visit at that same slot, updates status to accepted, inserts an in-app
+notification alerting the Patient that their appointment is confirmed, and writes an audit log entry.
+For rejecting a pending appointment, display a quick modal requiring a brief polite rejection reason
+(such as schedule conflict or recommended alternative specialist), run an atomic transaction updating
+status to rejected with the saved note, immediately release that time slot back to available status,
+notify the Patient in-app with the rejection note, and log the action. Also provide a Mark Completed
+action on accepted appointments once the consultation finishes, unlocking the Patient's verified
+
+eligibility to submit a doctor review and optionally opening a one-click shortcut to write a
+prescription for that exact patient. Prevent double-clicks during network calls and offer Retry
+recovery on failure.
+
+f) doctorLoadDashboardMetrics()
+Build the Doctor Dashboard serving as the authenticated Doctor's clinical command center,
+calculating every metric exclusively on the server scoped strictly to the logged-in Doctor's own doctor
+ID rather than aggregating clinic-wide data or loading entire tables into the browser. Display four
+clear summary metrics: Today's Scheduled Patients count, Total Prescriptions Written (with today
+and this-month breakdown), Pending Appointment Requests requiring action, and Recent Patient
+Reviews & Current Average Rating. Below the summary bar, show two focused live panels: Today's
+Upcoming Appointments timeline with quick buttons to Open Patient Chart or Write Prescription,
+and Recent Pending Appointment Requests with one-click navigation into Accept/Reject actions.
+Format every date and time using the Doctor's configured settings, display skeleton cards while
+loading, show clean zero-state guidance for newly approved doctors, and wrap every panel in an
+independent error boundary with a working Retry button so one delayed query never breaks the
+entire dashboard.
+
+g) doctorRegisterWalkInPatient()
+Build the Walk-In Patient Registration form inside the Doctor workspace so a Doctor can register an
+unscheduled in-clinic patient directly during consultation and immediately prescribe for them
+without breaking the account-to-patient relational integrity rule. Collect and strictly validate full
+name, phone number (E.164 format), age (integer 0 to 130), gender, initial presenting condition,
+known allergies, current medicines, and optional email address. Check for potential duplicate
+patients by phone number or email before creating a new record so staff do not accidentally create
+duplicate charts for an existing patient. Execute registration inside a single atomic database
+transaction: insert the new patient record with an immutable unique patient ID and empty user
+account link, save initial structured allergy and current medication entries, generate a secure single
+use Walk-In Claim Code linked to that patient ID (which the Doctor can print or share so the patient
+can later register online via Guest Registration and seamlessly attach their login account to their full
+clinical history), and log the walk-in creation event. Immediately open the newly created Patient
+Detail view upon completion so the Doctor can begin clinical care with zero friction.
+
+h) doctorViewPatientListAndDetails()
+Build the Doctor Patient Directory and Patient Clinical Detail View scoped strictly to patients who
+have an appointment, consultation, walk-in registration, or prescription relationship with the clinic
+under role-appropriate clinical access rules, using mandatory server-side pagination and explicit
+
+column projection so the page never fetches every patient row at once. In the Patient List, display
+linked patient ID, full name, age, gender, primary condition, most recent visit date, active allergy alert
+indicator, and a View Chart action, with skeleton loaders, empty states, and mobile card stacking. In
+the Patient Clinical Detail View, display complete structured demographics (age, gender, phone, visit
+date, primary condition), a prominent high-visibility Allergy Alert strip reading live from the
+structured patient allergies table (including allergies entered by the Patient themselves), Current
+Medications list, and quick buttons to view full medical history or launch a new prescription pre
+bound to this exact patient ID. Include Retry error handling on all detail sections.
+
+i) doctorViewPatientFullHistory()
+Build the tabbed Patient Longitudinal History view embedded inside the Patient Clinical Detail page,
+loading strictly scoped, server-paginated historical records tied to that exact immutable patient ID
+rather than matching by patient name. Organize history into three clear tabs: Past Prescriptions
+(showing prescription ID, date, prescribing doctor name and specialty, medicines, dosage schedules,
+dispensing status, and clinical notes), Past Appointments (showing dates, statuses, visit reasons, and
+attending doctors), and Billing Summary (showing invoice IDs, dates, dynamically formatted total
+amounts using global currency settings, and payment statuses—read-only for clinical visibility
+without exposing Pharmacy editing controls). Load each tab lazily on demand with its own skeleton
+loader, empty state, pagination controls, and localized Retry button so large multi-year histories stay
+fast on both desktop and mobile screens.
+
+j) doctorSearchPatients()
+Build the live Patient Search and Filter bar atop the Doctor Patient List allowing the Doctor to find
+patients rapidly by full name, unique patient ID, phone number, or recorded condition. Execute every
+search strictly on the server using parameterized indexed search with 300-millisecond input
+debouncing, automatic pagination reset to page one, and cancellation of stale concurrent requests.
+Support quick filter toggles such as My Recent Patients, Patients Seen Today, and Has Recorded
+Allergies. Display active search indicators with a one-click clear button, preserve query parameters
+cleanly, handle zero-match searches with a direct Register Walk-In Patient shortcut, and include
+Retry error recovery.
+
+k) doctorSearchMedicineWithLiveStock()
+Build the Live-Stock Medicine Search utility accessible both as a standalone reference lookup and
+embedded directly inside the Doctor Prescription Builder so Doctors know real-time pharmacy
+availability before writing a prescription. Query the pharmacy medicines inventory table strictly via
+bounded parameterized server search (matching medicine name, generic name, or therapeutic
+category, capped at paginated results) and display live available stock quantity, calculated stock status
+
+(In Stock, Low Stock, Critical Stock, or Out of Stock based on minimum stock thresholds), category,
+unit price formatted with global currency settings, and nearest batch expiry warning (automatically
+flagging expired batches as non-prescribable). Warn the Doctor visibly whenever a selected medicine
+is currently out of stock or critically low so they can discuss an available alternative immediately,
+while refreshing stock readings cleanly before prescription submission and providing Retry recovery
+on lookup errors.
+
+l) doctorCheckMedicineSafetyWithAi()
+Build the AI Medicine Safety Evaluation assistant embedded inside the Doctor's prescribing
+workflow, governed strictly by mandatory clinical AI safety guardrails. Pin a permanent, non
+dismissible clinical notice stating that AI medicine safety insights are decision-support aids only, may
+be incomplete, and never replace the prescribing Doctor's independent clinical judgment. When
+triggered for a selected patient and candidate medicine list, submit strictly structured non-identifying
+clinical parameters (patient age, gender, recorded allergies, current medications, stated condition,
+and candidate medicines with dosages) to the server safety analyzer. Return structured sections
+clearly separating dosing suitability remarks, age or condition contraindications, key monitoring
+cautions, and overall risk level (Low, Moderate, High). If the AI service is unavailable or times out,
+fall back gracefully with a clear notice and a Retry button while ensuring deterministic allergy checks
+and deterministic drug-interaction checks continue operating independently without ever blocking
+clinical care.
+
+m) doctorViewMedicineSideEffects()
+Build the Medicine Side Effects inspector accessible directly alongside every medicine search result
+and prescription line item inside the Doctor workspace. Pull structured common side effects, serious
+adverse reactions requiring immediate medical attention, and standard administration guidance
+(such as taking with food or avoiding drowsiness hazards) from the verified medicine reference
+catalog linked to each inventory medicine record. Present common versus serious side effects in
+clearly separated readable lists inside an accessible expandable drawer or side panel that stacks
+cleanly on mobile screens without interrupting the prescription form in progress. Show an explicit
+notice when reference side-effect data is not yet populated for a newly added medicine rather than
+displaying blank boxes, and include Retry error recovery.
+
+n) doctorCheckPatientAllergyConflict()
+Build the deterministic Patient Allergy Cross-Check engine that runs automatically whenever a
+Doctor selects a medicine for a specific patient inside the Prescription Builder—never relying solely
+on optional AI calls. Compare the candidate medicine's active ingredient, drug class, and brand
+aliases server-side against every active allergy entry saved in the patient's structured allergies table
+
+(combining entries added by the Patient, Doctor, or Admin). Whenever a direct or drug-class match
+occurs, immediately display a high-contrast Allergy Conflict Warning banner identifying the exact
+conflicting substance, the patient's recorded allergy severity (mild, moderate, or severe), and their
+recorded reaction notes. For severe allergy conflicts, block accidental one-click saving unless the
+Doctor either removes the conflicting medicine or explicitly records a clinical override justification
+logged permanently alongside the prescription and surfaced directly to the Pharmacist before
+dispensing.
+
+n) doctorCheckDrugToDrugInteraction()
+Build the deterministic Drug-to-Drug Interaction Checker that runs automatically whenever a Doctor
+adds a candidate medicine to a prescription, evaluating pairwise conflicts both across all medicines
+within the new prescription AND between each newly prescribed medicine and the Patient's active
+current medications list. Query the structured clinical interaction reference matrix on the server and
+classify every detected conflict by severity (Minor, Moderate, Major, or Contraindicated) with a plain
+language clinical explanation of the physiological risk. Display detected interactions clearly right
+inside the Prescription Builder before submission; require explicit Doctor acknowledgment and
+clinical override note for any Major or Contraindicated interaction, persist that interaction flag onto
+the prescription safety snapshot so the Pharmacist sees the exact same warning during pre-dispense
+verification, and include Retry recovery if the lookup request fails.
+
+p) doctorCreateAndSavePrescription()
+Build the Doctor Prescription Creation workflow allowing the logged-in verified Doctor to select a
+patient, add one or more medicines with exact dosage strength, daily administration schedule,
+treatment duration, and quantity needed, review automated allergy and drug-interaction checks, and
+save the prescription atomically. Permanently resolve the critical defect where prescriptions defaulted
+to the first doctor in the list: derive the prescribing doctor ID strictly on the server from the
+authenticated Doctor's own verified session record joined to the doctors table, completely ignoring or
+rejecting any doctor ID passed in the client request payload. Validate every input strictly on client and
+server: valid existing non-archived patient ID, at least one valid medicine item, non-empty dosage
+and schedule strings, positive integer duration and quantity, and required override justification if
+severe allergy or major drug-interaction alerts fired. Execute the save inside one single atomic
+database transaction: insert the prescription header stamped with the logged-in Doctor's authentic
+doctor ID, verified license snapshot, patient ID, and status set to pending dispense; insert all itemized
+prescription medicine rows; insert an in-app notification to the Patient announcing a new
+prescription is ready to review; insert an in-app notification to active Pharmacists announcing a new
+pending prescription in the pharmacy queue; and record the prescribing event in the activity log.
+
+Include automated prescribing tests confirming the logged-in Doctor's own ID is always saved (never
+the first doctor), invalid quantities are rejected, allergy warnings trigger, and both Patient and
+Pharmacist notifications are created atomically.
+
+q) doctorAttachPrescriptionClinicalNotes()
+Build the Prescription Clinical Notes and Patient Instructions editor integrated directly into the
+Prescription Builder and available as an append-only addendum on saved prescriptions before
+dispensing. Separate patient-facing administration instructions (such as dietary guidance, hydration
+advice, follow-up visit timing, and warning signs to return immediately) from pharmacy-facing
+dispensing notes (such as brand substitution permission or allergy override justification). Validate
+text length cleanly, sanitize inputs against script injection, persist notes atomically with the
+prescription record, render patient-facing notes cleanly on both the Patient My Prescriptions screen
+and the downloaded Prescription PDF, and display pharmacy-facing notes prominently inside the
+Pharmacist's pre-dispense review screen. Once a prescription has been dispensed by the Pharmacist,
+lock notes against silent tampering while permitting timestamped clinical addenda logged in the
+audit trail.
+
+r) doctorViewPrescriptionHistory()
+Build the Doctor Prescription History page displaying prescriptions written strictly by the logged-in
+Doctor's own doctor ID (plus authorized view of a patient's prior prescriptions when opened from a
+specific Patient's chart), using mandatory server-side pagination, explicit column allow-lists, and fast
+indexed queries so the page never downloads the entire prescriptions table. Display each prescription
+with its unique prescription ID, issue date formatted per Doctor preferences, Patient full name and
+immutable patient ID, itemized medicine count and preview, current dispensing status (Pending
+Dispense or Dispensed/Completed), and direct View Details and Download PDF buttons. Provide
+matched table skeleton loaders, clear empty states, mobile card conversion below 640 pixels, and a
+localized Retry banner on API error.
+
+s) doctorSearchPrescriptions()
+Build the multi-field Prescription Search and Filter bar layered onto the Doctor Prescription History
+page allowing the Doctor to filter prescriptions by exact or partial Prescription ID, Patient name or
+patient ID, prescribing Doctor name (when viewing cross-history inside a patient chart), or specific
+Medicine name, alongside date-range and dispensing-status filters. Execute all joins and search filters
+strictly on the server using parameterized queries, debounce text search cleanly, reset pagination to
+page one whenever search terms change, abort stale overlapping requests, display active filter
+summaries with one-click reset, and handle zero-match states and network errors with Retry
+recovery.
+
+t) doctorDownloadPrescriptionPdf()
+Build the Doctor Prescription PDF download trigger—permanently fixing the defect where
+prescription PDF downloads were never wired up—placing an active Download Prescription PDF
+button immediately after saving a new prescription, inside every row of Prescription History, and
+inside the Prescription Detail view. Call the shared server-authenticated Prescription PDF generator
+that verifies the logged-in Doctor is authorized to access that prescription, produces a crisp printable
+clinical PDF displaying clinic identity, unique prescription ID, date, Patient full name, age, gender,
+linked patient ID, prescribing Doctor's authentic name, real medical specialty, verified license
+number, structured medicine dosage/schedule/duration table, clinical notes, and signature block.
+Stream the PDF for immediate download with a clear filename, show active loading feedback on the
+clicked button, and display a Retry message if generation fails.
+
+u) doctorViewOwnReviewsAndRatings()
+Build the Doctor My Reviews and Ratings page showing the logged-in Doctor their verified overall
+star rating, total approved review count, five-star through one-star distribution summary, and a
+server-paginated feed of moderated reviews submitted strictly for their own doctor ID. Filter out
+hidden or rejected reviews according to Admin moderation rules, display privacy-safe reviewer
+display labels, star ratings, written feedback, and formatted dates, support filtering by star level and
+sorting by newest or lowest rating to aid quality improvement, and render clean skeleton loaders,
+empty states for newly onboarded doctors, mobile-friendly cards, and Retry error handling.
+
+v) doctorReceiveNotifications()
+Build the persistent in-app Notification Center and header unread badge for the logged-in Doctor,
+fixing the missing notifications defect across clinical appointment workflows. Deliver real-time or
+polled database-backed notifications scoped strictly to the Doctor's user ID whenever a Patient books
+a new appointment request, reschedules an existing booking, cancels an upcoming appointment, or
+when Admin approves a credential update or flags a moderation alert. Display an accessible bell
+badge with unread count, dropdown preview, and full paginated Notifications view with Mark as
+Read, Mark All as Read, Unread filter, direct navigation straight to the affected appointment request,
+adherence to the Doctor's persisted notification settings, loading skeletons, empty states, and Retry
+error recovery.
+
+w) doctorManageSettings()
+Build the dedicated Doctor Settings workspace mapped one-to-one between the Doctor navigation
+menu and the Doctor-only settings route, permanently resolving both the broken non-saving settings
+buttons and the mismatched route-versus-menu access defect. Persist every Doctor preference
+directly to the database: profile shortcut tab linking seamlessly to Doctor Profile edits, notification
+
+preferences (toggles for new appointment requests, cancellations, and reschedule alerts), security
+settings (real database-backed Change Password requiring current password verification, strong
+password policy, and revocation of other active sessions), appearance theme (light, dark, or system),
+interface language, timezone, and date format. Validate all settings strictly server-side, apply
+appearance and language immediately upon save, confirm genuine database persistence with clear
+feedback, and provide Retry recovery on save failure.
+
+Pharmacist
+a) pharmacistApprovedLoginAndLogout()
+Build the strict Pharmacist authentication gate, approved-only workspace middleware, and secure
+logout lifecycle extending the Guest login foundation. Permit active Pharmacy portal entry ONLY
+when the user's real database role is Pharmacist, account status is explicitly approved by Admin after
+pharmacy license review, and the account is neither suspended nor archived; any pending or
+unapproved Pharmacist attempting to log in or hit Pharmacy endpoints directly must be intercepted
+and routed strictly to the Account Pending Approval screen. Bind the Pharmacist's authentic role and
+pharmacist ID directly in the server session (never hardcoding physician labels), render a clean
+mobile-responsive Pharmacy sidebar exposing Pharmacy Dashboard, Pending Prescriptions,
+Medicine Inventory, Stock & Expiry Alerts, Billing & Invoices, Workflow Tracker, Notifications, and
+Pharmacist Settings aligned one-to-one with Pharmacist-only route guards. On Logout, revoke active
+server sessions, clear secure cookies and clinical client memory, log the sign-out event, and redirect to
+Login.
+
+b) pharmacistLoadDashboardMetrics()
+Build the Pharmacy Dashboard powered by fast, bounded server-side SQL aggregations scoped to
+pharmacy operations rather than loading entire inventory or prescription tables into the browser.
+Display three core live operational KPI cards: Pending Prescriptions awaiting review and dispensing,
+Prescriptions Dispensed Today (with total billed value formatted via the global dynamic currency
+setting), and Low & Critical Stock Alerts plus Expiring Soon Medicine count. Below the KPI summary,
+render two actionable quick-work queues: the next five oldest Pending Prescriptions with one-click
+Jump to Dispense buttons, and the top Urgent Stock/Expiry Alerts with one-click Restock buttons.
+Display skeleton loaders during fetch, clear empty states when queues are clear, mobile-responsive
+stacked layouts down to 360 pixels, and independent error boundaries with working Retry buttons.
+
+c) pharmacistViewPendingPrescriptions()
+Build the Pending Prescriptions Queue displaying prescriptions currently awaiting pharmacy
+fulfillment, fetched via server-side pagination, explicit column projection, and indexed filtering by
+prescription ID, patient name or immutable patient ID, prescribing Doctor, and urgency/date so large
+pharmacy backlogs stay responsive. For every pending prescription, clearly display prescription ID,
+issue date, Patient full name, immutable patient ID, age, gender, prescribing Doctor's authentic name
+and specialty, every prescribed medicine with required quantity versus live current inventory stock
+availability indicator (flagging immediately if any prescribed item lacks sufficient stock or is expired),
+Doctor pharmacy-facing notes, and a prominent Review & Dispense action button. Show loading
+
+skeletons, clear empty states when all prescriptions are fulfilled, mobile card layouts below 640
+pixels, and Retry error handling.
+
+d) pharmacistVerifyPreDispenseSafetyWarnings()
+Build the mandatory Pre-Dispense Clinical Safety Gate displayed inside the Pharmacist Dispense
+Review panel before any medicine can be dispensed or billed. Automatically pull and cross-check live
+structured patient allergies (entered by Patient, Doctor, or Admin), the patient's current active
+medications, and the prescribing Doctor's saved safety notes against every medicine item on the
+pending prescription. Highlight any detected Patient Allergy Conflict, Drug-to-Drug Interaction
+warning, Doctor override justification note, Expired Batch block, or Insufficient Stock block in
+prominent, unmistakable warning panels. Strictly prevent dispensing of expired medicine batches or
+quantities exceeding live stock under all circumstances. Whenever an allergy or major drug
+interaction warning is present, require the Pharmacist to explicitly confirm clinical verification
+(checkbox plus optional pharmacist verification note confirming consultation with the prescribing
+doctor) before unlocking the final Dispense/Bill commit action, storing that verification record
+permanently in the dispensing audit trail.
+
+e) pharmacistDispenseMedicineAndDeductStock()
+Build the unified Dispense and Stock Deduction step—directly fixing Bugs 13, 14, and 15 where
+dispensing previously completed prescriptions without deducting stock and stock could drop below
+zero—so dispensing a prescription is permanently coupled to verified stock reservation and
+deduction. When the Pharmacist completes pre-dispense safety checks and confirms fulfillment for a
+prescription, either transition straight into the unified Atomic Dispense + Bill + Discharge
+transaction (for immediate walk-out billing) or execute an atomic Dispense-with-Deduction
+transaction when billing is staged as part of the same linked workflow: lock every affected medicine
+inventory row using strict row-level database locking, verify that every item's current stock quantity is
+strictly greater than or equal to the dispensed quantity and that the batch is not expired, enforce a
+database-level non-negative stock check constraint so stock can NEVER go negative even under
+simultaneous requests from two pharmacists, deduct the exact dispensed quantities atomically, mark
+the prescription status as dispensed/completed with dispensing pharmacist ID and timestamp,
+record inventory stock movement ledger entries, and automatically fire a Low Stock or Critical Stock
+in-app notification to Pharmacists and Admins if any medicine crosses below its minimum threshold.
+If any medicine has insufficient stock, immediately abort and roll back the entire transaction with a
+clear item-by-item shortage message.
+
+f) pharmacistViewMedicineInventory()
+Build the Medicine Inventory Management directory displaying the clinic pharmacy's active medicine
+
+catalog with mandatory server-side pagination, fast indexed search (by medicine name, generic name,
+batch code, or category), category filters, and stock/expiry status filters (All, Healthy, Low Stock,
+Critical, Out of Stock, Expiring Soon, Expired) so the page never loads every inventory row
+unbounded. Display medicine name, category, unit price formatted strictly via the global dynamic
+currency setting (never hardcoded dollar signs), live available stock quantity, configured minimum
+stock alert threshold, expiry date formatted in system preferences, clear plain-text status indicators,
+and direct Restock, Edit, and Archive/Delete actions. Include skeleton table loaders, actionable empty
+states, responsive mobile card layouts below 640 pixels, and a working Retry error banner.
+
+g) pharmacistAddNewMedicine()
+Build the Add New Medicine form inside the Pharmacy Inventory workspace allowing authorized
+Pharmacists to register new medications with complete client-side, server-side, and database
+constraint validation—directly addressing Bug 18. Require and strictly validate: medicine name
+(unique combination with strength/category, 2 to 150 chars), therapeutic category (from clinic
+catalog), unit selling price (strictly positive decimal greater than zero, formatted with active global
+currency), initial stock quantity (non-negative integer greater than or equal to zero), minimum stock
+alert threshold (non-negative integer), expiry date (strictly valid calendar date in the future for new
+active stock), optional generic name, manufacturer, batch number, and common side effects
+summary so Doctors immediately see side-effect guidance during prescribing. Save the new medicine
+and initial stock-in ledger record inside one atomic transaction, log the addition in the activity log,
+clear or redirect cleanly upon success, and display clear inline field errors alongside Retry recovery on
+network failures.
+
+h) pharmacistEditOrArchiveMedicine()
+Build the Edit and Safe Delete/Archive Medicine workflow enabling Pharmacists to update medicine
+details (name, category, price, minimum stock threshold, expiry date, side effects) with strict
+validation—while preventing direct arbitrary negative stock edits outside audited stock adjustments.
+Protect medicine removal cleanly in alignment with Bug 16: require an explicit confirmation dialog
+showing whether the medicine is referenced in any existing prescriptions or historical invoices; if any
+historical prescription or invoice links to that medicine ID, strictly block hard deletion and execute a
+clean Soft Archive instead (hiding the archived medicine from Doctor prescribing searches and new
+billing while preserving historical prescriptions, invoices, and financial reports completely intact).
+Permit hard deletion strictly when zero historical links exist, always inside an atomic transaction
+logged in the activity log.
+
+i) pharmacistRestockMedicineBatch()
+Build the dedicated Restock / Add Stock modal and endpoint enabling Pharmacists to replenish
+
+inventory cleanly with full auditability rather than blindly overwriting raw stock counts. Require
+strictly validated positive integer restock quantity (must be strictly greater than zero), optional
+updated batch number and new future expiry date, optional supplier reference note, and optional unit
+cost update. Execute restocking inside an atomic database transaction with row-level locking:
+increment the medicine's stock quantity safely, update batch expiry metadata appropriately, append
+an immutable stock-in entry to the inventory ledger table recording previous quantity, added
+quantity, new quantity, acting Pharmacist ID, and timestamp, clear resolved low-stock alert flags
+automatically when stock rises above the minimum threshold, and log the restock event in the activity
+log. Show immediate updated stock counts and provide Retry recovery on failure.
+
+j) pharmacistViewStockStatusAndAlerts()
+Build the Stock Status and Low/Critical Stock Alerts console giving Pharmacists a focused, server
+filtered view of every medicine needing replenishment. Classify every active medicine
+deterministically on the server using its live quantity versus its configured minimum stock threshold:
+Healthy (above minimum threshold), Low Stock (at or below minimum threshold but above 25
+percent of threshold or above zero), Critical Stock (at or below 25 percent of threshold or fewer than 5
+units remaining), and Out of Stock (quantity strictly equal to zero). Display server-paginated lists
+sorted by most urgent shortage first, showing medicine name, category, current stock, minimum
+threshold, deficit count needed to restore safe levels, and a one-click Restock action launching the
+restock workflow directly. Ensure crossing into Low, Critical, or Out of Stock during dispensing
+automatically triggers persistent in-app notifications for Pharmacists and Admins. Include skeleton
+loaders, clear all-stocked empty state, mobile cards, and Retry recovery.
+
+k) pharmacistViewExpiryDateAlerts()
+Build the Expiry Date Alerts monitor tracking every active medicine approaching expiration or
+already expired so unsafe stock is intercepted before reaching patients. Compute deterministic
+server-side expiry tiers using the clinic timezone: Expired (expiry date on or before today—
+automatically blocked from Doctor prescribing and Pharmacist dispensing), Critical Expiry (expiring
+within 30 days), and Upcoming Expiry (expiring within 31 to 90 days). Present server-paginated alert
+tabs sorted by nearest expiry date first, displaying medicine name, batch number, live remaining
+quantity, exact expiry date, days remaining or overdue, and direct quick actions to
+quarantine/archive expired stock or log a fresh restock batch. Automatically generate daily or event
+driven in-app alerts when active stock enters Critical Expiry or Expired status, and include skeleton
+loaders, empty states, mobile layouts, and Retry recovery.
+
+l) pharmacistCreatePatientBill()
+Build the Create Bill and Invoice Builder workspace—permanently fixing Bugs 5, 9, 13, 14, and 18—
+
+allowing the Pharmacist to construct an accurate patient bill linked strictly to an immutable patient
+ID (never by typing a loose patient name string) and optionally pre-populated straight from a
+pending prescription. Select the patient via a verified Patient Selector or automatically from the
+pending prescription's immutable patient ID so two patients with identical names can NEVER receive
+or see each other's bills. Display itemized medicine rows with live unit price formatted via the global
+dynamic currency setting, live available stock quantity, validated positive integer billed quantity
+(immediately warning and blocking any quantity exceeding available stock), line subtotals, validated
+discount percentage strictly bounded between 0 and 100 percent (or fixed discount strictly capped at
+subtotal so grand total can never go negative), payment method selection (Cash, Card, Mobile
+Banking, Insurance, Bank Transfer), and initial payment status (Paid or Pending). Preview live gross
+subtotal, discount amount, and net payable total formatted dynamically in the global currency before
+submitting into the single atomic Billing, Dispensing, Stock Deduction, and Discharge commit
+transaction.
+
+m) pharmacistAutoDeductStockAndDischargePatient()
+Build the single ACID Atomic Billing, Dispensing, Stock Deduction, and Patient Discharge
+transaction engine—permanently resolving Bugs 13, 14, and 15 in one unified, bullet-proof server
+workflow. When the Pharmacist confirms a bill (whether linked to a pending prescription or a direct
+pharmacy counter bill), execute ALL state mutations inside ONE single database transaction with
+row-level locks and full automatic rollback if ANY single step fails: Step One locks every billed
+medicine row and verifies live stock is strictly greater than or equal to the requested quantity and not
+expired, aborting the entire transaction with a clear shortage error if even one item lacks stock
+(making negative stock mathematically impossible); Step Two deducts the exact billed quantity from
+each medicine's inventory and inserts audited stock-out ledger rows; Step Three prevents double
+deduction cleanly by marking any linked prescription as dispensed/completed with pharmacist ID
+and timestamp inside this exact same transaction (never allowing the same prescription to be
+dispensed and deducted twice); Step Four inserts the invoice header bound strictly by immutable
+patient ID, acting pharmacist ID, currency code snapshot, gross subtotal, validated discount, net
+total, payment method, and payment status, plus all invoice line items; Step Five marks the patient's
+active clinical visit/workflow stage as Discharged/Completed; Step Six creates persistent in-app
+notifications for the Patient (prescription dispensed and bill created) and for Pharmacists/Admins if
+any deducted medicine crossed its low-stock threshold; and Step Seven appends a complete audit
+entry to the activity log. If any step from One through Seven encounters an error, roll back every
+single write atomically so an invoice can NEVER exist without matching stock deduction and vice
+versa. Include comprehensive automated integration tests proving atomic commit, zero
+
+stock/negative-stock blocking, double-dispense prevention, and complete rollback on simulated mid
+transaction failure.
+
+n) pharmacistGenerateAndDownloadInvoicePdf()
+Build the official Invoice PDF generator and download trigger accessible immediately after
+completing a bill and from every row inside the Invoices directory. Generate a crisp, printable invoice
+PDF server-side using the exact same shared Invoice PDF template consumed by the Patient role so
+clinic branding, unique invoice ID, billing date in system format, Patient full name and immutable
+patient ID, optional linked prescription ID, itemized medicines table (medicine name, quantity, unit
+price, line total), subtotal, discount, net payable total formatted exclusively in the global system
+currency setting, payment method, and current payment status (paid, pending, or refunded) match
+with 100 percent precision. Stream the PDF directly for download with a descriptive filename
+containing the invoice ID, display button loading indicators, and provide a Retry error alert on
+failure.
+
+o) pharmacistViewAndSearchInvoices()
+Build the Pharmacy Invoices Directory allowing Pharmacists to view, search, and filter all generated
+invoices using mandatory server-side pagination and indexed queries rather than fetching all invoice
+rows at once. Join and filter invoices strictly by immutable patient ID foreign key (allowing search by
+exact or partial invoice ID, patient ID, verified patient name lookup via join, payment status, payment
+method, and billing date range) so same-name patients never collide or cross-contaminate billing
+lookups. Format every monetary column via the global dynamic currency setting, display clear
+payment status labels (paid, pending, refunded), provide direct View Details, Update Payment Status,
+and Download Invoice PDF controls on every row, and include skeleton loaders, empty states,
+mobile-stacked invoice cards below 640 pixels, and Retry recovery.
+
+p) pharmacistUpdateInvoicePaymentStatus()
+Build the Invoice Payment Status Update workflow enabling Pharmacists to transition an invoice
+cleanly among the three valid payment states (pending, paid, refunded) with strict transition
+validation and full audit accountability. Require confirmation before marking an invoice Paid
+(capturing payment method and timestamp) or Refunded (requiring a mandatory refund reason and
+explicit confirmation dialog). Execute status updates inside an atomic database transaction that
+verifies the invoice exists, validates allowed state transitions (for example preventing refunding an
+unpaid pending invoice without valid payment record), updates payment status and payment
+timestamp, dispatches an in-app notification to the linked Patient informing them their payment
+status has been updated, and appends a financial audit entry to the activity log so Admin revenue
+analytics immediately reflect paid versus refunded totals accurately. Show clear error feedback and
+
+Retry recovery on failure.
+
+q) pharmacistTrackClinicalWorkflow()
+Build the interactive six-stage Clinical Workflow Tracker inside the Pharmacy portal visualizing every
+active patient encounter live across all six ordered stages: Stage 1 Registration, Stage 2 Prescription,
+Stage 3 Stock Check, Stage 4 Dispense, Stage 5 Billing, and Stage 6 Complete/Discharged. Derive
+each stage status deterministically on the server from real relational database timestamps
+(patient/visit registration timestamp, doctor prescription creation timestamp, live pre-dispense stock
+& safety verification status, prescription dispensed timestamp, invoice creation and payment
+timestamp, and patient discharge timestamp) so the tracker is always 100 percent truthful and never
+drifts out of sync with actual records. Support server-side pagination, search by patient ID or
+prescription ID, filter by current active stage, click-through buttons from any stuck stage directly into
+the exact next Pharmacist action (such as jumping from Stage 3 Stock Check straight to Dispense &
+Bill), responsive horizontal-to-vertical step layouts tested cleanly on 360-pixel mobile screens,
+skeleton loaders, empty states, and Retry error recovery.
+
+r) pharmacistReceiveNotifications()
+Build the persistent in-app Notification Center and header unread badge for the logged-in
+Pharmacist, permanently resolving the missing notifications defect across pharmacy fulfillment and
+stock monitoring. Deliver real database-backed notifications scoped strictly to Pharmacist users
+whenever a Doctor saves a new pending prescription awaiting fulfillment, whenever a medicine
+crosses into Low Stock, Critical Stock, or Out of Stock during dispensing, and whenever active
+inventory enters Critical Expiry or Expired status. Display an accessible unread count badge in the
+Pharmacist header, a quick dropdown preview, and a full paginated Notifications screen supporting
+Mark as Read, Mark All as Read, category filters (Prescriptions versus Stock/Expiry), direct click
+through navigation to the exact pending prescription or restock modal, loading skeletons, empty
+states, and Retry error recovery.
+
+s) pharmacistManageSettings()
+Build the dedicated Pharmacist Settings workspace aligned strictly one-to-one between the
+Pharmacist sidebar menu and the Pharmacist-only settings route, permanently resolving Bugs 6, 7,
+and 8 for the Pharmacy role. Persist every setting genuinely into the database rather than displaying
+mock notices: Pharmacist profile details (full name, phone number, profile photo, displaying real
+database role as Pharmacist and read-only Admin-verified pharmacy license number), security
+settings (real database-backed Change Password requiring current password verification, strong
+password policy, and immediate revocation of other active sessions), notification preferences (toggles
+for new prescription alerts, low/critical stock alerts, and expiry alerts), and appearance theme
+
+preference (light, dark, or system default applied instantaneously and persisted across logins).
+Enforce full client and server validation, confirm real database saves clearly, and provide Retry
+recovery whenever a save request fails.
+
+

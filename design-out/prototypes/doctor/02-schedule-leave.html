@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Doctor Schedule Builder &amp; Leave — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+<input type="checkbox" id="m-leave" class="hidden-check modal-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">AR</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Doctor workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Dr. Ayesha Rahman</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">🏠</span>Dashboard</a>
+      <a class="s-link is-active" href="02-schedule-leave.html" aria-current="page"><span class="ico">🗓</span>Schedule &amp; Leave</a>
+      <a class="s-link" href="03-requests.html"><span class="ico">📥</span>Requests<span class="cnt tabular">4</span></a>
+      <a class="s-link" href="04-patients.html"><span class="ico">🧑</span>Patients</a>
+      <a class="s-link" href="07-prescription-builder.html"><span class="ico">💊</span>Prescribe</a>
+      <a class="s-link" href="06-walkin.html"><span class="ico">🚪</span>Walk-In</a>
+      <a class="s-link" href="08-reviews.html"><span class="ico">⭐</span>Reviews</a>
+      <a class="s-link" href="../guest/05-login.html"><span class="ico">↩</span>Log out</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar"><h1>Weekly schedule</h1><a class="btn btn-primary mla" href="#">Publish changes</a></div>
+
+    <!-- WEEKDAY CARDS (data view) -->
+    <section class="dataview">
+      <div class="dv-bar"><span class="dv-name">Data view · doctor_schedules rows <span class="muted">no overlapping blocks per weekday (validated)</span></span>
+        <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-sc" id="dv-sc-s" checked><label for="dv-sc-s">Success</label><input class="st-skeleton" type="radio" name="dv-sc" id="dv-sc-k"><label for="dv-sc-k">Skeleton</label><input class="st-empty" type="radio" name="dv-sc" id="dv-sc-e"><label for="dv-sc-e">Empty</label><input class="st-error" type="radio" name="dv-sc" id="dv-sc-r"><label for="dv-sc-r">Error</label></div></div>
+      <div class="dv-host">
+        <div data-state="success">
+          <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr))">
+            <div class="card card-pad"><h3 class="h4">Sunday</h3><div class="stack-sm mt-s"><div class="chip spread" style="min-height:0;padding:8px 12px"><span class="tabular">10:00–13:00</span><span class="caption">20-min slots</span></div><div class="chip" style="min-height:0;padding:6px 12px;font-size:13px;color:var(--mp-text-muted)">Break — none</div></div><button class="btn btn-ghost mt-s">+ Add block</button></div>
+            <div class="card card-pad"><h3 class="h4">Monday</h3><div class="stack-sm mt-s"><div class="chip spread" style="min-height:0;padding:8px 12px"><span class="tabular">09:00–13:00</span><span class="caption">30-min</span></div><div class="chip spread" style="min-height:0;padding:8px 12px"><span class="tabular">15:00–18:00</span><span class="caption">30-min</span></div><div class="chip" style="min-height:0;padding:6px 12px;font-size:13px;color:var(--mp-text-muted)">Break 13:00–15:00</div></div><button class="btn btn-ghost mt-s">+ Add block</button></div>
+            <div class="card card-pad"><h3 class="h4">Tuesday</h3><div class="stack-sm mt-s"><div class="chip spread" style="min-height:0;padding:8px 12px"><span class="tabular">10:00–14:00</span><span class="caption">20-min</span></div></div><button class="btn btn-ghost mt-s">+ Add block</button></div>
+            <div class="card card-pad" style="border-style:dashed;opacity:.75"><h3 class="h4">Wednesday</h3><div class="caption mt-s">⛔ covered by <strong>leave</strong> (25–27 Nov, conference) — blocks hidden from booking.</div></div>
+            <div class="card card-pad"><h3 class="h4">Thursday</h3><div class="stack-sm mt-s"><div class="chip spread" style="min-height:0;padding:8px 12px"><span class="tabular">09:00–13:00</span><span class="caption">30-min</span></div></div><div class="field-error mt-s"><span aria-hidden="true">✕</span> Overlaps existing 09:00–13:00 block — merge or shift the new block.</div></div>
+            <div class="card card-pad"><h3 class="h4">Friday</h3><div class="stack-sm mt-s"><div class="chip spread" style="min-height:0;padding:8px 12px"><span class="tabular">15:00–18:00</span><span class="caption">30-min</span></div></div><button class="btn btn-ghost mt-s">+ Add block</button></div>
+            <div class="card card-pad" style="opacity:.75"><h3 class="h4">Saturday</h3><div class="caption mt-s">Clinic closed — no blocks possible.</div></div>
+          </div>
+        </div>
+        <div data-state="skeleton" aria-hidden="true"><div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr))"><div class="sk" style="height:140px;border-radius:12px"></div><div class="sk" style="height:140px;border-radius:12px"></div><div class="sk" style="height:140px;border-radius:12px"></div></div></div>
+        <div data-state="empty"><div class="empty"><span class="glyph">🗓</span><h3 class="h3">No hours published</h3><p>Patients can't see or book you until at least one weekday block exists.</p><button class="btn btn-primary">Add first block</button></div></div>
+        <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt"><strong>Schedule failed to load.</strong></span><button class="btn btn-primary">Retry</button></div></div>
+      </div>
+    </section>
+
+    <!-- LEAVE MANAGER -->
+    <section class="card card-pad">
+      <div class="spread"><h2 class="h4">Leave</h2><span class="caption">Leave hides future slots only; past bookings stay for records.</span></div>
+      <div class="tbl-wrap mt-m"><table class="tbl">
+        <thead><tr><th>Period</th><th>Reason</th><th>Impact</th><th>Actions</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Period" class="tabular">25–27 Nov 2026</td><td data-label="Reason">Medical conference</td><td data-label="Impact"><span class="badge badge-warning"><span class="dot"></span>6 slots hidden</span></td><td data-label="Actions"><div class="row"><button class="btn btn-ghost">Edit</button><label class="btn btn-ghost" for="m-leave" style="color:var(--mp-danger-text)">Cancel leave</label></div></td></tr>
+          <tr><td data-label="Period" class="tabular">12 Dec 2026</td><td data-label="Reason">Personal</td><td data-label="Impact"><span class="badge badge-neutral">no bookings yet</span></td><td data-label="Actions"><div class="row"><button class="btn btn-ghost">Edit</button><button class="btn btn-ghost" style="color:var(--mp-danger-text)">Delete</button></div></td></tr>
+        </tbody>
+      </table></div>
+      <div class="grid tight mt-m" role="group" aria-label="Add leave">
+        <div class="field c-12 sm-c-3" style="margin:0"><label class="label req" for="lv-s">Start date</label><input class="input" id="lv-s" type="date" value="2026-12-20"></div>
+        <div class="field c-12 sm-c-3" style="margin:0"><label class="label req" for="lv-e">End date</label><input class="input" id="lv-e" type="date" value="2026-12-22"><span class="hint">end ≥ start enforced.</span></div>
+        <div class="field c-12 sm-c-4" style="margin:0"><label class="label req" for="lv-r">Reason</label><input class="input" id="lv-r" placeholder="shown internally only"></div>
+        <div class="c-12 sm-c-2"><button class="btn btn-primary btn-block">Save leave</button></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- CONFLICT WARNING MODAL (affected appointments) -->
+<div class="modal-stage" role="dialog" aria-modal="true" aria-labelledby="ml-t">
+  <div class="modal modal--danger">
+    <div class="modal-head"><span style="font-size:26px" aria-hidden="true">⚠️</span><div><h2 id="ml-t" class="modal-title" style="color:var(--mp-danger-text)">Cancelling this leave affects 6 booked appointments</h2><p class="caption">23–27 Nov window overlaps accepted bookings.</p></div><label class="modal-x" for="m-leave" aria-label="Close">✕</label></div>
+    <div class="modal-body">
+      <div class="dep-counts"><span class="dep">6 accepted</span><span class="dep">1 pending</span><span class="dep">3 within 48h</span></div>
+      <p style="font-size:14px">Patients will be notified instantly and asked to reschedule. If you continue, pick how their slots are treated:</p>
+      <label class="check"><input type="radio" name="lvc" hidden checked><span style="font-size:14px">Notify + let patients reschedule (recommended)</span></label>
+      <label class="check"><input type="radio" name="lvc" hidden><span style="font-size:14px">Auto-cancel with reason “doctor unavailable”</span></label>
+    </div>
+    <div class="modal-foot"><label class="btn btn-quiet" for="m-leave">Keep leave</label><label class="btn btn-danger" for="m-leave">Cancel leave &amp; notify patients</label></div>
+  </div>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Doctor workspace</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link" href="01-dashboard.html">🏠 Dashboard</a><a class="nav-link is-active" href="02-schedule-leave.html">🗓 Schedule &amp; Leave</a><a class="nav-link" href="03-requests.html">📥 Requests</a><a class="nav-link" href="04-patients.html">🧑 Patients</a><a class="nav-link" href="07-prescription-builder.html">💊 Prescribe</a><a class="nav-link" href="06-walkin.html">🚪 Walk-In</a><a class="nav-link" href="08-reviews.html">⭐ Reviews</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

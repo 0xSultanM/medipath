@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · System Settings + Revenue % (Admin) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+<style>/* live preview of the currency token textually (static demo) */</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">SA</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Admin workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Administration</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">📊</span>Dashboard</a>
+      <a class="s-link" href="02-users.html"><span class="ico">👥</span>Users</a>
+      <a class="s-link" href="03-approvals.html"><span class="ico">✅</span>Approvals</a>
+      <a class="s-link" href="04-doctors.html"><span class="ico">🩺</span>Doctors</a>
+      <a class="s-link" href="05-patients.html"><span class="ico">🧑</span>Patients</a>
+      <a class="s-link" href="06-appointments.html"><span class="ico">📅</span>Appointments</a>
+      <a class="s-link" href="07-records.html"><span class="ico">🗂</span>Records</a>
+      <a class="s-link" href="08-reports.html"><span class="ico">📈</span>Reports</a>
+      <a class="s-link" href="09-activity.html"><span class="ico">🧾</span>Activity Log</a>
+      <a class="s-link" href="10-faq-reviews.html"><span class="ico">💬</span>FAQs &amp; Reviews</a>
+      <a class="s-link" href="11-safety-console.html"><span class="ico">🛡</span>Emergency &amp; AI Rules</a>
+      <a class="s-link is-active" href="12-settings.html" aria-current="page"><span class="ico">⚙️</span>System Settings</a>
+      <a class="s-link" href="13-data.html"><span class="ico">💾</span>Data Management</a>
+      <a class="s-link" href="14-security.html"><span class="ico">🔐</span>Admin Security</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar"><h1>Global system settings</h1><span class="caption mla">changes are versioned (effective_from) and broadcast to every role on save.</span></div>
+
+    <div class="grid">
+      <section class="c-12 lg-c-7 card card-pad">
+        <h2 class="h4">Clinic identity</h2>
+        <div class="grid tight">
+          <div class="field c-12 sm-c-6" style="margin:0"><label class="label req" for="s-name">Clinic name</label><input class="input" id="s-name" value="MediPath Central Clinic"></div>
+          <div class="field c-12 sm-c-6" style="margin:0"><label class="label" for="s-pdf">PDF header</label><input class="input" id="s-pdf" value="MediPath Central Clinic — official document"></div>
+        </div>
+        <h2 class="h4 mt-l">Money &amp; locale</h2>
+        <div class="grid tight">
+          <div class="field c-12 sm-c-4" style="margin:0"><label class="label req" for="s-cur">Currency code (drives {{CURRENCY}})</label><input class="input mono" id="s-cur" value="BDT" maxlength="5"></div>
+          <div class="field c-12 sm-c-4" style="margin:0"><label class="label" for="s-loc">Locale</label><select class="select" id="s-loc"><option>en</option><option>bn</option><option>fr</option></select></div>
+          <div class="field c-12 sm-c-4" style="margin:0"><label class="label" for="s-tz">Timezone</label><select class="select" id="s-tz"><option>Asia/Dhaka (GMT+6)</option><option>UTC</option></select></div>
+          <div class="field c-12 sm-c-4" style="margin:0"><label class="label" for="s-df">Date format</label><select class="select" id="s-df"><option>DD MMM YYYY</option><option>YYYY-MM-DD</option></select></div>
+          <div class="c-12 sm-c-8" style="align-self:end"><p class="caption" role="status">Preview: <span class="money">{{CURRENCY}} 1,500.00</span> renders with the configured symbol at runtime — this design never stores a literal dollar sign.</p></div>
+        </div>
+        <h2 class="h4 mt-l">Booking rules</h2>
+        <div class="grid tight">
+          <div class="field c-12 sm-c-6" style="margin:0"><label class="label" for="s-cut">Cancellation cutoff (hours)</label><input class="input" id="s-cut" type="number" min="0" value="6"><span class="hint">shown to patients &amp; enforced server-side.</span></div>
+          <label class="switch c-12 sm-c-6" style="align-self:end"><input type="checkbox" checked><span>Patient accounts auto-approve on registration (off → approval queue)</span></label>
+        </div>
+        <h2 class="h4 mt-l">Revenue commission %</h2>
+        <div class="row-lg mt-s">
+          <input id="s-rev" type="range" min="0" max="100" step="0.5" value="8" style="flex:1" aria-describedby="rev-prev">
+          <output class="money" id="rev-prev" for="s-rev">8.0%</output>
+        </div>
+        <p class="caption">CHECK 0–100 enforced at DB; effective_from schedules when new commission applies to future invoices (history never re-priced).</p>
+        <div class="row mt-b"><button class="btn btn-primary">Save settings</button><span class="saving-inline"><span class="spinner"></span> Saving…</span><a class="btn btn-ghost" href="09-activity.html">See change history in activity log</a></div>
+      </section>
+
+      <!-- REVENUE PREVIEW CARD (data view demo on settings) -->
+      <aside class="c-12 lg-c-5 dataview" style="align-self:start">
+        <div class="dv-bar"><span class="dv-name">Data view · Impact preview</span>
+          <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-rv2" id="dv-rv2-s" checked><label for="dv-rv2-s">Success</label><input class="st-skeleton" type="radio" name="dv-rv2" id="dv-rv2-k"><label for="dv-rv2-k">Skeleton</label><input class="st-empty" type="radio" name="dv-rv2" id="dv-rv2-e"><label for="dv-rv2-e">Empty</label><input class="st-error" type="radio" name="dv-rv2" id="dv-rv2-r"><label for="dv-rv2-r">Error</label></div></div>
+        <div class="dv-host">
+          <div data-state="success">
+            <div class="card card-pad">
+              <h3 class="h4">If saved now (8.5% → 8.0%)</h3>
+              <div class="def-row mt-s"><dt>Last 30d commission</dt><dd class="money">{{CURRENCY}} 101,080.00</dd></div>
+              <div class="def-row"><dt>At 8.0%</dt><dd class="money">{{CURRENCY}} 95,180.00</dd></div>
+              <div class="def-row" style="border-bottom:0"><dt>Δ monthly</dt><dd class="money" style="color:var(--mp-danger-text)">− {{CURRENCY}} 5,900.00</dd></div>
+              <p class="caption">Preview uses completed invoices only; confirmation modal lists affected date ranges before applying.</p>
+            </div>
+          </div>
+          <div data-state="skeleton" aria-hidden="true"><div class="sk sk-line"></div><div class="sk sk-box"></div></div>
+          <div data-state="empty"><div class="empty"><span class="glyph">💱</span><p>No completed invoices yet in preview window.</p></div></div>
+          <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt">Preview failed — Save remains allowed, but show warning.</span><button class="btn btn-primary">Retry</button></div></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Admin</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link" href="01-dashboard.html">📊 Dashboard</a><a class="nav-link" href="02-users.html">👥 Users</a><a class="nav-link" href="03-approvals.html">✅ Approvals</a><a class="nav-link" href="04-doctors.html">🩺 Doctors</a><a class="nav-link" href="05-patients.html">🧑 Patients</a><a class="nav-link" href="06-appointments.html">📅 Appointments</a><a class="nav-link" href="07-records.html">🗂 Records</a><a class="nav-link" href="08-reports.html">📈 Reports</a><a class="nav-link" href="09-activity.html">🧾 Activity</a><a class="nav-link" href="10-faq-reviews.html">💬 FAQ &amp; Reviews</a><a class="nav-link" href="11-safety-console.html">🛡 Safety</a><a class="nav-link is-active" href="12-settings.html">⚙️ Settings</a><a class="nav-link" href="13-data.html">💾 Data</a><a class="nav-link" href="14-security.html">🔐 Security</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

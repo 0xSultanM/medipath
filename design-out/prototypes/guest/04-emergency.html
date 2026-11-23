@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Emergency Information (Guest) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner">
+    <a class="brand" href="01-landing.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a class="nav-link" href="02-directory.html">Find Doctors</a>
+      <a class="nav-link is-active" href="04-emergency.html" aria-current="page">Emergency Info</a>
+    </nav>
+    <div class="row mla">
+      <label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label>
+      <a class="btn btn-ghost hide-sm" href="05-login.html">Log in</a>
+      <label class="btn btn-quiet btn-ico burger" for="drawer-nav" data-controls="drawer-nav" aria-label="Open menu">☰</label>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="container stack" style="padding-block:var(--mp-space-lg)" role="region" aria-label="Emergency information">
+  <div>
+    <span class="badge badge-emergency">Emergency help</span>
+    <h1 class="mt-m">If this is a life-threatening emergency, call now.</h1>
+    <p class="lead">Do not wait for an appointment, the chatbot, or an AI reply. The rules below are checked deterministically — but the fastest safety step is always the phone.</p>
+  </div>
+
+  <!-- Time-bounded clinic alert banner (admin-managed: emergency_alert_banners) -->
+  <div class="emg-banner" role="alert">
+    <span style="font-size:22px" aria-hidden="true">📢</span>
+    <span><strong>Clinic notice:</strong> Ambulance service paused on Ring Road due to flooding — expect longer ER transfer times today.</span>
+    <span class="win mla tabular">Active: 22 Nov 06:00 → 24 Nov 06:00</span>
+  </div>
+
+  <!-- ============ ONE-TAP CALL CARDS (data view ×4) ============ -->
+  <section>
+    <h2>Call, one tap</h2>
+    <p class="caption muted mt-s">Numbers come from <span class="mono">emergency_contacts</span> (label, phone, category, sort) — never hardcoded in views. This list is cached for offline use.</p>
+    <section class="dataview mt-m">
+      <div class="dv-bar">
+        <span class="dv-name">Data view · Emergency contacts</span>
+        <div class="dv-switch" role="radiogroup" aria-label="Preview data state">
+          <input class="st-success" type="radio" name="dv-ec" id="dv-ec-s" checked><label for="dv-ec-s">Success</label>
+          <input class="st-skeleton" type="radio" name="dv-ec" id="dv-ec-k"><label for="dv-ec-k">Skeleton</label>
+          <input class="st-empty" type="radio" name="dv-ec" id="dv-ec-e"><label for="dv-ec-e">Empty</label>
+          <input class="st-error" type="radio" name="dv-ec" id="dv-ec-r"><label for="dv-ec-r">Error + Retry</label>
+        </div>
+      </div>
+      <div class="dv-host">
+        <div data-state="success">
+          <div class="doctor-grid"> <!-- same 1/2/3 rhythm as doctor grid -->
+            <a class="call-card" href="tel:911"><span class="cc-ico" aria-hidden="true">📞</span><span><span class="cc-cat">National emergency</span><span class="cc-num">911</span></span></a>
+            <a class="call-card" href="tel:+8801700000000"><span class="cc-ico" aria-hidden="true">🚑</span><span><span class="cc-cat">Ambulance · ER hotline</span><span class="cc-num">+880 1700-000000</span></span></a>
+            <a class="call-card" href="tel:+8801700000001"><span class="cc-ico" aria-hidden="true">🩺</span><span><span class="cc-cat">Clinic emergency desk (24h)</span><span class="cc-num">+880 1700-000001</span></span></a>
+            <a class="call-card" href="tel:+8801700000002"><span class="cc-ico" aria-hidden="true">🧠</span><span><span class="cc-cat">Mental-health crisis line</span><span class="cc-num">+880 1700-000002</span></span></a>
+            <a class="call-card" href="tel:1066"><span class="cc-ico" aria-hidden="true">👶</span><span><span class="cc-cat">Child helpline</span><span class="cc-num">1066</span></span></a>
+            <a class="call-card" href="sms:+8801700000000"><span class="cc-ico" aria-hidden="true">💬</span><span><span class="cc-cat">Can't talk? SMS triage</span><span class="cc-num">Text “HELP”</span></span></a>
+          </div>
+        </div>
+        <div data-state="skeleton" aria-hidden="true">
+          <div class="doctor-grid"><div class="sk" style="height:72px"></div><div class="sk" style="height:72px"></div><div class="sk" style="height:72px"></div><div class="sk" style="height:72px"></div><div class="sk" style="height:72px"></div><div class="sk" style="height:72px"></div></div>
+        </div>
+        <!-- Emergency lists must never render truly empty → safe default fallback set -->
+        <div data-state="empty">
+          <div class="alert alert-warning" role="status"><span class="a-ico">⚠</span><span><strong>No custom contacts loaded — showing safe defaults.</strong> The national emergency number is always available. Admin-managed contacts reappear after the next successful fetch.</span></div>
+          <div class="doctor-grid mt-m"><a class="call-card" href="tel:911"><span class="cc-ico" aria-hidden="true">📞</span><span><span class="cc-cat">National emergency (default)</span><span class="cc-num">911</span></span></a></div>
+        </div>
+        <div data-state="error">
+          <div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt"><strong>Live contact list failed to load.</strong> <span class="muted">Defaults (911) and this page's offline cache remain tappable.</span></span><button class="btn btn-primary">Retry</button></div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ============ RED-FLAG CATEGORIES (accordion) ============ -->
+  <section class="stack">
+    <h2>Red-flag symptoms — go to the ER</h2>
+    <p class="muted" style="font-size:14px">These match the deterministic rules the symptom checker and chatbot use (<span class="mono">emergency_alert_rules</span>). If you notice them, stop reading and call.</p>
+    <div class="grid">
+      <div class="c-12 md-c-6 stack-sm">
+        <details class="flag-acc" open><summary>❤️ Cardiac</summary><div class="f-body"><ul>
+          <li>Crushing / pressure-like chest pain, esp. spreading to arm, jaw or back</li><li>Chest pain with sweating, nausea or breathlessness</li><li>Sudden fainting or very irregular heartbeat</li></ul></div></details>
+        <details class="flag-acc"><summary>🫁 Respiratory</summary><div class="f-body"><ul>
+          <li>Cannot speak full sentences due to breathlessness</li><li>Blue lips or fingertips, gasping</li><li>Stridor or choking</li></ul></div></details>
+        <details class="flag-acc"><summary>🧠 Stroke (FAST)</summary><div class="f-body"><ul>
+          <li><strong>F</strong>ace droop · <strong>A</strong>rm weakness · <strong>S</strong>peech slurring → <strong>T</strong>ime: call immediately</li><li>Sudden severe headache with vision loss or confusion</li></ul></div></details>
+        <details class="flag-acc"><summary>🩸 Bleeding / trauma</summary><div class="f-body"><ul>
+          <li>Bleeding that won't stop after 10 min of pressure</li><li>Vomiting blood or black stools</li><li>Head injury with loss of consciousness</li></ul></div></details>
+      </div>
+      <div class="c-12 md-c-6 stack-sm">
+        <details class="flag-acc"><summary>🐝 Anaphylaxis</summary><div class="f-body"><ul>
+          <li>Swelling of tongue/throat after food or medicine</li><li>Widespread hives with breathing difficulty</li><li>If an epinephrine auto-injector exists, use it first — then call.</li></ul></div></details>
+        <details class="flag-acc"><summary>👶 Pediatric crisis</summary><div class="f-body"><ul>
+          <li>Infant &lt;3 months with fever ≥38°C</li><li>Child unresponsive, limp, or severely dehydrated (no urine 8h+)</li><li>Non-fading rash with fever</li></ul></div></details>
+        <details class="flag-acc"><summary>⚕️ Poisoning / overdose</summary><div class="f-body"><ul>
+          <li>Suspected medicine overdose — bring the packaging to the ER</li><li>Chemical ingestion: don't induce vomiting unless told to</li><li>Poison control: <strong class="tabular">+880 1700-000003</strong></li></ul></div></details>
+        <div class="offline-note"><span aria-hidden="true">📴</span><span><strong>Offline fallback:</strong> this page and its numbers are stored on the device after first load (service worker cache), so they open without network. Bookings and the chatbot are not offered as substitutes during an emergency.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card card-pad">
+    <h2 class="h4">Not an emergency, but worried?</h2>
+    <p class="muted mt-s" style="font-size:14px">Sign in and use the <strong>AI Symptom Checker</strong> for non-red-flag concerns, or book a verified doctor. The checker runs the same rules above first — if they match, it stops and brings you back here.</p>
+    <div class="row mt-b"><a class="btn btn-primary" href="05-login.html">Sign in to check symptoms</a><a class="btn btn-outline" href="02-directory.html">Browse doctors</a></div>
+  </section>
+</main>
+
+<footer class="mt-xl" style="background:var(--mp-surface);border-top:1px solid var(--mp-border)">
+  <div class="container" style="padding-block:var(--mp-space-lg)"><p class="caption">Emergency red (#B91C1C) is reserved for this kind of content only — routine errors elsewhere use the separate danger palette.</p></div>
+</footer>
+
+<aside class="drawer drawer--nav" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">MediPath menu</span><label class="x-close" for="drawer-nav" aria-label="Close menu">✕</label></div>
+  <nav class="stack-sm" aria-label="Mobile primary" style="margin-top:var(--mp-space-md)">
+    <a class="nav-link" href="02-directory.html">Find Doctors</a>
+    <a class="nav-link is-active" href="04-emergency.html">Emergency Info</a>
+    <a class="btn btn-primary btn-block" href="05-login.html">Log in</a>
+    <a class="btn btn-emergency btn-block" href="tel:911">🚨 Call 911 now</a>
+  </nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

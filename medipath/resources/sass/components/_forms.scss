@@ -1,0 +1,163 @@
+// ============================================================================
+// Forms: fields, inline errors (§15), checkbox/switch, weekday picker (§5)
+// ============================================================================
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-block: var(--mp-space-base);
+}
+
+.label { font-size: 14px; font-weight: 600; color: var(--mp-text-heading); }
+.req::after { content: " *"; color: var(--mp-danger-text); }
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  min-height: var(--mp-touch);
+  padding: 10px var(--mp-space-md);
+  background: var(--mp-surface);
+  border: 1px solid var(--mp-border-strong);
+  border-radius: var(--mp-radius-input);
+  color: var(--mp-text-body);
+
+  &::placeholder { color: var(--mp-text-muted); opacity: .9; }
+  &:hover { border-color: var(--mp-primary); }
+}
+
+.textarea { min-height: 110px; resize: vertical; }
+
+.hint { font-size: 13px; color: var(--mp-text-muted); }
+
+.field-error {
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--mp-danger-text);
+}
+
+.field.is-invalid {
+  .input, .select, .textarea {
+    border-color: var(--mp-danger);
+    background: var(--mp-danger-weak-bg);
+  }
+}
+
+.input-icon {
+  position: relative;
+
+  .input { padding-left: 44px; }
+  .ico { position: absolute; left: 12px; top: 50%; translate: 0 -50%; color: var(--mp-text-muted); }
+}
+
+.check {
+  display: flex;
+  gap: var(--mp-space-sm);
+  align-items: flex-start;
+  min-height: var(--mp-touch);
+  cursor: pointer;
+
+  input[type=checkbox], input[type=radio] {
+    width: 20px; height: 20px;
+    accent-color: var(--mp-primary);
+    margin-top: 2px;
+    flex: none;
+  }
+}
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mp-space-sm);
+  min-height: var(--mp-touch);
+  cursor: pointer;
+
+  input {
+    appearance: none;
+    width: 44px; height: 26px;
+    border-radius: var(--mp-radius-pill);
+    background: var(--mp-surface-muted);
+    border: 1px solid var(--mp-border-strong);
+    position: relative;
+    cursor: pointer;
+    transition: background var(--mp-motion-fast);
+    flex: none;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 2px; left: 2px;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: var(--mp-surface);
+      box-shadow: var(--mp-shadow-sm);
+      transition: translate var(--mp-motion-fast);
+    }
+
+    &:checked { background: var(--mp-primary); border-color: var(--mp-primary); }
+    &:checked::after { translate: 18px 0; }
+    &:focus-visible { outline: 2px solid var(--mp-focus-ring); outline-offset: 2px; }
+  }
+}
+
+input[type=range] { accent-color: var(--mp-primary); min-height: var(--mp-touch); }
+
+fieldset.fgroup {
+  border: 1px solid var(--mp-border);
+  border-radius: var(--mp-radius-card);
+  padding: var(--mp-space-base);
+  margin: 0;
+}
+legend { padding-inline: var(--mp-space-sm); font-weight: 600; color: var(--mp-text-heading); }
+
+// ---------- Weekday availability picker (§5) ----------
+.weekdays {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+
+  label { position: relative; }
+  input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+
+  span {
+    display: grid;
+    place-items: center;
+    width: 44px; height: 44px;
+    border: 1px solid var(--mp-border-strong);
+    border-radius: var(--mp-radius-pill);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--mp-text-body);
+    background: var(--mp-surface);
+  }
+
+  input:checked + span { background: var(--mp-primary); color: var(--mp-on-primary); border-color: var(--mp-primary); }
+  input:focus-visible + span { outline: 2px solid var(--mp-focus-ring); outline-offset: 2px; }
+}
+
+// Password reveal toggle must remain a 44px target.
+.input-reveal {
+  position: relative;
+
+  .input { padding-right: 52px; }
+
+  .reveal {
+    position: absolute;
+    right: 0;
+    top: 0;
+    min-width: 44px;
+    min-height: 44px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    color: var(--mp-text-muted);
+    border-radius: var(--mp-radius-input);
+
+    &:hover { color: var(--mp-primary-text); }
+  }
+}

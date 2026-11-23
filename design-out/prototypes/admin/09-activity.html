@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Activity Log (Admin) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">SA</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Admin workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Administration</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">📊</span>Dashboard</a>
+      <a class="s-link" href="02-users.html"><span class="ico">👥</span>Users</a>
+      <a class="s-link" href="03-approvals.html"><span class="ico">✅</span>Approvals</a>
+      <a class="s-link" href="04-doctors.html"><span class="ico">🩺</span>Doctors</a>
+      <a class="s-link" href="05-patients.html"><span class="ico">🧑</span>Patients</a>
+      <a class="s-link" href="06-appointments.html"><span class="ico">📅</span>Appointments</a>
+      <a class="s-link" href="07-records.html"><span class="ico">🗂</span>Records</a>
+      <a class="s-link" href="08-reports.html"><span class="ico">📈</span>Reports</a>
+      <a class="s-link is-active" href="09-activity.html" aria-current="page"><span class="ico">🧾</span>Activity Log</a>
+      <a class="s-link" href="10-faq-reviews.html"><span class="ico">💬</span>FAQs &amp; Reviews</a>
+      <a class="s-link" href="11-safety-console.html"><span class="ico">🛡</span>Emergency &amp; AI Rules</a>
+      <a class="s-link" href="12-settings.html"><span class="ico">⚙️</span>System Settings</a>
+      <a class="s-link" href="13-data.html"><span class="ico">💾</span>Data Management</a>
+      <a class="s-link" href="14-security.html"><span class="ico">🔐</span>Admin Security</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar"><h1>Activity log</h1><span class="badge badge-info mla">append-only · no edit or delete code paths exist</span></div>
+
+    <form class="filter-bar" aria-label="Facet filters">
+      <div class="field" style="margin:0"><label class="label" for="ac-q">Search detail JSON</label><input class="input mono" id="ac-q" placeholder="e.g., \"revenue_percentage\""></div>
+      <div class="field f-hide-sm" style="margin:0"><label class="label" for="ac-role">Actor role</label><select class="select" id="ac-role"><option>Any</option><option>Patient</option><option>Doctor</option><option>Pharmacist</option><option>Admin</option><option>System</option></select></div>
+      <div class="field f-hide-sm" style="margin:0"><label class="label" for="ac-sev">Severity</label><select class="select" id="ac-sev"><option>Any</option><option>notice</option><option>warning</option><option>critical</option></select></div>
+      <div class="field" style="margin:0"><label class="label" for="ac-from">From</label><input class="input" id="ac-from" type="date" value="2026-11-22"></div>
+    </form>
+
+    <section class="dataview">
+      <div class="dv-bar"><span class="dv-name">Data view · Log entries</span>
+        <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-act" id="dv-act-s" checked><label for="dv-act-s">Success</label><input class="st-skeleton" type="radio" name="dv-act" id="dv-act-k"><label for="dv-act-k">Skeleton</label><input class="st-empty" type="radio" name="dv-act" id="dv-act-e"><label for="dv-act-e">Empty</label><input class="st-error" type="radio" name="dv-act" id="dv-act-r"><label for="dv-act-r">Error</label></div></div>
+      <div class="dv-host">
+        <div data-state="success">
+          <div class="tbl-wrap"><table class="tbl">
+            <thead><tr><th>Time</th><th>Actor</th><th>Action</th><th class="hide-xs">Target</th><th>Severity</th><th>Detail</th></tr></thead>
+            <tbody>
+              <tr><td data-label="Time" class="tabular">23 Nov 16:42</td><td data-label="Actor">SA · <span data-src="db:users.role">Admin</span></td><td data-label="Action" class="mono">credential.previewed</td><td data-label="Target" class="mono">DOC-118</td><td data-label="Severity"><span class="badge badge-neutral">notice</span></td><td data-label="Detail" class="caption">watermarked view, reason “approval review”</td></tr>
+              <tr><td data-label="Time" class="tabular">23 Nov 15:58</td><td data-label="Actor">system</td><td data-label="Action" class="mono">emergency.red_flag_matched</td><td data-label="Target" class="mono">SC-9012 · PT-0119</td><td data-label="Severity"><span class="badge badge-emergency">critical</span></td><td data-label="Detail" class="caption">rule “crushing chest pain” · user directed to hotlines</td></tr>
+              <tr><td data-label="Time" class="tabular">23 Nov 14:02</td><td data-label="Actor">NT · <span data-src="db:roles.label">Pharmacist</span></td><td data-label="Action" class="mono">dispense.blocked</td><td data-label="Target" class="mono">Rx-2146</td><td data-label="Severity"><span class="badge badge-danger">warning</span></td><td data-label="Detail" class="caption">insufficient stock · doctor notified</td></tr>
+              <tr><td data-label="Time" class="tabular">23 Nov 13:20</td><td data-label="Actor">AR · <span data-src="db:roles.label">Doctor</span></td><td data-label="Action" class="mono">appointment.accepted</td><td data-label="Target" class="mono">APT-3391</td><td data-label="Severity"><span class="badge badge-neutral">notice</span></td><td data-label="Detail" class="caption"></td></tr>
+              <tr><td data-label="Time" class="tabular">22 Nov 09:31</td><td data-label="Actor">SA · <span data-src="db:roles.label">Admin</span></td><td data-label="Action" class="mono">settings.updated</td><td data-label="Target" class="mono">revenue_percentage</td><td data-label="Severity"><span class="badge badge-warning">warning</span></td><td data-label="Detail" class="caption">8.5 → 8.0 · effective_from 01 Dec</td></tr>
+            </tbody>
+          </table>
+          <nav class="pager" aria-label="Pagination"><span class="caption">page 1/4,182 · newest first</span><div class="pgs"><a class="pg is-on">1</a><a class="pg">2</a></div><a class="pg" aria-label="Next">→</a></nav></div>
+          <p class="caption mt-m">The critical badge above is the one legitimate red-flag usage in admin chrome — it marks an <em>emergency escalation event</em>, keeping the scope rule (red = emergency only).</p>
+        </div>
+        <div data-state="skeleton" aria-hidden="true"><div class="card card-pad"><div class="sk sk-line" style="width:25%"></div><div class="sk sk-box"></div></div></div>
+        <div data-state="empty"><div class="empty"><span class="glyph">🧾</span><p>No entries match these facets.</p><button class="btn btn-primary">Clear facets</button></div></div>
+        <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt">Log query failed (timeouts are bounded by design).</span><button class="btn btn-primary">Retry</button></div></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Admin</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link" href="01-dashboard.html">📊 Dashboard</a><a class="nav-link" href="02-users.html">👥 Users</a><a class="nav-link" href="03-approvals.html">✅ Approvals</a><a class="nav-link" href="04-doctors.html">🩺 Doctors</a><a class="nav-link" href="05-patients.html">🧑 Patients</a><a class="nav-link" href="06-appointments.html">📅 Appointments</a><a class="nav-link" href="07-records.html">🗂 Records</a><a class="nav-link" href="08-reports.html">📈 Reports</a><a class="nav-link is-active" href="09-activity.html">🧾 Activity</a><a class="nav-link" href="10-faq-reviews.html">💬 FAQ &amp; Reviews</a><a class="nav-link" href="11-safety-console.html">🛡 Safety</a><a class="nav-link" href="12-settings.html">⚙️ Settings</a><a class="nav-link" href="13-data.html">💾 Data</a><a class="nav-link" href="14-security.html">🔐 Security</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

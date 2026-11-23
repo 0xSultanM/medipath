@@ -1,0 +1,51 @@
+{
+  "runs": [
+    {
+      "date": "2026-11-22T22:44:14.284186+00:00",
+      "input_tokens": 98000,
+      "output_tokens": 24300,
+      "files": 296
+    },
+    {
+      "date": "2026-11-22T23:12:05.175166+00:00",
+      "input_tokens": 5000,
+      "output_tokens": 13000,
+      "files": 42,
+      "mode": "update",
+      "estimated_semantic_tokens": true
+    },
+    {
+      "date": "2026-11-23T05:39:33.164113+00:00",
+      "input_tokens": 6000,
+      "output_tokens": 15000,
+      "files": 62,
+      "mode": "update",
+      "estimated_semantic_tokens": true
+    },
+    {
+      "date": "2026-11-23T06:07:57.888126+00:00",
+      "input_tokens": 4000,
+      "output_tokens": 10000,
+      "files": 10,
+      "mode": "update",
+      "estimated_semantic_tokens": true
+    },
+    {
+      "date": "2026-11-23T06:30:05.049341+00:00",
+      "input_tokens": 4000,
+      "output_tokens": 9000,
+      "files": 27,
+      "mode": "update",
+      "estimated_semantic_tokens": true
+    },
+    {
+      "date": "2026-11-23T07:58:36.165648+00:00",
+      "input_tokens": 14850,
+      "output_tokens": 7120,
+      "files": 46,
+      "mode": "update"
+    }
+  ],
+  "total_input_tokens": 131850,
+  "total_output_tokens": 78420
+}

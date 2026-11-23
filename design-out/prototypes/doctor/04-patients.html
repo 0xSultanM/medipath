@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Patient List (Doctor) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">AR</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Doctor workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Dr. Ayesha Rahman</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">🏠</span>Dashboard</a>
+      <a class="s-link" href="02-schedule-leave.html"><span class="ico">🗓</span>Schedule &amp; Leave</a>
+      <a class="s-link" href="03-requests.html"><span class="ico">📥</span>Requests<span class="cnt tabular">4</span></a>
+      <a class="s-link is-active" href="04-patients.html" aria-current="page"><span class="ico">🧑</span>Patients</a>
+      <a class="s-link" href="07-prescription-builder.html"><span class="ico">💊</span>Prescribe</a>
+      <a class="s-link" href="06-walkin.html"><span class="ico">🚪</span>Walk-In</a>
+      <a class="s-link" href="08-reviews.html"><span class="ico">⭐</span>Reviews</a>
+      <a class="s-link" href="../guest/05-login.html"><span class="ico">↩</span>Log out</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar"><h1>My patients</h1><a class="btn btn-outline mla" href="06-walkin.html">+ Walk-in registration</a></div>
+
+    <form class="filter-bar" aria-label="Patient filters">
+      <div class="field" style="margin:0"><label class="label" for="pt-q">Search</label><div class="input-icon"><span class="ico" aria-hidden="true">🔍</span><input class="input" id="pt-q" type="search" placeholder="name or patient ID (e.g., PT-0119)"></div></div>
+      <div class="field f-hide-sm" style="margin:0"><label class="label" for="pt-last">Last visit</label><select class="select" id="pt-last"><option>Any time</option><option selected>Last 30 days</option><option>Last 7 days</option></select></div>
+      <label class="switch f-hide-sm"><input type="checkbox" checked><span>Has allergy flags</span></label>
+      <label class="btn btn-outline only-lg" for="drawer-nav">Filters</label>
+    </form>
+
+    <section class="dataview">
+      <div class="dv-bar"><span class="dv-name">Data view · Patients I have treated <span class="muted">(clinical access only — owner-scoped)</span></span>
+        <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-pt" id="dv-pt-s" checked><label for="dv-pt-s">Success</label><input class="st-skeleton" type="radio" name="dv-pt" id="dv-pt-k"><label for="dv-pt-k">Skeleton</label><input class="st-empty" type="radio" name="dv-pt" id="dv-pt-e"><label for="dv-pt-e">Empty</label><input class="st-error" type="radio" name="dv-pt" id="dv-pt-r"><label for="dv-pt-r">Error</label></div></div>
+      <div class="dv-host">
+        <div data-state="success">
+          <div class="tbl-wrap"><table class="tbl">
+            <caption class="sr-only">My patients</caption>
+            <thead><tr><th><span class="sort desc">Patient</span></th><th>ID</th><th>Age / Gender</th><th>Last visit</th><th>Safety flags</th><th>Next</th><th></th></tr></thead>
+            <tbody>
+              <tr><td data-label="Patient"><div class="avatar-note"><span class="avatar avatar-initials" style="width:32px;height:32px;font-size:11px" aria-hidden="true">FK</span><strong>Farhana Karim</strong></div></td><td data-label="ID" class="mono">PT-0119</td><td data-label="Age / Gender" class="tabular">41 · F</td><td data-label="Last visit" class="tabular">23 Nov</td><td data-label="Safety"><span class="badge badge-danger"><span class="dot"></span>2 severe allergies</span> <span class="caption">Penicillin, Peanuts</span></td><td data-label="Next" class="tabular">24 Nov 4:30 PM</td><td data-label="Chart"><a class="btn btn-outline" href="05-patient-detail.html">Open chart</a></td></tr>
+              <tr><td data-label="Patient"><div class="avatar-note"><span class="avatar avatar-initials" style="width:32px;height:32px;font-size:11px" aria-hidden="true">AH</span><strong>Anwar Hussain</strong></div></td><td data-label="ID" class="mono">PT-0155</td><td data-label="Age / Gender" class="tabular">55 · M</td><td data-label="Last visit" class="tabular">16 Nov</td><td data-label="Safety"><span class="badge badge-neutral">none recorded</span></td><td data-label="Next" class="tabular">today 10 AM</td><td data-label="Chart"><a class="btn btn-outline" href="05-patient-detail.html">Open chart</a></td></tr>
+              <tr><td data-label="Patient"><div class="avatar-note"><span class="avatar avatar-initials" style="width:32px;height:32px;font-size:11px" aria-hidden="true">DR</span><strong>Devi Rao</strong></div></td><td data-label="ID" class="mono">PT-0288</td><td data-label="Age / Gender" class="tabular">36 · F</td><td data-label="Last visit" class="tabular">09 Nov</td><td data-label="Safety"><span class="badge badge-warning"><span class="dot"></span>Sulfa — moderate</span></td><td data-label="Next" class="tabular">—</td><td data-label="Chart"><a class="btn btn-outline" href="05-patient-detail.html">Open chart</a></td></tr>
+              <tr><td data-label="Patient"><div class="avatar-note"><span class="avatar avatar-initials" style="width:32px;height:32px;font-size:11px" aria-hidden="true">ML</span><strong>Mei Ling</strong></div></td><td data-label="ID" class="mono">PT-0301</td><td data-label="Age / Gender" class="tabular">29 · F</td><td data-label="Last visit" class="tabular">02 Nov</td><td data-label="Safety"><span class="badge badge-neutral">none recorded</span></td><td data-label="Next" class="tabular">29 Nov 10 AM</td><td data-label="Chart"><a class="btn btn-outline" href="05-patient-detail.html">Open chart</a></td></tr>
+            </tbody>
+          </table>
+          <nav class="pager" aria-label="Pagination"><span class="caption">43 patients · page 1/11</span><div class="pgs"><a class="pg is-on">1</a><a class="pg">2</a><a class="pg">3</a></div><a class="pg" aria-label="Next">→</a></nav></div>
+        </div>
+        <div data-state="skeleton" aria-hidden="true"><div class="card card-pad"><div class="sk sk-line" style="width:25%"></div><div class="sk sk-box"></div><div class="sk sk-box"></div><div class="sk sk-box" style="width:85%"></div></div></div>
+        <div data-state="empty"><div class="empty"><span class="glyph">🧑‍⚕️</span><h3 class="h3">No patients match “has allergy flags”</h3><p>Clear a filter, or register today's walk-in to create the first chart.</p><div class="row"><button class="btn btn-primary">Clear filters</button><a class="btn btn-outline" href="06-walkin.html">Register walk-in</a></div></div></div>
+        <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt"><strong>Patient list failed to load.</strong></span><button class="btn btn-primary">Retry</button></div></div>
+      </div>
+    </section>
+    <p class="caption">IDs are immutable keys (patients.id) — the list is sorted and paginated server-side; doctors never see patients they haven't treated (access scoped by appointments/prescriptions).</p>
+  </main>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Doctor workspace</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link" href="01-dashboard.html">🏠 Dashboard</a><a class="nav-link" href="02-schedule-leave.html">🗓 Schedule &amp; Leave</a><a class="nav-link" href="03-requests.html">📥 Requests</a><a class="nav-link is-active" href="04-patients.html">🧑 Patients</a><a class="nav-link" href="07-prescription-builder.html">💊 Prescribe</a><a class="nav-link" href="06-walkin.html">🚪 Walk-In</a><a class="nav-link" href="08-reviews.html">⭐ Reviews</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

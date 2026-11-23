@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath Prototypes — Index</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/medi.css">
+<script src="assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<main id="main" class="container stack" style="padding-block:var(--mp-space-xl);max-width:1200px">
+  <div class="spread">
+    <div><h1>MediPath — responsive prototypes</h1>
+    <p class="muted">AI-Powered Doctor Appointment &amp; Medicine Safety System · deliverable C · all five roles delivered</p></div>
+    <label class="switch"><input type="checkbox" id="mp-theme"><span>Dark theme</span></label>
+  </div>
+
+  <section class="card card-pad stack" style="gap:var(--mp-space-sm)">
+    <h2 class="h4">How to use</h2>
+    <ul class="list-quiet" style="font-size:14px">
+      <li><span class="badge badge-primary tabular">1</span> Resize to <strong>360 / 768 / 1440 px</strong>: tables stack into cards <640, navbars/sidebars become slide-over drawers <768 (<992 for the role sidebar), doctor grids run 1/2/3 columns.</li>
+      <li><span class="badge badge-primary tabular">2</span> Dashed <strong>Data view</strong> blocks carry a pure-CSS <em>Success · Skeleton · Empty · Error+Retry</em> switch (:has() — works with JS disabled).</li>
+      <li><span class="badge badge-primary tabular">3</span> Money is always <span class="money">{{CURRENCY}} 1,200.00</span> — never a literal dollar sign; DB-driven labels are marked <span class="mono">data-src="db:…"</span>.</li>
+      <li><span class="badge badge-primary tabular">4</span> Emergency red (#B91C1C) appears only in emergency UI regions: emergency strip/page, chatbot red-flag intercept, symptom escalation modal, red-flag rule badges, red-flag log events. Routine destructive/error UI uses danger (#DC2626).</li>
+    </ul>
+  </section>
+
+  <section class="stack"><h2>Guest / Public <span class="badge badge-success">8 screens</span></h2>
+    <div class="grid">
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="guest/01-landing.html"><strong>Landing</strong><span class="caption">hero+search, emergency strip, chatbot with pinned disclaimer &amp; in-stream red-flag alert</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="guest/02-directory.html"><strong>Doctor Directory</strong><span class="caption">FilterBar/drawer, tags, 1/2/3 grid ×4 states, pagination</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="guest/03-doctor-profile.html"><strong>Doctor Profile</strong><span class="caption">verified badge, 7-day availability ×4, approved reviews + distribution</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="guest/04-emergency.html"><strong>Emergency Info</strong><span class="caption">one-tap call cards ×4, red-flag accordion, offline fallback</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="guest/05-login.html"><strong>Login</strong><span class="caption">inline + Retry error, submitting spinner, role-routed note</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="guest/06-register.html"><strong>Register</strong><span class="caption">role-conditional license upload / walk-in claim code</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="guest/07-forgot-reset.html"><strong>Forgot/Reset</strong><span class="caption">3-stage stepper, rules list, expired-token Retry</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="guest/08-pending.html"><strong>Pending Approval</strong><span class="caption">3-stage progress, status ×4, rejection panel</span></a>
+    </div>
+  </section>
+
+  <section class="stack"><h2>Patient <span class="badge badge-success">8 screens</span></h2>
+    <div class="grid">
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="patient/01-dashboard.html"><strong>Dashboard</strong><span class="caption">next visit + KPI×4 states · activity ×4 · cancel modal · notif drawer</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="patient/02-booking.html"><strong>Booking</strong><span class="caption">leave-aware SlotPicker all disabled kinds · confirm · “slot just taken” conflict modal</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="patient/03-appointments.html"><strong>History</strong><span class="caption">status tabs with contextual actions per status</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="patient/04-symptom-checker.html"><strong>Symptom Checker</strong><span class="caption">disclaimer gate, intake, results (+AI-down fallback), emergency escalation modal</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="patient/05-prescriptions.html"><strong>Prescriptions</strong><span class="caption">expandable rows, PDF loading demo, pharmacy notes hidden</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="patient/06-bills.html"><strong>Bills</strong><span class="caption">totals, ID search, statuses, PDF</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="patient/07-allergies-medications.html"><strong>Allergies &amp; Meds</strong><span class="caption">severity chips, duplicate rule note, remove-confirm (danger, not emergency)</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="patient/08-profile-settings.html"><strong>Profile / Password / Settings</strong><span class="caption">claim code, unsaved bar, locale &amp; notification prefs</span></a>
+    </div>
+  </section>
+
+  <section class="stack"><h2>Doctor <span class="badge badge-success">8 screens</span></h2>
+    <div class="grid">
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="doctor/01-dashboard.html"><strong>Dashboard</strong><span class="caption">4 KPIs ×4, timeline, request panel</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="doctor/02-schedule-leave.html"><strong>Schedule + Leave</strong><span class="caption">weekday blocks, overlap validation, leave conflict modal w/ counts</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="doctor/03-requests.html"><strong>Requests</strong><span class="caption">5 tabs, inline accept / reject-with-reason / complete</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="doctor/04-patients.html"><strong>Patient List</strong><span class="caption">ID-keyed table→cards, allergy flags, access-scope note</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="doctor/05-patient-detail.html"><strong>Clinical Detail</strong><span class="caption">allergy strip, 3-tab history, sealed override visibility</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="doctor/06-walkin.html"><strong>Walk-In</strong><span class="caption">atomic register, claim-code receipt, rollback error</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="doctor/07-prescription-builder.html"><strong>Prescription Builder</strong><span class="caption">live stock search, side-effect drawer, allergy+interaction panels, override gate, dual notes, PDF</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="doctor/08-reviews.html"><strong>My Reviews</strong><span class="caption">distribution, moderation statuses visible to doctor</span></a>
+    </div>
+  </section>
+
+  <section class="stack"><h2>Pharmacist <span class="badge badge-success">8 screens</span></h2>
+    <div class="grid">
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="pharmacist/01-dashboard.html"><strong>Dashboard</strong><span class="caption">3 KPIs ×4 + oldest-5 + urgent stock</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="pharmacist/02-pending-rx.html"><strong>Pending Rx Queue</strong><span class="caption">stock flags, Review &amp; Dispense</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="pharmacist/03-safety-gate.html"><strong>Safety Gate</strong><span class="caption">allergy/interaction/expiry/stock blocks, override review modal, verification checks</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="pharmacist/04-dispense-bill.html"><strong>Dispense &amp; Bill</strong><span class="caption">live totals {{CURRENCY}}, receipt + invoice PDF, stock-race rollback</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="pharmacist/05-inventory.html"><strong>Inventory</strong><span class="caption">table + Add medicine modal + Restock modal, ledger note</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="pharmacist/06-alerts.html"><strong>Stock &amp; Expiry</strong><span class="caption">tiered tabs expired/≤30/31–90</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="pharmacist/07-invoices.html"><strong>Invoices</strong><span class="caption">payment status modal w/ refund reason</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="pharmacist/08-workflow-tracker.html"><strong>Workflow Tracker</strong><span class="caption">6-stage stepper (H/V), jump-to-stage, blocked variant</span></a>
+    </div>
+  </section>
+
+  <section class="stack"><h2>Admin <span class="badge badge-success">14 screens</span></h2>
+    <div class="grid">
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="admin/01-dashboard.html"><strong>Master Dashboard</strong><span class="caption">5 KPIs + commission, ranges, system overview + drill-downs</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="admin/02-users.html"><strong>User Management</strong><span class="caption">directory, role-change modal</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="admin/03-approvals.html"><strong>Approvals + Verification</strong><span class="caption">credential preview, reject-with-reason, 3 verify decisions</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="admin/04-doctors.html"><strong>Doctors CRUD</strong><span class="caption">typed-confirm archive + dependency counts</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="admin/05-patients.html"><strong>Patients + Portal View</strong><span class="caption">CRUD, as-patient portal preview tabs</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="admin/06-appointments.html"><strong>Appointments</strong><span class="caption">oversight, cancel-on-behalf modal</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="admin/07-records.html"><strong>Clinical &amp; Billing</strong><span class="caption">tabs, PDFs</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="admin/08-reports.html"><strong>Reports</strong><span class="caption">7 sections ×4 states, CSV + PDF export</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="admin/09-activity.html"><strong>Activity Log</strong><span class="caption">facets, append-only</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="admin/10-faq-reviews.html"><strong>FAQs &amp; Reviews</strong><span class="caption">publish toggles, moderation queue</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="admin/11-safety-console.html"><strong>Clinical Safety Console</strong><span class="caption">contacts + red-flag rules tab · symptom→specialty tab</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="admin/12-settings.html"><strong>System Settings</strong><span class="caption">currency/locale/timezone/format, auto-approve, cutoff, revenue % slider + preview</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="admin/13-data.html"><strong>Data Management</strong><span class="caption">CSV exports, two-step dry-run import, backups, danger zone</span></a>
+      <a class="card card-pad c-12 sm-c-6 md-c-4 lg-c-3 card-hover" href="admin/14-security.html"><strong>Admin Security</strong><span class="caption">sessions + revoke-others, idle timeout</span></a>
+    </div>
+  </section>
+
+  <p class="caption">Component source: <a href="../COMPONENT-SPEC.md">COMPONENT-SPEC.md</a> · tokens: <a href="../tokens.json">tokens.json</a> / <a href="../tokens.scss">tokens.scss</a> · decisions &amp; AA audit: <a href="../DESIGN-RATIONALE.md">DESIGN-RATIONALE.md</a>. No Figma API or MCP was used anywhere — the Figma skill served as methodology reference only, applied locally under ./design-out/.</p>
+</main>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Admin Master Dashboard &amp; System Overview — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <span class="badge badge-primary hide-sm" data-src="db:roles.label">Admin</span>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">SA</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Admin workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Administration</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link is-active" href="01-dashboard.html" aria-current="page"><span class="ico">📊</span>Dashboard &amp; Overview</a>
+      <a class="s-link" href="02-users.html"><span class="ico">👥</span>User Management</a>
+      <a class="s-link" href="03-approvals.html"><span class="ico">✅</span>Approvals &amp; Verification<span class="cnt tabular">7</span></a>
+      <a class="s-link" href="04-doctors.html"><span class="ico">🩺</span>Doctors</a>
+      <a class="s-link" href="05-patients.html"><span class="ico">🧑</span>Patients &amp; Portal</a>
+      <a class="s-link" href="06-appointments.html"><span class="ico">📅</span>Appointments</a>
+      <a class="s-link" href="07-records.html"><span class="ico">🗂</span>Clinical &amp; Billing Records</a>
+      <a class="s-link" href="08-reports.html"><span class="ico">📈</span>Revenue &amp; Analytics</a>
+      <a class="s-link" href="09-activity.html"><span class="ico">🧾</span>Activity Log</a>
+      <a class="s-link" href="10-faq-reviews.html"><span class="ico">💬</span>FAQs &amp; Reviews<span class="cnt tabular">3</span></a>
+      <a class="s-link" href="11-safety-console.html"><span class="ico">🛡</span>Emergency &amp; AI Rules</a>
+      <a class="s-link" href="12-settings.html"><span class="ico">⚙️</span>System Settings</a>
+      <a class="s-link" href="13-data.html"><span class="ico">💾</span>Data Management</a>
+      <a class="s-link" href="14-security.html"><span class="ico">🔐</span>Admin Security</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar">
+      <h1>Master dashboard</h1>
+      <div class="row mla" role="group" aria-label="Date range">
+        <span class="chip chip-select">7d</span><span class="chip chip-select"><strong>✓</strong> 30d</span><span class="chip chip-select">90d</span><span class="chip chip-select">12mo</span>
+      </div>
+    </div>
+
+    <!-- 5 KPIs + commission — data view -->
+    <section class="dataview">
+      <div class="dv-bar"><span class="dv-name">Data view · Platform KPIs</span>
+        <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-ak" id="dv-ak-s" checked><label for="dv-ak-s">Success</label><input class="st-skeleton" type="radio" name="dv-ak" id="dv-ak-k"><label for="dv-ak-k">Skeleton</label><input class="st-empty" type="radio" name="dv-ak" id="dv-ak-e"><label for="dv-ak-e">Empty</label><input class="st-error" type="radio" name="dv-ak" id="dv-ak-r"><label for="dv-ak-r">Error</label></div></div>
+      <div class="dv-host">
+        <div data-state="success">
+          <div class="grid">
+            <div class="kpi c-6 md-c-3"><span class="k-label">Users</span><span class="k-value">1,247</span><span class="k-foot"><span class="k-delta up">▲ 68 (30d)</span></span></div>
+            <div class="kpi c-6 md-c-3 is-alert"><span class="k-label">Doctors awaiting action</span><span class="k-value">7</span><span class="k-foot"><span class="k-delta down">4 verifications · 3 approvals</span></span></div>
+            <div class="kpi c-6 md-c-3"><span class="k-label">Appointments (30d)</span><span class="k-value">1,103</span><span class="k-foot"><span class="k-delta up">▲ 12%</span><span class="k-spark" aria-hidden="true"><svg viewBox="0 0 88 32" fill="none"><polyline points="0,24 16,20 32,22 48,14 64,10 88,6" stroke="currentColor" stroke-width="2"/></svg></span></span></div>
+            <div class="kpi c-6 md-c-3"><span class="k-label">Revenue collected</span><span class="k-value money" style="font-size:18px">{{CURRENCY}} 1.19M</span><span class="k-foot"><span class="k-delta up">▲ 9%</span></span></div>
+            <div class="kpi c-12 md-c-6"><span class="k-label">Commission revenue (revenue % = 8.0)</span><span class="k-value money" style="font-size:22px">{{CURRENCY}} 95,180.00</span><span class="k-foot"><span class="k-delta flat">configurable in Revenue settings</span><span class="k-spark" aria-hidden="true"><svg viewBox="0 0 88 32" fill="none"><polyline points="0,18 22,16 44,17 66,10 88,8" stroke="currentColor" stroke-width="2"/></svg></span></span></div>
+            <div class="kpi c-12 md-c-6"><span class="k-label">Prescription completion rate</span><span class="k-value">91%</span><span class="k-foot"><span class="k-delta up">▲ 3pp</span></span></div>
+          </div>
+        </div>
+        <div data-state="skeleton" aria-hidden="true"><div class="grid"><div class="kpi"><span class="sk sk-line" style="width:45%"></span><span class="sk" style="height:34px"></span></div><div class="kpi"><span class="sk sk-line" style="width:45%"></span><span class="sk" style="height:34px"></span></div><div class="kpi"><span class="sk sk-line" style="width:45%"></span><span class="sk" style="height:34px"></span></div><div class="kpi"><span class="sk sk-line" style="width:45%"></span><span class="sk" style="height:34px"></span></div></div></div>
+        <div data-state="empty"><div class="empty"><span class="glyph">📊</span><p>No activity in the selected range — expand the range or wait for the first data.</p></div></div>
+        <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt"><strong>Aggregation timed out.</strong> <span class="muted">Queries are bounded; try a smaller range or retry.</span></span><button class="btn btn-primary">Retry</button></div></div>
+      </div>
+    </section>
+
+    <!-- SYSTEM OVERVIEW -->
+    <section class="card card-pad">
+      <div class="spread"><h2 class="h4">System overview</h2><span class="caption">live health + drill-down links · checks run server-side</span></div>
+      <div class="grid mt-m">
+        <div class="c-12 sm-c-6 md-c-3 card card-pad" style="background:var(--mp-success-weak-bg);border-color:var(--mp-success-weak-border)"><strong>✅ App &amp; queue</strong><p class="caption">web ✓ · worker ✓ (0 jobs stuck) · scheduler ran 02:00</p><a class="btn btn-ghost mt-s" href="13-data.html">Queue detail</a></div>
+        <div class="c-12 sm-c-6 md-c-3 card card-pad" style="background:var(--mp-success-weak-bg);border-color:var(--mp-success-weak-border)"><strong>✅ Database</strong><p class="caption">conn 12/100 · replication lag 0.2s · slow queries 0</p><a class="btn btn-ghost mt-s" href="09-activity.html">Log growth</a></div>
+        <div class="c-12 sm-c-6 md-c-3 card card-pad" style="background:var(--mp-warning-weak-bg);border-color:var(--mp-warning-weak-border)"><strong>🟡 Storage</strong><p class="caption">uploads disk 78% — plan cleanup before 85%</p><a class="btn btn-ghost mt-s" href="13-data.html">Data management</a></div>
+        <div class="c-12 sm-c-6 md-c-3 card card-pad" style="background:var(--mp-info-weak-bg);border-color:var(--mp-info-weak-border)"><strong>🔵 AI provider</strong><p class="caption">fallback-ready · last timeout 21 Nov 14:02 (deterministic paths unaffected)</p><a class="btn btn-ghost mt-s" href="11-safety-console.html">Safety rules</a></div>
+      </div>
+    </section>
+
+    <div class="grid" style="align-items:start">
+      <section class="c-12 md-c-6 card card-pad">
+        <h2 class="h4">Attention queue</h2>
+        <ul class="list-quiet mt-s" style="font-size:14px">
+          <li><span class="badge badge-warning"><span class="dot"></span>3</span> sign-up approvals waiting <a class="mla" href="03-approvals.html">review →</a></li>
+          <li><span class="badge badge-warning"><span class="dot"></span>4</span> doctor verifications waiting <a class="mla" href="03-approvals.html">review →</a></li>
+          <li><span class="badge badge-danger"><span class="dot"></span>2</span> reviews flagged by moderation queue <a class="mla" href="10-faq-reviews.html">moderate →</a></li>
+          <li><span class="badge badge-neutral">1</span> expiry-critical batch unhandled <a class="mla" href="06-appointments.html">pharmacy alert (read-only) →</a></li>
+        </ul>
+      </section>
+      <section class="c-12 md-c-6 card card-pad">
+        <h2 class="h4">Trend — appointments vs completed (12 weeks)</h2>
+        <div class="bars mt-m" aria-hidden="true"><i style="height:40%"></i><i class="alt" style="height:36%"></i><i style="height:52%"></i><i class="alt" style="height:48%"></i><i style="height:60%"></i><i class="alt" style="height:55%"></i><i style="height:66%"></i><i class="alt" style="height:62%"></i><i style="height:70%"></i><i class="alt" style="height:64%"></i><i style="height:78%"></i><i class="alt" style="height:73%"></i></div>
+        <p class="caption">legend: <span class="seat" style="background:var(--mp-chart-1)"></span> booked · <span class="seat" style="background:var(--mp-chart-2)"></span> completed (chart renders via Chart.js in build; CSS bars shown in prototype)</p>
+      </section>
+    </div>
+  </main>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Admin</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link is-active" href="01-dashboard.html">📊 Dashboard</a><a class="nav-link" href="02-users.html">👥 Users</a><a class="nav-link" href="03-approvals.html">✅ Approvals <span class="cnt">7</span></a><a class="nav-link" href="04-doctors.html">🩺 Doctors</a><a class="nav-link" href="05-patients.html">🧑 Patients</a><a class="nav-link" href="06-appointments.html">📅 Appointments</a><a class="nav-link" href="07-records.html">🗂 Records</a><a class="nav-link" href="08-reports.html">📈 Reports</a><a class="nav-link" href="09-activity.html">🧾 Activity</a><a class="nav-link" href="10-faq-reviews.html">💬 FAQ &amp; Reviews</a><a class="nav-link" href="11-safety-console.html">🛡 Safety</a><a class="nav-link" href="12-settings.html">⚙️ Settings</a><a class="nav-link" href="13-data.html">💾 Data</a><a class="nav-link" href="14-security.html">🔐 Security</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

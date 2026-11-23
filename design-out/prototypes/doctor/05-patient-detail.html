@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Clinical Detail (Doctor) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">AR</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Doctor workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Dr. Ayesha Rahman</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">🏠</span>Dashboard</a>
+      <a class="s-link" href="02-schedule-leave.html"><span class="ico">🗓</span>Schedule &amp; Leave</a>
+      <a class="s-link" href="03-requests.html"><span class="ico">📥</span>Requests</a>
+      <a class="s-link is-active" href="04-patients.html"><span class="ico">🧑</span>Patients</a>
+      <a class="s-link" href="07-prescription-builder.html"><span class="ico">💊</span>Prescribe</a>
+      <a class="s-link" href="06-walkin.html"><span class="ico">🚪</span>Walk-In</a>
+      <a class="s-link" href="08-reviews.html"><span class="ico">⭐</span>Reviews</a>
+      <a class="s-link" href="../guest/05-login.html"><span class="ico">↩</span>Log out</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar"><h1>Chart — Farhana Karim</h1><span class="mono badge badge-primary mla" style="min-height:36px">PT-0119</span><a class="btn btn-primary" href="07-prescription-builder.html" style="margin-left:8px">New prescription</a></div>
+
+    <!-- HIGH-VISIBILITY ALLERGY ALERT STRIP (danger tone: clinical alert, not emergency UI) -->
+    <div class="retry-banner" role="alert" aria-label="Allergy alert" style="background:var(--mp-danger-weak-bg)">
+      <span class="ico">⚠️</span>
+      <span class="txt"><strong>2 severe allergies:</strong> <span data-src="db:patient_allergies.substance">Penicillin</span> (class: β-lactams — cross-references Amoxicillin/Ampicillin), <span data-src="db:patient_allergies.substance">Peanuts</span> (anaphylaxis; carries injector).
+      <span class="caption">Severity data from patient_allergies; enforced again at the pharmacy gate.</span></span>
+      <button class="btn btn-quiet">View history</button>
+    </div>
+
+    <div class="grid" style="align-items:start">
+      <aside class="c-12 lg-c-4 card card-pad stack" style="gap:var(--mp-space-sm)">
+        <h2 class="h4">Demographics</h2>
+        <div class="def-row"><dt>Age / Gender</dt><dd class="tabular">41 · Female</dd></div>
+        <div class="def-row"><dt>Phone</dt><dd class="mono tabular">+880 1711-223344</dd></div>
+        <div class="def-row"><dt>Primary condition</dt><dd>Hypertension (managed)</dd></div>
+        <div class="def-row"><dt>Workflow status</dt><dd><span class="badge badge-primary" data-src="db:patients.workflow_status">active_visit</span></dd></div>
+        <h3 class="h4 mt-m">Current medications</h3>
+        <ul class="stack-sm" style="font-size:14px">
+          <li class="row"><span class="chip" style="min-height:32px;padding:4px 12px">Amlodipine 5 mg · daily</span></li>
+          <li class="row"><span class="chip" style="min-height:32px;padding:4px 12px">Vitamin D3 1000 IU · daily</span></li>
+        </ul>
+        <p class="caption">Self-reported + prescribed entries merged; source noted per row.</p>
+      </aside>
+
+      <!-- 3-TAB HISTORY -->
+      <section class="c-12 lg-c-8 dataview tabbed">
+        <div class="dv-bar"><span class="dv-name">Data view · Clinical history</span>
+          <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-ch" id="dv-ch-s" checked><label for="dv-ch-s">Success</label><input class="st-skeleton" type="radio" name="dv-ch" id="dv-ch-k"><label for="dv-ch-k">Skeleton</label><input class="st-empty" type="radio" name="dv-ch" id="dv-ch-e"><label for="dv-ch-e">Empty</label><input class="st-error" type="radio" name="dv-ch" id="dv-ch-r"><label for="dv-ch-r">Error</label></div></div>
+        <div class="dv-host">
+          <div data-state="success">
+            <div class="tabs" role="tablist">
+              <input class="t1" type="radio" name="chtab" id="c1" checked><label class="tab1" for="c1">Prescriptions <span class="cnt">14</span></label>
+              <input class="t2" type="radio" name="chtab" id="c2"><label class="tab2" for="c2">Appointments <span class="cnt">17</span></label>
+              <input class="t3" type="radio" name="chtab" id="c3"><label class="tab3" for="c3">Billing <span class="cnt">12</span></label>
+            </div>
+            <div class="pane p1 mt-m">
+              <ul class="list-quiet" style="font-size:14px">
+                <li><span class="mono caption">Rx-2231</span> <strong>Amlodipine 5 mg ×30 · Paracetamol ×10</strong> <span class="badge badge-warning"><span class="dot"></span>Pending dispense</span> <span class="mla caption">21 Nov</span> <button class="btn btn-outline btn-pdf" style="min-height:36px;padding:4px 12px">⬇ PDF</button></li>
+                <li><span class="mono caption">Rx-2148</span> <strong>Amoxicillin-clav 625 mg ×14</strong> — <span class="caption">⚠ class-matched allergy was overridden: justification “culture-confirmed, desensitisation protocol, cardiology co-sign”</span> <span class="badge badge-success"><span class="dot"></span>Dispensed</span> <span class="mla caption">05 Nov</span></li>
+                <li><span class="mono caption">Rx-2063</span> <strong>Atorvastatin 10 mg ×30</strong> <span class="badge badge-neutral">Completed</span> <span class="mla caption">12 Oct</span></li>
+              </ul>
+              <p class="caption">Override justifications are permanently visible on the chart and in PDFs.</p>
+            </div>
+            <div class="pane p2 mt-m" hidden>
+              <ul class="list-quiet" style="font-size:14px">
+                <li>23 Nov · 09:00 <span class="badge badge-info">Completed</span> BP review; readings logged <span class="mla caption">today</span></li>
+                <li>16 Nov · 11:30 <span class="badge badge-info">Completed</span> Med titration</li>
+                <li>24 Nov · 16:30 <span class="badge badge-success"><span class="dot"></span>Accepted</span> follow-up <span class="mla caption">upcoming</span></li>
+              </ul>
+            </div>
+            <div class="pane p3 mt-m" hidden>
+              <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Invoice</th><th>Net</th><th>Status</th></tr></thead><tbody>
+                <tr><td data-label="Invoice" class="mono">INV-2026-0139</td><td data-label="Net" class="num money">{{CURRENCY}} 2,450.00</td><td data-label="Status"><span class="badge badge-warning"><span class="dot"></span>Pending</span></td></tr>
+                <tr><td data-label="Invoice" class="mono">INV-2026-0128</td><td data-label="Net" class="num money">{{CURRENCY}} 1,200.00</td><td data-label="Status"><span class="badge badge-success"><span class="dot"></span>Paid</span></td></tr>
+              </tbody></table></div>
+              <p class="caption" style="padding:10px 16px">Doctors see billing context read-only; financial edits belong to pharmacy/admin.</p>
+            </div>
+          </div>
+          <div data-state="skeleton" aria-hidden="true"><div class="card card-pad"><div class="sk sk-line" style="width:30%"></div><div class="sk sk-box"></div><div class="sk sk-box" style="width:70%"></div></div></div>
+          <div data-state="empty"><div class="empty"><span class="glyph">🗂</span><p>New patient — no history yet.</p></div></div>
+          <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt"><strong>History unavailable.</strong> <span class="muted">Allergy strip above loaded separately and stands.</span></span><button class="btn btn-primary">Retry</button></div></div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Doctor workspace</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link" href="01-dashboard.html">🏠 Dashboard</a><a class="nav-link" href="02-schedule-leave.html">🗓 Schedule &amp; Leave</a><a class="nav-link" href="03-requests.html">📥 Requests</a><a class="nav-link is-active" href="04-patients.html">🧑 Patients</a><a class="nav-link" href="07-prescription-builder.html">💊 Prescribe</a><a class="nav-link" href="06-walkin.html">🚪 Walk-In</a><a class="nav-link" href="08-reviews.html">⭐ Reviews</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

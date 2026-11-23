@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Doctor Public Profile (Guest) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner">
+    <a class="brand" href="01-landing.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a class="nav-link is-active" href="02-directory.html">Find Doctors</a>
+      <a class="nav-link" href="04-emergency.html">Emergency Info</a>
+    </nav>
+    <div class="row mla">
+      <label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label>
+      <a class="btn btn-ghost hide-sm" href="05-login.html">Log in</a>
+      <a class="btn btn-primary hide-sm" href="06-register.html">Register</a>
+      <label class="btn btn-quiet btn-ico burger" for="drawer-nav" data-controls="drawer-nav" aria-label="Open menu">☰</label>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="container stack" style="padding-block:var(--mp-space-lg)">
+  <nav class="caption" aria-label="Breadcrumb"><a href="02-directory.html">Find Doctors</a> › <a href="02-directory.html">Cardiology</a> › <span aria-current="page">Dr. Ayesha Rahman</span></nav>
+
+  <!-- ============ PROFILE HEADER ============ -->
+  <section class="card card-pad" aria-labelledby="pn">
+    <div class="grid">
+      <div class="c-12 md-c-8 row-lg" style="align-items:flex-start">
+        <span class="avatar avatar-lg avatar-initials" style="font-size:28px" aria-hidden="true">AR</span>
+        <div style="min-width:0">
+          <h1 id="pn" class="doc-name" style="font-size:24px;line-height:32px">Dr. Ayesha Rahman
+            <span class="badge badge-verified">✓ Verified doctor</span>
+          </h1>
+          <div class="row mt-s">
+            <span class="chip" data-src="db:specialties.name">Cardiology</span>
+            <span class="chip">MBBS, MD (Cardiology)</span>
+            <span class="chip">12 yrs experience</span>
+          </div>
+          <p class="caption mt-s">License #CMB-443721 · verified by clinic admin on 02 Sep 2026 · license_authority: <span data-src="db">Central Medical Board</span></p>
+          <div class="row mt-m">
+            <span class="stars stars-lg" aria-label="Rated 4.8 out of 5 from 56 approved reviews">★★★★<span class="off">★</span></span>
+            <strong class="tabular">4.8</strong><span class="muted caption">(56 approved reviews)</span>
+          </div>
+        </div>
+      </div>
+      <div class="c-12 md-c-4 stack" style="align-content:start">
+        <div class="card card-pad" style="background:var(--mp-surface-muted)">
+          <div class="spread"><span class="muted" style="font-size:14px">Consultation fee</span><strong class="money" style="font-size:20px">{{CURRENCY}} 1,200.00</strong></div>
+          <div class="doc-next mt-s">⚡ Next available: Today, 4:30 PM</div>
+        </div>
+        <a class="btn btn-primary btn-block" href="05-login.html" aria-describedby="gate-note">Sign in to book</a>
+        <span id="gate-note" class="sr-only">Booking requires a patient account.</span>
+        <a class="btn btn-outline btn-block" href="#avail">View availability</a>
+        <p class="caption">Guests can view profile, availability and approved reviews only. Booking and reviews need a signed-in patient.</p>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <h2 class="h4">About</h2>
+    <p class="mt-s lead" style="font-size:16px;line-height:26px">Interventional cardiologist at Central Clinic focused on hypertension, arrhythmia and post-MI follow-up. Prefers lifestyle-first plans and shares every prescription's side-effect sheet with patients.</p>
+  </section>
+
+  <!-- ============ 7-DAY AVAILABILITY (data view ×4) ============ -->
+  <section class="stack" id="avail">
+    <h2>Availability — next 7 days</h2>
+    <section class="dataview">
+      <div class="dv-bar">
+        <span class="dv-name">Data view · Availability <span class="muted">(SlotService: schedules − leaves − bookings)</span></span>
+        <div class="dv-switch" role="radiogroup" aria-label="Preview data state">
+          <input class="st-success" type="radio" name="dv-av" id="dv-av-s" checked><label for="dv-av-s">Success</label>
+          <input class="st-skeleton" type="radio" name="dv-av" id="dv-av-k"><label for="dv-av-k">Skeleton</label>
+          <input class="st-empty" type="radio" name="dv-av" id="dv-av-e"><label for="dv-av-e">Empty</label>
+          <input class="st-error" type="radio" name="dv-av" id="dv-av-r"><label for="dv-av-r">Error + Retry</label>
+        </div>
+      </div>
+      <div class="dv-host">
+        <div data-state="success">
+          <div class="tbl-wrap"><table class="tbl">
+            <caption class="sr-only">Seven-day availability for Dr. Ayesha Rahman</caption>
+            <thead><tr><th scope="col">Day</th><th scope="col">Window</th><th scope="col">Open slots</th><th scope="col">Status</th></tr></thead>
+            <tbody>
+              <tr><td data-label="Day"><strong>Mon 23 Nov</strong> <span class="caption">(today)</span></td><td data-label="Window" class="tabular">09:00–13:00 · 15:00–18:00</td><td data-label="Open slots" class="num">4</td><td data-label="Status"><span class="badge badge-success"><span class="dot"></span>Available</span></td></tr>
+              <tr><td data-label="Day">Tue 24 Nov</td><td data-label="Window" class="tabular">10:00–14:00</td><td data-label="Open slots" class="num">6</td><td data-label="Status"><span class="badge badge-success"><span class="dot"></span>Available</span></td></tr>
+              <tr><td data-label="Day">Wed 25 Nov</td><td data-label="Window" class="tabular muted">—</td><td data-label="Open slots" class="num">0</td><td data-label="Status"><span class="badge badge-warning"><span class="dot"></span>On leave (conference)</span></td></tr>
+              <tr><td data-label="Day">Thu 26 Nov</td><td data-label="Window" class="tabular">09:00–13:00</td><td data-label="Open slots" class="num">3</td><td data-label="Status"><span class="badge badge-success"><span class="dot"></span>Available</span></td></tr>
+              <tr><td data-label="Day">Fri 27 Nov</td><td data-label="Window" class="tabular">15:00–18:00</td><td data-label="Open slots" class="num">0</td><td data-label="Status"><span class="badge badge-danger"><span class="dot"></span>Fully booked</span></td></tr>
+              <tr><td data-label="Day">Sat 28 Nov</td><td data-label="Window" class="tabular">—</td><td data-label="Open slots" class="num">0</td><td data-label="Status"><span class="badge badge-neutral">Clinic closed</span></td></tr>
+              <tr><td data-label="Day">Sun 29 Nov</td><td data-label="Window" class="tabular">10:00–13:00</td><td data-label="Open slots" class="num">8</td><td data-label="Status"><span class="badge badge-success"><span class="dot"></span>Available</span></td></tr>
+            </tbody>
+          </table></div>
+        </div>
+        <div data-state="skeleton" aria-hidden="true"><div class="card card-pad"><div class="sk sk-line" style="width:30%"></div><div class="sk sk-box"></div><div class="sk sk-box"></div><div class="sk sk-box" style="width:70%"></div></div></div>
+        <div data-state="empty"><div class="empty"><span class="glyph">📅</span><h3 class="h3">No published availability</h3><p>The doctor hasn't published weekly hours yet, or all visible days are on leave. Try the full directory.</p><a class="btn btn-outline" href="02-directory.html">Back to directory</a></div></div>
+        <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt"><strong>Couldn't compute availability.</strong> <span class="muted">Schedule &amp; leave records are intact — this is a load failure, never a guessing fallback.</span></span><button class="btn btn-primary">Retry</button></div></div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ============ APPROVED REVIEWS (data view ×4 + distribution) ============ -->
+  <section class="stack">
+    <h2>Approved reviews</h2>
+    <section class="dataview">
+      <div class="dv-bar">
+        <span class="dv-name">Data view · Reviews <span class="muted">(moderation_status = approved only)</span></span>
+        <div class="dv-switch" role="radiogroup" aria-label="Preview data state">
+          <input class="st-success" type="radio" name="dv-rv" id="dv-rv-s" checked><label for="dv-rv-s">Success</label>
+          <input class="st-skeleton" type="radio" name="dv-rv" id="dv-rv-k"><label for="dv-rv-k">Skeleton</label>
+          <input class="st-empty" type="radio" name="dv-rv" id="dv-rv-e"><label for="dv-rv-e">Empty</label>
+          <input class="st-error" type="radio" name="dv-rv" id="dv-rv-r"><label for="dv-rv-r">Error + Retry</label>
+        </div>
+      </div>
+      <div class="dv-host">
+        <div data-state="success">
+          <div class="grid">
+            <div class="c-12 md-c-4 card card-pad">
+              <div class="row-lg"><span class="money" style="font-size:36px">4.8</span><span class="stars" aria-hidden="true">★★★★<span class="off">★</span></span></div>
+              <p class="caption mt-s">Based on 56 approved reviews · <a href="05-login.html">sign in to leave one</a> after a completed appointment.</p>
+              <div class="dist mt-m" aria-label="Rating distribution">
+                <div class="d-row"><span>5 ★</span><span class="d-bar"><span class="d-fill" style="width:74%"></span></span><span class="tabular">41</span></div>
+                <div class="d-row"><span>4 ★</span><span class="d-bar"><span class="d-fill" style="width:16%"></span></span><span class="tabular">9</span></div>
+                <div class="d-row"><span>3 ★</span><span class="d-bar"><span class="d-fill" style="width:5%"></span></span><span class="tabular">3</span></div>
+                <div class="d-row"><span>2 ★</span><span class="d-bar"><span class="d-fill" style="width:2%"></span></span><span class="tabular">1</span></div>
+                <div class="d-row"><span>1 ★</span><span class="d-bar"><span class="d-fill" style="width:2%"></span></span><span class="tabular">2</span></div>
+              </div>
+            </div>
+            <div class="c-12 md-c-8 card card-pad">
+              <div class="review"><div class="r-head"><span class="avatar avatar-initials avatar-sm" style="width:32px;height:32px;font-size:12px" aria-hidden="true">JL</span><strong>Jamia L.</strong><span class="stars" aria-label="5 out of 5">★★★★★</span><time class="caption" datetime="2026-11-14">2 weeks ago</time></div><p class="mt-s" style="font-size:14px">Explained my ECG line by line and wrote a lifestyle plan before adding any medicine. Follow-up reminder came through the portal.</p></div>
+              <div class="review"><div class="r-head"><span class="avatar avatar-initials" style="width:32px;height:32px;font-size:12px" aria-hidden="true">PD</span><strong>Priya D.</strong><span class="stars" aria-label="5 out of 5">★★★★★</span><time class="caption" datetime="2026-11-02">3 weeks ago</time></div><p class="mt-s" style="font-size:14px">Caught an interaction with my current medication before prescribing — the pharmacy gate flagged it and she swapped the drug same visit.</p></div>
+              <div class="review"><div class="r-head"><span class="avatar avatar-initials" style="width:32px;height:32px;font-size:12px" aria-hidden="true">MO</span><strong>Marcus O.</strong><span class="stars" aria-label="3 out of 5">★★★<span class="off">★★</span></span><time class="caption" datetime="2026-10-21">1 month ago</time></div><p class="mt-s" style="font-size:14px">Solid clinical advice; waited 20 minutes past the slot time. Portal rescheduled my next visit at no cost.</p></div>
+              <nav class="pager" aria-label="Reviews pagination"><span class="caption">Page 1 of 10</span><div class="pgs"><a class="pg is-on">1</a><a class="pg">2</a><a class="pg">3</a><a class="pg" aria-label="Next">→</a></div></nav>
+            </div>
+          </div>
+        </div>
+        <div data-state="skeleton" aria-hidden="true"><div class="card card-pad"><div class="sk sk-title" style="width:20%"></div><div class="sk sk-line"></div><div class="sk sk-line" style="width:70%"></div><div class="divider"></div><div class="sk sk-line"></div><div class="sk sk-line" style="width:80%"></div></div></div>
+        <div data-state="empty"><div class="empty"><span class="glyph">⭐</span><h3 class="h3">No approved reviews yet</h3><p>Reviews appear here after a completed appointment and admin moderation.</p></div></div>
+        <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt"><strong>Reviews couldn't be loaded.</strong></span><button class="btn btn-primary">Retry</button></div></div>
+      </div>
+    </section>
+  </section>
+</main>
+
+<footer class="mt-xl" style="background:var(--mp-surface);border-top:1px solid var(--mp-border)">
+  <div class="container" style="padding-block:var(--mp-space-lg)"><p class="caption">MediPath · amounts use the clinic's configured currency token ({{CURRENCY}}). Reviews shown are admin-approved only.</p></div>
+</footer>
+
+<aside class="drawer drawer--nav" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">MediPath menu</span><label class="x-close" for="drawer-nav" aria-label="Close menu">✕</label></div>
+  <nav class="stack-sm" aria-label="Mobile primary" style="margin-top:var(--mp-space-md)">
+    <a class="nav-link" href="02-directory.html">Find Doctors</a>
+    <a class="nav-link" href="04-emergency.html">Emergency Info</a>
+    <a class="btn btn-primary btn-block" href="05-login.html">Log in</a>
+    <a class="btn btn-outline btn-block" href="06-register.html">Register</a>
+    <a class="btn btn-emergency btn-block" href="04-emergency.html">🚨 Emergency — call now</a>
+  </nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

@@ -1,0 +1,124 @@
+// ============================================================================
+// MediPath Design Tokens — SCSS source of truth
+// Companion of tokens.json. Import as resources/scss/_tokens.scss (Phase 0).
+// Methodology: single token collection, two theme modes (Figma variables
+// concept: Theme=Light / Theme=Dark) compiled to CSS custom properties.
+// Every screen/component must reference these via var(--mp-*) — no literals.
+// ============================================================================
+
+// ---------- 1. Primitive SCSS variables (build-time) ----------
+$mp-font-stack: 'Inter', 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif !default;
+$mp-mono-stack: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace !default;
+
+// Mandated brand hues (project brief — DO NOT alter)
+$mp-primary:        #0E7C86; // teal
+$mp-ink:            #0B2545; // navy ink
+$mp-bg:             #F6F9FB;
+$mp-surface:        #FFFFFF;
+$mp-border:         #E2E8F0;
+$mp-success:        #16A34A;
+$mp-warning:        #D97706;
+$mp-danger:         #DC2626;
+$mp-info:           #2563EB;
+$mp-emergency:      #B91C1C; // ⚠ scoped: emergency-red-flag UI ONLY
+
+// AA-verified derived text tones (light) — see DESIGN-RATIONALE audit
+$mp-primary-hover:  #0B6B73;
+$mp-primary-active: #0A6169;
+$mp-success-text:   #166534; // 7.13:1 on white, 6.37:1 on tint
+$mp-warning-text:   #975307; // 5.91:1 on white, 5.13:1 on tint
+$mp-danger-text:    #C11E1E; // 6.05:1 on white, 5.22:1 on tint
+$mp-info-text:      #1D4ED8; // 5.69:1 on tint
+$mp-border-strong:  #748BA6; // ≥3.15:1 UI boundary on white & bg
+
+// Spacing (8pt grid)
+$mp-space: (xs: 4px, sm: 8px, md: 12px, base: 16px, lg: 24px, xl: 32px, '2xl': 48px, '3xl': 64px, '4xl': 96px);
+
+// Radii (mandated set only)
+$mp-radius-input: 8px;
+$mp-radius-card: 12px;
+$mp-radius-pill: 999px;
+
+// Breakpoints
+$mp-bp: (sm: 640px, md: 768px, lg: 992px, xl: 1200px, '2xl': 1440px);
+
+// ---------- 2. Theme mode maps ----------
+$mp-theme-light: (
+  // surfaces
+  bg: $mp-bg, surface: $mp-surface, surface-muted: #EEF3F7,
+  border: $mp-border, border-strong: $mp-border-strong, overlay: rgba(11,37,69,.55),
+  // brand
+  primary: $mp-primary, primary-hover: $mp-primary-hover, primary-active: $mp-primary-active,
+  primary-text: $mp-primary, primary-weak-bg: #DFF1F3, primary-weak-border: #9AD0D7,
+  ink: $mp-ink, ink-muted: #33507A,
+  sidebar-bg: $mp-ink, sidebar-item-hover: #16345C, sidebar-item-active: $mp-primary, sidebar-text: #fff,
+  // text
+  text-heading: $mp-ink, text-body: #1F2A37, text-muted: #556576, text-inverse: #fff,
+  // feedback (base = fills/bars/icons; *-text = AA-safe on surface & tint)
+  success: $mp-success, success-text: $mp-success-text, success-weak-bg: #E6F6EC, success-weak-border: #B7E0C4,
+  warning: $mp-warning, warning-text: $mp-warning-text, warning-weak-bg: #FBEDDA, warning-weak-border: #F0CFA0,
+  danger: $mp-danger, danger-text: $mp-danger-text, danger-weak-bg: #FDEAEA, danger-weak-border: #F5C2C2,
+  info: $mp-info, info-text: $mp-info-text, info-weak-bg: #E5EDFB, info-weak-border: #BDD1F5,
+  emergency: $mp-emergency, emergency-deep: #7F1D1D, emergency-weak-bg: #FBE3E3, emergency-text-on-weak: $mp-emergency,
+  // misc
+  skel-base: #E9EEF4, skel-hi: #F5F8FB, focus-ring: $mp-primary,
+  shadow: (sm: 0 1px 2px rgba(11,37,69,.06), md: 0 4px 12px rgba(11,37,69,.08), lg: 0 12px 32px rgba(11,37,69,.14)),
+  chart: ($mp-primary, $mp-info, $mp-success, $mp-warning, #7C3AED, $mp-ink),
+);
+
+$mp-theme-dark: (
+  bg: #0B1220, surface: #131E30, surface-muted: #1B2941,
+  border: #2B3C57, border-strong: #52688C, overlay: rgba(4,9,18,.72),
+  primary: $mp-primary, primary-hover: $mp-primary-hover, primary-active: #095760,
+  primary-text: #5BC9D4, primary-weak-bg: #10343B, primary-weak-border: #2B6068,
+  ink: #F4F8FC, ink-muted: #C6D4E4,
+  sidebar-bg: #081627, sidebar-item-hover: #10233C, sidebar-item-active: #12808B, sidebar-text: #E8EFF7,
+  text-heading: #F4F8FC, text-body: #E8EFF7, text-muted: #A7B6CC, text-inverse: #0B1220,
+  success: $mp-success, success-text: #4ADE80, success-weak-bg: #123522, success-weak-border: #2E6B45,
+  warning: $mp-warning, warning-text: #FBBF24, warning-weak-bg: #3A2A10, warning-weak-border: #7A5A1E,
+  danger: $mp-danger, danger-text: #F87171, danger-weak-bg: #3B1A1C, danger-weak-border: #7A3234,
+  info: $mp-info, info-text: #82ADFF, info-weak-bg: #132446, info-weak-border: #3A5E9E,
+  emergency: $mp-emergency, emergency-deep: #FCA5A5, emergency-weak-bg: #43161A, emergency-text-on-weak: #FCA5A5,
+  skel-base: #1B2941, skel-hi: #24344F, focus-ring: #5BC9D4,
+  shadow: (sm: 0 1px 2px rgba(0,0,0,.4), md: 0 4px 12px rgba(0,0,0,.45), lg: 0 12px 32px rgba(0,0,0,.55)),
+  chart: (#5BC9D4, #82ADFF, #4ADE80, #FBBF24, #C4B5FD, #A7B6CC),
+);
+
+// ---------- 3. Emitter: map → CSS custom properties ----------
+@use 'sass:map';
+@mixin mp-emit($m) {
+  @each $k, $v in $m {
+    @if type-of($v) == 'map' {
+      @each $sk, $sv in $v { --mp-#{$k}-#{$sk}: #{$sv}; }
+    } @else {
+      --mp-#{$k}: #{$v};
+    }
+  }
+}
+
+:root, [data-theme='light'] { @include mp-emit($mp-theme-light);
+  // Non-color tokens (theme-independent)
+  --mp-font: #{$mp-font-stack};
+  --mp-mono: #{$mp-mono-stack};
+  --mp-space-xs:4px; --mp-space-sm:8px; --mp-space-md:12px; --mp-space-base:16px;
+  --mp-space-lg:24px; --mp-space-xl:32px; --mp-space-2xl:48px; --mp-space-3xl:64px; --mp-space-4xl:96px;
+  --mp-radius-input:8px; --mp-radius-card:12px; --mp-radius-pill:999px;
+  --mp-touch:44px; --mp-navbar-h:64px; --mp-sidebar-w:264px;
+  --mp-z-dropdown:1000; --mp-z-drawer-backdrop:1050; --mp-z-drawer:1060;
+  --mp-z-modal-backdrop:1090; --mp-z-modal:1100; --mp-z-toast:1200; --mp-z-chatbot:1250;
+  --mp-motion-fast:120ms ease-out; --mp-motion-base:220ms ease-in-out;
+}
+
+[data-theme='dark'] { @include mp-emit($mp-theme-dark); }
+
+// Prototype-only runtime toggle (checkbox #mp-theme lives at top of <body>)
+:root:has(#mp-theme:checked) { @include mp-emit($mp-theme-dark); }
+
+// ---------- 4. Convenience mixins for Blade components ----------
+@mixin mp-bp($key) { @media (min-width: map.get($mp-bp, $key)) { @content; } }
+@mixin mp-card      { background: var(--mp-surface); border: 1px solid var(--mp-border);
+  border-radius: var(--mp-radius-card); box-shadow: var(--mp-shadow-sm); }
+@mixin mp-focus     { outline: 2px solid var(--mp-focus-ring); outline-offset: 2px; }
+@mixin mp-tabular   { font-variant-numeric: tabular-nums; letter-spacing: .005em; }
+// Money helper — symbol ALWAYS comes from the {{CURRENCY}} token, never "$"
+@mixin mp-money     { @include mp-tabular; font-weight: 600; }

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Data Management (Admin) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+<style>/* local: two-step import demo states */
+  .import-stage2{display:none}.dpage:has(#imp-step1:checked) .import-stage2{display:none}
+  .dpage:has(#imp-step2:checked) .import-stage2{display:block}
+  .dpage:has(#imp-step2:checked) .import-stage1 .s2{outline:2px solid var(--mp-primary)}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+<input type="checkbox" id="m-dz" class="hidden-check modal-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">SA</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Admin workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Administration</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">📊</span>Dashboard</a>
+      <a class="s-link" href="02-users.html"><span class="ico">👥</span>Users</a>
+      <a class="s-link" href="03-approvals.html"><span class="ico">✅</span>Approvals</a>
+      <a class="s-link" href="04-doctors.html"><span class="ico">🩺</span>Doctors</a>
+      <a class="s-link" href="05-patients.html"><span class="ico">🧑</span>Patients</a>
+      <a class="s-link" href="06-appointments.html"><span class="ico">📅</span>Appointments</a>
+      <a class="s-link" href="07-records.html"><span class="ico">🗂</span>Records</a>
+      <a class="s-link" href="08-reports.html"><span class="ico">📈</span>Reports</a>
+      <a class="s-link" href="09-activity.html"><span class="ico">🧾</span>Activity Log</a>
+      <a class="s-link" href="10-faq-reviews.html"><span class="ico">💬</span>FAQs &amp; Reviews</a>
+      <a class="s-link" href="11-safety-console.html"><span class="ico">🛡</span>Emergency &amp; AI Rules</a>
+      <a class="s-link" href="12-settings.html"><span class="ico">⚙️</span>System Settings</a>
+      <a class="s-link is-active" href="13-data.html" aria-current="page"><span class="ico">💾</span>Data Management</a>
+      <a class="s-link" href="14-security.html"><span class="ico">🔐</span>Admin Security</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack dpage">
+    <div class="topbar"><h1>Data management</h1></div>
+
+    <div class="grid">
+      <!-- EXPORTS -->
+      <section class="c-12 lg-c-6 card card-pad">
+        <h2 class="h4">CSV exports (streamed, formula-injection neutralised)</h2>
+        <ul class="list-quiet mt-s" style="font-size:14px">
+          <li>Patients + workflow status <button class="btn btn-outline mla" style="min-height:36px;padding:4px 12px;font-size:13px">⬇ CSV</button></li>
+          <li>Doctors, licenses &amp; verification <button class="btn btn-outline mla" style="min-height:36px;padding:4px 12px;font-size:13px">⬇ CSV</button></li>
+          <li>Invoices (range picker inline) <input class="input" type="date" value="2026-11-01" style="min-height:36px;width:140px;margin-left:8px"><button class="btn btn-outline mla" style="min-height:36px;padding:4px 12px;font-size:13px;margin-left:6px">⬇ CSV</button></li>
+          <li>Stock movements ledger <button class="btn btn-outline mla" style="min-height:36px;padding:4px 12px;font-size:13px">⬇ CSV</button></li>
+        </ul>
+        <p class="caption">leading =, +, −, @ are escaped; timestamped manifest included.</p>
+      </section>
+
+      <!-- BACKUP -->
+      <section class="c-12 lg-c-6 card card-pad">
+        <h2 class="h4">Backup snapshots</h2>
+        <ul class="list-quiet mt-s" style="font-size:14px">
+          <li><span class="badge badge-success"><span class="dot"></span>ok</span> <span class="mono">2026-11-23T02:00</span> · 1.8 GB · verified <button class="btn btn-ghost mla" style="min-height:32px;font-size:13px">Restore drill</button></li>
+          <li><span class="badge badge-success"><span class="dot"></span>ok</span> <span class="mono">2026-11-22T02:00</span> · 1.8 GB</li>
+          <li><span class="badge badge-danger"><span class="dot"></span>failed</span> <span class="mono">2026-11-21T02:00</span> <button class="btn btn-primary mla" style="min-height:32px;font-size:13px">Retry backup</button></li>
+        </ul>
+        <button class="btn btn-outline mt-m">Create snapshot now</button>
+      </section>
+
+      <!-- TWO-STEP IMPORT -->
+      <section class="c-12 lg-c-8 card card-pad">
+        <h2 class="h4">CSV import — always two-step (dry run → apply)</h2>
+        <div class="row mt-s" role="radiogroup" aria-label="Import step">
+          <label class="check" style="min-height:28px"><input type="radio" name="imp" id="imp-step1" hidden checked><span>Step 1 · Upload &amp; dry-run</span></label>
+          <label class="check" style="min-height:28px"><input type="radio" name="imp" id="imp-step2" hidden><span>Step 2 · Review &amp; apply</span></label>
+        </div>
+
+        <div class="import-stage1">
+          <div class="field mt-m"><label class="label" for="upl">Medicines CSV</label><input class="input" id="upl" type="file" accept=".csv" style="padding:10px"><span class="hint">≤ 5 MB · UTF-8 · header row required.</span></div>
+          <button class="btn btn-primary">Run dry-import</button>
+        </div>
+
+        <div class="import-stage2">
+          <div class="alert alert-warning mt-m"><span class="a-ico">🧪</span><span><strong>Dry-run: 482 rows valid · 3 invalid · 17 will update existing.</strong> Nothing has been written yet.</span></div>
+          <div class="tbl-wrap mt-m"><table class="tbl">
+            <thead><tr><th>Row</th><th>Status</th><th>Reason</th></tr></thead>
+            <tbody>
+              <tr><td data-label="Row" class="num">88</td><td data-label="Status"><span class="badge badge-danger"><span class="dot"></span>invalid</span></td><td data-label="Why">expiry_date not ISO</td></tr>
+              <tr><td data-label="Row" class="num">214</td><td data-label="Status"><span class="badge badge-danger"><span class="dot"></span>invalid</span></td><td data-label="Why">stock −4 (CHECK stock ≥ 0)</td></tr>
+              <tr><td data-label="Row" class="num">342</td><td data-label="Status"><span class="badge badge-info">update</span></td><td data-label="Why">unit_price 15.00 → 16.50</td></tr>
+            </tbody>
+          </table></div>
+          <div class="row mt-m"><a class="btn btn-outline" href="#">⬇ Error report CSV</a><button class="btn btn-quiet">Discard</button><button class="btn btn-primary">Apply 482 rows</button><span class="caption">apply runs in one transaction + audit entry; rollback restores pre-import state.</span></div>
+        </div>
+      </section>
+
+      <!-- DANGER ZONE -->
+      <section class="c-12 lg-c-4 card card-pad" style="border-top:4px solid var(--mp-danger)">
+        <h2 class="h4" style="color:var(--mp-danger-text)">Danger zone</h2>
+        <p class="caption">irreversible operations need password re-entry + typed confirmation; nothing here touches clinical records (soft-archive only elsewhere).</p>
+        <ul class="stack-sm mt-m" style="font-size:14px">
+          <li><button class="btn btn-danger-outline btn-block">Purge archived sessions</button></li>
+          <li><button class="btn btn-danger-outline btn-block">Reset demo data (staging only)</button></li>
+          <li><label class="btn btn-danger btn-block" for="m-dz">Delete failed backup files…</label></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+</div>
+
+<!-- DANGER MODAL: password re-entry + typed confirm + dependency counts -->
+<div class="modal-stage" role="dialog" aria-modal="true" aria-labelledby="mz-t">
+  <div class="modal modal--danger">
+    <div class="modal-head"><span style="font-size:26px" aria-hidden="true">☢️</span><div><h2 id="mz-t" class="modal-title" style="color:var(--mp-danger-text)">Delete failed backup files?</h2></div><label class="modal-x" for="m-dz" aria-label="Close">✕</label></div>
+    <div class="modal-body">
+      <div class="dep-counts"><span class="dep">1 partial snapshot</span><span class="dep">0 verified snapshots affected</span></div>
+      <div class="field"><label class="label req" for="dz-pw">Re-enter your admin password</label><input class="input" id="dz-pw" type="password" autocomplete="current-password"></div>
+      <div class="field"><label class="label req" for="dz-type">Type DELETE to confirm</label><input class="input mono" id="dz-type" autocomplete="off"></div>
+    </div>
+    <div class="modal-foot"><label class="btn btn-quiet" for="m-dz">Cancel</label><label class="btn btn-danger" for="m-dz" aria-disabled="true">Delete permanently</label></div>
+  </div>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Admin</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link" href="01-dashboard.html">📊 Dashboard</a><a class="nav-link" href="02-users.html">👥 Users</a><a class="nav-link" href="03-approvals.html">✅ Approvals</a><a class="nav-link" href="04-doctors.html">🩺 Doctors</a><a class="nav-link" href="05-patients.html">🧑 Patients</a><a class="nav-link" href="06-appointments.html">📅 Appointments</a><a class="nav-link" href="07-records.html">🗂 Records</a><a class="nav-link" href="08-reports.html">📈 Reports</a><a class="nav-link" href="09-activity.html">🧾 Activity</a><a class="nav-link" href="10-faq-reviews.html">💬 FAQ &amp; Reviews</a><a class="nav-link" href="11-safety-console.html">🛡 Safety</a><a class="nav-link" href="12-settings.html">⚙️ Settings</a><a class="nav-link is-active" href="13-data.html">💾 Data</a><a class="nav-link" href="14-security.html">🔐 Security</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

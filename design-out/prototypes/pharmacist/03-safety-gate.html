@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Pre-Dispense Safety Gate (Pharmacist) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+<input type="checkbox" id="m-ovr" class="hidden-check modal-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">NT</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Pharmacy workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Pharmacy · Nadia T.</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">🏠</span>Dashboard</a>
+      <a class="s-link" href="02-pending-rx.html"><span class="ico">📥</span>Pending Rx<span class="cnt tabular">6</span></a>
+      <a class="s-link" href="05-inventory.html"><span class="ico">📦</span>Inventory</a>
+      <a class="s-link" href="06-alerts.html"><span class="ico">🔔</span>Stock &amp; Expiry</a>
+      <a class="s-link" href="07-invoices.html"><span class="ico">🧾</span>Invoices</a>
+      <a class="s-link" href="08-workflow-tracker.html"><span class="ico">🧭</span>Workflow</a>
+      <a class="s-link" href="../guest/05-login.html"><span class="ico">↩</span>Log out</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar"><h1>Safety gate — <span class="mono" style="font-size:18px">Rx-2148</span></h1><span class="caption mla">Every check re-runs at the counter; deterministic first, AI summary optional.</span></div>
+
+    <!-- Rx + patient context -->
+    <div class="grid" style="align-items:start">
+      <section class="c-12 lg-c-5 card card-pad">
+        <div class="row-lg"><span class="avatar avatar-initials" aria-hidden="true">FK</span><div><strong>Farhana Karim</strong> <span class="mono caption">PT-0119</span><div class="caption">41F · Dr. Okafor · issued 05 Nov</div></div></div>
+        <div class="retry-banner mt-m" role="alert" style="background:var(--mp-danger-weak-bg)"><span class="ico">⚠️</span><span class="txt"><strong>Allergies:</strong> Penicillin — Severe (β-lactam class) · Peanuts — Severe</span></div>
+        <h3 class="h4 mt-m">Items</h3>
+        <ul class="list-quiet" style="font-size:14px">
+          <li><div><strong>Amoxicillin-clavulanate 625 mg</strong><div class="caption">1 tab BID · 7 days · qty 14</div></div><span class="badge badge-success mla">stock 60</span></li>
+          <li><div><strong>Paracetamol 500 mg</strong><div class="caption">1–2 q6h · qty 10</div></div><span class="badge badge-success mla">stock 300</span></li>
+        </ul>
+        <h3 class="h4 mt-m">Pharmacy-facing note (doctor)</h3>
+        <p class="caption" style="font-size:13px">“Dispense as 7-day strips; counsel on dizziness.”</p>
+      </section>
+
+      <!-- CHECK RESULTS -->
+      <section class="c-12 lg-c-7 dataview">
+        <div class="dv-bar"><span class="dv-name">Data view · Gate results</span>
+          <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-gt" id="dv-gt-s" checked><label for="dv-gt-s">Blocked</label><input class="st-skeleton" type="radio" name="dv-gt" id="dv-gt-k"><label for="dv-gt-k">Running</label><input class="st-empty" type="radio" name="dv-gt" id="dv-gt-e"><label for="dv-gt-e">No data</label><input class="st-error" type="radio" name="dv-gt" id="dv-gt-r"><label for="dv-gt-r">Engine down</label></div></div>
+        <div class="dv-host">
+          <div data-state="success">
+            <div class="stack">
+              <div class="card card-pad" style="border-left:4px solid var(--mp-danger)">
+                <div class="spread"><h3 class="h4">1 · Allergy conflict — <span style="color:var(--mp-danger-text)">BLOCKED</span></h3><span class="badge badge-danger">severe match</span></div>
+                <p class="mt-s" style="font-size:14px">Amoxicillin ∈ β-lactams ↔ <strong>Penicillin (Severe)</strong>. Doctor recorded an override justification: “culture-confirmed; desensitisation protocol; cardiology co-sign 23 Nov”.</p>
+                <div class="row mt-m"><label class="btn btn-outline" for="m-ovr">Review override + co-sign</label><span class="caption">pharmacy may still refuse — final call is yours, logged.</span></div>
+              </div>
+              <div class="card card-pad" style="border-left:4px solid var(--mp-warning)">
+                <div class="spread"><h3 class="h4">2 · Drug interaction — <span style="color:var(--mp-warning-text)">moderate, allowed</span></h3></div>
+                <p class="mt-s" style="font-size:14px">Amlodipine (current med) × Amoxicillin-clav: none. Paracetamol × current meds: additive hypotensive rare — monitor note printed on Rx.</p>
+              </div>
+              <div class="card card-pad" style="border-left:4px solid var(--mp-danger)">
+                <div class="spread"><h3 class="h4">3 · Batch expiry — <span style="color:var(--mp-danger-text)">BLOCKED</span></h3><span class="badge badge-neutral">expired</span></div>
+                <p class="mt-s" style="font-size:14px">Batch <span class="mono">AP-7729</span> expired 20 Nov. Alternate batch <span class="mono">AP-7731</span> exp 2027-04 · 60 units. <button class="btn btn-quiet" style="min-height:36px">Switch batch</button></p>
+              </div>
+              <div class="card card-pad" style="border-left:4px solid var(--mp-success)">
+                <div class="spread"><h3 class="h4">4 · Stock sufficiency — <span style="color:var(--mp-success-text)">PASS</span></h3></div>
+                <p class="mt-s" style="font-size:14px">14 ≤ 60 and 10 ≤ 300 after row-locked reservation. Dispense deducts atomically; oversell impossible (stock ≥ 0 CHECK).</p>
+              </div>
+
+              <div class="card card-pad">
+                <h3 class="h4">Pharmacist verification</h3>
+                <label class="check" style="min-height:28px"><input type="checkbox"><span style="font-size:14px">Item 1 identity + dose confirmed</span></label>
+                <label class="check" style="min-height:28px"><input type="checkbox"><span style="font-size:14px">Item 2 confirmed</span></label>
+                <label class="check" style="min-height:28px"><input type="checkbox"><span style="font-size:14px">Override justification accepted (or refusal recorded)</span></label>
+                <label class="check" style="min-height:28px"><input type="checkbox" checked><span style="font-size:14px">Final gate — patient counselled, dispense authorised</span></label>
+                <div class="row mt-m">
+                  <button class="btn btn-quiet is-disabled" disabled><span class="spinner" aria-hidden="true"></span> Gate running… (disabled variant)</button>
+                  <a class="btn btn-primary" href="04-dispense-bill.html">Proceed to dispense &amp; bill</a>
+                  <button class="btn btn-danger-outline">Refuse dispense…</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div data-state="skeleton" aria-hidden="true"><div class="card card-pad"><div class="row"><span class="spinner spinner-lg"></span><strong>Running deterministic checks…</strong></div><div class="sk sk-box"></div><div class="sk sk-box" style="width:70%"></div></div></div>
+          <div data-state="empty"><div class="empty"><span class="glyph">🛡</span><h3 class="h3">No safety data</h3><p>Allergy/interaction services returned nothing — <strong>dispense is locked</strong> until results are re-fetched or the doctor is re-queried.</p><button class="btn btn-primary">Re-run all checks</button></div></div>
+          <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt"><strong>Safety engine unreachable.</strong> <span class="muted">AI summary unavailable doesn't matter — deterministic rules are the gate and they failed ⇒ hard stop. Manual supervisor approval flow offered.</span></span><button class="btn btn-primary">Retry</button><button class="btn btn-quiet">Request supervisor</button></div></div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<!-- OVERRIDE REVIEW MODAL -->
+<div class="modal-stage" role="dialog" aria-modal="true" aria-labelledby="mo-t">
+  <div class="modal modal-wide">
+    <div class="modal-head"><span style="font-size:26px" aria-hidden="true">🔐</span><div><h2 id="mo-t" class="modal-title">Override justification — sealed record</h2><p class="caption">Written 21 Nov by Dr. Okafor · activity-log id 88121 · immutable</p></div><label class="modal-x" for="m-ovr" aria-label="Close">✕</label></div>
+    <div class="modal-body">
+      <blockquote class="card card-pad" style="background:var(--mp-surface-muted);font-size:14px">“Culture-confirmed susceptible organism; no equally effective non-β-lactam alternative. Desensitisation protocol attached; cardiology co-sign obtained 23 Nov, Dr. Rahman. Patient counselled — signs regimen sheet.”</blockquote>
+      <div class="row"><button class="btn btn-outline btn-pdf">⬇ Co-sign PDF</button><a class="btn btn-ghost" href="05-patient-detail.html">Open patient chart</a></div>
+      <div class="alert alert-warning"><span class="a-ico">⚖</span><span>Pharmacy refusal is equally logged and returns the Rx to the doctor with your reason.</span></div>
+    </div>
+    <div class="modal-foot"><label class="btn btn-quiet" for="m-ovr">Close</label><label class="btn btn-danger" for="m-ovr">Refuse &amp; return to doctor</label><label class="btn btn-primary" for="m-ovr">Accept override</label></div>
+  </div>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Pharmacy</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link" href="01-dashboard.html">🏠 Dashboard</a><a class="nav-link" href="02-pending-rx.html">📥 Pending Rx</a><a class="nav-link" href="05-inventory.html">📦 Inventory</a><a class="nav-link" href="06-alerts.html">🔔 Alerts</a><a class="nav-link" href="07-invoices.html">🧾 Invoices</a><a class="nav-link" href="08-workflow-tracker.html">🧭 Workflow</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

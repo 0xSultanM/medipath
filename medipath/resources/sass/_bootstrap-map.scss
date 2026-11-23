@@ -1,0 +1,94 @@
+// ============================================================================
+// Bootstrap 5.3 ↔ MediPath token bridge
+// Keeps the Bootstrap components/utilities we retain (grid, forms, modal
+// scaffolding, dropdowns) on the SAME --mp-* values as the design system.
+// Bootstrap's dark mode is driven by data-bs-theme, wired to our theme root.
+// ============================================================================
+
+:root,
+[data-theme='light'],
+[data-bs-theme='light'] {
+  --bs-primary: var(--mp-primary);
+  --bs-primary-rgb: 14, 124, 134;
+  --bs-secondary: var(--mp-ink-muted);
+  --bs-success: var(--mp-success);
+  --bs-warning: var(--mp-warning);
+  --bs-danger: var(--mp-danger);
+  --bs-info: var(--mp-info);
+  --bs-light: var(--mp-surface-muted);
+  --bs-dark: var(--mp-ink);
+
+  --bs-body-bg: var(--mp-bg);
+  --bs-body-color: var(--mp-text-body);
+  --bs-emphasis-color: var(--mp-text-heading);
+  --bs-secondary-color: var(--mp-text-muted);
+  --bs-secondary-bg: var(--mp-surface-muted);
+  --bs-tertiary-bg: var(--mp-surface-muted);
+  --bs-border-color: var(--mp-border);
+  --bs-border-color-translucent: var(--mp-border);
+  --bs-link-color: var(--mp-primary-text);
+  --bs-link-color-rgb: 14, 124, 134;
+  --bs-link-hover-color: var(--mp-primary-hover);
+  --bs-focus-ring-color: var(--mp-focus-ring);
+  --bs-focus-ring-width: 2px;
+  --bs-body-font-family: var(--mp-font);
+  --bs-body-font-size: 16px;
+  --bs-body-line-height: 1.5;
+  --bs-border-radius: var(--mp-radius-input);
+  --bs-border-radius-sm: var(--mp-radius-input);
+  --bs-border-radius-lg: var(--mp-radius-card);
+  --bs-border-radius-pill: var(--mp-radius-pill);
+}
+
+[data-theme='dark'],
+[data-bs-theme='dark'] {
+  --bs-primary: var(--mp-primary);
+  --bs-primary-rgb: 14, 124, 134;
+  --bs-body-bg: var(--mp-bg);
+  --bs-body-color: var(--mp-text-body);
+  --bs-emphasis-color: var(--mp-text-heading);
+  --bs-secondary-color: var(--mp-text-muted);
+  --bs-secondary-bg: var(--mp-surface-muted);
+  --bs-tertiary-bg: var(--mp-surface-muted);
+  --bs-border-color: var(--mp-border);
+  --bs-border-color-translucent: var(--mp-border);
+  --bs-link-color: var(--mp-primary-text);
+  --bs-link-hover-color: var(--mp-primary-hover);
+  --bs-focus-ring-color: var(--mp-focus-ring);
+}
+
+// Bootstrap controls that remain in use inherit the AA verified tokens.
+.form-control,
+.form-select {
+  background-color: var(--mp-surface);
+  border-color: var(--mp-border-strong);
+  color: var(--mp-text-body);
+  min-height: var(--mp-touch);
+  border-radius: var(--mp-radius-input);
+
+  &:focus {
+    border-color: var(--mp-primary);
+    box-shadow: 0 0 0 2px var(--mp-focus-ring);
+  }
+
+  &::placeholder { color: var(--mp-text-muted); }
+}
+
+.form-check-input:checked {
+  background-color: var(--mp-primary);
+  border-color: var(--mp-primary);
+}
+
+.form-check-input:focus {
+  border-color: var(--mp-primary);
+  box-shadow: 0 0 0 2px var(--mp-focus-ring);
+}
+
+// Bootstrap modal backdrop only; the accessible modal itself is ConfirmModal.
+.modal-backdrop { background: var(--mp-overlay); }
+
+// Utilities used by dashboards should follow spacing tokens.
+.gap-1 { gap: var(--mp-space-xs) !important; }
+.gap-2 { gap: var(--mp-space-sm) !important; }
+.gap-3 { gap: var(--mp-space-base) !important; }
+.gap-4 { gap: var(--mp-space-lg) !important; }

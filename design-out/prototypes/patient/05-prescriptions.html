@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · My Prescriptions (Patient) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">FK</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Patient workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Patient portal</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">🏠</span>Dashboard</a>
+      <a class="s-link" href="../guest/02-directory.html"><span class="ico">🔍</span>Find Doctors</a>
+      <a class="s-link" href="03-appointments.html"><span class="ico">🗂</span>My Appointments</a>
+      <a class="s-link" href="04-symptom-checker.html"><span class="ico">🤖</span>AI Symptom Checker</a>
+      <a class="s-link is-active" href="05-prescriptions.html" aria-current="page"><span class="ico">💊</span>My Prescriptions</a>
+      <a class="s-link" href="06-bills.html"><span class="ico">🧾</span>My Bills</a>
+      <a class="s-link" href="07-allergies-medications.html"><span class="ico">⚠️</span>Allergies &amp; Medicines</a>
+      <a class="s-link" href="08-profile-settings.html"><span class="ico">⚙️</span>Settings</a>
+      <a class="s-link" href="../guest/05-login.html"><span class="ico">↩</span>Log out</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar"><h1>My prescriptions</h1><p class="caption mla">Pharmacy-facing notes are never shown here; safety gates already passed at dispensing.</p></div>
+
+    <section class="dataview">
+      <div class="dv-bar">
+        <span class="dv-name">Data view · Prescriptions <span class="muted">(owner-only reads)</span></span>
+        <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-rx" id="dv-rx-s" checked><label for="dv-rx-s">Success</label><input class="st-skeleton" type="radio" name="dv-rx" id="dv-rx-k"><label for="dv-rx-k">Skeleton</label><input class="st-empty" type="radio" name="dv-rx" id="dv-rx-e"><label for="dv-rx-e">Empty</label><input class="st-error" type="radio" name="dv-rx" id="dv-rx-r"><label for="dv-rx-r">Error</label></div>
+      </div>
+      <div class="dv-host">
+        <div data-state="success">
+          <div class="stack">
+            <details class="card" open>
+              <summary style="display:flex;flex-wrap:wrap;gap:var(--mp-space-md);align-items:center;min-height:64px;padding:0 var(--mp-space-base);cursor:pointer;font-weight:600">
+                <span class="mono" style="color:var(--mp-text-muted)">Rx-2231</span>
+                <span>Dr. Ayesha Rahman</span>
+                <span class="badge badge-warning"><span class="dot"></span>Pending dispense</span>
+                <time class="caption mla" datetime="2026-11-21">21 Nov 2026</time>
+                <button class="btn btn-outline btn-pdf is-loading" style="margin-left:8px"><span class="spinner" aria-hidden="true"></span><span class="txt">Preparing PDF…</span></button>
+              </summary>
+              <div class="card-body" style="border-top:1px solid var(--mp-border)">
+                <div class="tbl-wrap"><table class="tbl">
+                  <thead><tr><th>Medicine</th><th>Dosage</th><th>Schedule</th><th>Duration</th><th>Qty</th></tr></thead>
+                  <tbody>
+                    <tr><td data-label="Medicine"><strong>Amlodipine 5 mg</strong> <span class="caption" data-src="db:medicines.generic_name">(Amlodipine besylate)</span></td><td data-label="Dosage">1 tablet</td><td data-label="Schedule">Morning, after food</td><td data-label="Duration">30 days</td><td data-label="Qty" class="num">30</td></tr>
+                    <tr><td data-label="Medicine"><strong>Paracetamol 500 mg</strong></td><td data-label="Dosage">1–2 tablets</td><td data-label="Schedule">Every 6h if fever</td><td data-label="Duration">5 days</td><td data-label="Qty" class="num">10</td></tr>
+                  </tbody>
+                </table></div>
+                <div class="alert alert-info mt-m"><span class="a-ico">📝</span><span><strong>Doctor's note to you:</strong> Continue low-salt diet; bring home BP readings next visit. Serious side effects → stop and call the clinic line.</span></div>
+                <p class="caption mt-s">Safety history: allergy cross-check ✓ passed · interaction check ✓ passed (pairwise matrix). Pharmacy may not alter dosage.</p>
+              </div>
+            </details>
+
+            <details class="card">
+              <summary style="display:flex;flex-wrap:wrap;gap:var(--mp-space-md);align-items:center;min-height:64px;padding:0 var(--mp-space-base);cursor:pointer;font-weight:600">
+                <span class="mono" style="color:var(--mp-text-muted)">Rx-2148</span><span>Dr. Ibrahim Okafor</span><span class="badge badge-success"><span class="dot"></span>Dispensed</span><time class="caption mla" datetime="2026-11-05">05 Nov</time>
+                <button class="btn btn-outline btn-pdf" style="margin-left:8px">⬇ Rx PDF</button>
+              </summary>
+              <div class="card-body" style="border-top:1px solid var(--mp-border)"><p style="font-size:14px">Amoxicillin-clavulanate 625 mg — 7 days, twice daily with food. Full item table + PDF use the shared template all roles see.</p></div>
+            </details>
+
+            <details class="card">
+              <summary style="display:flex;flex-wrap:wrap;gap:var(--mp-space-md);align-items:center;min-height:64px;padding:0 var(--mp-space-base);cursor:pointer;font-weight:600">
+                <span class="mono" style="color:var(--mp-text-muted)">Rx-2063</span><span>Dr. Ayesha Rahman</span><span class="badge badge-neutral">Completed</span><time class="caption mla" datetime="2026-10-12">12 Oct</time>
+                <button class="btn btn-outline btn-pdf">⬇ Rx PDF</button>
+              </summary>
+              <div class="card-body" style="border-top:1px solid var(--mp-border)"><p style="font-size:14px">Atorvastatin 10 mg — ongoing. Discontinued note archived; invoice INV-2026-0098 links here.</p></div>
+            </details>
+          </div>
+        </div>
+        <div data-state="skeleton" aria-hidden="true"><div class="card card-pad"><div class="sk sk-line" style="width:30%"></div><div class="sk sk-box"></div><div class="sk sk-line" style="width:40%"></div></div><div class="card card-pad" style="margin-top:16px"><div class="sk sk-line" style="width:25%"></div></div></div>
+        <div data-state="empty"><div class="empty"><span class="glyph">💊</span><h3 class="h3">No prescriptions yet</h3><p>After a visit, your doctor's prescription lands here with the safety-check history and a printable PDF.</p><a class="btn btn-outline" href="../guest/02-directory.html">Find a doctor</a></div></div>
+        <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt"><strong>Prescriptions couldn't load.</strong> <span class="muted">The counter copy is unaffected.</span></span><button class="btn btn-primary">Retry</button></div></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Patient portal</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link" href="01-dashboard.html">🏠 Dashboard</a><a class="nav-link" href="../guest/02-directory.html">🔍 Find Doctors</a><a class="nav-link" href="03-appointments.html">🗂 My Appointments</a><a class="nav-link" href="04-symptom-checker.html">🤖 AI Symptom Checker</a><a class="nav-link is-active" href="05-prescriptions.html">💊 My Prescriptions</a><a class="nav-link" href="06-bills.html">🧾 My Bills</a><a class="nav-link" href="07-allergies-medications.html">⚠️ Allergies &amp; Medicines</a><a class="nav-link" href="08-profile-settings.html">⚙️ Settings</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

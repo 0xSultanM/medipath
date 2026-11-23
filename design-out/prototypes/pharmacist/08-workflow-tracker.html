@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Clinical Workflow Tracker (Pharmacist) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+<style>/* local: stage reveal via radio tabs keyed to stepper dots */
+  .stage{display:none}.tracker:has(#s3:checked) .stg3,.tracker:has(#s1:checked) .stg1,.tracker:has(#s2:checked) .stg2,.tracker:has(#s4:checked) .stg4,.tracker:has(#s5:checked) .stg5,.tracker:has(#s6:checked) .stg6{display:block}
+  .tracker:has(#s4:checked) .stp4 .dot{outline:2px solid var(--mp-primary)}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">NT</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Pharmacy workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Pharmacy · Nadia T.</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">🏠</span>Dashboard</a>
+      <a class="s-link" href="02-pending-rx.html"><span class="ico">📥</span>Pending Rx</a>
+      <a class="s-link" href="05-inventory.html"><span class="ico">📦</span>Inventory</a>
+      <a class="s-link" href="06-alerts.html"><span class="ico">🔔</span>Alerts</a>
+      <a class="s-link" href="07-invoices.html"><span class="ico">🧾</span>Invoices</a>
+      <a class="s-link is-active" href="08-workflow-tracker.html" aria-current="page"><span class="ico">🧭</span>Workflow</a>
+      <a class="s-link" href="../guest/05-login.html"><span class="ico">↩</span>Log out</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar"><h1>Workflow tracker</h1><span class="badge badge-primary mla" style="min-height:36px">Farhana Karim · <span class="mono">PT-0119</span></span><span class="caption">status = patients.workflow_status</span></div>
+
+    <section class="dataview tracker">
+      <div class="dv-bar"><span class="dv-name">Data view · 6-stage journey <span class="muted">(horizontal ≥640 / vertical <640 · click a stage to jump)</span></span>
+        <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-wf" id="dv-wf-s" checked><label for="dv-wf-s">Success</label><input class="st-skeleton" type="radio" name="dv-wf" id="dv-wf-k"><label for="dv-wf-k">Skeleton</label><input class="st-empty" type="radio" name="dv-wf" id="dv-wf-e"><label for="dv-wf-e">Empty</label><input class="st-error" type="radio" name="dv-wf" id="dv-wf-r"><label for="dv-wf-r">Error</label></div></div>
+      <div class="dv-host">
+        <div data-state="success">
+          <div class="stepper flow6 card card-pad" role="tablist" aria-label="Workflow stages">
+            <input class="hidden-check" type="radio" name="wfs" id="s1"><input class="hidden-check" type="radio" name="wfs" id="s2"><input class="hidden-check" type="radio" name="wfs" id="s3"><input class="hidden-check" type="radio" name="wfs" id="s4" checked><input class="hidden-check" type="radio" name="wfs" id="s5"><input class="hidden-check" type="radio" name="wfs" id="s6">
+            <label class="stp is-done stp1" for="s1"><span class="dot" aria-hidden="true">✓</span><span><span class="s-name">Registration</span><span class="s-sub">09:00 · PT-0119</span></span></label>
+            <label class="stp is-done stp2" for="s2"><span class="dot" aria-hidden="true">✓</span><span><span class="s-name">Prescription</span><span class="s-sub">Rx-2231 · Dr. Rahman</span></span></label>
+            <label class="stp is-viewed stp3" for="s3"><span class="dot" aria-hidden="true">✓</span><span><span class="s-name">Stock Check</span><span class="s-sub">1 item low</span></span></label>
+            <label class="stp is-current stp4" for="s4" aria-current="step"><span class="dot" aria-hidden="true">4</span><span><span class="s-name">Dispense</span><span class="s-sub">in progress at counter</span></span></label>
+            <label class="stp stp5" for="s5"><span class="dot" aria-hidden="true">5</span><span><span class="s-name">Billing</span><span class="s-sub">draft INV-2026-0139</span></span></label>
+            <label class="stp stp6" for="s6"><span class="dot" aria-hidden="true">6</span><span><span class="s-name">Discharged</span><span class="s-sub">after payment</span></span></label>
+          </div>
+
+          <div class="stage stg1 card card-pad mt-m"><h2 class="h4">Registration</h2><p class="caption">Walk-in with claim code WI-4821-KD · self-registered account linked 12 Sep 2025.</p></div>
+          <div class="stage stg2 card card-pad mt-m"><h2 class="h4">Prescription</h2><p class="caption">Rx-2231 · 2 items · allergy ✓ interaction ✓ · doctor co-signed override on earlier Rx-2148.</p><a class="btn btn-ghost" href="05-patient-detail.html" style="margin-top:8px">Open chart</a></div>
+          <div class="stage stg3 card card-pad mt-m"><h2 class="h4">Stock Check</h2><p class="caption">Amlodipine 240 ✓ · Paracetamol 22 (low, will alert at 12 after dispense) · reserved under row lock.</p></div>
+          <div class="stage stg4 card card-pad mt-m"><h2 class="h4">Dispense — now</h2><p class="caption">Safety gate passed; verification rows written. Continue at the counter:</p><div class="row"><a class="btn btn-primary" href="04-dispense-bill.html">Open Dispense &amp; Bill</a><a class="btn btn-outline" href="03-safety-gate.html">Review gate</a></div></div>
+          <div class="stage stg5 card card-pad mt-m"><h2 class="h4">Billing (next)</h2><p class="caption">Draft INV-2026-0139 · {{CURRENCY}} 2,422.50 · currency snapshot pending at save.</p></div>
+          <div class="stage stg6 card card-pad mt-m"><h2 class="h4">Discharged (final)</h2><p class="caption">Atomic with payment confirmation; patients.workflow_status → discharged; summary PDF offered to all roles.</p></div>
+          <p class="caption mt-m">Blocked variant demo: if Stock Check found 0 units, stage 4 would render <span class="badge badge-danger">Blocked · insufficient stock</span> with reason + restock link instead of advancing.</p>
+        </div>
+        <div data-state="skeleton" aria-hidden="true"><div class="card card-pad"><div class="sk" style="height:56px"></div><div class="sk sk-line" style="width:50%"></div></div></div>
+        <div data-state="empty"><div class="empty"><span class="glyph">🧭</span><h3 class="h3">Pick a patient</h3><p>Search a patient ID or scan a claim code to trace their six-stage journey.</p><div class="input-icon mt-s" style="max-width:320px;margin-inline:auto"><span class="ico">🔍</span><input class="input mono" placeholder="PT-… or WI-…-…"></div></div></div>
+        <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt">Journey failed to load.</span><button class="btn btn-primary">Retry</button></div></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Pharmacy</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link" href="01-dashboard.html">🏠 Dashboard</a><a class="nav-link" href="02-pending-rx.html">📥 Pending Rx</a><a class="nav-link" href="05-inventory.html">📦 Inventory</a><a class="nav-link" href="06-alerts.html">🔔 Alerts</a><a class="nav-link" href="07-invoices.html">🧾 Invoices</a><a class="nav-link is-active" href="08-workflow-tracker.html">🧭 Workflow</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

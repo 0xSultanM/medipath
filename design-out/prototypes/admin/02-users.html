@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · User Management (Admin) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+<input type="checkbox" id="m-role" class="hidden-check modal-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">SA</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Admin workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Administration</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">📊</span>Dashboard &amp; Overview</a>
+      <a class="s-link is-active" href="02-users.html" aria-current="page"><span class="ico">👥</span>User Management</a>
+      <a class="s-link" href="03-approvals.html"><span class="ico">✅</span>Approvals &amp; Verification<span class="cnt tabular">7</span></a>
+      <a class="s-link" href="04-doctors.html"><span class="ico">🩺</span>Doctors</a>
+      <a class="s-link" href="05-patients.html"><span class="ico">🧑</span>Patients &amp; Portal</a>
+      <a class="s-link" href="06-appointments.html"><span class="ico">📅</span>Appointments</a>
+      <a class="s-link" href="07-records.html"><span class="ico">🗂</span>Records</a>
+      <a class="s-link" href="08-reports.html"><span class="ico">📈</span>Reports</a>
+      <a class="s-link" href="09-activity.html"><span class="ico">🧾</span>Activity Log</a>
+      <a class="s-link" href="10-faq-reviews.html"><span class="ico">💬</span>FAQs &amp; Reviews</a>
+      <a class="s-link" href="11-safety-console.html"><span class="ico">🛡</span>Emergency &amp; AI Rules</a>
+      <a class="s-link" href="12-settings.html"><span class="ico">⚙️</span>System Settings</a>
+      <a class="s-link" href="13-data.html"><span class="ico">💾</span>Data Management</a>
+      <a class="s-link" href="14-security.html"><span class="ico">🔐</span>Admin Security</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar"><h1>User management</h1><button class="btn btn-primary mla">+ Create internal user</button></div>
+
+    <form class="filter-bar" aria-label="User filters">
+      <div class="field" style="margin:0"><label class="label" for="us-q">Search</label><input class="input" id="us-q" type="search" placeholder="name, email, phone"></div>
+      <div class="field" style="margin:0"><label class="label" for="us-role">Role</label><select class="select" id="us-role"><option>Any (db roles)</option><option>Patient</option><option selected>Doctor</option><option>Pharmacist</option><option>Admin</option></select></div>
+      <div class="field" style="margin:0"><label class="label" for="us-st">Status</label><select class="select" id="us-st"><option>Any</option><option>Pending</option><option>Approved</option><option>Rejected</option><option>Suspended</option><option>Archived</option></select></div>
+      <label class="switch"><input type="checkbox"><span>Last login &gt; 90d</span></label>
+    </form>
+
+    <section class="dataview">
+      <div class="dv-bar"><span class="dv-name">Data view · Directory</span>
+        <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-us" id="dv-us-s" checked><label for="dv-us-s">Success</label><input class="st-skeleton" type="radio" name="dv-us" id="dv-us-k"><label for="dv-us-k">Skeleton</label><input class="st-empty" type="radio" name="dv-us" id="dv-us-e"><label for="dv-us-e">Empty</label><input class="st-error" type="radio" name="dv-us" id="dv-us-r"><label for="dv-us-r">Error</label></div></div>
+      <div class="dv-host">
+        <div data-state="success">
+          <div class="tbl-wrap"><table class="tbl">
+            <caption class="sr-only">Users matching filters</caption>
+            <thead><tr><th>User</th><th>Role</th><th>Status</th><th>Last login</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td data-label="User"><div class="avatar-note"><span class="avatar avatar-initials" style="width:32px;height:32px;font-size:11px" aria-hidden="true">SN</span><div><strong>Dr. Sara Nekisi</strong><div class="caption mono">sara.n@clinic · #CMB-993812</div></div></div></td><td data-label="Role" data-src="db:users.role">Doctor</td><td data-label="Status"><span class="badge badge-warning"><span class="dot"></span>Pending</span></td><td data-label="Last login" class="tabular">22 Nov</td><td data-label="Actions"><div class="row"><a class="btn btn-primary" href="03-approvals.html">Open approval</a><label class="btn btn-ghost" for="m-role">Change role…</label></div></td></tr>
+              <tr><td data-label="User"><div class="avatar-note"><span class="avatar avatar-initials" style="width:32px;height:32px;font-size:11px" aria-hidden="true">FK</span><div><strong>Farhana Karim</strong><div class="caption mono">farhana.k@example.com · <span class="mono">PT-0119</span></div></div></div></td><td data-label="Role" data-src="db:users.role">Patient</td><td data-label="Status"><span class="badge badge-success"><span class="dot"></span>Approved</span></td><td data-label="Last login" class="tabular">today 08:58</td><td data-label="Actions"><div class="row"><label class="btn btn-ghost" for="m-role">Change role…</label><button class="btn btn-ghost" style="color:var(--mp-danger-text)">Suspend</button></div></td></tr>
+              <tr><td data-label="User"><div class="avatar-note"><span class="avatar avatar-initials" style="width:32px;height:32px;font-size:11px" aria-hidden="true">NT</span><div><strong>Nadia T.</strong><div class="caption mono">pharmacy counter</div></div></div></td><td data-label="Role" data-src="db:users.role">Pharmacist</td><td data-label="Status"><span class="badge badge-success"><span class="dot"></span>Approved</span></td><td data-label="Last login" class="tabular">today 07:40</td><td data-label="Actions"><div class="row"><label class="btn btn-ghost" for="m-role">Change role…</label><button class="btn btn-ghost">Sessions</button></div></td></tr>
+              <tr><td data-label="User"><div class="avatar-note"><span class="avatar avatar-initials" style="width:32px;height:32px;font-size:11px" aria-hidden="true">XZ</span><div><strong>Ghost Account</strong><div class="caption">181 days idle</div></div></div></td><td data-label="Role" data-src="db:users.role">Patient</td><td data-label="Status"><span class="badge badge-danger"><span class="dot"></span>Suspended</span></td><td data-label="Last login" class="tabular">18 May</td><td data-label="Actions"><div class="row"><button class="btn btn-ghost">Restore</button><a class="btn btn-ghost" href="04-doctors.html#archive-demo">Archive (typed confirm example)</a></div></td></tr>
+            </tbody>
+          </table>
+          <nav class="pager" aria-label="Pagination"><span class="caption">page 1/63</span><div class="pgs"><a class="pg is-on">1</a><a class="pg">2</a></div><a class="pg" aria-label="Next">→</a></nav></div>
+        </div>
+        <div data-state="skeleton" aria-hidden="true"><div class="card card-pad"><div class="sk sk-line" style="width:25%"></div><div class="sk sk-box"></div><div class="sk sk-box" style="width:80%"></div></div></div>
+        <div data-state="empty"><div class="empty"><span class="glyph">🔍</span><h3 class="h3">No users match</h3><p>Try “Any” for role/status.</p><button class="btn btn-primary">Clear filters</button></div></div>
+        <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt">Directory failed to load.</span><button class="btn btn-primary">Retry</button></div></div>
+      </div>
+    </section>
+
+    <!-- ROLE CHANGE MODAL -->
+    <div class="modal-stage" role="dialog" aria-modal="true" aria-labelledby="mr2-t">
+      <div class="modal">
+        <div class="modal-head"><span style="font-size:26px" aria-hidden="true">🔀</span><div><h2 id="mr2-t" class="modal-title">Change role — Farhana Karim</h2></div><label class="modal-x" for="m-role" aria-label="Close">✕</label></div>
+        <div class="modal-body">
+          <div class="field"><label class="label req">New role</label><select class="select"><option>Patient (current)</option><option>Doctor → requires verification path</option><option>Pharmacist → requires approval</option><option>Admin → internal only</option></select></div>
+          <div class="alert alert-warning"><span class="a-ico">⚖</span><span>Role change is <strong>atomic</strong>: old role profile stays archived for records, workspace route flips immediately, sessions are re-evaluated, and the change appears in the immutable activity log.</span></div>
+          <label class="check"><input type="checkbox"><span style="font-size:14px">Send the user a notification explaining the change</span></label>
+        </div>
+        <div class="modal-foot"><label class="btn btn-quiet" for="m-role">Cancel</label><label class="btn btn-primary" for="m-role">Apply role change</label></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Admin</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link" href="01-dashboard.html">📊 Dashboard</a><a class="nav-link is-active" href="02-users.html">👥 Users</a><a class="nav-link" href="03-approvals.html">✅ Approvals</a><a class="nav-link" href="04-doctors.html">🩺 Doctors</a><a class="nav-link" href="05-patients.html">🧑 Patients</a><a class="nav-link" href="06-appointments.html">📅 Appointments</a><a class="nav-link" href="07-records.html">🗂 Records</a><a class="nav-link" href="08-reports.html">📈 Reports</a><a class="nav-link" href="09-activity.html">🧾 Activity</a><a class="nav-link" href="10-faq-reviews.html">💬 FAQ &amp; Reviews</a><a class="nav-link" href="11-safety-console.html">🛡 Safety</a><a class="nav-link" href="12-settings.html">⚙️ Settings</a><a class="nav-link" href="13-data.html">💾 Data</a><a class="nav-link" href="14-security.html">🔐 Security</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

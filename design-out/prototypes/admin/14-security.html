@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Admin Profile &amp; Security — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">SA</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Admin workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Administration</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">📊</span>Dashboard</a>
+      <a class="s-link" href="02-users.html"><span class="ico">👥</span>Users</a>
+      <a class="s-link" href="03-approvals.html"><span class="ico">✅</span>Approvals</a>
+      <a class="s-link" href="04-doctors.html"><span class="ico">🩺</span>Doctors</a>
+      <a class="s-link" href="05-patients.html"><span class="ico">🧑</span>Patients</a>
+      <a class="s-link" href="06-appointments.html"><span class="ico">📅</span>Appointments</a>
+      <a class="s-link" href="07-records.html"><span class="ico">🗂</span>Records</a>
+      <a class="s-link" href="08-reports.html"><span class="ico">📈</span>Reports</a>
+      <a class="s-link" href="09-activity.html"><span class="ico">🧾</span>Activity Log</a>
+      <a class="s-link" href="10-faq-reviews.html"><span class="ico">💬</span>FAQs &amp; Reviews</a>
+      <a class="s-link" href="11-safety-console.html"><span class="ico">🛡</span>Emergency &amp; AI Rules</a>
+      <a class="s-link" href="12-settings.html"><span class="ico">⚙️</span>System Settings</a>
+      <a class="s-link" href="13-data.html"><span class="ico">💾</span>Data Management</a>
+      <a class="s-link is-active" href="14-security.html" aria-current="page"><span class="ico">🔐</span>Admin Security</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar"><h1>Admin profile &amp; security</h1></div>
+
+    <div class="grid">
+      <section class="c-12 md-c-6 card card-pad">
+        <h2 class="h4">Profile</h2>
+        <div class="field"><label class="label req" for="as-name">Name</label><input class="input" id="as-name" value="Site Admin"></div>
+        <div class="field"><label class="label req" for="as-email">Email</label><input class="input" id="as-email" value="admin@clinic"></div>
+        <h2 class="h4 mt-l">Change password</h2>
+        <div class="grid tight">
+          <div class="field c-12 sm-c-6" style="margin:0"><label class="label req" for="as-pw1">Current</label><input class="input" id="as-pw1" type="password"></div>
+          <div class="field c-12 sm-c-6" style="margin:0"><label class="label req" for="as-pw2">New</label><input class="input" id="as-pw2" type="password"></div>
+        </div>
+        <button class="btn btn-primary mt-m">Update</button>
+      </section>
+
+      <section class="c-12 md-c-6 card card-pad">
+        <h2 class="h4">Idle timeout</h2>
+        <p class="caption">admins are logged out after inactivity (server middleware) — set the window:</p>
+        <div class="row mt-s"><input class="input" type="number" min="5" max="120" value="15" style="width:100px" aria-label="Minutes"><span>minutes of inactivity</span></div>
+        <label class="switch mt-m"><input type="checkbox" checked><span>Require password re-entry for Danger-zone actions</span></label>
+        <label class="switch mt-s"><input type="checkbox"><span>Enforce 2FA (planned — TOTP)</span></label>
+      </section>
+
+      <!-- ACTIVE SESSIONS (data view) -->
+      <section class="c-12 dataview">
+        <div class="dv-bar"><span class="dv-name">Data view · Active sessions <span class="muted">(DB-backed → instant revocation)</span></span>
+          <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-sess" id="dv-sess-s" checked><label for="dv-sess-s">Success</label><input class="st-skeleton" type="radio" name="dv-sess" id="dv-sess-k"><label for="dv-sess-k">Skeleton</label><input class="st-empty" type="radio" name="dv-sess" id="dv-sess-e"><label for="dv-sess-e">Empty</label><input class="st-error" type="radio" name="dv-sess" id="dv-sess-r"><label for="dv-sess-r">Error</label></div></div>
+        <div class="dv-host">
+          <div data-state="success">
+            <div class="tbl-wrap"><table class="tbl">
+              <thead><tr><th>Device</th><th>IP</th><th>Location</th><th>Last active</th><th>This session</th><th>Actions</th></tr></thead>
+              <tbody>
+                <tr><td data-label="Device">Chrome · macOS (this Mac)</td><td data-label="IP" class="mono">10.0.4.12</td><td data-label="Loc">Dhaka, BD</td><td data-label="Active" class="tabular">now</td><td data-label="Current"><span class="badge badge-success"><span class="dot"></span>you</span></td><td data-label="A"><span class="caption">—</span></td></tr>
+                <tr><td data-label="Device">Safari · iPad</td><td data-label="IP" class="mono">10.0.4.31</td><td data-label="Loc">Dhaka, BD</td><td data-label="Active" class="tabular">2h ago</td><td data-label="Current"></td><td data-label="A"><button class="btn btn-danger-outline" style="min-height:36px;padding:4px 12px;font-size:13px">Revoke</button></td></tr>
+                <tr><td data-label="Device">Firefox · Windows</td><td data-label="IP" class="mono">45.x.x.x</td><td data-label="Loc">unknown</td><td data-label="Active" class="tabular">6d ago</td><td data-label="Current"></td><td data-label="A"><button class="btn btn-danger-outline" style="min-height:36px;padding:4px 12px;font-size:13px">Revoke</button></td></tr>
+              </tbody>
+            </table></div>
+            <button class="btn btn-danger btn-block mt-m">Revoke all other sessions</button>
+            <p class="caption mt-s">revocation deletes the session rows — cookies die on next request; the action is logged with actor + target ids.</p>
+          </div>
+          <div data-state="skeleton" aria-hidden="true"><div class="card card-pad"><div class="sk sk-line" style="width:25%"></div><div class="sk sk-box"></div></div></div>
+          <div data-state="empty"><div class="empty"><span class="glyph">🔐</span><p>Only this session is active.</p></div></div>
+          <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt">Sessions list failed to load.</span><button class="btn btn-primary">Retry</button></div></div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Admin</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link" href="01-dashboard.html">📊 Dashboard</a><a class="nav-link" href="02-users.html">👥 Users</a><a class="nav-link" href="03-approvals.html">✅ Approvals</a><a class="nav-link" href="04-doctors.html">🩺 Doctors</a><a class="nav-link" href="05-patients.html">🧑 Patients</a><a class="nav-link" href="06-appointments.html">📅 Appointments</a><a class="nav-link" href="07-records.html">🗂 Records</a><a class="nav-link" href="08-reports.html">📈 Reports</a><a class="nav-link" href="09-activity.html">🧾 Activity</a><a class="nav-link" href="10-faq-reviews.html">💬 FAQ &amp; Reviews</a><a class="nav-link" href="11-safety-console.html">🛡 Safety</a><a class="nav-link" href="12-settings.html">⚙️ Settings</a><a class="nav-link" href="13-data.html">💾 Data</a><a class="nav-link is-active" href="14-security.html">🔐 Security</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

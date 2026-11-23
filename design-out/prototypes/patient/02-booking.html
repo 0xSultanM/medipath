@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Patient Booking — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+<input type="checkbox" id="m-book" class="hidden-check modal-check">
+<input type="checkbox" id="m-taken" class="hidden-check modal-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <span class="badge badge-primary hide-sm" data-src="db:roles.label">Patient</span>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">FK</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Patient workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Patient portal</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">🏠</span>Dashboard</a>
+      <a class="s-link" href="../guest/02-directory.html"><span class="ico">🔍</span>Find Doctors</a>
+      <a class="s-link is-active" href="02-booking.html" aria-current="page"><span class="ico">📅</span>Book Appointment</a>
+      <a class="s-link" href="03-appointments.html"><span class="ico">🗂</span>My Appointments<span class="cnt tabular">2</span></a>
+      <a class="s-link" href="04-symptom-checker.html"><span class="ico">🤖</span>AI Symptom Checker</a>
+      <a class="s-link" href="05-prescriptions.html"><span class="ico">💊</span>My Prescriptions<span class="cnt tabular">1</span></a>
+      <a class="s-link" href="06-bills.html"><span class="ico">🧾</span>My Bills</a>
+      <a class="s-link" href="07-allergies-medications.html"><span class="ico">⚠️</span>Allergies &amp; Medicines</a>
+      <a class="s-link" href="08-profile-settings.html"><span class="ico">⚙️</span>Settings</a>
+      <a class="s-link" href="../guest/05-login.html"><span class="ico">↩</span>Log out</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar"><h1>Book with Dr. Ayesha Rahman</h1><a class="mla caption" href="../guest/02-directory.html">Change doctor</a></div>
+
+    <div class="stepper card card-pad" aria-label="Booking progress">
+      <div class="stp is-done"><span class="dot" aria-hidden="true">✓</span><span><span class="s-name">Doctor</span><span class="s-sub">Rahman · Cardiology</span></span></div>
+      <div class="stp is-current"><span class="dot" aria-hidden="true">2</span><span><span class="s-name">Date &amp; slot</span><span class="s-sub">leave-aware</span></span></div>
+      <div class="stp"><span class="dot" aria-hidden="true">3</span><span><span class="s-name">Reason</span><span class="s-sub">optional details</span></span></div>
+      <div class="stp"><span class="dot" aria-hidden="true">4</span><span><span class="s-name">Confirm</span><span class="s-sub">server locks slot</span></span></div>
+    </div>
+
+    <div class="grid" style="align-items:start">
+      <div class="c-12 lg-c-8 stack">
+        <!-- SLOT PICKER — data view ×4 (COMPONENT-SPEC §8) -->
+        <section class="dataview">
+          <div class="dv-bar">
+            <span class="dv-name">Data view · Slots <span class="muted">(GET /doctors/7/slots?from=2026-11-23 — schedules − leaves − bookings)</span></span>
+            <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-sl" id="dv-sl-s" checked><label for="dv-sl-s">Success</label><input class="st-skeleton" type="radio" name="dv-sl" id="dv-sl-k"><label for="dv-sl-k">Skeleton</label><input class="st-empty" type="radio" name="dv-sl" id="dv-sl-e"><label for="dv-sl-e">Empty</label><input class="st-error" type="radio" name="dv-sl" id="dv-sl-r"><label for="dv-sl-r">Error</label></div>
+          </div>
+          <div class="dv-host">
+            <div data-state="success">
+              <div class="date-strip" role="group" aria-label="Choose date">
+                <button class="date-chip"><span class="dow">Sun</span><span class="dnum">23</span><span class="caption">4 left</span></button>
+                <button class="date-chip is-on" aria-pressed="true"><span class="dow">Mon</span><span class="dnum">24</span><span class="caption">6 left</span></button>
+                <button class="date-chip"><span class="dow">Tue</span><span class="dnum">25</span><span class="caption">9 left</span></button>
+                <button class="date-chip is-off" aria-disabled="true" title="On leave"><span class="dow">Wed</span><span class="dnum">26</span><span class="caption">leave</span></button>
+                <button class="date-chip"><span class="dow">Thu</span><span class="dnum">27</span><span class="caption">3 left</span></button>
+                <button class="date-chip"><span class="dow">Fri</span><span class="dnum">28</span><span class="caption">7 left</span></button>
+                <button class="date-chip is-off" aria-disabled="true"><span class="dow">Sat</span><span class="dnum">29</span><span class="caption">closed</span></button>
+              </div>
+              <div class="slot-grid mt-m" role="radiogroup" aria-label="Choose slot — Monday 24 Nov">
+                <button class="slot is-past" aria-disabled="true">09:00</button>
+                <button class="slot is-booked" aria-disabled="true" aria-label="09:30 booked">09:30</button>
+                <button class="slot">10:00</button><button class="slot">10:30</button>
+                <button class="slot is-leave" aria-disabled="true" aria-label="11:00 on doctor leave">11:00</button>
+                <button class="slot is-booked">11:30</button>
+                <button class="slot">15:00</button><button class="slot">15:30</button>
+                <button class="slot is-on" aria-pressed="true">16:30</button><button class="slot">17:00</button><button class="slot">17:30</button>
+              </div>
+              <div class="slot-legend mt-m"><span class="l-open"><i></i>Open</span><span class="l-sel"><i></i>Selected</span><span class="l-book"><i></i>Booked</span><span class="l-leave"><i></i>On leave</span><span><i style="opacity:.45"></i>Past</span></div>
+            </div>
+            <div data-state="skeleton" aria-hidden="true"><div class="date-strip"><span class="sk" style="height:70px;min-width:64px;border-radius:12px"></span><span class="sk" style="height:70px;min-width:64px;border-radius:12px"></span><span class="sk" style="height:70px;min-width:64px;border-radius:12px"></span><span class="sk" style="height:70px;min-width:64px;border-radius:12px"></span></div><div class="slot-grid mt-m"><span class="sk" style="height:44px"></span><span class="sk" style="height:44px"></span><span class="sk" style="height:44px"></span><span class="sk" style="height:44px"></span><span class="sk" style="height:44px"></span><span class="sk" style="height:44px"></span></div></div>
+            <div data-state="empty"><div class="empty"><span class="glyph">📅</span><h3 class="h3">No open slots in the next 7 days</h3><p>Next opening: <strong>Mon 01 Dec 10:00 AM</strong> · or join the cancellation watchlist.</p><button class="btn btn-outline">Notify me about cancellations</button></div></div>
+            <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt"><strong>Couldn't load availability.</strong> <span class="muted">We never show stale slots for booking.</span></span><button class="btn btn-primary">Retry</button></div></div>
+          </div>
+        </section>
+
+        <!-- REASON + VISIT TYPE -->
+        <div class="card card-pad">
+          <h2 class="h4">Reason for visit</h2>
+          <div class="row mt-s" role="group" aria-label="Visit type">
+            <span class="chip chip-select"><input type="radio" name="vt" hidden checked>Follow-up</span><span class="chip chip-select">New concern</span><span class="chip chip-select">Report review</span>
+          </div>
+          <div class="field"><label class="label" for="bk-reason">Notes for the doctor (optional)</label><textarea class="textarea" id="bk-reason" placeholder="e.g., BP still high on mornings; home readings attached."></textarea><span class="hint">Visible to the doctor before your visit.</span></div>
+        </div>
+      </div>
+
+      <!-- SUMMARY RAIL -->
+      <aside class="c-12 lg-c-4 card card-pad stack" style="gap:var(--mp-space-md);position:sticky;top:calc(var(--mp-navbar-h) + 16px)">
+        <h2 class="h4">Booking summary</h2>
+        <dl>
+          <div class="def-row"><dt>Doctor</dt><dd>Dr. Ayesha Rahman</dd></div>
+          <div class="def-row"><dt>Specialty</dt><dd data-src="db:specialties.name">Cardiology</dd></div>
+          <div class="def-row"><dt>Slot</dt><dd class="tabular">Mon 24 Nov · 4:30 PM</dd></div>
+          <div class="def-row"><dt>Duration</dt><dd class="tabular">30 min</dd></div>
+          <div class="def-row"><dt>Fee</dt><dd class="money">{{CURRENCY}} 1,200.00</dd></div>
+        </dl>
+        <div class="alert alert-warning" style="font-size:13px"><span class="a-ico">⏱</span><span>Slots lock for 90s at confirm; double-booking is impossible (unique active-slot key + row locking).</span></div>
+        <label class="btn btn-primary btn-block" for="m-book">Confirm booking</label>
+        <p class="caption">Demo of the race-condition failure:</p>
+        <label class="btn btn-danger-outline btn-block" for="m-taken">Simulate “slot just taken”</label>
+      </aside>
+    </div>
+  </main>
+</div>
+
+<!-- CONFIRM MODAL -->
+<div class="modal-stage" role="dialog" aria-modal="true" aria-labelledby="mb-t">
+  <div class="modal">
+    <div class="modal-head"><span style="font-size:26px" aria-hidden="true">✅</span><div><h2 id="mb-t" class="modal-title">Confirm — Mon 24 Nov, 4:30 PM</h2><p class="caption">with Dr. Ayesha Rahman · {{CURRENCY}} 1,200.00 at clinic</p></div><label class="modal-x" for="m-book" aria-label="Close">✕</label></div>
+    <div class="modal-body"><p style="font-size:14px">You'll receive a notification and the appointment appears in My Appointments. Cancellation cutoff: 6h before the slot.</p></div>
+    <div class="modal-foot"><label class="btn btn-quiet" for="m-book">Back</label><label class="btn btn-primary" for="m-book">Confirm &amp; lock slot</label><span class="saving-inline"><span class="spinner" aria-hidden="true"></span> locking… (loading variant demo)</span></div>
+  </div>
+</div>
+
+<!-- SLOT-TAKEN ERROR MODAL (server rejected) -->
+<div class="modal-stage" role="alertdialog" aria-modal="true" aria-labelledby="mt-t">
+  <div class="modal modal--danger">
+    <div class="modal-head"><span style="font-size:26px" aria-hidden="true">⛔</span><div><h2 id="mt-t" class="modal-title" style="color:var(--mp-danger-text)">That slot was just booked</h2><p class="caption">Someone confirmed 4:30 PM 12 seconds earlier. Nothing was charged or created for you.</p></div><label class="modal-x" for="m-taken" aria-label="Close">✕</label></div>
+    <div class="modal-body">
+      <div class="field-error"><span aria-hidden="true">✕</span> Server-side conflict on unique(doctor, date, active slot).</div>
+      <strong style="font-size:14px">Nearest alternatives:</strong>
+      <div class="slot-grid"><button class="slot">16:00</button><button class="slot">17:00</button><button class="slot">Tue 10:00</button></div>
+    </div>
+    <div class="modal-foot"><label class="btn btn-quiet" for="m-taken">Close</label><label class="btn btn-primary" for="m-taken">Reload availability</label></div>
+  </div>
+</div>
+
+<!-- MOBILE ROLE DRAWER -->
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Patient portal</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm" aria-label="Mobile workspace">
+    <a class="nav-link" href="01-dashboard.html">🏠 Dashboard</a>
+    <a class="nav-link is-active" href="02-booking.html">📅 Book Appointment</a>
+    <a class="nav-link" href="03-appointments.html">🗂 My Appointments</a>
+    <a class="nav-link" href="04-symptom-checker.html">🤖 AI Symptom Checker</a>
+    <a class="nav-link" href="05-prescriptions.html">💊 My Prescriptions</a>
+    <a class="nav-link" href="06-bills.html">🧾 My Bills</a>
+    <a class="nav-link" href="07-allergies-medications.html">⚠️ Allergies &amp; Medicines</a>
+    <a class="nav-link" href="08-profile-settings.html">⚙️ Settings</a>
+    <a class="nav-link" href="../guest/05-login.html">↩ Log out</a>
+  </nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

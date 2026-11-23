@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Walk-In Registration (Doctor) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">AR</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Doctor workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Dr. Ayesha Rahman</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">🏠</span>Dashboard</a>
+      <a class="s-link" href="02-schedule-leave.html"><span class="ico">🗓</span>Schedule &amp; Leave</a>
+      <a class="s-link" href="03-requests.html"><span class="ico">📥</span>Requests</a>
+      <a class="s-link" href="04-patients.html"><span class="ico">🧑</span>Patients</a>
+      <a class="s-link" href="07-prescription-builder.html"><span class="ico">💊</span>Prescribe</a>
+      <a class="s-link is-active" href="06-walkin.html" aria-current="page"><span class="ico">🚪</span>Walk-In</a>
+      <a class="s-link" href="08-reviews.html"><span class="ico">⭐</span>Reviews</a>
+      <a class="s-link" href="../guest/05-login.html"><span class="ico">↩</span>Log out</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar"><h1>Walk-in registration</h1><span class="caption mla">Creates patient + today's appointment atomically; issue a claim code so the visit later merges with a self-registered account.</span></div>
+
+    <div class="grid" style="align-items:start">
+      <form class="c-12 lg-c-6 card card-pad stack" style="gap:0">
+        <h2 class="h4">Patient details</h2>
+        <div class="grid tight">
+          <div class="field c-12 sm-c-6" style="margin:0"><label class="label req" for="wi-name">Full name</label><input class="input" id="wi-name" placeholder="as on ID"></div>
+          <div class="field c-12 sm-c-6" style="margin:0"><label class="label req" for="wi-phone">Phone</label><input class="input" id="wi-phone" type="tel"></div>
+          <div class="field c-12 sm-c-4" style="margin:0"><label class="label" for="wi-age">Age</label><input class="input" id="wi-age" type="number" min="0" max="120"></div>
+          <div class="field c-12 sm-c-4" style="margin:0"><label class="label" for="wi-sex">Gender</label><select class="select" id="wi-sex"><option>Female</option><option>Male</option><option>Other</option></select></div>
+          <div class="field c-12 sm-c-4" style="margin:0"><label class="label" for="wi-cond">Presenting complaint</label><input class="input" id="wi-cond" placeholder="brief"></div>
+        </div>
+        <div class="alert alert-warning mt-m" style="font-size:13px"><span class="a-ico">🔎</span><span><strong>Same-phone duplicate found</strong> (Nadia I., <span class="mono">PT-0377</span>) — link to that ID instead of creating a new chart? <button class="btn btn-quiet" style="min-height:32px;font-size:13px">Use PT-0377</button> <button class="btn btn-ghost" style="min-height:32px;font-size:13px">Definitely a different person</button></span></div>
+        <h2 class="h4 mt-l">Slot</h2>
+        <div class="grid tight">
+          <div class="field c-12 sm-c-6" style="margin:0"><label class="label req" for="wi-doctor">Doctor</label><select class="select" id="wi-doctor"><option selected>Dr. Ayesha Rahman (me)</option><option>Dr. Ibrahim Okafor</option></select></div>
+          <div class="field c-12 sm-c-6" style="margin:0"><label class="label req" for="wi-slot">Next open slot</label><select class="select" id="wi-slot"><option selected>11:00 AM (in 18 min)</option><option>11:30 AM</option><option>16:00 PM</option></select></div>
+        </div>
+        <div class="row mt-b"><button class="btn btn-primary" type="submit">Register walk-in</button><button class="btn btn-primary is-disabled" disabled><span class="spinner" aria-hidden="true"></span> Creating…</button><span class="caption">Loading + success variants of the same action.</span></div>
+      </form>
+
+      <!-- RECEIPT (success state of the form's data view) -->
+      <section class="c-12 lg-c-6 dataview">
+        <div class="dv-bar"><span class="dv-name">Data view · Registration outcome</span>
+          <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-wi" id="dv-wi-s" checked><label for="dv-wi-s">Success</label><input class="st-skeleton" type="radio" name="dv-wi" id="dv-wi-k"><label for="dv-wi-k">Loading</label><input class="st-empty" type="radio" name="dv-wi" id="dv-wi-e"><label for="dv-wi-e">No draft</label><input class="st-error" type="radio" name="dv-wi" id="dv-wi-r"><label for="dv-wi-r">Error</label></div></div>
+        <div class="dv-host">
+          <div data-state="success">
+            <div class="card card-pad" style="text-align:center" role="status" aria-live="polite">
+              <span class="badge badge-success"><span class="dot"></span>Registered · appointment confirmed</span>
+              <h3 class="h3 mt-m">Claim code</h3>
+              <p class="mono" style="font-size:30px;font-weight:800;color:var(--mp-primary-text);letter-spacing:.06em">WI-4821-KD</p>
+              <p class="caption">Hand this printed/​texted code to the patient. When they self-register later, they enter it to merge the walk-in chart (patient.user_id link).</p>
+              <div class="def-row mt-m" style="justify-content:center;gap:var(--mp-space-xl);border:0"><dd><span class="mono">APT-3402</span></dd><dd>11:00 AM today</dd><dd class="money">{{CURRENCY}} 1,200.00</dd></div>
+              <div class="row" style="justify-content:center"><button class="btn btn-outline btn-pdf">⬇ Receipt PDF</button><button class="btn btn-quiet">Print</button></div>
+            </div>
+          </div>
+          <div data-state="skeleton" aria-hidden="true"><div class="card card-pad"><div class="sk sk-title" style="margin-inline:auto"></div><div class="sk" style="height:40px;width:60%;margin:16px auto;border-radius:8px"></div><div class="sk sk-line" style="width:70%;margin-inline:auto"></div></div></div>
+          <div data-state="empty"><div class="empty"><span class="glyph">🚪</span><p>Register a walk-in — the receipt and claim code appear here.</p></div></div>
+          <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt"><strong>Transaction rolled back</strong> — nothing was saved (patient, slot and code are one atomic unit). Slot 11:00 was already taken.</span><button class="btn btn-primary">Pick another slot</button></div></div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Doctor workspace</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link" href="01-dashboard.html">🏠 Dashboard</a><a class="nav-link" href="02-schedule-leave.html">🗓 Schedule &amp; Leave</a><a class="nav-link" href="03-requests.html">📥 Requests</a><a class="nav-link" href="04-patients.html">🧑 Patients</a><a class="nav-link" href="07-prescription-builder.html">💊 Prescribe</a><a class="nav-link is-active" href="06-walkin.html">🚪 Walk-In</a><a class="nav-link" href="08-reviews.html">⭐ Reviews</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

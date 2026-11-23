@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Appointment History (Patient) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">FK</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Patient workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Patient portal</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">🏠</span>Dashboard</a>
+      <a class="s-link" href="../guest/02-directory.html"><span class="ico">🔍</span>Find Doctors</a>
+      <a class="s-link is-active" href="03-appointments.html" aria-current="page"><span class="ico">🗂</span>My Appointments</a>
+      <a class="s-link" href="04-symptom-checker.html"><span class="ico">🤖</span>AI Symptom Checker</a>
+      <a class="s-link" href="05-prescriptions.html"><span class="ico">💊</span>My Prescriptions</a>
+      <a class="s-link" href="06-bills.html"><span class="ico">🧾</span>My Bills</a>
+      <a class="s-link" href="07-allergies-medications.html"><span class="ico">⚠️</span>Allergies &amp; Medicines</a>
+      <a class="s-link" href="08-profile-settings.html"><span class="ico">⚙️</span>Settings</a>
+      <a class="s-link" href="../guest/05-login.html"><span class="ico">↩</span>Log out</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main">
+    <div class="topbar"><h1>My appointments</h1><a class="btn btn-primary mla" href="02-booking.html">New booking</a></div>
+
+    <!-- whole history is one data view; status tabs inside -->
+    <section class="dataview tabbed">
+      <div class="dv-bar">
+        <span class="dv-name">Data view · Appointment history <span class="muted">(server pagination + filters)</span></span>
+        <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-ap" id="dv-ap-s" checked><label for="dv-ap-s">Success</label><input class="st-skeleton" type="radio" name="dv-ap" id="dv-ap-k"><label for="dv-ap-k">Skeleton</label><input class="st-empty" type="radio" name="dv-ap" id="dv-ap-e"><label for="dv-ap-e">Empty</label><input class="st-error" type="radio" name="dv-ap" id="dv-ap-r"><label for="dv-ap-r">Error</label></div>
+      </div>
+      <div class="dv-host">
+        <div data-state="success">
+          <div class="tabs" role="tablist">
+            <input class="t1" type="radio" name="htab" id="h1" checked><label class="tab1" for="h1" role="tab">All <span class="cnt">14</span></label>
+            <input class="t2" type="radio" name="htab" id="h2"><label class="tab2" for="h2" role="tab">Pending <span class="cnt">1</span></label>
+            <input class="t3" type="radio" name="htab" id="h3"><label class="tab3" for="h3" role="tab">Accepted <span class="cnt">2</span></label>
+            <input class="t4" type="radio" name="htab" id="h4"><label class="tab4" for="h4" role="tab">Completed <span class="cnt">9</span></label>
+            <input class="t5" type="radio" name="htab" id="h5"><label class="tab5" for="h5" role="tab">Cancelled <span class="cnt">2</span></label>
+          </div>
+
+          <!-- ALL -->
+          <div class="pane p1">
+            <div class="tbl-wrap"><table class="tbl">
+              <caption class="sr-only">All appointments</caption>
+              <thead><tr><th><span class="sort">Date</span></th><th>Doctor</th><th>Status</th><th>Fee</th><th>Actions</th></tr></thead>
+              <tbody>
+                <tr><td data-label="Date" class="tabular"><strong>Mon 24 Nov · 4:30 PM</strong></td><td data-label="Doctor">Dr. Rahman <span class="caption" data-src="db:specialties.name">Cardiology</span></td><td data-label="Status"><span class="badge badge-success"><span class="dot"></span>Accepted</span></td><td data-label="Fee" class="num money">{{CURRENCY}} 1,200.00</td><td data-label="Actions"><div class="row"><a class="btn btn-ghost" href="02-booking.html?mode=reschedule">Reschedule</a><a class="btn btn-ghost" href="01-dashboard.html" style="color:var(--mp-danger-text)">Cancel</a></div></td></tr>
+                <tr><td data-label="Date" class="tabular">Sun 30 Nov · 10:00 AM</td><td data-label="Doctor">Dr. Mensah <span class="caption" data-src="db:specialties.name">Pediatrics</span> (for child)</td><td data-label="Status"><span class="badge badge-warning"><span class="dot"></span>Pending</span></td><td data-label="Fee" class="num money">{{CURRENCY}} 900.00</td><td data-label="Actions"><a class="btn btn-ghost" href="#" style="color:var(--mp-danger-text)">Cancel</a></td></tr>
+                <tr><td data-label="Date" class="tabular">Fri 21 Nov · 11:00 AM</td><td data-label="Doctor">Dr. Rahman</td><td data-label="Status"><span class="badge badge-info">Completed</span></td><td data-label="Fee" class="num money">{{CURRENCY}} 1,200.00</td><td data-label="Actions"><div class="row"><a class="btn btn-ghost" href="05-prescriptions.html">View prescription</a><a class="btn btn-ghost" href="03-appointments.html">Leave review</a><a class="btn btn-ghost" href="02-booking.html">Book follow-up</a></div></td></tr>
+                <tr><td data-label="Date" class="tabular">Tue 11 Nov · 9:30 AM</td><td data-label="Doctor">Dr. Costa <span class="caption" data-src="db:specialties.name">Cardiology</span></td><td data-label="Status"><span class="badge badge-neutral">Cancelled</span></td><td data-label="Fee" class="num money muted">{{CURRENCY}} 0.00</td><td data-label="Actions"><a class="btn btn-ghost" href="02-booking.html">Rebook</a></td></tr>
+                <tr><td data-label="Date" class="tabular">Wed 22 Oct · 5:00 PM</td><td data-label="Doctor">Dr. Haddad <span class="caption" data-src="db:specialties.name">Dermatology</span></td><td data-label="Status"><span class="badge badge-danger">Rejected</span></td><td data-label="Fee" class="num money muted">—</td><td data-label="Actions"><span class="caption">Doctor on emergency leave that day</span></td></tr>
+              </tbody>
+            </table>
+            <nav class="pager" aria-label="Pagination"><span class="caption">Showing 5 of 14</span><div class="pgs"><a class="pg is-on">1</a><a class="pg">2</a><a class="pg">3</a></div><a class="pg" aria-label="Next">→</a></nav></div>
+          </div>
+
+          <!-- PENDING -->
+          <div class="pane p2" hidden>
+            <div class="card card-pad spread" style="flex-wrap:wrap"><div><strong>Sun 30 Nov · 10:00 AM</strong> — Dr. Mensah (for child) <div class="caption mt-s">Awaiting doctor response · typical reply within 12h</div></div><div class="row"><a class="btn btn-ghost" href="01-dashboard.html" style="color:var(--mp-danger-text)">Cancel request</a></div></div>
+          </div>
+
+          <!-- ACCEPTED -->
+          <div class="pane p3" hidden>
+            <div class="card card-pad spread" style="flex-wrap:wrap"><div><strong class="tabular">Mon 24 Nov · 4:30 PM</strong> — Dr. Rahman, Central Clinic Room 204<div class="caption mt-s">Arrive 10 min early; bring home BP log.</div></div><div class="row"><a class="btn btn-outline" href="02-booking.html?mode=reschedule">Reschedule</a><a class="btn btn-ghost" href="01-dashboard.html" style="color:var(--mp-danger-text)">Cancel</a></div></div>
+          </div>
+
+          <!-- COMPLETED: contextual actions showcase -->
+          <div class="pane p4" hidden>
+            <div class="card card-pad stack" style="gap:var(--mp-space-md)">
+              <div class="spread" style="flex-wrap:wrap"><div><strong class="tabular">Fri 21 Nov · 11:00 AM</strong> — Dr. Rahman <span class="badge badge-info">Completed</span><div class="caption mt-s">Diagnosis notes and prescription available below.</div></div><div class="row"><a class="btn btn-outline" href="05-prescriptions.html">View prescription</a><a class="btn btn-outline" href="#">Leave review ⭐</a><a class="btn btn-primary" href="02-booking.html">Book follow-up</a></div></div>
+              <div class="divider"></div>
+              <div class="spread" style="flex-wrap:wrap"><div><strong class="tabular">Fri 07 Nov · 10:00 AM</strong> — Dr. Rahman <span class="badge badge-info">Completed</span> <span class="caption">reviewed ★★★★★ by you</span></div><a class="btn btn-outline" href="05-prescriptions.html">View prescription</a></div>
+            </div>
+          </div>
+
+          <!-- CANCELLED -->
+          <div class="pane p5" hidden>
+            <div class="card card-pad" style="font-size:14px">Tue 11 Nov · 9:30 AM — Dr. Costa <span class="badge badge-neutral">Cancelled</span> <span class="caption">(by you: schedule conflict)</span> · <a href="02-booking.html">Rebook</a></div>
+          </div>
+        </div>
+        <div data-state="skeleton" aria-hidden="true"><div class="card card-pad"><div class="sk sk-line" style="width:25%"></div><div class="sk sk-box"></div><div class="sk sk-box"></div><div class="sk sk-box" style="width:80%"></div></div></div>
+        <div data-state="empty"><div class="empty"><span class="glyph">📭</span><h3 class="h3">No appointments yet</h3><p>When you book, your visits and outcomes stay here — searchable by doctor, status and month.</p><a class="btn btn-primary" href="../guest/02-directory.html">Find a doctor</a></div></div>
+        <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt"><strong>Couldn't load your appointments.</strong> <span class="muted">Filters kept; nothing was changed.</span></span><button class="btn btn-primary">Retry</button></div></div>
+      </div>
+    </section>
+    <p class="caption mt-m">Status labels map <span class="mono">appointments.status</span> enum → badge tones (SPEC §6). Actions shown are exactly the contextual set allowed per status.</p>
+  </main>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Patient portal</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link" href="01-dashboard.html">🏠 Dashboard</a><a class="nav-link" href="../guest/02-directory.html">🔍 Find Doctors</a><a class="nav-link is-active" href="03-appointments.html">🗂 My Appointments</a><a class="nav-link" href="04-symptom-checker.html">🤖 AI Symptom Checker</a><a class="nav-link" href="05-prescriptions.html">💊 My Prescriptions</a><a class="nav-link" href="06-bills.html">🧾 My Bills</a><a class="nav-link" href="07-allergies-medications.html">⚠️ Allergies &amp; Medicines</a><a class="nav-link" href="08-profile-settings.html">⚙️ Settings</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

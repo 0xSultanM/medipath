@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Dispense &amp; Bill (Pharmacist) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+<style>/* local: live-total demo mirrors qty change via CSS counter illusion (static prototype values) */</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">NT</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Pharmacy workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Pharmacy · Nadia T.</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">🏠</span>Dashboard</a>
+      <a class="s-link" href="02-pending-rx.html"><span class="ico">📥</span>Pending Rx<span class="cnt tabular">6</span></a>
+      <a class="s-link" href="05-inventory.html"><span class="ico">📦</span>Inventory</a>
+      <a class="s-link" href="06-alerts.html"><span class="ico">🔔</span>Stock &amp; Expiry</a>
+      <a class="s-link is-active" href="04-dispense-bill.html" aria-current="page"><span class="ico">🧾</span>Dispense &amp; Bill</a>
+      <a class="s-link" href="07-invoices.html"><span class="ico">🧾</span>Invoices</a>
+      <a class="s-link" href="08-workflow-tracker.html"><span class="ico">🧭</span>Workflow</a>
+      <a class="s-link" href="../guest/05-login.html"><span class="ico">↩</span>Log out</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar"><h1>Dispense &amp; bill — <span class="mono" style="font-size:18px">Rx-2231</span></h1><span class="badge badge-primary mla" style="min-height:36px">Farhana Karim · <span class="mono">PT-0119</span></span></div>
+
+    <div class="grid" style="align-items:start">
+      <!-- BILL BUILDER -->
+      <section class="c-12 lg-c-7 card card-pad">
+        <h2 class="h4">Itemised dispense</h2>
+        <div class="tbl-wrap mt-m" style="border:0"><table class="tbl">
+          <thead><tr><th>Medicine · batch</th><th>Stock</th><th>Qty dispensed</th><th>Unit</th><th>Line</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Medicine"><strong>Amlodipine 5 mg</strong><div class="caption mono">batch AP-7731 · exp 2027-04</div></td><td data-label="Stock"><span class="badge badge-success">240</span></td><td data-label="Qty"><input class="input" style="min-height:36px;width:80px" value="30"><div class="caption">after: 210 · low-alert ≥ 10 ok</div></td><td data-label="Unit" class="num money">{{CURRENCY}} 40.00</td><td data-label="Line" class="num money">{{CURRENCY}} 1,200.00</td></tr>
+            <tr><td data-label="Medicine"><strong>Paracetamol 500 mg</strong><div class="caption mono">batch PC-118 · exp 2027-10</div></td><td data-label="Stock"><span class="badge badge-warning">22 low</span></td><td data-label="Qty"><input class="input" style="min-height:36px;width:80px" value="10"><div class="caption">after: 12 — triggers restock alert</div></td><td data-label="Unit" class="num money">{{CURRENCY}} 15.00</td><td data-label="Line" class="num money">{{CURRENCY}} 150.00</td></tr>
+            <tr><td data-label="Medicine"><strong>Consultation — Dr. Rahman</strong><div class="caption">linked APT-3391</div></td><td data-label="Stock"><span class="caption">—</span></td><td data-label="Qty"><input class="input" style="min-height:36px;width:80px" value="1"></td><td data-label="Unit" class="num money">{{CURRENCY}} 1,200.00</td><td data-label="Line" class="num money">{{CURRENCY}} 1,200.00</td></tr>
+          </tbody>
+        </table></div>
+        <div class="grid tight mt-l">
+          <div class="field c-12 sm-c-4" style="margin:0"><label class="label" for="dc-kind">Discount kind</label><select class="select" id="dc-kind"><option>None</option><option selected>Percentage</option><option>Flat amount</option></select></div>
+          <div class="field c-12 sm-c-4" style="margin:0"><label class="label" for="dc-val">Value</label><input class="input" id="dc-val" value="5"></div>
+          <div class="field c-12 sm-c-4" style="margin:0"><label class="label req" for="pm">Payment method</label><select class="select" id="pm"><option>Cash</option><option>Card</option><option>Mobile banking</option><option>Insurance</option><option>Bank transfer</option></select></div>
+        </div>
+        <button class="btn btn-primary btn-block mt-l">Dispense · deduct stock · create invoice · discharge</button>
+        <p class="caption mt-s">7-step atomic transaction (lock rows → validate stock → deduct → write ledger → bill → Rx status → notify) — any failure rolls back all.</p>
+      </section>
+
+      <!-- LIVE TOTALS + RECEIPT DATA VIEW -->
+      <aside class="c-12 lg-c-5 stack">
+        <div class="card card-pad">
+          <h2 class="h4">Live totals</h2>
+          <div class="def-row mt-s"><dt>Gross subtotal</dt><dd class="money">{{CURRENCY}} 2,550.00</dd></div>
+          <div class="def-row"><dt>Discount (5%)</dt><dd class="money" style="color:var(--mp-danger-text)">− {{CURRENCY}} 127.50</dd></div>
+          <div class="def-row" style="border-bottom:2px solid var(--mp-text-heading)"><dt><strong>Net total</strong></dt><dd class="money" style="font-size:20px">{{CURRENCY}} 2,422.50</dd></div>
+          <p class="caption mt-s">Currency snapshot <span class="mono">BDT-equivalent token</span> stored per invoice — later settings changes never rewrite history.</p>
+        </div>
+
+        <section class="dataview">
+          <div class="dv-bar"><span class="dv-name">Data view · Outcome</span>
+            <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-dp" id="dv-dp-s" checked><label for="dv-dp-s">Receipt</label><input class="st-skeleton" type="radio" name="dv-dp" id="dv-dp-k"><label for="dv-dp-k">Processing</label><input class="st-empty" type="radio" name="dv-dp" id="dv-dp-e"><label for="dv-dp-e">Draft</label><input class="st-error" type="radio" name="dv-dp" id="dv-dp-r"><label for="dv-dp-r">Stock race</label></div></div>
+          <div class="dv-host">
+            <div data-state="success" role="status" aria-live="polite">
+              <div class="card card-pad" style="text-align:center">
+                <span class="badge badge-success"><span class="dot"></span>Dispensed &amp; billed</span>
+                <h3 class="h3 mt-m">INV-2026-0139</h3>
+                <div class="def-row" style="justify-content:center"><dd><strong class="money">{{CURRENCY}} 2,422.50</strong> · Cash · <span class="badge badge-warning"><span class="dot"></span>Pending payment</span></dd></div>
+                <p class="caption">Rx-2231 → dispensed · workflow advanced to “Dispense”; patient notified with the PDF link.</p>
+                <div class="row" style="justify-content:center"><button class="btn btn-outline btn-pdf">⬇ Invoice PDF</button><a class="btn btn-ghost" href="08-workflow-tracker.html">Track workflow</a></div>
+              </div>
+            </div>
+            <div data-state="skeleton" aria-hidden="true"><div class="card card-pad"><div class="row" style="justify-content:center"><span class="spinner spinner-lg"></span></div><div class="sk sk-line" style="width:50%;margin-inline:auto"></div><div class="sk sk-box"></div></div></div>
+            <div data-state="empty"><div class="empty"><span class="glyph">🧾</span><p>Draft — totals recalc as quantities change.</p></div></div>
+            <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt"><strong>Stock changed during checkout.</strong> <span class="muted">Transaction rolled back — Paracetamol was reserved by another counter (21 left). Retry will re-price with fresh rows.</span></span><button class="btn btn-primary">Retry with fresh stock</button></div></div>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </main>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Pharmacy</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link" href="01-dashboard.html">🏠 Dashboard</a><a class="nav-link" href="02-pending-rx.html">📥 Pending Rx</a><a class="nav-link" href="05-inventory.html">📦 Inventory</a><a class="nav-link" href="06-alerts.html">🔔 Alerts</a><a class="nav-link is-active" href="04-dispense-bill.html">🧾 Dispense &amp; Bill</a><a class="nav-link" href="07-invoices.html">🧾 Invoices</a><a class="nav-link" href="08-workflow-tracker.html">🧭 Workflow</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

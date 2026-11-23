@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Allergies &amp; Medications (Patient) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+<input type="checkbox" id="m-delal" class="hidden-check modal-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">FK</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Patient workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Patient portal</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">🏠</span>Dashboard</a>
+      <a class="s-link" href="../guest/02-directory.html"><span class="ico">🔍</span>Find Doctors</a>
+      <a class="s-link" href="03-appointments.html"><span class="ico">🗂</span>My Appointments</a>
+      <a class="s-link" href="04-symptom-checker.html"><span class="ico">🤖</span>AI Symptom Checker</a>
+      <a class="s-link" href="05-prescriptions.html"><span class="ico">💊</span>My Prescriptions</a>
+      <a class="s-link" href="06-bills.html"><span class="ico">🧾</span>My Bills</a>
+      <a class="s-link is-active" href="07-allergies-medications.html" aria-current="page"><span class="ico">⚠️</span>Allergies &amp; Medicines</a>
+      <a class="s-link" href="08-profile-settings.html"><span class="ico">⚙️</span>Settings</a>
+      <a class="s-link" href="../guest/05-login.html"><span class="ico">↩</span>Log out</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar"><h1>Allergies &amp; current medications</h1></div>
+    <div class="alert alert-info"><span class="a-ico">🛡</span><span>Doctors and the pharmacy safety gate read these lists <strong>live</strong> at prescribing &amp; dispensing — ingredient, drug-class and alias matching. Keeping them current is the single most protective thing you can do.</span></div>
+
+    <section class="dataview tabbed">
+      <div class="dv-bar">
+        <span class="dv-name">Data view · Safety lists</span>
+        <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-al" id="dv-al-s" checked><label for="dv-al-s">Success</label><input class="st-skeleton" type="radio" name="dv-al" id="dv-al-k"><label for="dv-al-k">Skeleton</label><input class="st-empty" type="radio" name="dv-al" id="dv-al-e"><label for="dv-al-e">Empty</label><input class="st-error" type="radio" name="dv-al" id="dv-al-r"><label for="dv-al-r">Error</label></div>
+      </div>
+      <div class="dv-host">
+        <div data-state="success">
+          <div class="tabs" role="tablist">
+            <input class="t1" type="radio" name="altab" id="a1" checked><label class="tab1" for="a1">Allergies <span class="cnt">3</span></label>
+            <input class="t2" type="radio" name="altab" id="a2"><label class="tab2" for="a2">Current medications <span class="cnt">2</span></label>
+          </div>
+
+          <!-- ALLERGIES -->
+          <div class="pane p1">
+            <div class="tbl-wrap mt-m"><table class="tbl">
+              <caption class="sr-only">Your allergies</caption>
+              <thead><tr><th>Substance</th><th>Category</th><th>Severity</th><th>Reaction</th><th>Actions</th></tr></thead>
+              <tbody>
+                <tr><td data-label="Substance"><strong>Penicillin</strong> <span class="caption">aliases: Amoxicillin, Ampicillin (class match)</span></td><td data-label="Category" data-src="db:patient_allergies.category">Medicine</td><td data-label="Severity"><span class="badge badge-danger"><span class="dot"></span>Severe</span></td><td data-label="Reaction">Rash + throat tightness (2019)</td><td data-label="Actions"><div class="row"><button class="btn btn-ghost">Edit</button><label class="btn btn-ghost" for="m-delal" style="color:var(--mp-danger-text)">Remove</label></div></td></tr>
+                <tr><td data-label="Substance"><strong>Sulfa drugs</strong></td><td data-label="Category">Medicine</td><td data-label="Severity"><span class="badge badge-warning"><span class="dot"></span>Moderate</span></td><td data-label="Reaction">Hives</td><td data-label="Actions"><div class="row"><button class="btn btn-ghost">Edit</button><button class="btn btn-ghost" style="color:var(--mp-danger-text)">Remove</button></div></td></tr>
+                <tr><td data-label="Substance"><strong>Peanuts</strong></td><td data-label="Category" data-src="db:patient_allergies.category">Food</td><td data-label="Severity"><span class="badge badge-danger"><span class="dot"></span>Severe</span></td><td data-label="Reaction">Anaphylaxis — carries injector</td><td data-label="Actions"><div class="row"><button class="btn btn-ghost">Edit</button><button class="btn btn-ghost" style="color:var(--mp-danger-text)">Remove</button></div></td></tr>
+              </tbody>
+            </table></div>
+            <div class="card card-pad mt-m" aria-labelledby="addal">
+              <h2 id="addal" class="h4">Add allergy</h2>
+              <div class="grid tight mt-s">
+                <div class="field c-12 sm-c-4 is-invalid" style="margin:0"><label class="label req" for="al-sub">Substance</label><input class="input" id="al-sub" aria-invalid="true" aria-describedby="al-sub-err" value=""><span class="field-error" id="al-sub-err"><span aria-hidden="true">✕</span> Substance is required.</span></div>
+                <div class="field c-12 sm-c-4" style="margin:0"><label class="label" for="al-cat">Category</label><select class="select" id="al-cat"><option>Medicine</option><option>Food</option><option>Environmental</option></select></div>
+                <div class="field c-12 sm-c-4" style="margin:0"><label class="label req" for="al-sev">Severity</label>
+                  <div class="row" id="al-sev" role="radiogroup" aria-label="Severity"><span class="chip chip-select">Mild</span><span class="chip chip-select"><strong>✓</strong> Moderate</span><span class="chip chip-select">Severe</span></div>
+                </div>
+                <div class="field c-12" style="margin:0"><label class="label" for="al-note">Reaction notes</label><input class="input" id="al-note" placeholder="What happened, when, how treated"></div>
+                <div class="c-12"><button class="btn btn-primary">Add allergy</button><span class="saving-inline" style="margin-left:12px"><span class="spinner" aria-hidden="true"></span> Saving…</span><span class="caption" style="margin-left:12px">Duplicate (active) substance rejected server-side: uniq(patient_id, substance).</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CURRENT MEDICATIONS -->
+          <div class="pane p2" hidden>
+            <div class="tbl-wrap mt-m"><table class="tbl">
+              <caption class="sr-only">Current medications</caption>
+              <thead><tr><th>Medicine</th><th>Dosage</th><th>Frequency</th><th>Since</th><th>Active</th></tr></thead>
+              <tbody>
+                <tr><td data-label="Medicine"><strong>Amlodipine 5 mg</strong> <span class="caption">prescribed by Dr. Rahman (Rx-2063)</span></td><td data-label="Dosage">1 tablet</td><td data-label="Frequency">Daily, morning</td><td data-label="Since" class="tabular">12 Oct 2026</td><td data-label="Active"><label class="switch"><input type="checkbox" checked><span class="sr-only">Active</span></label></td></tr>
+                <tr><td data-label="Medicine"><strong>Vitamin D3 1000 IU</strong> <span class="caption">OTC — self-reported</span></td><td data-label="Dosage">1 capsule</td><td data-label="Frequency">Daily</td><td data-label="Since" class="tabular">01 Sep 2026</td><td data-label="Active"><label class="switch"><input type="checkbox" checked><span class="sr-only">Active</span></label></td></tr>
+              </tbody>
+            </table></div>
+            <div class="card card-pad mt-m">
+              <h2 class="h4">Add medication you take elsewhere</h2>
+              <div class="grid tight mt-s">
+                <div class="field c-12 sm-c-4" style="margin:0"><label class="label req" for="md-name">Name</label><input class="input" id="md-name" placeholder="as printed on the box"></div>
+                <div class="field c-12 sm-c-3" style="margin:0"><label class="label" for="md-dose">Dosage</label><input class="input" id="md-dose" placeholder="e.g., 10 mg"></div>
+                <div class="field c-12 sm-c-3" style="margin:0"><label class="label" for="md-freq">Frequency</label><input class="input" id="md-freq" placeholder="twice daily"></div>
+                <div class="field c-12 sm-c-2" style="margin:0"><label class="label" for="md-start">Start date</label><input class="input" id="md-start" type="date"></div>
+                <div class="c-12"><button class="btn btn-primary">Add medication</button></div>
+              </div>
+              <p class="caption mt-s">Names feed the pairwise <span class="mono">drug_interactions</span> matrix; unmapped names still show to the doctor verbatim.</p>
+            </div>
+          </div>
+        </div>
+        <div data-state="skeleton" aria-hidden="true"><div class="card card-pad"><div class="sk sk-line" style="width:25%"></div><div class="sk sk-box"></div><div class="sk sk-box" style="width:80%"></div></div></div>
+        <div data-state="empty"><div class="empty"><span class="glyph">🛡</span><h3 class="h3">Nothing recorded yet</h3><p>Add any allergy or medicine you take — the prescribing doctor and pharmacy gates will see them instantly.</p></div></div>
+        <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt"><strong>Safety lists couldn't load.</strong> <span class="muted">Prescribing is still safe — clinicians see a “lists unavailable” warning and must re-verify manually.</span></span><button class="btn btn-primary">Retry</button></div></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- REMOVE-ALLERGY CONFIRM (danger tone — NOT emergency red: removing an allergy is a routine destructive act) -->
+<div class="modal-stage" role="dialog" aria-modal="true" aria-labelledby="md-t">
+  <div class="modal modal--danger">
+    <div class="modal-head"><span style="font-size:26px" aria-hidden="true">🗑</span><div><h2 id="md-t" class="modal-title">Remove “Penicillin — Severe”?</h2></div><label class="modal-x" for="m-delal" aria-label="Close">✕</label></div>
+    <div class="modal-body">
+      <p style="font-size:14px">Future prescriptions will stop auto-blocking penicillin-class drugs. The change is recorded <em>who/when</em> in the activity log and shown as a history line to doctors.</p>
+      <div class="dep-counts"><span class="dep">3 active prescriptions reviewed</span><span class="dep">12 historical Rx checked against it</span></div>
+    </div>
+    <div class="modal-foot"><label class="btn btn-quiet" for="m-delal">Keep it</label><label class="btn btn-danger" for="m-delal">Remove allergy</label></div>
+  </div>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Patient portal</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link" href="01-dashboard.html">🏠 Dashboard</a><a class="nav-link" href="../guest/02-directory.html">🔍 Find Doctors</a><a class="nav-link" href="03-appointments.html">🗂 My Appointments</a><a class="nav-link" href="04-symptom-checker.html">🤖 AI Symptom Checker</a><a class="nav-link" href="05-prescriptions.html">💊 My Prescriptions</a><a class="nav-link" href="06-bills.html">🧾 My Bills</a><a class="nav-link is-active" href="07-allergies-medications.html">⚠️ Allergies &amp; Medicines</a><a class="nav-link" href="08-profile-settings.html">⚙️ Settings</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

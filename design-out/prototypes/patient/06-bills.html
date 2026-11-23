@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · My Bills (Patient) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">FK</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Patient workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Patient portal</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">🏠</span>Dashboard</a>
+      <a class="s-link" href="../guest/02-directory.html"><span class="ico">🔍</span>Find Doctors</a>
+      <a class="s-link" href="03-appointments.html"><span class="ico">🗂</span>My Appointments</a>
+      <a class="s-link" href="04-symptom-checker.html"><span class="ico">🤖</span>AI Symptom Checker</a>
+      <a class="s-link" href="05-prescriptions.html"><span class="ico">💊</span>My Prescriptions</a>
+      <a class="s-link is-active" href="06-bills.html" aria-current="page"><span class="ico">🧾</span>My Bills</a>
+      <a class="s-link" href="07-allergies-medications.html"><span class="ico">⚠️</span>Allergies &amp; Medicines</a>
+      <a class="s-link" href="08-profile-settings.html"><span class="ico">⚙️</span>Settings</a>
+      <a class="s-link" href="../guest/05-login.html"><span class="ico">↩</span>Log out</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar"><h1>My bills</h1><p class="caption mla">Every invoice is keyed to patient ID <span class="mono">PT-0119</span> — never to a name.</p></div>
+
+    <div class="grid">
+      <div class="kpi c-12 sm-c-4 is-alert"><span class="k-label">Outstanding</span><span class="k-value money" style="font-size:22px">{{CURRENCY}} 2,450.00</span><span class="k-foot"><span class="k-delta down">2 unpaid invoices</span></span></div>
+      <div class="kpi c-12 sm-c-4"><span class="k-label">Paid (2026)</span><span class="k-value money" style="font-size:22px">{{CURRENCY}} 18,300.00</span><span class="k-foot"><span class="k-delta up">▲ 12 invoices</span></span></div>
+      <div class="kpi c-12 sm-c-4"><span class="k-label">Refunded</span><span class="k-value money" style="font-size:22px">({{CURRENCY}} 800.00)</span><span class="k-foot"><span class="k-delta flat">1 refund · INV-2026-0071</span></span></div>
+    </div>
+
+    <!-- Invoice ID search -->
+    <form class="card card-pad row" aria-label="Find an invoice">
+      <div class="field" style="flex:1;min-width:200px;margin:0"><label class="label" for="inv-q">Search by invoice ID or medicine</label><input class="input mono" id="inv-q" placeholder="e.g., INV-2026-0139"></div>
+      <button class="btn btn-primary mt-b" style="margin-top:26px">Search</button>
+      <p class="caption mt-s" style="width:100%">Results are scoped server-side to your patient ID; nothing cross-account leaks.</p>
+    </form>
+
+    <section class="dataview">
+      <div class="dv-bar">
+        <span class="dv-name">Data view · Invoices</span>
+        <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-bl" id="dv-bl-s" checked><label for="dv-bl-s">Success</label><input class="st-skeleton" type="radio" name="dv-bl" id="dv-bl-k"><label for="dv-bl-k">Skeleton</label><input class="st-empty" type="radio" name="dv-bl" id="dv-bl-e"><label for="dv-bl-e">Empty</label><input class="st-error" type="radio" name="dv-bl" id="dv-bl-r"><label for="dv-bl-r">Error</label></div>
+      </div>
+      <div class="dv-host">
+        <div data-state="success">
+          <div class="tbl-wrap"><table class="tbl">
+            <caption class="sr-only">Invoice history</caption>
+            <thead><tr><th>Invoice</th><th>Date</th><th>Items</th><th>Net total</th><th>Payment</th><th>Status</th><th>PDF</th></tr></thead>
+            <tbody>
+              <tr><td data-label="Invoice" class="mono">INV-2026-0139</td><td data-label="Date" class="tabular">21 Nov</td><td data-label="Items">Amlodipine 5mg ×30, Paracetamol ×10</td><td data-label="Net" class="num money">{{CURRENCY}} 2,450.00</td><td data-label="Method">Cash</td><td data-label="Status"><span class="badge badge-warning"><span class="dot"></span>Pending</span></td><td data-label="PDF"><button class="btn btn-outline btn-pdf">⬇ PDF</button></td></tr>
+              <tr><td data-label="Invoice" class="mono">INV-2026-0128</td><td data-label="Date" class="tabular">14 Nov</td><td data-label="Items">Consultation — Dr. Rahman</td><td data-label="Net" class="num money">{{CURRENCY}} 1,200.00</td><td data-label="Method">Card</td><td data-label="Status"><span class="badge badge-success"><span class="dot"></span>Paid</span></td><td data-label="PDF"><button class="btn btn-outline btn-pdf">⬇ PDF</button></td></tr>
+              <tr><td data-label="Invoice" class="mono">INV-2026-0112</td><td data-label="Date" class="tabular">05 Nov</td><td data-label="Items">Amoxicillin-clav 625mg ×14</td><td data-label="Net" class="num money">{{CURRENCY}} 1,610.00</td><td data-label="Method">Mobile banking</td><td data-label="Status"><span class="badge badge-success"><span class="dot"></span>Paid</span></td><td data-label="PDF"><button class="btn btn-outline btn-pdf"><span class="spinner" aria-hidden="true"></span> Preparing…</button></td></tr>
+              <tr><td data-label="Invoice" class="mono">INV-2026-0071</td><td data-label="Date" class="tabular">18 Oct</td><td data-label="Items">Dup. charge (cancelled)</td><td data-label="Net" class="num money" style="color:var(--mp-danger-text)">({{CURRENCY}} 800.00)</td><td data-label="Method">Bank transfer</td><td data-label="Status"><span class="badge badge-info">Refunded</span></td><td data-label="PDF"><button class="btn btn-outline btn-pdf">⬇ PDF</button></td></tr>
+            </tbody>
+          </table>
+          <nav class="pager" aria-label="Pagination"><span class="caption">12 invoices · page 1/3</span><div class="pgs"><a class="pg is-on">1</a><a class="pg">2</a><a class="pg">3</a></div><a class="pg" aria-label="Next">→</a></nav></div>
+        </div>
+        <div data-state="skeleton" aria-hidden="true"><div class="card card-pad"><div class="sk sk-line" style="width:30%"></div><div class="sk sk-box"></div><div class="sk sk-box"></div></div></div>
+        <div data-state="empty"><div class="empty"><span class="glyph">🧾</span><h3 class="h3">No invoices found</h3><p>Invoices appear the moment a pharmacist dispenses your prescription and bills it atomically.</p></div></div>
+        <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt"><strong>Billing list failed to load.</strong> <span class="muted">Search term kept.</span></span><button class="btn btn-primary">Retry</button></div></div>
+      </div>
+    </section>
+    <p class="caption">Payment methods &amp; statuses map <span class="mono">invoices.payment_method/status</span> enums → badge family (SPEC §6). Amounts use the clinic currency token; PDF builder is shared with pharmacy &amp; admin.</p>
+  </main>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Patient portal</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link" href="01-dashboard.html">🏠 Dashboard</a><a class="nav-link" href="../guest/02-directory.html">🔍 Find Doctors</a><a class="nav-link" href="03-appointments.html">🗂 My Appointments</a><a class="nav-link" href="04-symptom-checker.html">🤖 AI Symptom Checker</a><a class="nav-link" href="05-prescriptions.html">💊 My Prescriptions</a><a class="nav-link is-active" href="06-bills.html">🧾 My Bills</a><a class="nav-link" href="07-allergies-medications.html">⚠️ Allergies &amp; Medicines</a><a class="nav-link" href="08-profile-settings.html">⚙️ Settings</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

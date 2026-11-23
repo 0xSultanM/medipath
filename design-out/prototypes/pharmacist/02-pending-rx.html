@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Pending Prescriptions Queue (Pharmacist) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">NT</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Pharmacy workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Pharmacy · Nadia T.</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">🏠</span>Dashboard</a>
+      <a class="s-link is-active" href="02-pending-rx.html" aria-current="page"><span class="ico">📥</span>Pending Prescriptions<span class="cnt tabular">6</span></a>
+      <a class="s-link" href="05-inventory.html"><span class="ico">📦</span>Inventory</a>
+      <a class="s-link" href="06-alerts.html"><span class="ico">🔔</span>Stock &amp; Expiry<span class="cnt tabular">3</span></a>
+      <a class="s-link" href="07-invoices.html"><span class="ico">🧾</span>Invoices</a>
+      <a class="s-link" href="08-workflow-tracker.html"><span class="ico">🧭</span>Workflow Tracker</a>
+      <a class="s-link" href="../guest/05-login.html"><span class="ico">↩</span>Log out</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar"><h1>Pending prescriptions</h1></div>
+    <form class="filter-bar" aria-label="Queue filters">
+      <div class="field" style="margin:0"><label class="label" for="q">Search</label><input class="input" id="q" type="search" placeholder="Rx ID, patient ID or name"></div>
+      <div class="field f-hide-sm" style="margin:0"><label class="label" for="qf-stock">Stock status</label><select class="select" id="qf-stock"><option>Any</option><option selected>Partial / missing</option><option>All in stock</option></select></div>
+      <div class="field f-hide-sm" style="margin:0"><label class="label" for="qf-age">Waiting</label><select class="select" id="qf-age"><option>Any</option><option>&gt; 24h</option></select></div>
+      <div class="field" style="margin:0"><label class="label" for="qf-sort">Sort</label><select class="select" id="qf-sort"><option selected>Oldest first</option><option>Newest first</option></select></div>
+    </form>
+
+    <section class="dataview">
+      <div class="dv-bar"><span class="dv-name">Data view · Queue <span class="muted">(server pagination)</span></span>
+        <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-q" id="dv-q-s" checked><label for="dv-q-s">Success</label><input class="st-skeleton" type="radio" name="dv-q" id="dv-q-k"><label for="dv-q-k">Skeleton</label><input class="st-empty" type="radio" name="dv-q" id="dv-q-e"><label for="dv-q-e">Empty</label><input class="st-error" type="radio" name="dv-q" id="dv-q-r"><label for="dv-q-r">Error</label></div></div>
+      <div class="dv-host">
+        <div data-state="success">
+          <div class="tbl-wrap"><table class="tbl">
+            <caption class="sr-only">Pending prescriptions</caption>
+            <thead><tr><th>Rx</th><th>Patient</th><th>Doctor</th><th>Items</th><th>Stock check</th><th>Waiting</th><th></th></tr></thead>
+            <tbody>
+              <tr><td data-label="Rx" class="mono">Rx-2148</td><td data-label="Patient">Farhana Karim <span class="mono caption">PT-0119</span></td><td data-label="Doctor">Dr. Okafor</td><td data-label="Items" class="num">2</td><td data-label="Stock"><span class="badge badge-danger"><span class="dot"></span>1 short · ⚠ override re-check</span></td><td data-label="Waiting" class="tabular">26h</td><td data-label="Action"><a class="btn btn-primary" href="03-safety-gate.html">Review &amp; Dispense</a></td></tr>
+              <tr><td data-label="Rx" class="mono">Rx-2231</td><td data-label="Patient">Farhana Karim <span class="mono caption">PT-0119</span></td><td data-label="Doctor">Dr. Rahman</td><td data-label="Items" class="num">2</td><td data-label="Stock"><span class="badge badge-success"><span class="dot"></span>all available</span></td><td data-label="Waiting" class="tabular">2h</td><td data-label="Action"><a class="btn btn-primary" href="03-safety-gate.html">Review &amp; Dispense</a></td></tr>
+              <tr><td data-label="Rx" class="mono">Rx-2233</td><td data-label="Patient">Devi Rao <span class="mono caption">PT-0288</span></td><td data-label="Doctor">Dr. Rahman</td><td data-label="Items" class="num">1</td><td data-label="Stock"><span class="badge badge-warning"><span class="dot"></span>low stock (4)</span></td><td data-label="Waiting" class="tabular">55m</td><td data-label="Action"><a class="btn btn-outline" href="03-safety-gate.html">Review</a></td></tr>
+              <tr><td data-label="Rx" class="mono">Rx-2234</td><td data-label="Patient">Anwar Hussain <span class="mono caption">PT-0155</span></td><td data-label="Doctor">Dr. Rahman</td><td data-label="Items" class="num">1</td><td data-label="Stock"><span class="badge badge-neutral">—</span></td><td data-label="Waiting" class="tabular">12m</td><td data-label="Action"><a class="btn btn-outline" href="03-safety-gate.html">Review</a></td></tr>
+            </tbody>
+          </table>
+          <nav class="pager" aria-label="Pagination"><span class="caption">6 in queue · page 1/2</span><div class="pgs"><a class="pg is-on">1</a><a class="pg">2</a></div><a class="pg" aria-label="Next">→</a></nav></div>
+        </div>
+        <div data-state="skeleton" aria-hidden="true"><div class="card card-pad"><div class="sk sk-line" style="width:25%"></div><div class="sk sk-box"></div><div class="sk sk-box" style="width:80%"></div></div></div>
+        <div data-state="empty"><div class="empty"><span class="glyph">✅</span><h3 class="h3">Queue empty</h3><p>Nothing awaits dispensing — new prescriptions arrive here the moment a doctor saves them.</p><a class="btn btn-outline" href="06-alerts.html">Check stock alerts instead</a></div></div>
+        <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt"><strong>Queue failed to load.</strong> <span class="muted">Filters kept.</span></span><button class="btn btn-primary">Retry</button></div></div>
+      </div>
+    </section>
+    <p class="caption">Stock flags are advisory pre-checks; the authoritative gates run again in the Pre-Dispense Safety Gate (double-check pattern for atomic dispense).</p>
+  </main>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Pharmacy</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link" href="01-dashboard.html">🏠 Dashboard</a><a class="nav-link is-active" href="02-pending-rx.html">📥 Pending Rx</a><a class="nav-link" href="05-inventory.html">📦 Inventory</a><a class="nav-link" href="06-alerts.html">🔔 Alerts</a><a class="nav-link" href="07-invoices.html">🧾 Invoices</a><a class="nav-link" href="08-workflow-tracker.html">🧭 Workflow</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

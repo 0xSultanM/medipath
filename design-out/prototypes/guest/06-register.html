@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Register (Guest) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+<style>
+  /* screen-local: role-conditional sections (all CSS, via :has on the role radios) */
+  .role-only{display:none}
+  .reg:has(#r-doctor:checked) .only-doctor,
+  .reg:has(#r-pharm:checked)  .only-pharm,
+  .reg:has(#r-patient:checked) .only-patient{display:block}
+  .role-pick{cursor:pointer}
+  .role-pick input{position:absolute;opacity:0}
+  .reg:has(#r-doctor:checked) .pick-doctor,
+  .reg:has(#r-pharm:checked) .pick-pharm,
+  .reg:has(#r-patient:checked) .pick-patient{border-color:var(--mp-primary);background:var(--mp-primary-weak-bg);box-shadow:0 0 0 2px var(--mp-primary)}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner">
+    <a class="brand" href="01-landing.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a class="nav-link" href="02-directory.html">Find Doctors</a>
+      <a class="nav-link" href="04-emergency.html">Emergency Info</a>
+    </nav>
+    <div class="row mla">
+      <label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label>
+      <a class="btn btn-ghost hide-sm" href="05-login.html">Log in</a>
+      <label class="btn btn-quiet btn-ico burger" for="drawer-nav" data-controls="drawer-nav" aria-label="Open menu">☰</label>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="container stack" style="padding-block:var(--mp-space-xl);max-width:760px;margin-inline:auto">
+  <div>
+    <h1>Create your account</h1>
+    <p class="muted" style="font-size:14px">One atomic step — your profile, role and credentials are created together or not at all. Doctor &amp; pharmacist accounts go to admin approval before sign-in works.</p>
+  </div>
+
+  <form class="reg card card-pad stack" style="gap:0">
+    <!-- ===== ROLE PICKER (labels rendered from DB role enums — data-src) ===== -->
+    <fieldset class="fgroup" style="border:0;padding:0;margin:0">
+      <legend class="label req" style="padding:0;margin-bottom:var(--mp-space-sm)">I am registering as</legend>
+      <div class="grid tight" role="radiogroup" aria-label="Account role">
+        <label class="role-pick card card-pad c-12 sm-c-4">
+          <input type="radio" name="role" id="r-patient" checked><span style="font-size:24px" aria-hidden="true">🧑</span>
+          <strong data-src="db:roles.label">Patient</strong>
+          <span class="caption">Book doctors, AI symptom check, prescriptions &amp; bills</span>
+        </label>
+        <label class="role-pick card card-pad c-12 sm-c-4">
+          <input type="radio" name="role" id="r-doctor"><span style="font-size:24px" aria-hidden="true">🩺</span>
+          <strong data-src="db:roles.label">Doctor</strong>
+          <span class="caption">Needs license review by clinic admin</span>
+        </label>
+        <label class="role-pick card card-pad c-12 sm-c-4">
+          <input type="radio" name="role" id="r-pharm"><span style="font-size:24px" aria-hidden="true">💊</span>
+          <strong data-src="db:roles.label">Pharmacist</strong>
+          <span class="caption">Needs license review before dispensing</span>
+        </label>
+      </div>
+      <p class="caption mt-s">Admin accounts are created internally — not available here.</p>
+    </fieldset>
+
+    <div class="divider"></div>
+
+    <!-- ===== SHARED FIELDS ===== -->
+    <div class="grid tight">
+      <div class="field c-12 sm-c-6"><label class="label req" for="rg-name">Full name</label><input class="input" id="rg-name" autocomplete="name" placeholder="e.g., Farhana Karim"></div>
+      <div class="field c-12 sm-c-6"><label class="label req" for="rg-phone">Phone</label><input class="input" id="rg-phone" type="tel" autocomplete="tel" placeholder="+880 17XX-XXXXXX"></div>
+      <div class="field c-12"><label class="label req" for="rg-email">Email</label><input class="input" id="rg-email" type="email" autocomplete="email" placeholder="you@example.com">
+        <span class="hint">Used for appointment reminders and password reset only.</span>
+      </div>
+      <div class="field c-12 sm-c-6">
+        <label class="label req" for="rg-pw">Password</label>
+        <input class="input" id="rg-pw" type="password" autocomplete="new-password" aria-describedby="pw-rules">
+        <ul id="pw-rules" class="caption" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:2px">
+          <li>✓ 8+ characters</li><li>✓ number</li><li>✓ symbol</li><li>✗ uppercase — add one</li>
+        </ul>
+      </div>
+      <div class="field c-12 sm-c-6"><label class="label req" for="rg-pw2">Confirm password</label><input class="input" id="rg-pw2" type="password" autocomplete="new-password"></div>
+    </div>
+
+    <!-- ===== CONDITIONAL: PATIENT (walk-in claim code) ===== -->
+    <div class="role-only only-patient alert alert-info" role="group" aria-label="Patient extras">
+      <span class="a-ico">ℹ</span>
+      <span><strong>Visited as a walk-in before?</strong> Enter the claim code from your paper receipt to merge that history into this account.</span>
+      <input class="input" style="max-width:220px" id="rg-claim" placeholder="e.g., WI-4821-KD" aria-label="Walk-in claim code (optional)">
+    </div>
+    <div class="role-only only-patient grid tight">
+      <div class="field c-12 sm-c-4"><label class="label" for="rg-age">Age</label><input class="input" id="rg-age" type="number" min="0" max="120"></div>
+      <div class="field c-12 sm-c-4"><label class="label" for="rg-sex">Gender</label><select class="select" id="rg-sex"><option>Prefer not to say</option><option>Female</option><option>Male</option><option>Other</option></select></div>
+      <div class="field c-12 sm-c-4"><label class="label" for="rg-cond">Primary condition (optional)</label><input class="input" id="rg-cond" placeholder="e.g., hypertension"></div>
+    </div>
+
+    <!-- ===== CONDITIONAL: DOCTOR (license + upload + specialty from DB) ===== -->
+    <div class="role-only only-doctor stack" style="gap:0" role="group" aria-label="Doctor credentials">
+      <div class="alert alert-warning"><span class="a-ico">🪪</span><span>Your account stays <strong>pending</strong> until the admin verifies your license. You'll track progress on the approval screen.</span></div>
+      <div class="grid tight">
+        <div class="field c-12 sm-c-6"><label class="label req" for="rg-lic">License number</label><input class="input mono" id="rg-lic" placeholder="CMB-XXXXXX"></div>
+        <div class="field c-12 sm-c-6"><label class="label req" for="rg-auth">License authority</label>
+          <select class="select" id="rg-auth"><!-- populated from DB list of authorities --><option>Central Medical Board</option><option>Dental Council</option><option>Nursing Council</option></select></div>
+        <div class="field c-12 sm-c-6"><label class="label req" for="rg-spec">Specialty</label>
+          <!-- db specialties.name — never a hardcoded option set in views -->
+          <select class="select" id="rg-spec" data-src="db:specialties.name"><option>Cardiology</option><option>Pediatrics</option><option>Dermatology</option><option>Internal Medicine</option><option>Orthopedic Surgery</option><option>OB-GYN</option></select></div>
+        <div class="field c-12 sm-c-6"><label class="label req" for="rg-upl">License document (PDF/JPG ≤5 MB)</label>
+          <input class="input" id="rg-upl" type="file" accept=".pdf,.jpg,.jpeg,.png" style="padding:10px">
+          <span class="hint">Stored on a private disk; only admins in the approval queue can preview.</span></div>
+        <div class="field c-12 sm-c-6"><label class="label" for="rg-exp">Years of experience</label><input class="input" id="rg-exp" type="number" min="0" max="70"></div>
+        <div class="field c-12 sm-c-6"><label class="label req" for="rg-fee">Consultation fee ({{CURRENCY}})</label><input class="input money" id="rg-fee" inputmode="decimal" placeholder="1,200.00"><span class="hint">Symbol comes from the clinic's global currency setting.</span></div>
+      </div>
+    </div>
+
+    <!-- ===== CONDITIONAL: PHARMACIST ===== -->
+    <div class="role-only only-pharm stack" style="gap:0" role="group" aria-label="Pharmacist credentials">
+      <div class="alert alert-warning"><span class="a-ico">🪪</span><span>Dispensing access begins after admin approval of your pharmacy license.</span></div>
+      <div class="grid tight">
+        <div class="field c-12 sm-c-6"><label class="label req" for="rg-plic">Pharmacy license number</label><input class="input mono" id="rg-plic" placeholder="PL-XXXXXX"></div>
+        <div class="field c-12 sm-c-6"><label class="label req" for="rg-pauth">Issuing authority</label><select class="select" id="rg-pauth"><option>Pharmacy Council</option></select></div>
+        <div class="field c-12"><label class="label req" for="rg-pupl">License document (PDF/JPG ≤5 MB)</label><input class="input" id="rg-pupl" type="file" accept=".pdf,.jpg,.jpeg,.png" style="padding:10px"></div>
+      </div>
+    </div>
+
+    <label class="check mt-m"><input type="checkbox" required><span style="font-size:14px">I agree to the <a href="#">Terms</a> and <a href="#">Health Data Privacy Notice</a>, and confirm the credentials above are mine.</span></label>
+
+    <!-- Submit states demo (feedback §15) -->
+    <div class="row mt-b">
+      <button class="btn btn-primary" type="submit" style="flex:1;min-width:200px">Create account</button>
+      <button class="btn btn-primary is-disabled" disabled aria-label="Submitting"><span class="spinner" aria-hidden="true"></span> Creating…</button>
+    </div>
+    <!-- Error + Retry example -->
+    <div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt"><strong>Couldn't create the account.</strong> <span class="muted">Nothing was saved — the transaction rolled back completely. Check the file size (≤5 MB) and try again.</span></span><button class="btn btn-primary">Retry</button></div>
+    <p class="caption mt-m">Success path: patients land in the portal instantly; doctors &amp; pharmacists continue to the <a href="08-pending.html">Pending Approval screen</a>.</p>
+  </form>
+</main>
+
+<footer class="mt-xl" style="background:var(--mp-surface);border-top:1px solid var(--mp-border)">
+  <div class="container" style="padding-block:var(--mp-space-lg)"><p class="caption">Registration is atomic: user row + role profile + credential doc are committed in one transaction, and an approval-queue item + activity log entry are written server-side.</p></div>
+</footer>
+
+<aside class="drawer drawer--nav" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">MediPath menu</span><label class="x-close" for="drawer-nav" aria-label="Close menu">✕</label></div>
+  <nav class="stack-sm" aria-label="Mobile primary" style="margin-top:var(--mp-space-md)">
+    <a class="nav-link" href="02-directory.html">Find Doctors</a>
+    <a class="nav-link" href="04-emergency.html">Emergency Info</a>
+    <a class="btn btn-primary btn-block" href="05-login.html">Log in</a>
+    <a class="btn btn-emergency btn-block" href="04-emergency.html">🚨 Emergency — call now</a>
+  </nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

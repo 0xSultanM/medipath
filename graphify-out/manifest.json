@@ -1,0 +1,2672 @@
+{
+  "design-out/prototypes/assets/app.js": {
+    "mtime": 1795378702.9667194,
+    "seen": 1795387454.2767968,
+    "ast_hash": "083416c82483442f60a719ea9140eab2",
+    "semantic_hash": "083416c82483442f60a719ea9140eab2"
+  },
+  "medipath/app/Enums/AccountStatus.php": {
+    "mtime": 1795384643.5096533,
+    "seen": 1795387454.276801,
+    "ast_hash": "7df53ef6b133c98903c40b0003a9694a",
+    "semantic_hash": "7df53ef6b133c98903c40b0003a9694a"
+  },
+  "medipath/app/Enums/AllergySeverity.php": {
+    "mtime": 1795384643.5478506,
+    "seen": 1795387454.276803,
+    "ast_hash": "243ac189d9d1bddf5de3279f43da7c1d",
+    "semantic_hash": "243ac189d9d1bddf5de3279f43da7c1d"
+  },
+  "medipath/app/Enums/AppointmentStatus.php": {
+    "mtime": 1795384643.5241237,
+    "seen": 1795387454.2768042,
+    "ast_hash": "d42dc9cfd5d63d8c6fe1943ad2f7d1c9",
+    "semantic_hash": "d42dc9cfd5d63d8c6fe1943ad2f7d1c9"
+  },
+  "medipath/app/Enums/InteractionSeverity.php": {
+    "mtime": 1795384643.5380208,
+    "seen": 1795387454.2768052,
+    "ast_hash": "2b88b0bf37936e986d5e7ebaa4424fcf",
+    "semantic_hash": "2b88b0bf37936e986d5e7ebaa4424fcf"
+  },
+  "medipath/app/Enums/InventoryLedgerType.php": {
+    "mtime": 1795384643.5137305,
+    "seen": 1795387454.2768052,
+    "ast_hash": "94717bb3e6912f7f5694b1d1533a0707",
+    "semantic_hash": "94717bb3e6912f7f5694b1d1533a0707"
+  },
+  "medipath/app/Enums/ModerationStatus.php": {
+    "mtime": 1795384643.5324802,
+    "seen": 1795387454.2768059,
+    "ast_hash": "9f61db700383b04813986e2cf3fceb0c",
+    "semantic_hash": "9f61db700383b04813986e2cf3fceb0c"
+  },
+  "medipath/app/Enums/PaymentStatus.php": {
+    "mtime": 1795384643.5601642,
+    "seen": 1795387454.2768068,
+    "ast_hash": "704a65158e0de119f1028ad8723217bc",
+    "semantic_hash": "704a65158e0de119f1028ad8723217bc"
+  },
+  "medipath/app/Enums/PrescriptionStatus.php": {
+    "mtime": 1795384643.5284078,
+    "seen": 1795387454.276808,
+    "ast_hash": "d6c6bf1b2a7bbb3e506cc4f110fde1a4",
+    "semantic_hash": "d6c6bf1b2a7bbb3e506cc4f110fde1a4"
+  },
+  "medipath/app/Enums/UserRole.php": {
+    "mtime": 1795384643.5561445,
+    "seen": 1795387454.276809,
+    "ast_hash": "d73e6ec2e14a06721750e304dbc23429",
+    "semantic_hash": "d73e6ec2e14a06721750e304dbc23429"
+  },
+  "medipath/app/Enums/VerificationStatus.php": {
+    "mtime": 1795384643.5434067,
+    "seen": 1795387454.27681,
+    "ast_hash": "9581ca7ca6921de421a73a0db9ebea10",
+    "semantic_hash": "9581ca7ca6921de421a73a0db9ebea10"
+  },
+  "medipath/app/Events/NotificationCreated.php": {
+    "mtime": 1795384644.2151425,
+    "seen": 1795387454.2768111,
+    "ast_hash": "f36af75e50e9a9033bcb50c3f48d3829",
+    "semantic_hash": "f36af75e50e9a9033bcb50c3f48d3829"
+  },
+  "medipath/app/Events/SettingsChanged.php": {
+    "mtime": 1795384718.3006449,
+    "seen": 1795387454.2768111,
+    "ast_hash": "373b4f908303021c31f57f163bc88ddc",
+    "semantic_hash": "373b4f908303021c31f57f163bc88ddc"
+  },
+  "medipath/app/Exceptions/ImmutableRecordException.php": {
+    "mtime": 1795384643.913477,
+    "seen": 1795387454.276812,
+    "ast_hash": "45fef659b55e3f86b5c93c2e6c766b2c",
+    "semantic_hash": "45fef659b55e3f86b5c93c2e6c766b2c"
+  },
+  "medipath/app/Http/Controllers/Auth/AuthenticatedSessionController.php": {
+    "mtime": 1795387560.3014712,
+    "seen": 1795389043.412656,
+    "ast_hash": "7a0b296b78a4d3528d45beb758da3ef5",
+    "semantic_hash": "7a0b296b78a4d3528d45beb758da3ef5"
+  },
+  "medipath/app/Http/Controllers/Auth/PasswordResetController.php": {
+    "mtime": 1795386567.209977,
+    "seen": 1795387454.276814,
+    "ast_hash": "40066d346beadc695b78fbb385fb1954",
+    "semantic_hash": "40066d346beadc695b78fbb385fb1954"
+  },
+  "medipath/app/Http/Controllers/Auth/RegisteredUserController.php": {
+    "mtime": 1795387560.3017073,
+    "seen": 1795389043.412659,
+    "ast_hash": "9923ca6be93cde2d411d3065138f8b05",
+    "semantic_hash": "9923ca6be93cde2d411d3065138f8b05"
+  },
+  "medipath/app/Http/Controllers/ChatbotController.php": {
+    "mtime": 1795386567.3281178,
+    "seen": 1795387454.276816,
+    "ast_hash": "2c50a44b4a123ffe293898187552f248",
+    "semantic_hash": "2c50a44b4a123ffe293898187552f248"
+  },
+  "medipath/app/Http/Controllers/Controller.php": {
+    "mtime": 1773507240.0,
+    "seen": 1795387454.276816,
+    "ast_hash": "25a307335c0719bc9a91b3f7babd186d",
+    "semantic_hash": "25a307335c0719bc9a91b3f7babd186d"
+  },
+  "medipath/app/Http/Controllers/DevDesignSystemController.php": {
+    "mtime": 1795384644.102539,
+    "seen": 1795387454.2768168,
+    "ast_hash": "214f909e9475f2f6be6ed6f587ef3777",
+    "semantic_hash": "214f909e9475f2f6be6ed6f587ef3777"
+  },
+  "medipath/app/Http/Controllers/FoundationController.php": {
+    "mtime": 1795384644.1786716,
+    "seen": 1795387454.276818,
+    "ast_hash": "9ca3ae49ae4162bc5e25c65e49baa7a7",
+    "semantic_hash": "9ca3ae49ae4162bc5e25c65e49baa7a7"
+  },
+  "medipath/app/Http/Controllers/Guest/DoctorDirectoryController.php": {
+    "mtime": 1795386567.4885025,
+    "seen": 1795387454.276819,
+    "ast_hash": "a6a441b12eb5369bd1c0a54c013c9348",
+    "semantic_hash": "a6a441b12eb5369bd1c0a54c013c9348"
+  },
+  "medipath/app/Http/Controllers/Guest/DoctorPublicProfileController.php": {
+    "mtime": 1795386567.5409374,
+    "seen": 1795387454.27682,
+    "ast_hash": "7b34f36c2de68bddf20f31fe73655ce6",
+    "semantic_hash": "7b34f36c2de68bddf20f31fe73655ce6"
+  },
+  "medipath/app/Http/Controllers/Guest/EmergencyInfoController.php": {
+    "mtime": 1795386567.352483,
+    "seen": 1795387454.276821,
+    "ast_hash": "5871b9dc40a7e6152095f4d81441446b",
+    "semantic_hash": "5871b9dc40a7e6152095f4d81441446b"
+  },
+  "medipath/app/Http/Controllers/Guest/LandingController.php": {
+    "mtime": 1795386567.371377,
+    "seen": 1795387454.276821,
+    "ast_hash": "94cd7f4e9a7cebe20009b639790595f4",
+    "semantic_hash": "94cd7f4e9a7cebe20009b639790595f4"
+  },
+  "medipath/app/Http/Controllers/NotificationController.php": {
+    "mtime": 1795384644.1143737,
+    "seen": 1795387454.276822,
+    "ast_hash": "268f1eb57768087c8113ee7d318b9c0e",
+    "semantic_hash": "268f1eb57768087c8113ee7d318b9c0e"
+  },
+  "medipath/app/Http/Controllers/PendingApprovalController.php": {
+    "mtime": 1795386567.3205647,
+    "seen": 1795387454.276823,
+    "ast_hash": "4551b894ae9a3fb521df513c18d65468",
+    "semantic_hash": "4551b894ae9a3fb521df513c18d65468"
+  },
+  "medipath/app/Http/Controllers/PreferenceController.php": {
+    "mtime": 1795384644.160229,
+    "seen": 1795387454.276824,
+    "ast_hash": "380e6be8780bb3510b968da82eb39204",
+    "semantic_hash": "380e6be8780bb3510b968da82eb39204"
+  },
+  "medipath/app/Http/Controllers/RoleHomeController.php": {
+    "mtime": 1795384644.1929798,
+    "seen": 1795387454.2768252,
+    "ast_hash": "fd2deb873ed1516b859d1c3b3b95f353",
+    "semantic_hash": "fd2deb873ed1516b859d1c3b3b95f353"
+  },
+  "medipath/app/Http/Middleware/ApprovedPharmacist.php": {
+    "mtime": 1795384643.93705,
+    "seen": 1795387454.2768252,
+    "ast_hash": "9c86fdfe5c7b6e487a7dae612e039f5b",
+    "semantic_hash": "9c86fdfe5c7b6e487a7dae612e039f5b"
+  },
+  "medipath/app/Http/Middleware/EnsureSessionFresh.php": {
+    "mtime": 1795387560.3008478,
+    "seen": 1795389043.412674,
+    "ast_hash": "9bc151e8e9d9feebc6aad963962555b7",
+    "semantic_hash": "9bc151e8e9d9feebc6aad963962555b7"
+  },
+  "medipath/app/Http/Middleware/HandleInertiaRequests.php": {
+    "mtime": 1795385341.6092236,
+    "seen": 1795387454.2768269,
+    "ast_hash": "609c4d3eb0066bae67e50017cb0adef5",
+    "semantic_hash": "609c4d3eb0066bae67e50017cb0adef5"
+  },
+  "medipath/app/Http/Middleware/PendingStatusOnly.php": {
+    "mtime": 1795385328.0326896,
+    "seen": 1795387454.2768278,
+    "ast_hash": "b61b3fee1b02c02935579c6c1a027433",
+    "semantic_hash": "b61b3fee1b02c02935579c6c1a027433"
+  },
+  "medipath/app/Http/Middleware/PreventSelfAction.php": {
+    "mtime": 1795384643.945371,
+    "seen": 1795387454.276829,
+    "ast_hash": "74daeca500d1c13918d6a6c26dea8e47",
+    "semantic_hash": "74daeca500d1c13918d6a6c26dea8e47"
+  },
+  "medipath/app/Http/Middleware/RoleGate.php": {
+    "mtime": 1795385334.9888253,
+    "seen": 1795387454.276829,
+    "ast_hash": "befa096aac3ff64df81571be2ef05eed",
+    "semantic_hash": "befa096aac3ff64df81571be2ef05eed"
+  },
+  "medipath/app/Http/Middleware/VerifiedDoctor.php": {
+    "mtime": 1795384643.9298294,
+    "seen": 1795387454.27683,
+    "ast_hash": "7fcae0b3964c5ed5f510c3287f7e1919",
+    "semantic_hash": "7fcae0b3964c5ed5f510c3287f7e1919"
+  },
+  "medipath/app/Http/Requests/Auth/ForgotPasswordRequest.php": {
+    "mtime": 1795386567.1439867,
+    "seen": 1795387454.276831,
+    "ast_hash": "40032e0909b6995a2f0025b12daaaf82",
+    "semantic_hash": "40032e0909b6995a2f0025b12daaaf82"
+  },
+  "medipath/app/Http/Requests/Auth/RegisterRequest.php": {
+    "mtime": 1795386567.1722698,
+    "seen": 1795387454.276832,
+    "ast_hash": "890f08c30d110d8dff7c05fc0ef018a1",
+    "semantic_hash": "890f08c30d110d8dff7c05fc0ef018a1"
+  },
+  "medipath/app/Http/Requests/Auth/ResetPasswordRequest.php": {
+    "mtime": 1795386567.1818523,
+    "seen": 1795387454.276833,
+    "ast_hash": "e46c0388908d09eb6347568fcdd2458b",
+    "semantic_hash": "e46c0388908d09eb6347568fcdd2458b"
+  },
+  "medipath/app/Http/Requests/ChatbotAskRequest.php": {
+    "mtime": 1795386567.136787,
+    "seen": 1795387454.276833,
+    "ast_hash": "b5f96fca978de3a6bec9fbdeed16d943",
+    "semantic_hash": "b5f96fca978de3a6bec9fbdeed16d943"
+  },
+  "medipath/app/Jobs/RegistrationReceived.php": {
+    "mtime": 1795386567.5607545,
+    "seen": 1795387454.276834,
+    "ast_hash": "bb2600b93d0be67eeaccc25c5e8af329",
+    "semantic_hash": "bb2600b93d0be67eeaccc25c5e8af329"
+  },
+  "medipath/app/Mail/PasswordResetLink.php": {
+    "mtime": 1795386566.9464917,
+    "seen": 1795387454.276835,
+    "ast_hash": "4e2ef7ebeec539009b00d90ca5959471",
+    "semantic_hash": "4e2ef7ebeec539009b00d90ca5959471"
+  },
+  "medipath/app/Models/ActivityLog.php": {
+    "mtime": 1795384643.8082223,
+    "seen": 1795387454.2768362,
+    "ast_hash": "830207e55747ab4cac639300312d34a5",
+    "semantic_hash": "830207e55747ab4cac639300312d34a5"
+  },
+  "medipath/app/Models/Appointment.php": {
+    "mtime": 1795384643.6215923,
+    "seen": 1795387454.276837,
+    "ast_hash": "ebf0fcb3305d82f3e92975eb86458adc",
+    "semantic_hash": "ebf0fcb3305d82f3e92975eb86458adc"
+  },
+  "medipath/app/Models/BackupSnapshot.php": {
+    "mtime": 1795384643.5820994,
+    "seen": 1795387454.2768378,
+    "ast_hash": "5f2f752e8a7e6eac1e45429a620854f5",
+    "semantic_hash": "5f2f752e8a7e6eac1e45429a620854f5"
+  },
+  "medipath/app/Models/Doctor.php": {
+    "mtime": 1795384643.6766026,
+    "seen": 1795387454.276839,
+    "ast_hash": "1b276e94df48c090acf7a93025495f31",
+    "semantic_hash": "1b276e94df48c090acf7a93025495f31"
+  },
+  "medipath/app/Models/DoctorLeave.php": {
+    "mtime": 1795384643.9038231,
+    "seen": 1795387454.276839,
+    "ast_hash": "f1b525e1fc6320fc1878a27ce6f416be",
+    "semantic_hash": "f1b525e1fc6320fc1878a27ce6f416be"
+  },
+  "medipath/app/Models/DoctorSchedule.php": {
+    "mtime": 1795384643.6427147,
+    "seen": 1795387454.27684,
+    "ast_hash": "6caca4990648a75aa8d04a97b9434841",
+    "semantic_hash": "6caca4990648a75aa8d04a97b9434841"
+  },
+  "medipath/app/Models/DrugInteraction.php": {
+    "mtime": 1795384643.5694666,
+    "seen": 1795387454.276841,
+    "ast_hash": "b82b9c615953b4237df194986c97e97b",
+    "semantic_hash": "b82b9c615953b4237df194986c97e97b"
+  },
+  "medipath/app/Models/EmergencyBanner.php": {
+    "mtime": 1795384643.910288,
+    "seen": 1795387454.2768419,
+    "ast_hash": "87335393f0b4362be2899e3729321ee7",
+    "semantic_hash": "87335393f0b4362be2899e3729321ee7"
+  },
+  "medipath/app/Models/EmergencyContact.php": {
+    "mtime": 1795384643.5756915,
+    "seen": 1795387454.276843,
+    "ast_hash": "536645f0395e6152156b87558b2a605a",
+    "semantic_hash": "536645f0395e6152156b87558b2a605a"
+  },
+  "medipath/app/Models/EmergencyRule.php": {
+    "mtime": 1795384643.8611615,
+    "seen": 1795387454.276843,
+    "ast_hash": "4ac277e41a72d878eaa657d75169dd91",
+    "semantic_hash": "4ac277e41a72d878eaa657d75169dd91"
+  },
+  "medipath/app/Models/Faq.php": {
+    "mtime": 1795384643.8276272,
+    "seen": 1795387454.276844,
+    "ast_hash": "72a97ea4b1e1022f8350328c0b661627",
+    "semantic_hash": "72a97ea4b1e1022f8350328c0b661627"
+  },
+  "medipath/app/Models/InventoryLedger.php": {
+    "mtime": 1795384643.8835464,
+    "seen": 1795387454.276845,
+    "ast_hash": "e80e8194fa1604b64d78358cd860cad4",
+    "semantic_hash": "e80e8194fa1604b64d78358cd860cad4"
+  },
+  "medipath/app/Models/Invoice.php": {
+    "mtime": 1795384643.7979167,
+    "seen": 1795387454.2768462,
+    "ast_hash": "d8c4a7e84534ed79b6dff34bce2eab83",
+    "semantic_hash": "d8c4a7e84534ed79b6dff34bce2eab83"
+  },
+  "medipath/app/Models/InvoiceItem.php": {
+    "mtime": 1795384643.762785,
+    "seen": 1795387454.2768462,
+    "ast_hash": "be5cd1adf42e5a25fb167a7cbb1ecfc6",
+    "semantic_hash": "be5cd1adf42e5a25fb167a7cbb1ecfc6"
+  },
+  "medipath/app/Models/Medicine.php": {
+    "mtime": 1795384643.7565029,
+    "seen": 1795387454.2768471,
+    "ast_hash": "64ed378d6c19041e39ef7254fcc70adc",
+    "semantic_hash": "64ed378d6c19041e39ef7254fcc70adc"
+  },
+  "medipath/app/Models/Notification.php": {
+    "mtime": 1795384643.8728735,
+    "seen": 1795387454.276848,
+    "ast_hash": "4ccd987dfb7206e147f454c2e755d50c",
+    "semantic_hash": "4ccd987dfb7206e147f454c2e755d50c"
+  },
+  "medipath/app/Models/PasswordReset.php": {
+    "mtime": 1795386566.9670815,
+    "seen": 1795387454.2768488,
+    "ast_hash": "b61d8c1cefc9634024cca862bf00b626",
+    "semantic_hash": "b61d8c1cefc9634024cca862bf00b626"
+  },
+  "medipath/app/Models/Patient.php": {
+    "mtime": 1795384643.8544579,
+    "seen": 1795387454.27685,
+    "ast_hash": "a2af898570025b0c4d52ad25762534c1",
+    "semantic_hash": "a2af898570025b0c4d52ad25762534c1"
+  },
+  "medipath/app/Models/PatientAllergy.php": {
+    "mtime": 1795384643.637212,
+    "seen": 1795387454.27685,
+    "ast_hash": "7dcd318899c905a540e6830a26ac24bf",
+    "semantic_hash": "7dcd318899c905a540e6830a26ac24bf"
+  },
+  "medipath/app/Models/PatientMedication.php": {
+    "mtime": 1795384643.8900268,
+    "seen": 1795387454.276851,
+    "ast_hash": "b3d036953325cd82ae0130e5070356fd",
+    "semantic_hash": "b3d036953325cd82ae0130e5070356fd"
+  },
+  "medipath/app/Models/PendingApproval.php": {
+    "mtime": 1795384643.589329,
+    "seen": 1795387454.276852,
+    "ast_hash": "d00a71aa96f2ce631c33aacb1b392328",
+    "semantic_hash": "d00a71aa96f2ce631c33aacb1b392328"
+  },
+  "medipath/app/Models/Pharmacist.php": {
+    "mtime": 1795384643.7848463,
+    "seen": 1795387454.276853,
+    "ast_hash": "582a171f3e33d4268effbd46a0779405",
+    "semantic_hash": "582a171f3e33d4268effbd46a0779405"
+  },
+  "medipath/app/Models/Prescription.php": {
+    "mtime": 1795384643.7768524,
+    "seen": 1795387454.276853,
+    "ast_hash": "bd92d0a93f1f1b1094daccd9d7f3511f",
+    "semantic_hash": "bd92d0a93f1f1b1094daccd9d7f3511f"
+  },
+  "medipath/app/Models/PrescriptionItem.php": {
+    "mtime": 1795384643.896161,
+    "seen": 1795387454.276854,
+    "ast_hash": "75919a960a972fb481056f3fe1ba5eec",
+    "semantic_hash": "75919a960a972fb481056f3fe1ba5eec"
+  },
+  "medipath/app/Models/RevenueConfig.php": {
+    "mtime": 1795384643.8226652,
+    "seen": 1795387454.276855,
+    "ast_hash": "0822647127847a003ad8b8786ce4f622",
+    "semantic_hash": "0822647127847a003ad8b8786ce4f622"
+  },
+  "medipath/app/Models/Review.php": {
+    "mtime": 1795384643.6305966,
+    "seen": 1795387454.276856,
+    "ast_hash": "89365dbf93b49bba68d3016f8f948087",
+    "semantic_hash": "89365dbf93b49bba68d3016f8f948087"
+  },
+  "medipath/app/Models/Specialty.php": {
+    "mtime": 1795384643.6505067,
+    "seen": 1795387454.2768571,
+    "ast_hash": "5dadaa61ff4345f26f1a74c664fa43ce",
+    "semantic_hash": "5dadaa61ff4345f26f1a74c664fa43ce"
+  },
+  "medipath/app/Models/SymptomCheckLog.php": {
+    "mtime": 1795384643.8156662,
+    "seen": 1795387454.2768571,
+    "ast_hash": "c604ad41d5c2307f022f1b6785ac5424",
+    "semantic_hash": "c604ad41d5c2307f022f1b6785ac5424"
+  },
+  "medipath/app/Models/SymptomSpecialtyMap.php": {
+    "mtime": 1795384643.736325,
+    "seen": 1795387454.276858,
+    "ast_hash": "7d16f789f5016b5e268150ff25b9873c",
+    "semantic_hash": "7d16f789f5016b5e268150ff25b9873c"
+  },
+  "medipath/app/Models/SystemSetting.php": {
+    "mtime": 1795384643.8668253,
+    "seen": 1795387454.2768588,
+    "ast_hash": "5ca6c90086440ced6ef87dd87227b214",
+    "semantic_hash": "5ca6c90086440ced6ef87dd87227b214"
+  },
+  "medipath/app/Models/User.php": {
+    "mtime": 1795387560.3000715,
+    "seen": 1795389043.412725,
+    "ast_hash": "f9a65693943ac3eae3c640b877673a7c",
+    "semantic_hash": "f9a65693943ac3eae3c640b877673a7c"
+  },
+  "medipath/app/Models/UserPreference.php": {
+    "mtime": 1795384643.5945811,
+    "seen": 1795387454.276861,
+    "ast_hash": "c1c49208220fb4c53b754f70b57590bf",
+    "semantic_hash": "c1c49208220fb4c53b754f70b57590bf"
+  },
+  "medipath/app/Providers/AppServiceProvider.php": {
+    "mtime": 1795386566.9582617,
+    "seen": 1795387454.276861,
+    "ast_hash": "bb3d0b244eca38319ed40c46496b6035",
+    "semantic_hash": "bb3d0b244eca38319ed40c46496b6035"
+  },
+  "medipath/app/Services/ActivityLogService.php": {
+    "mtime": 1795384644.336892,
+    "seen": 1795387454.276862,
+    "ast_hash": "8c9b31df74d7e91df57fa3511815a030",
+    "semantic_hash": "8c9b31df74d7e91df57fa3511815a030"
+  },
+  "medipath/app/Services/ChatbotService.php": {
+    "mtime": 1795386567.616772,
+    "seen": 1795387454.2768629,
+    "ast_hash": "0efe3e0454418efff376b0ff48bfdee4",
+    "semantic_hash": "0efe3e0454418efff376b0ff48bfdee4"
+  },
+  "medipath/app/Services/CurrencyFormatter.php": {
+    "mtime": 1795384644.318901,
+    "seen": 1795387454.276864,
+    "ast_hash": "d351631f7530b5f8b7db68ea487f3511",
+    "semantic_hash": "d351631f7530b5f8b7db68ea487f3511"
+  },
+  "medipath/app/Services/DoctorAvailabilityService.php": {
+    "mtime": 1795386567.8210423,
+    "seen": 1795387454.276865,
+    "ast_hash": "df1f4dfe6d05190de7f36bbc49eb77d9",
+    "semantic_hash": "df1f4dfe6d05190de7f36bbc49eb77d9"
+  },
+  "medipath/app/Services/DoctorPresenter.php": {
+    "mtime": 1795386567.6423023,
+    "seen": 1795387454.276865,
+    "ast_hash": "31406741907cc339f8859798445ca2be",
+    "semantic_hash": "31406741907cc339f8859798445ca2be"
+  },
+  "medipath/app/Services/EmergencyRuleEngine.php": {
+    "mtime": 1795386567.661635,
+    "seen": 1795387454.276866,
+    "ast_hash": "855109c9347d91311b0b37f441cd6370",
+    "semantic_hash": "855109c9347d91311b0b37f441cd6370"
+  },
+  "medipath/app/Services/NotificationService.php": {
+    "mtime": 1795384644.2874365,
+    "seen": 1795387454.2768672,
+    "ast_hash": "66e8b4a869ed4f0d1bec63fff435981d",
+    "semantic_hash": "66e8b4a869ed4f0d1bec63fff435981d"
+  },
+  "medipath/app/Services/PasswordResetService.php": {
+    "mtime": 1795387560.3020968,
+    "seen": 1795389043.412738,
+    "ast_hash": "70ea8d537bc4579127f64df7b5b570c6",
+    "semantic_hash": "70ea8d537bc4579127f64df7b5b570c6"
+  },
+  "medipath/app/Services/RegistrationService.php": {
+    "mtime": 1795386567.725491,
+    "seen": 1795387454.276869,
+    "ast_hash": "1913aaf384b73f410d8a0f282057062f",
+    "semantic_hash": "1913aaf384b73f410d8a0f282057062f"
+  },
+  "medipath/app/Services/SettingsService.php": {
+    "mtime": 1795389361.8388884,
+    "seen": 1795412319.869924,
+    "ast_hash": "f872748e49ab707636da4f8072ed7296",
+    "semantic_hash": "f872748e49ab707636da4f8072ed7296"
+  },
+  "medipath/app/Services/WalkInClaimService.php": {
+    "mtime": 1795386567.7537315,
+    "seen": 1795387454.2768698,
+    "ast_hash": "68bb2fb52cbba7667419f9bbc5156682",
+    "semantic_hash": "68bb2fb52cbba7667419f9bbc5156682"
+  },
+  "medipath/app/Support/ActivityActions.php": {
+    "mtime": 1795416299.9068916,
+    "seen": 1795420656.526294,
+    "ast_hash": "190b4169c1fb9bda11c4f660d399b254",
+    "semantic_hash": "190b4169c1fb9bda11c4f660d399b254"
+  },
+  "medipath/artisan": {
+    "mtime": 1773507240.0,
+    "seen": 1795387454.276872,
+    "ast_hash": "e66bb13691f6184c762c196427d8e685",
+    "semantic_hash": "e66bb13691f6184c762c196427d8e685"
+  },
+  "medipath/bootstrap/app.php": {
+    "mtime": 1795387752.8015726,
+    "seen": 1795389043.412744,
+    "ast_hash": "0393641e6c035918437acd508cc184c2",
+    "semantic_hash": "0393641e6c035918437acd508cc184c2"
+  },
+  "medipath/bootstrap/providers.php": {
+    "mtime": 1773507240.0,
+    "seen": 1795387454.276874,
+    "ast_hash": "888c810b5a4720916f07aa05dd2c2dd3",
+    "semantic_hash": "888c810b5a4720916f07aa05dd2c2dd3"
+  },
+  "medipath/composer.json": {
+    "mtime": 1795384307.934225,
+    "seen": 1795387454.276875,
+    "ast_hash": "7c3c9e27ef66acea954720c126a80192",
+    "semantic_hash": "7c3c9e27ef66acea954720c126a80192"
+  },
+  "medipath/config/app.php": {
+    "mtime": 1795382884.3965433,
+    "seen": 1795387454.276875,
+    "ast_hash": "2af1652fca298fdda8fb446eb5305472",
+    "semantic_hash": "2af1652fca298fdda8fb446eb5305472"
+  },
+  "medipath/config/auth.php": {
+    "mtime": 1773507240.0,
+    "seen": 1795387454.276876,
+    "ast_hash": "26354511ab860b301f2a3554bc388b91",
+    "semantic_hash": "26354511ab860b301f2a3554bc388b91"
+  },
+  "medipath/config/broadcasting.php": {
+    "mtime": 1795382884.4122906,
+    "seen": 1795387454.2768772,
+    "ast_hash": "2bc2c256d444913daaf9cdf3ef3c75dd",
+    "semantic_hash": "2bc2c256d444913daaf9cdf3ef3c75dd"
+  },
+  "medipath/config/cache.php": {
+    "mtime": 1773507240.0,
+    "seen": 1795387454.276878,
+    "ast_hash": "022fdf20e95ddb79949954243e367003",
+    "semantic_hash": "022fdf20e95ddb79949954243e367003"
+  },
+  "medipath/config/database.php": {
+    "mtime": 1773507240.0,
+    "seen": 1795387454.276878,
+    "ast_hash": "3cd69c7ecc842e4552e44eade546d91f",
+    "semantic_hash": "3cd69c7ecc842e4552e44eade546d91f"
+  },
+  "medipath/config/filesystems.php": {
+    "mtime": 1795382886.9751267,
+    "seen": 1795387454.276879,
+    "ast_hash": "24c23a8dd0ce1a3ffc47f4ab4d4c9536",
+    "semantic_hash": "24c23a8dd0ce1a3ffc47f4ab4d4c9536"
+  },
+  "medipath/config/logging.php": {
+    "mtime": 1773507240.0,
+    "seen": 1795387454.2768798,
+    "ast_hash": "d8255a5c07d3da72c7c9363f0c44bddd",
+    "semantic_hash": "d8255a5c07d3da72c7c9363f0c44bddd"
+  },
+  "medipath/config/mail.php": {
+    "mtime": 1773507240.0,
+    "seen": 1795387454.276881,
+    "ast_hash": "18601a927b48d38337ba2077426a7d60",
+    "semantic_hash": "18601a927b48d38337ba2077426a7d60"
+  },
+  "medipath/config/medipath.php": {
+    "mtime": 1795385275.322016,
+    "seen": 1795387454.276882,
+    "ast_hash": "12412efaf236ffa81e8a823281855310",
+    "semantic_hash": "12412efaf236ffa81e8a823281855310"
+  },
+  "medipath/config/queue.php": {
+    "mtime": 1773507240.0,
+    "seen": 1795387454.276882,
+    "ast_hash": "f98ce92e7bf51db1fabaf8a30e12fc5a",
+    "semantic_hash": "f98ce92e7bf51db1fabaf8a30e12fc5a"
+  },
+  "medipath/config/reverb.php": {
+    "mtime": 1795382868.6992006,
+    "seen": 1795387454.276883,
+    "ast_hash": "e37aac926ca8ef910be93f8fadd15af8",
+    "semantic_hash": "e37aac926ca8ef910be93f8fadd15af8"
+  },
+  "medipath/config/services.php": {
+    "mtime": 1795412260.773129,
+    "seen": 1795412319.869942,
+    "ast_hash": "03de4b00c4375a16db0e96a38a51905e",
+    "semantic_hash": "03de4b00c4375a16db0e96a38a51905e"
+  },
+  "medipath/config/session.php": {
+    "mtime": 1773507240.0,
+    "seen": 1795387454.276885,
+    "ast_hash": "6d9336e9ca1183588abbce7ff7a6f29a",
+    "semantic_hash": "6d9336e9ca1183588abbce7ff7a6f29a"
+  },
+  "medipath/database/factories/UserFactory.php": {
+    "mtime": 1773507240.0,
+    "seen": 1795387454.276885,
+    "ast_hash": "1c9f381f9c2bc3027971a3bfdbe99164",
+    "semantic_hash": "1c9f381f9c2bc3027971a3bfdbe99164"
+  },
+  "medipath/database/migrations/0001_01_01_000000_create_users_table.php": {
+    "mtime": 1795384642.5045712,
+    "seen": 1795387454.276886,
+    "ast_hash": "50bd59ac8ec3383d9f718992bdf6e178",
+    "semantic_hash": "50bd59ac8ec3383d9f718992bdf6e178"
+  },
+  "medipath/database/migrations/0001_01_01_000001_create_cache_table.php": {
+    "mtime": 1773507240.0,
+    "seen": 1795387454.276887,
+    "ast_hash": "f3f38b41650112a6282c8dd1f635afb0",
+    "semantic_hash": "f3f38b41650112a6282c8dd1f635afb0"
+  },
+  "medipath/database/migrations/0001_01_01_000002_create_jobs_table.php": {
+    "mtime": 1773507240.0,
+    "seen": 1795387454.2768881,
+    "ast_hash": "ead9cce2650b36345454f85e8c0214a0",
+    "semantic_hash": "ead9cce2650b36345454f85e8c0214a0"
+  },
+  "medipath/database/migrations/2026_01_01_000010_create_specialties_table.php": {
+    "mtime": 1795384642.5643384,
+    "seen": 1795387454.2768881,
+    "ast_hash": "4857f1da7e8b504ccbb2b13baf7417f6",
+    "semantic_hash": "4857f1da7e8b504ccbb2b13baf7417f6"
+  },
+  "medipath/database/migrations/2026_01_01_000020_create_patients_table.php": {
+    "mtime": 1795384642.5400693,
+    "seen": 1795387454.276889,
+    "ast_hash": "1c241f52316938e6f6e38d9230f18473",
+    "semantic_hash": "1c241f52316938e6f6e38d9230f18473"
+  },
+  "medipath/database/migrations/2026_01_01_000030_create_doctors_table.php": {
+    "mtime": 1795384642.7088363,
+    "seen": 1795387454.27689,
+    "ast_hash": "90d362fc0199e1ad0d96b97bc9c5fc15",
+    "semantic_hash": "90d362fc0199e1ad0d96b97bc9c5fc15"
+  },
+  "medipath/database/migrations/2026_01_01_000040_create_pharmacists_table.php": {
+    "mtime": 1795384642.717416,
+    "seen": 1795387454.276891,
+    "ast_hash": "9bf217daca7f864695f0516a8af8e5a8",
+    "semantic_hash": "9bf217daca7f864695f0516a8af8e5a8"
+  },
+  "medipath/database/migrations/2026_01_01_000050_create_user_preferences_table.php": {
+    "mtime": 1795384642.5798528,
+    "seen": 1795387454.276892,
+    "ast_hash": "eb91fdcdd8e22342b4cfeb958ff2b9b5",
+    "semantic_hash": "eb91fdcdd8e22342b4cfeb958ff2b9b5"
+  },
+  "medipath/database/migrations/2026_01_01_000060_create_pending_approvals_table.php": {
+    "mtime": 1795384642.5497417,
+    "seen": 1795387454.276892,
+    "ast_hash": "edff8b374c482304ab80d2d617ceda27",
+    "semantic_hash": "edff8b374c482304ab80d2d617ceda27"
+  },
+  "medipath/database/migrations/2026_01_01_000070_create_doctor_schedules_table.php": {
+    "mtime": 1795384642.8038933,
+    "seen": 1795387454.276893,
+    "ast_hash": "267ec2977a96340a691bacd0ceb71f65",
+    "semantic_hash": "267ec2977a96340a691bacd0ceb71f65"
+  },
+  "medipath/database/migrations/2026_01_01_000080_create_doctor_leaves_table.php": {
+    "mtime": 1795384642.7256522,
+    "seen": 1795387454.2768939,
+    "ast_hash": "ae8fd7b3dbe60ff582a01b992ae9159c",
+    "semantic_hash": "ae8fd7b3dbe60ff582a01b992ae9159c"
+  },
+  "medipath/database/migrations/2026_01_01_000090_create_medicines_table.php": {
+    "mtime": 1795384642.4368286,
+    "seen": 1795387454.276895,
+    "ast_hash": "c0beea38b490c2a06b406d035733ffd4",
+    "semantic_hash": "c0beea38b490c2a06b406d035733ffd4"
+  },
+  "medipath/database/migrations/2026_01_01_000100_create_drug_interactions_table.php": {
+    "mtime": 1795384642.7951024,
+    "seen": 1795387454.276896,
+    "ast_hash": "9277c2a34d63bef1281e9cda57079a43",
+    "semantic_hash": "9277c2a34d63bef1281e9cda57079a43"
+  },
+  "medipath/database/migrations/2026_01_01_000110_create_patient_allergies_table.php": {
+    "mtime": 1795384642.6500149,
+    "seen": 1795387454.276896,
+    "ast_hash": "bcaa2cf3cd305215e9c853a8fdef3a0e",
+    "semantic_hash": "bcaa2cf3cd305215e9c853a8fdef3a0e"
+  },
+  "medipath/database/migrations/2026_01_01_000120_create_patient_medications_table.php": {
+    "mtime": 1795384642.4798934,
+    "seen": 1795387454.276897,
+    "ast_hash": "0ddddc55e40032ed3f7c33e174772397",
+    "semantic_hash": "0ddddc55e40032ed3f7c33e174772397"
+  },
+  "medipath/database/migrations/2026_01_01_000130_create_appointments_table.php": {
+    "mtime": 1795384642.529325,
+    "seen": 1795387454.2768981,
+    "ast_hash": "691d8bfd040879e2498a95a60f43c5c1",
+    "semantic_hash": "691d8bfd040879e2498a95a60f43c5c1"
+  },
+  "medipath/database/migrations/2026_01_01_000140_create_prescriptions_table.php": {
+    "mtime": 1795384642.6940794,
+    "seen": 1795387454.276899,
+    "ast_hash": "74d176ee7cd3878cdaa7d8416285bc69",
+    "semantic_hash": "74d176ee7cd3878cdaa7d8416285bc69"
+  },
+  "medipath/database/migrations/2026_01_01_000150_create_prescription_items_table.php": {
+    "mtime": 1795384642.633847,
+    "seen": 1795387454.276899,
+    "ast_hash": "a2d54dc8ccb5901830d42be71fc8e605",
+    "semantic_hash": "a2d54dc8ccb5901830d42be71fc8e605"
+  },
+  "medipath/database/migrations/2026_01_01_000160_create_invoices_table.php": {
+    "mtime": 1795384642.607378,
+    "seen": 1795387454.2769,
+    "ast_hash": "bd2be22b0d4edfdf12780f857039bd1d",
+    "semantic_hash": "bd2be22b0d4edfdf12780f857039bd1d"
+  },
+  "medipath/database/migrations/2026_01_01_000170_create_invoice_items_table.php": {
+    "mtime": 1795384642.6414297,
+    "seen": 1795387454.276901,
+    "ast_hash": "52f31cb818d22c261642aae00bd6d640",
+    "semantic_hash": "52f31cb818d22c261642aae00bd6d640"
+  },
+  "medipath/database/migrations/2026_01_01_000180_create_reviews_table.php": {
+    "mtime": 1795384642.6175053,
+    "seen": 1795387454.276902,
+    "ast_hash": "592aa2faed58dc2774fef95269a9a9bc",
+    "semantic_hash": "592aa2faed58dc2774fef95269a9a9bc"
+  },
+  "medipath/database/migrations/2026_01_01_000190_create_inventory_ledger_table.php": {
+    "mtime": 1795384642.7801025,
+    "seen": 1795387454.276903,
+    "ast_hash": "e503c6885a48457839617469e60c4ca2",
+    "semantic_hash": "e503c6885a48457839617469e60c4ca2"
+  },
+  "medipath/database/migrations/2026_01_01_000200_create_notifications_table.php": {
+    "mtime": 1795384642.4599092,
+    "seen": 1795387454.276903,
+    "ast_hash": "d2ee17411fb7911830f47d0c2e841fc7",
+    "semantic_hash": "d2ee17411fb7911830f47d0c2e841fc7"
+  },
+  "medipath/database/migrations/2026_01_01_000210_create_activity_log_table.php": {
+    "mtime": 1795384642.5147436,
+    "seen": 1795387454.2769039,
+    "ast_hash": "2e9c3bf92ff695445afcf12b5e7acbb9",
+    "semantic_hash": "2e9c3bf92ff695445afcf12b5e7acbb9"
+  },
+  "medipath/database/migrations/2026_01_01_000220_create_system_settings_table.php": {
+    "mtime": 1795384642.625668,
+    "seen": 1795387454.276905,
+    "ast_hash": "8c414950960e88e73de89f2ae471c7f2",
+    "semantic_hash": "8c414950960e88e73de89f2ae471c7f2"
+  },
+  "medipath/database/migrations/2026_01_01_000230_create_revenue_configs_table.php": {
+    "mtime": 1795384642.6643622,
+    "seen": 1795387454.276906,
+    "ast_hash": "52a9cbcfd8f35de8a3e0de2f46681532",
+    "semantic_hash": "52a9cbcfd8f35de8a3e0de2f46681532"
+  },
+  "medipath/database/migrations/2026_01_01_000240_create_emergency_rules_table.php": {
+    "mtime": 1795384642.6578388,
+    "seen": 1795387454.276907,
+    "ast_hash": "226523b7f6057e6d5f28d1da69581db5",
+    "semantic_hash": "226523b7f6057e6d5f28d1da69581db5"
+  },
+  "medipath/database/migrations/2026_01_01_000250_create_emergency_contacts_table.php": {
+    "mtime": 1795384642.4708774,
+    "seen": 1795387454.276907,
+    "ast_hash": "ec632c38ccda0ff2217eff8f925efc47",
+    "semantic_hash": "ec632c38ccda0ff2217eff8f925efc47"
+  },
+  "medipath/database/migrations/2026_01_01_000260_create_symptom_specialty_map_table.php": {
+    "mtime": 1795384642.4873846,
+    "seen": 1795387454.276908,
+    "ast_hash": "4e2ba156b4b7725208c4ad0761c84efa",
+    "semantic_hash": "4e2ba156b4b7725208c4ad0761c84efa"
+  },
+  "medipath/database/migrations/2026_01_01_000270_create_faqs_table.php": {
+    "mtime": 1795384642.7872112,
+    "seen": 1795387454.276909,
+    "ast_hash": "2f0158e493340a76e44ae5bac40415b3",
+    "semantic_hash": "2f0158e493340a76e44ae5bac40415b3"
+  },
+  "medipath/database/migrations/2026_01_01_000280_create_password_resets_table.php": {
+    "mtime": 1795384642.6813974,
+    "seen": 1795387454.27691,
+    "ast_hash": "58eea3e2d4fa0292e31fb683c3208996",
+    "semantic_hash": "58eea3e2d4fa0292e31fb683c3208996"
+  },
+  "medipath/database/migrations/2026_01_01_000320_add_check_constraints.php": {
+    "mtime": 1795384642.7707374,
+    "seen": 1795387454.276911,
+    "ast_hash": "8fc82cce7d45ecaf867a096e51aadbf2",
+    "semantic_hash": "8fc82cce7d45ecaf867a096e51aadbf2"
+  },
+  "medipath/database/migrations/2026_01_01_000330_add_fulltext_indexes.php": {
+    "mtime": 1795384642.571659,
+    "seen": 1795387454.276911,
+    "ast_hash": "81b5d2a3f0916ffd8e8de6deb6dcbb85",
+    "semantic_hash": "81b5d2a3f0916ffd8e8de6deb6dcbb85"
+  },
+  "medipath/database/migrations/2026_01_01_000340_add_password_changed_at_to_users.php": {
+    "mtime": 1795386566.604737,
+    "seen": 1795387454.2769122,
+    "ast_hash": "a795312bf74646e9841c6a8522ae36e0",
+    "semantic_hash": "a795312bf74646e9841c6a8522ae36e0"
+  },
+  "medipath/database/migrations/2026_11_23_035117_create_personal_access_tokens_table.php": {
+    "mtime": 1795384276.740304,
+    "seen": 1795387454.276913,
+    "ast_hash": "eb77af89d184f92ec893eff344c34999",
+    "semantic_hash": "eb77af89d184f92ec893eff344c34999"
+  },
+  "medipath/database/seeders/DatabaseSeeder.php": {
+    "mtime": 1795384643.4627905,
+    "seen": 1795387454.276914,
+    "ast_hash": "a904d766cd7b4995fb9dd671728ccc4b",
+    "semantic_hash": "a904d766cd7b4995fb9dd671728ccc4b"
+  },
+  "medipath/database/seeders/DemoClinicalSeeder.php": {
+    "mtime": 1795391715.5677254,
+    "seen": 1795412319.8699799,
+    "ast_hash": "e983bc792c98a0c7bf169e1b618e9dcd",
+    "semantic_hash": "e983bc792c98a0c7bf169e1b618e9dcd"
+  },
+  "medipath/database/seeders/DemoUsersSeeder.php": {
+    "mtime": 1795384643.3515673,
+    "seen": 1795387454.2769148,
+    "ast_hash": "4ba36109421a19e19426eba34f83acad",
+    "semantic_hash": "4ba36109421a19e19426eba34f83acad"
+  },
+  "medipath/database/seeders/DrugInteractionSeeder.php": {
+    "mtime": 1795384643.3949604,
+    "seen": 1795387454.276916,
+    "ast_hash": "984b3e67e0782afe16aec5da766d0bab",
+    "semantic_hash": "984b3e67e0782afe16aec5da766d0bab"
+  },
+  "medipath/database/seeders/EmergencySeeder.php": {
+    "mtime": 1795385612.294456,
+    "seen": 1795387454.276917,
+    "ast_hash": "1b7209f21278de748f5a3bf0825dbfa3",
+    "semantic_hash": "1b7209f21278de748f5a3bf0825dbfa3"
+  },
+  "medipath/database/seeders/FaqSeeder.php": {
+    "mtime": 1795384643.4086106,
+    "seen": 1795387454.276918,
+    "ast_hash": "9cdd5b2c8fb38ca70436635f5f7acfc5",
+    "semantic_hash": "9cdd5b2c8fb38ca70436635f5f7acfc5"
+  },
+  "medipath/database/seeders/MedicineSeeder.php": {
+    "mtime": 1795384643.2077217,
+    "seen": 1795387454.2769191,
+    "ast_hash": "438d372b1b2577763bac6e4a2a56e6ce",
+    "semantic_hash": "438d372b1b2577763bac6e4a2a56e6ce"
+  },
+  "medipath/database/seeders/RevenueConfigSeeder.php": {
+    "mtime": 1795384643.2121267,
+    "seen": 1795387454.2769191,
+    "ast_hash": "da4a23feafe748c4f5b80605ac25f6db",
+    "semantic_hash": "da4a23feafe748c4f5b80605ac25f6db"
+  },
+  "medipath/database/seeders/SpecialtySeeder.php": {
+    "mtime": 1795384643.4584541,
+    "seen": 1795387454.27692,
+    "ast_hash": "bc8622255da7c3f0e1287a84b16cff9a",
+    "semantic_hash": "bc8622255da7c3f0e1287a84b16cff9a"
+  },
+  "medipath/database/seeders/SymptomMappingSeeder.php": {
+    "mtime": 1795384642.824174,
+    "seen": 1795387454.276921,
+    "ast_hash": "ccdd067ff8f29db6f1a3bbc0e2b9e7f9",
+    "semantic_hash": "ccdd067ff8f29db6f1a3bbc0e2b9e7f9"
+  },
+  "medipath/database/seeders/SystemSettingSeeder.php": {
+    "mtime": 1795384643.3779752,
+    "seen": 1795387454.2769222,
+    "ast_hash": "1b5ec8ce95668146325c39b9a86e9935",
+    "semantic_hash": "1b5ec8ce95668146325c39b9a86e9935"
+  },
+  "medipath/package.json": {
+    "mtime": 1795384309.388895,
+    "seen": 1795387454.2769222,
+    "ast_hash": "15d829bf62a63afa8c036d5dd10c6c1c",
+    "semantic_hash": "15d829bf62a63afa8c036d5dd10c6c1c"
+  },
+  "medipath/public/index.php": {
+    "mtime": 1773507240.0,
+    "seen": 1795387454.276923,
+    "ast_hash": "d8eda274115af5fd2aaa8230af329ef7",
+    "semantic_hash": "d8eda274115af5fd2aaa8230af329ef7"
+  },
+  "medipath/public/sw.js": {
+    "mtime": 1795385497.7155051,
+    "seen": 1795387454.276924,
+    "ast_hash": "eeb1f496675b36c63233e2fd151c9691",
+    "semantic_hash": "eeb1f496675b36c63233e2fd151c9691"
+  },
+  "medipath/resources/js/Components/AI/ChatbotWidget.tsx": {
+    "mtime": 1795386489.6842642,
+    "seen": 1795387454.2769248,
+    "ast_hash": "eb2e1b8860c828c88c999e814dc09883",
+    "semantic_hash": "eb2e1b8860c828c88c999e814dc09883"
+  },
+  "medipath/resources/js/Components/Data/DataTable.tsx": {
+    "mtime": 1795383964.9008706,
+    "seen": 1795387454.276926,
+    "ast_hash": "4500cf35a60c59f3c620db0b799aabab",
+    "semantic_hash": "4500cf35a60c59f3c620db0b799aabab"
+  },
+  "medipath/resources/js/Components/Data/DataView.tsx": {
+    "mtime": 1795383964.9012287,
+    "seen": 1795387454.276927,
+    "ast_hash": "433f40db7c94d6229ab9f0d73596709b",
+    "semantic_hash": "433f40db7c94d6229ab9f0d73596709b"
+  },
+  "medipath/resources/js/Components/Data/DoctorCard.tsx": {
+    "mtime": 1795383964.9015944,
+    "seen": 1795387454.276927,
+    "ast_hash": "6c997587c1ff0789141bc96f6d0073df",
+    "semantic_hash": "6c997587c1ff0789141bc96f6d0073df"
+  },
+  "medipath/resources/js/Components/Data/FilterBar.tsx": {
+    "mtime": 1795383964.9020064,
+    "seen": 1795387454.276928,
+    "ast_hash": "33c89c82aab01ce71e7f1911ae3de694",
+    "semantic_hash": "33c89c82aab01ce71e7f1911ae3de694"
+  },
+  "medipath/resources/js/Components/Data/KpiCard.tsx": {
+    "mtime": 1795383964.9024055,
+    "seen": 1795387454.2769291,
+    "ast_hash": "1e5cf10e075c5a924a4bce1969f5361f",
+    "semantic_hash": "1e5cf10e075c5a924a4bce1969f5361f"
+  },
+  "medipath/resources/js/Components/Data/PdfButton.tsx": {
+    "mtime": 1795384598.8743656,
+    "seen": 1795387454.27693,
+    "ast_hash": "bc16192162e7b423934af342b70bd953",
+    "semantic_hash": "bc16192162e7b423934af342b70bd953"
+  },
+  "medipath/resources/js/Components/Data/SlotPicker.tsx": {
+    "mtime": 1795384580.344514,
+    "seen": 1795387454.276931,
+    "ast_hash": "cbca9a439dbeb517ee07b57c540eeab4",
+    "semantic_hash": "cbca9a439dbeb517ee07b57c540eeab4"
+  },
+  "medipath/resources/js/Components/Data/StarRating.tsx": {
+    "mtime": 1795383964.9036932,
+    "seen": 1795387454.276931,
+    "ast_hash": "b73f94b1173185766c640758d38fb299",
+    "semantic_hash": "b73f94b1173185766c640758d38fb299"
+  },
+  "medipath/resources/js/Components/Data/StatusBadge.tsx": {
+    "mtime": 1795415517.2493498,
+    "seen": 1795420656.526377,
+    "ast_hash": "71638d3ad4550dce6ba29d5cfc20578f",
+    "semantic_hash": "71638d3ad4550dce6ba29d5cfc20578f"
+  },
+  "medipath/resources/js/Components/Feedback/AppErrorBoundary.tsx": {
+    "mtime": 1795383964.9044251,
+    "seen": 1795387454.2769332,
+    "ast_hash": "f4cacaef5a17bbd676d748869506fc65",
+    "semantic_hash": "f4cacaef5a17bbd676d748869506fc65"
+  },
+  "medipath/resources/js/Components/Feedback/EmptyState.tsx": {
+    "mtime": 1795383964.9047258,
+    "seen": 1795387454.276934,
+    "ast_hash": "6e78e7885f6fafbb05e817fe81a31163",
+    "semantic_hash": "6e78e7885f6fafbb05e817fe81a31163"
+  },
+  "medipath/resources/js/Components/Feedback/FeedbackKit.tsx": {
+    "mtime": 1795383964.9050167,
+    "seen": 1795387454.2769349,
+    "ast_hash": "59f33d72efb852daea3d52acfe1f4c5d",
+    "semantic_hash": "59f33d72efb852daea3d52acfe1f4c5d"
+  },
+  "medipath/resources/js/Components/Feedback/NotificationBell.tsx": {
+    "mtime": 1795384389.9636753,
+    "seen": 1795387454.2769349,
+    "ast_hash": "32829be2b1cc1d7244c606e3238b3452",
+    "semantic_hash": "32829be2b1cc1d7244c606e3238b3452"
+  },
+  "medipath/resources/js/Components/Feedback/RetryBanner.tsx": {
+    "mtime": 1795383964.90571,
+    "seen": 1795387454.276936,
+    "ast_hash": "c04ac47d450cb0c5dc6f8c52a5348039",
+    "semantic_hash": "c04ac47d450cb0c5dc6f8c52a5348039"
+  },
+  "medipath/resources/js/Components/Feedback/ToastStack.tsx": {
+    "mtime": 1795383964.906071,
+    "seen": 1795387454.276937,
+    "ast_hash": "5b3212cfa983c226850819d5130be625",
+    "semantic_hash": "5b3212cfa983c226850819d5130be625"
+  },
+  "medipath/resources/js/Components/Navigation/PublicNavbar.tsx": {
+    "mtime": 1795385974.7611039,
+    "seen": 1795387454.276938,
+    "ast_hash": "b6fcd394f6465de79e2195ab0edc1f65",
+    "semantic_hash": "b6fcd394f6465de79e2195ab0edc1f65"
+  },
+  "medipath/resources/js/Components/Navigation/RoleSidebar.tsx": {
+    "mtime": 1795391460.3959606,
+    "seen": 1795412319.8700118,
+    "ast_hash": "b115bafe4360753edcbf317c4e603002",
+    "semantic_hash": "b115bafe4360753edcbf317c4e603002"
+  },
+  "medipath/resources/js/Components/Navigation/ThemeToggle.tsx": {
+    "mtime": 1795383964.9073954,
+    "seen": 1795387454.27694,
+    "ast_hash": "6a0fc3db8c028f8490e931c2300c5b05",
+    "semantic_hash": "6a0fc3db8c028f8490e931c2300c5b05"
+  },
+  "medipath/resources/js/Components/Overlay/ConfirmModal.tsx": {
+    "mtime": 1795383964.9077675,
+    "seen": 1795387454.276941,
+    "ast_hash": "f253e795ec890c2db21f9846957d562d",
+    "semantic_hash": "f253e795ec890c2db21f9846957d562d"
+  },
+  "medipath/resources/js/Components/Safety/EmergencyBlocks.tsx": {
+    "mtime": 1795385651.1674814,
+    "seen": 1795387454.276942,
+    "ast_hash": "b314b18d5927729377a561672b2c4272",
+    "semantic_hash": "b314b18d5927729377a561672b2c4272"
+  },
+  "medipath/resources/js/Components/Workflow/Stepper.tsx": {
+    "mtime": 1795383964.9085188,
+    "seen": 1795387454.2769432,
+    "ast_hash": "4f3a5f29eb17bd6caab384b5c00c39ed",
+    "semantic_hash": "4f3a5f29eb17bd6caab384b5c00c39ed"
+  },
+  "medipath/resources/js/Components/ui/Money.tsx": {
+    "mtime": 1795383964.908958,
+    "seen": 1795387454.2769432,
+    "ast_hash": "9f1ea4e7c4d9e54c2b56267559d68f63",
+    "semantic_hash": "9f1ea4e7c4d9e54c2b56267559d68f63"
+  },
+  "medipath/resources/js/Layouts/GuestLayout.tsx": {
+    "mtime": 1795385382.8317196,
+    "seen": 1795387454.276944,
+    "ast_hash": "1cf39c8f35de754ef811e81ea13302b6",
+    "semantic_hash": "1cf39c8f35de754ef811e81ea13302b6"
+  },
+  "medipath/resources/js/Layouts/RoleLayout.tsx": {
+    "mtime": 1795416428.2581227,
+    "seen": 1795420656.526391,
+    "ast_hash": "f641662d69141323e2273bf0eba457b7",
+    "semantic_hash": "f641662d69141323e2273bf0eba457b7"
+  },
+  "medipath/resources/js/Pages/Dev/DesignSystem.tsx": {
+    "mtime": 1795384389.9433813,
+    "seen": 1795387454.2769458,
+    "ast_hash": "5685dfc0ad40563f0334103957b33712",
+    "semantic_hash": "5685dfc0ad40563f0334103957b33712"
+  },
+  "medipath/resources/js/Pages/Dev/LayoutPreview.tsx": {
+    "mtime": 1795383964.9106483,
+    "seen": 1795387454.276947,
+    "ast_hash": "858fa50a9df9343f8071273fbf50dea9",
+    "semantic_hash": "858fa50a9df9343f8071273fbf50dea9"
+  },
+  "medipath/resources/js/Pages/Foundation/Index.tsx": {
+    "mtime": 1795384739.699657,
+    "seen": 1795387454.276948,
+    "ast_hash": "01cf2c34eddc2785c92860cac709779a",
+    "semantic_hash": "01cf2c34eddc2785c92860cac709779a"
+  },
+  "medipath/resources/js/Pages/Guest/Directory.tsx": {
+    "mtime": 1795385587.851203,
+    "seen": 1795387454.276948,
+    "ast_hash": "d8c96a949ce1e6f30b3428dd85c4f238",
+    "semantic_hash": "d8c96a949ce1e6f30b3428dd85c4f238"
+  },
+  "medipath/resources/js/Pages/Guest/DoctorProfile.tsx": {
+    "mtime": 1795385925.6680987,
+    "seen": 1795387454.276949,
+    "ast_hash": "903b21a3a1f6a339682dd326f93ac44e",
+    "semantic_hash": "903b21a3a1f6a339682dd326f93ac44e"
+  },
+  "medipath/resources/js/Pages/Guest/Emergency.tsx": {
+    "mtime": 1795386478.5610774,
+    "seen": 1795387454.2769501,
+    "ast_hash": "6f818dd4fd255aa3e26506a9b4915b55",
+    "semantic_hash": "6f818dd4fd255aa3e26506a9b4915b55"
+  },
+  "medipath/resources/js/Pages/Guest/ForgotReset.tsx": {
+    "mtime": 1795386216.5586302,
+    "seen": 1795387454.276951,
+    "ast_hash": "48d62f3d01556f90f8d074e5247ce4cb",
+    "semantic_hash": "48d62f3d01556f90f8d074e5247ce4cb"
+  },
+  "medipath/resources/js/Pages/Guest/Landing.tsx": {
+    "mtime": 1795386245.8855045,
+    "seen": 1795387454.276952,
+    "ast_hash": "222198f7c3ce75c0a4053b6020409d34",
+    "semantic_hash": "222198f7c3ce75c0a4053b6020409d34"
+  },
+  "medipath/resources/js/Pages/Guest/Login.tsx": {
+    "mtime": 1795385508.2102575,
+    "seen": 1795387454.276953,
+    "ast_hash": "0dc09d7d72303a77df92a9dd77420af4",
+    "semantic_hash": "0dc09d7d72303a77df92a9dd77420af4"
+  },
+  "medipath/resources/js/Pages/Guest/PendingApproval.tsx": {
+    "mtime": 1795385974.7454422,
+    "seen": 1795387454.276953,
+    "ast_hash": "318129486e5619a7b5a43afc64be2221",
+    "semantic_hash": "318129486e5619a7b5a43afc64be2221"
+  },
+  "medipath/resources/js/Pages/Guest/Register.tsx": {
+    "mtime": 1795385524.9102516,
+    "seen": 1795387454.2769542,
+    "ast_hash": "1435a376a13a258801f1882f65df2fcb",
+    "semantic_hash": "1435a376a13a258801f1882f65df2fcb"
+  },
+  "medipath/resources/js/Pages/Role/Home.tsx": {
+    "mtime": 1795384250.775914,
+    "seen": 1795387454.276955,
+    "ast_hash": "e3707b579ef28e764c18bb19395e17c2",
+    "semantic_hash": "e3707b579ef28e764c18bb19395e17c2"
+  },
+  "medipath/resources/js/app.tsx": {
+    "mtime": 1795383964.91174,
+    "seen": 1795387454.2769558,
+    "ast_hash": "98c84c26cfa090be3b71481eb5d06794",
+    "semantic_hash": "98c84c26cfa090be3b71481eb5d06794"
+  },
+  "medipath/resources/js/hooks/useUi.ts": {
+    "mtime": 1795383851.39989,
+    "seen": 1795387454.276957,
+    "ast_hash": "b15af978d5d41eab6e87b400e1793f3d",
+    "semantic_hash": "b15af978d5d41eab6e87b400e1793f3d"
+  },
+  "medipath/resources/js/lib/chatbot.ts": {
+    "mtime": 1795385374.0931768,
+    "seen": 1795387454.276957,
+    "ast_hash": "8b64ce85f396549682287271f08ea3a9",
+    "semantic_hash": "8b64ce85f396549682287271f08ea3a9"
+  },
+  "medipath/resources/js/lib/echo.ts": {
+    "mtime": 1795384359.8229423,
+    "seen": 1795387454.276958,
+    "ast_hash": "45e673cd4af6f7a676032eddd4ec1eeb",
+    "semantic_hash": "45e673cd4af6f7a676032eddd4ec1eeb"
+  },
+  "medipath/resources/js/lib/format.ts": {
+    "mtime": 1795382929.881772,
+    "seen": 1795387454.276959,
+    "ast_hash": "31fcc88fcb4dead7c2234af6850c94f0",
+    "semantic_hash": "31fcc88fcb4dead7c2234af6850c94f0"
+  },
+  "medipath/resources/js/lib/http.ts": {
+    "mtime": 1795382929.881825,
+    "seen": 1795387454.27696,
+    "ast_hash": "5e15a976276df564089229cd6726b4eb",
+    "semantic_hash": "5e15a976276df564089229cd6726b4eb"
+  },
+  "medipath/resources/js/lib/nav.ts": {
+    "mtime": 1795416428.2587569,
+    "seen": 1795420656.526455,
+    "ast_hash": "45cdd4352064a1065aeb9dc8b77bd2a4",
+    "semantic_hash": "45cdd4352064a1065aeb9dc8b77bd2a4"
+  },
+  "medipath/resources/js/providers/ThemeProvider.tsx": {
+    "mtime": 1795383964.9120722,
+    "seen": 1795387454.276962,
+    "ast_hash": "87861fad44eb5b1cb4d1ee5f028a817f",
+    "semantic_hash": "87861fad44eb5b1cb4d1ee5f028a817f"
+  },
+  "medipath/resources/js/providers/ToastProvider.tsx": {
+    "mtime": 1795383964.9123676,
+    "seen": 1795387454.276962,
+    "ast_hash": "48a663d71d2f706a89d42c20629e9650",
+    "semantic_hash": "48a663d71d2f706a89d42c20629e9650"
+  },
+  "medipath/resources/js/types/index.ts": {
+    "mtime": 1795385450.5927906,
+    "seen": 1795387454.276963,
+    "ast_hash": "b9dd498d8688bb3e88d8f8fc061a5505",
+    "semantic_hash": "b9dd498d8688bb3e88d8f8fc061a5505"
+  },
+  "medipath/resources/js/types/inertia.d.ts": {
+    "mtime": 1795382902.5600343,
+    "seen": 1795387454.2769642,
+    "ast_hash": "3ea36d6b117aeb49b1e8e737739fdb7e",
+    "semantic_hash": "3ea36d6b117aeb49b1e8e737739fdb7e"
+  },
+  "medipath/resources/views/app.blade.php": {
+    "mtime": 1795384580.333084,
+    "seen": 1795387454.2769651,
+    "ast_hash": "ae7a9774d9a791f3745ce98122c6cdb8",
+    "semantic_hash": "ae7a9774d9a791f3745ce98122c6cdb8"
+  },
+  "medipath/resources/views/dev/frames.blade.php": {
+    "mtime": 1795383443.7093503,
+    "seen": 1795387454.2769659,
+    "ast_hash": "954c40563075ee8b7230b5970126032f",
+    "semantic_hash": "954c40563075ee8b7230b5970126032f"
+  },
+  "medipath/resources/views/emails/password-reset.blade.php": {
+    "mtime": 1795385260.747205,
+    "seen": 1795387454.2769668,
+    "ast_hash": "f83e1ff6088efddbacfafffd637d8548",
+    "semantic_hash": "f83e1ff6088efddbacfafffd637d8548"
+  },
+  "medipath/routes/api.php": {
+    "mtime": 1795386568.2865813,
+    "seen": 1795387454.2769668,
+    "ast_hash": "bc39aed7c357279d1d36b3332aefbd28",
+    "semantic_hash": "bc39aed7c357279d1d36b3332aefbd28"
+  },
+  "medipath/routes/channels.php": {
+    "mtime": 1795384718.2924612,
+    "seen": 1795387454.276968,
+    "ast_hash": "1b679d3a5a99e56255f50d7fbc4f4544",
+    "semantic_hash": "1b679d3a5a99e56255f50d7fbc4f4544"
+  },
+  "medipath/routes/console.php": {
+    "mtime": 1773507240.0,
+    "seen": 1795387454.276969,
+    "ast_hash": "3c6ce2e6d16444282b24a9aa63885563",
+    "semantic_hash": "3c6ce2e6d16444282b24a9aa63885563"
+  },
+  "medipath/routes/web.php": {
+    "mtime": 1795416501.6026092,
+    "seen": 1795420656.526474,
+    "ast_hash": "899ab9fab79f2c8a75f2693d75f199f3",
+    "semantic_hash": "899ab9fab79f2c8a75f2693d75f199f3"
+  },
+  "medipath/tests/Browser/GuestScreensTest.php": {
+    "mtime": 1795386567.9651139,
+    "seen": 1795387454.276971,
+    "ast_hash": "25765643e719d50b1b3bcb811909e459",
+    "semantic_hash": "25765643e719d50b1b3bcb811909e459"
+  },
+  "medipath/tests/Browser/Pages/HomePage.php": {
+    "mtime": 1795384103.1120276,
+    "seen": 1795387454.276971,
+    "ast_hash": "3b0af84a2d44d6ff642fbb1229112302",
+    "semantic_hash": "3b0af84a2d44d6ff642fbb1229112302"
+  },
+  "medipath/tests/Browser/Pages/Page.php": {
+    "mtime": 1795384103.1129303,
+    "seen": 1795387454.276972,
+    "ast_hash": "a117a55669f0643a50f2ec99732f59b9",
+    "semantic_hash": "a117a55669f0643a50f2ec99732f59b9"
+  },
+  "medipath/tests/Browser/RoleShellResponsiveTest.php": {
+    "mtime": 1795388143.4371138,
+    "seen": 1795389043.4128761,
+    "ast_hash": "0d09d6b4fc342773ecea0ff32dec3819",
+    "semantic_hash": "0d09d6b4fc342773ecea0ff32dec3819"
+  },
+  "medipath/tests/DuskTestCase.php": {
+    "mtime": 1795384103.113654,
+    "seen": 1795387454.276974,
+    "ast_hash": "790177a1ed1abd15bc6170388608c1cc",
+    "semantic_hash": "790177a1ed1abd15bc6170388608c1cc"
+  },
+  "medipath/tests/Feature/AuthSecurityTest.php": {
+    "mtime": 1795386568.205647,
+    "seen": 1795387454.2769752,
+    "ast_hash": "77c752d6c81f5aec2859ddd2b21dac57",
+    "semantic_hash": "77c752d6c81f5aec2859ddd2b21dac57"
+  },
+  "medipath/tests/Feature/ChatbotTest.php": {
+    "mtime": 1795386567.981212,
+    "seen": 1795387454.2769752,
+    "ast_hash": "5e73a6a26ceb20cf79b1b2baa3e1d4a5",
+    "semantic_hash": "5e73a6a26ceb20cf79b1b2baa3e1d4a5"
+  },
+  "medipath/tests/Feature/CurrencyAndSettingsTest.php": {
+    "mtime": 1795384644.5656621,
+    "seen": 1795387454.276976,
+    "ast_hash": "74d5aac94ad7004bb53a4e4b9b49fb5a",
+    "semantic_hash": "74d5aac94ad7004bb53a4e4b9b49fb5a"
+  },
+  "medipath/tests/Feature/DatabaseConstraintTest.php": {
+    "mtime": 1795384644.666568,
+    "seen": 1795387454.2769768,
+    "ast_hash": "f3a994216f56fa2ac1e9d7a6c1d66eb9",
+    "semantic_hash": "f3a994216f56fa2ac1e9d7a6c1d66eb9"
+  },
+  "medipath/tests/Feature/DesignContractTest.php": {
+    "mtime": 1795384644.687207,
+    "seen": 1795387454.276978,
+    "ast_hash": "3d7440f75179b6754f679303d77c7e96",
+    "semantic_hash": "3d7440f75179b6754f679303d77c7e96"
+  },
+  "medipath/tests/Feature/DevRoutesTest.php": {
+    "mtime": 1795385623.701031,
+    "seen": 1795387454.276979,
+    "ast_hash": "da87f2ef5a06c04af3681c8b862dd988",
+    "semantic_hash": "da87f2ef5a06c04af3681c8b862dd988"
+  },
+  "medipath/tests/Feature/GuestAuthPagesTest.php": {
+    "mtime": 1795386568.0173728,
+    "seen": 1795387454.276979,
+    "ast_hash": "860c06c275106481ba0451461d55f499",
+    "semantic_hash": "860c06c275106481ba0451461d55f499"
+  },
+  "medipath/tests/Feature/GuestDirectoryTest.php": {
+    "mtime": 1795386568.1488597,
+    "seen": 1795387454.27698,
+    "ast_hash": "5a1a63d7095eddd48bf659743f53a9c9",
+    "semantic_hash": "5a1a63d7095eddd48bf659743f53a9c9"
+  },
+  "medipath/tests/Feature/GuestDoctorProfileTest.php": {
+    "mtime": 1795386568.1627283,
+    "seen": 1795387454.2769809,
+    "ast_hash": "044020c4c8543072e7b087c329a59f59",
+    "semantic_hash": "044020c4c8543072e7b087c329a59f59"
+  },
+  "medipath/tests/Feature/GuestEmergencyTest.php": {
+    "mtime": 1795386568.1715016,
+    "seen": 1795387454.276982,
+    "ast_hash": "d8f4c46cea920bafaa93d2313dd51173",
+    "semantic_hash": "d8f4c46cea920bafaa93d2313dd51173"
+  },
+  "medipath/tests/Feature/ImmutabilityTest.php": {
+    "mtime": 1795384644.631965,
+    "seen": 1795387454.276983,
+    "ast_hash": "58e8d65084e223b18002cde5806d4eff",
+    "semantic_hash": "58e8d65084e223b18002cde5806d4eff"
+  },
+  "medipath/tests/Feature/NotificationTest.php": {
+    "mtime": 1795384644.7484622,
+    "seen": 1795387454.276983,
+    "ast_hash": "f8da57024bc6c34bf4c9a15be3fe55e1",
+    "semantic_hash": "f8da57024bc6c34bf4c9a15be3fe55e1"
+  },
+  "medipath/tests/Feature/PasswordResetTest.php": {
+    "mtime": 1795386568.2500632,
+    "seen": 1795387454.276984,
+    "ast_hash": "7fec1563c433c311e5f7e9fb70cedc53",
+    "semantic_hash": "7fec1563c433c311e5f7e9fb70cedc53"
+  },
+  "medipath/tests/Feature/PendingApprovalTest.php": {
+    "mtime": 1795386567.9967828,
+    "seen": 1795387454.2769852,
+    "ast_hash": "4266bdb9c721a0884d059cbcf954b08b",
+    "semantic_hash": "4266bdb9c721a0884d059cbcf954b08b"
+  },
+  "medipath/tests/Feature/RegistrationTest.php": {
+    "mtime": 1795386568.1241705,
+    "seen": 1795387454.2769861,
+    "ast_hash": "b0287841c80f4cfc3d08160ff7c75476",
+    "semantic_hash": "b0287841c80f4cfc3d08160ff7c75476"
+  },
+  "medipath/tests/Feature/RoleGateTest.php": {
+    "mtime": 1795385623.7115338,
+    "seen": 1795387454.2769861,
+    "ast_hash": "e818f2bba9a488476434379b6d40d860",
+    "semantic_hash": "e818f2bba9a488476434379b6d40d860"
+  },
+  "medipath/tests/Feature/SeederTest.php": {
+    "mtime": 1795385779.2432592,
+    "seen": 1795387454.2769868,
+    "ast_hash": "264144f022b4a90910230f855b537cc4",
+    "semantic_hash": "264144f022b4a90910230f855b537cc4"
+  },
+  "medipath/tests/Pest.php": {
+    "mtime": 1795384740.4031951,
+    "seen": 1795387454.2769878,
+    "ast_hash": "9aa2133bff43b7d8f5413cb6c25de741",
+    "semantic_hash": "9aa2133bff43b7d8f5413cb6c25de741"
+  },
+  "medipath/tests/TestCase.php": {
+    "mtime": 1795384644.7948067,
+    "seen": 1795387454.276989,
+    "ast_hash": "7a7c0b7950fecc4eb9572739c6b94900",
+    "semantic_hash": "7a7c0b7950fecc4eb9572739c6b94900"
+  },
+  "medipath/tsconfig.json": {
+    "mtime": 1795383184.9146483,
+    "seen": 1795387454.27699,
+    "ast_hash": "33e7fb9de9b9eeedd624e12a84bf2d86",
+    "semantic_hash": "33e7fb9de9b9eeedd624e12a84bf2d86"
+  },
+  "medipath/vite.config.ts": {
+    "mtime": 1795382902.5544753,
+    "seen": 1795387454.276991,
+    "ast_hash": "2977a8b5186461c9c68ad182e0070fb7",
+    "semantic_hash": "2977a8b5186461c9c68ad182e0070fb7"
+  },
+  "DEVELOPMENT_PLAN.md": {
+    "mtime": 1795375591.527934,
+    "seen": 1795387454.276991,
+    "ast_hash": "2e9d7e6c7ed24d6c45a169b202849da1",
+    "semantic_hash": "2e9d7e6c7ed24d6c45a169b202849da1"
+  },
+  "Docs/FIGMA_MAKE_PROMPT.md": {
+    "mtime": 1795376756.7498019,
+    "seen": 1795387454.276992,
+    "ast_hash": "16debe7a548940086757954ed1e91111",
+    "semantic_hash": "16debe7a548940086757954ed1e91111"
+  },
+  "Docs/FIGMA_MAKE_PROMPT_PARTS.md": {
+    "mtime": 1795377707.6532238,
+    "seen": 1795387454.276993,
+    "ast_hash": "e168aa5d50c6792cb5e626a4a573b1da",
+    "semantic_hash": "e168aa5d50c6792cb5e626a4a573b1da"
+  },
+  "Docs/FIGMA_SKILL_DESIGN_PROMPT.md": {
+    "mtime": 1795377502.9434037,
+    "seen": 1795387454.276994,
+    "ast_hash": "7cca6945cb57b764e0fabc54d290dfe5",
+    "semantic_hash": "7cca6945cb57b764e0fabc54d290dfe5"
+  },
+  "Docs/MEDIPATH_DEVELOPMENT_PLAN.md": {
+    "mtime": 1795376318.1841269,
+    "seen": 1795387454.2769952,
+    "ast_hash": "bf726e35d6af9280b535eeb412ec9345",
+    "semantic_hash": "bf726e35d6af9280b535eeb412ec9345"
+  },
+  "Docs/project-details.txt": {
+    "mtime": 1795375336.5932589,
+    "seen": 1795387454.2769952,
+    "ast_hash": "ae96d8a919f5715d3097482fe0779cef",
+    "semantic_hash": "ae96d8a919f5715d3097482fe0779cef"
+  },
+  "design-out/BUILD_PROMPT.md": {
+    "mtime": 1795382148.1448128,
+    "seen": 1795387454.2769961,
+    "ast_hash": "cbb59446dee2af6bda4bd439c7e621b2",
+    "semantic_hash": "cbb59446dee2af6bda4bd439c7e621b2"
+  },
+  "design-out/COMPONENT-SPEC.md": {
+    "mtime": 1795378813.19254,
+    "seen": 1795387454.276997,
+    "ast_hash": "a7a61526c39615aecbf9f27f3bfacda3",
+    "semantic_hash": "a7a61526c39615aecbf9f27f3bfacda3"
+  },
+  "design-out/DESIGN-RATIONALE.md": {
+    "mtime": 1795381418.3690555,
+    "seen": 1795387454.2769978,
+    "ast_hash": "2bd61c2973479e367800a47492fc5fbd",
+    "semantic_hash": "2bd61c2973479e367800a47492fc5fbd"
+  },
+  "design-out/prototypes/admin/01-dashboard.html": {
+    "mtime": 1795380815.9557076,
+    "seen": 1795387454.276999,
+    "ast_hash": "3826655f5f6dec1339f992e94b3c46d4",
+    "semantic_hash": "3826655f5f6dec1339f992e94b3c46d4"
+  },
+  "design-out/prototypes/admin/02-users.html": {
+    "mtime": 1795380887.48411,
+    "seen": 1795387454.276999,
+    "ast_hash": "0eb7429c99fb1bb88cc5790707569d29",
+    "semantic_hash": "0eb7429c99fb1bb88cc5790707569d29"
+  },
+  "design-out/prototypes/admin/03-approvals.html": {
+    "mtime": 1795380887.484263,
+    "seen": 1795387454.277,
+    "ast_hash": "d7350a3fc3f9f9138b16c619a762fbbf",
+    "semantic_hash": "d7350a3fc3f9f9138b16c619a762fbbf"
+  },
+  "design-out/prototypes/admin/04-doctors.html": {
+    "mtime": 1795380956.2379649,
+    "seen": 1795387454.277001,
+    "ast_hash": "9c92e8c98882e22d4d380bacf2836a83",
+    "semantic_hash": "9c92e8c98882e22d4d380bacf2836a83"
+  },
+  "design-out/prototypes/admin/05-patients.html": {
+    "mtime": 1795380956.2379532,
+    "seen": 1795387454.277002,
+    "ast_hash": "4263b8c25d63b9861f572221b1d1f0e2",
+    "semantic_hash": "4263b8c25d63b9861f572221b1d1f0e2"
+  },
+  "design-out/prototypes/admin/06-appointments.html": {
+    "mtime": 1795381025.803526,
+    "seen": 1795387454.277003,
+    "ast_hash": "d24260d9e2827254d3a1255cc9adae6d",
+    "semantic_hash": "d24260d9e2827254d3a1255cc9adae6d"
+  },
+  "design-out/prototypes/admin/07-records.html": {
+    "mtime": 1795381025.8035264,
+    "seen": 1795387454.277004,
+    "ast_hash": "d0c21e9685fc29d341c458730eaafdd9",
+    "semantic_hash": "d0c21e9685fc29d341c458730eaafdd9"
+  },
+  "design-out/prototypes/admin/08-reports.html": {
+    "mtime": 1795381099.5642707,
+    "seen": 1795387454.277004,
+    "ast_hash": "85757b20305ef358d97acd9544c9cab4",
+    "semantic_hash": "85757b20305ef358d97acd9544c9cab4"
+  },
+  "design-out/prototypes/admin/09-activity.html": {
+    "mtime": 1795381140.3482463,
+    "seen": 1795387454.277005,
+    "ast_hash": "2c9eb3f6184896fff7c28116de7ca227",
+    "semantic_hash": "2c9eb3f6184896fff7c28116de7ca227"
+  },
+  "design-out/prototypes/admin/10-faq-reviews.html": {
+    "mtime": 1795381140.3481312,
+    "seen": 1795387454.2770061,
+    "ast_hash": "4a4008033b72732658e33cee3d445f13",
+    "semantic_hash": "4a4008033b72732658e33cee3d445f13"
+  },
+  "design-out/prototypes/admin/11-safety-console.html": {
+    "mtime": 1795381206.341535,
+    "seen": 1795387454.277007,
+    "ast_hash": "9ed893ffb89488131a117904b4203d5b",
+    "semantic_hash": "9ed893ffb89488131a117904b4203d5b"
+  },
+  "design-out/prototypes/admin/12-settings.html": {
+    "mtime": 1795381418.369062,
+    "seen": 1795387454.2770078,
+    "ast_hash": "7b15dae1a5fa485c39f5087592701e05",
+    "semantic_hash": "7b15dae1a5fa485c39f5087592701e05"
+  },
+  "design-out/prototypes/admin/13-data.html": {
+    "mtime": 1795381273.539276,
+    "seen": 1795387454.277009,
+    "ast_hash": "bc0777d40e497a2b65b98d3eebbdbdc1",
+    "semantic_hash": "bc0777d40e497a2b65b98d3eebbdbdc1"
+  },
+  "design-out/prototypes/admin/14-security.html": {
+    "mtime": 1795381273.5392778,
+    "seen": 1795387454.27701,
+    "ast_hash": "b5b13a94b793fdbfecd157c49779c6d3",
+    "semantic_hash": "b5b13a94b793fdbfecd157c49779c6d3"
+  },
+  "design-out/prototypes/doctor/01-dashboard.html": {
+    "mtime": 1795380264.4373953,
+    "seen": 1795387454.27701,
+    "ast_hash": "ffcbddb0a6e97c2a3d2d4ada633afe79",
+    "semantic_hash": "ffcbddb0a6e97c2a3d2d4ada633afe79"
+  },
+  "design-out/prototypes/doctor/02-schedule-leave.html": {
+    "mtime": 1795380264.4442163,
+    "seen": 1795387454.277011,
+    "ast_hash": "b1eb17d17d932438fed74a9f1a979a36",
+    "semantic_hash": "b1eb17d17d932438fed74a9f1a979a36"
+  },
+  "design-out/prototypes/doctor/03-requests.html": {
+    "mtime": 1795380339.4008722,
+    "seen": 1795387454.2770119,
+    "ast_hash": "d7db78b172b4d2d60f041b40d715db88",
+    "semantic_hash": "d7db78b172b4d2d60f041b40d715db88"
+  },
+  "design-out/prototypes/doctor/04-patients.html": {
+    "mtime": 1795380339.400794,
+    "seen": 1795387454.277013,
+    "ast_hash": "7679e27164e646b3fe689ba5fd308f79",
+    "semantic_hash": "7679e27164e646b3fe689ba5fd308f79"
+  },
+  "design-out/prototypes/doctor/05-patient-detail.html": {
+    "mtime": 1795380403.8765159,
+    "seen": 1795387454.277014,
+    "ast_hash": "ffa71a5ce0f2e1d62a83542dcea81b91",
+    "semantic_hash": "ffa71a5ce0f2e1d62a83542dcea81b91"
+  },
+  "design-out/prototypes/doctor/06-walkin.html": {
+    "mtime": 1795380403.8765135,
+    "seen": 1795387454.277014,
+    "ast_hash": "26ba693483768319847d0beb47fa6c9a",
+    "semantic_hash": "26ba693483768319847d0beb47fa6c9a"
+  },
+  "design-out/prototypes/doctor/07-prescription-builder.html": {
+    "mtime": 1795380477.1250875,
+    "seen": 1795387454.277015,
+    "ast_hash": "e7395073c9f516f03f48c8f6945d7573",
+    "semantic_hash": "e7395073c9f516f03f48c8f6945d7573"
+  },
+  "design-out/prototypes/doctor/08-reviews.html": {
+    "mtime": 1795380556.0107117,
+    "seen": 1795387454.2770162,
+    "ast_hash": "cabd2853ee31ab7b0893d18ca54739e0",
+    "semantic_hash": "cabd2853ee31ab7b0893d18ca54739e0"
+  },
+  "design-out/prototypes/guest/01-landing.html": {
+    "mtime": 1795378956.2216353,
+    "seen": 1795387454.277017,
+    "ast_hash": "983f8063fdbe46d9c7825932c1139b27",
+    "semantic_hash": "983f8063fdbe46d9c7825932c1139b27"
+  },
+  "design-out/prototypes/guest/02-directory.html": {
+    "mtime": 1795379049.2803178,
+    "seen": 1795387454.277017,
+    "ast_hash": "e17cbaa4c5ab92dc34d9d496bff9f3da",
+    "semantic_hash": "e17cbaa4c5ab92dc34d9d496bff9f3da"
+  },
+  "design-out/prototypes/guest/03-doctor-profile.html": {
+    "mtime": 1795379104.5239515,
+    "seen": 1795387454.277018,
+    "ast_hash": "e66fd2a8d6270ffa6443a462a259ffcf",
+    "semantic_hash": "e66fd2a8d6270ffa6443a462a259ffcf"
+  },
+  "design-out/prototypes/guest/04-emergency.html": {
+    "mtime": 1795379147.7898943,
+    "seen": 1795387454.2770188,
+    "ast_hash": "d8fc0dd2a36902ad7718ecf4dd0c4e32",
+    "semantic_hash": "d8fc0dd2a36902ad7718ecf4dd0c4e32"
+  },
+  "design-out/prototypes/guest/05-login.html": {
+    "mtime": 1795379183.210174,
+    "seen": 1795387454.27702,
+    "ast_hash": "04682f62c180df1c152f6aaca76475df",
+    "semantic_hash": "04682f62c180df1c152f6aaca76475df"
+  },
+  "design-out/prototypes/guest/06-register.html": {
+    "mtime": 1795379225.034707,
+    "seen": 1795387454.277021,
+    "ast_hash": "24feccbe316ed7237e9fd7e8306899e4",
+    "semantic_hash": "24feccbe316ed7237e9fd7e8306899e4"
+  },
+  "design-out/prototypes/guest/07-forgot-reset.html": {
+    "mtime": 1795379250.7175503,
+    "seen": 1795387454.277021,
+    "ast_hash": "9334881436c771dbe2cbb674d4e67cee",
+    "semantic_hash": "9334881436c771dbe2cbb674d4e67cee"
+  },
+  "design-out/prototypes/guest/08-pending.html": {
+    "mtime": 1795379282.6024878,
+    "seen": 1795387454.277022,
+    "ast_hash": "433d17972c71ded101df588977add152",
+    "semantic_hash": "433d17972c71ded101df588977add152"
+  },
+  "design-out/prototypes/index.html": {
+    "mtime": 1795381333.3537781,
+    "seen": 1795387454.277023,
+    "ast_hash": "ae5bc845bf270b6be79295d0a9056f7e",
+    "semantic_hash": "ae5bc845bf270b6be79295d0a9056f7e"
+  },
+  "design-out/prototypes/patient/01-dashboard.html": {
+    "mtime": 1795379849.679197,
+    "seen": 1795387454.277024,
+    "ast_hash": "0be5fa6ce2ebc8c0b5eba5ab428c3069",
+    "semantic_hash": "0be5fa6ce2ebc8c0b5eba5ab428c3069"
+  },
+  "design-out/prototypes/patient/02-booking.html": {
+    "mtime": 1795379904.82164,
+    "seen": 1795387454.277025,
+    "ast_hash": "dac606c99b53076d7699b7e98fec3990",
+    "semantic_hash": "dac606c99b53076d7699b7e98fec3990"
+  },
+  "design-out/prototypes/patient/03-appointments.html": {
+    "mtime": 1795379951.5134077,
+    "seen": 1795387454.277025,
+    "ast_hash": "32b5662e8f59a82dc60e45e3eebaa5e0",
+    "semantic_hash": "32b5662e8f59a82dc60e45e3eebaa5e0"
+  },
+  "design-out/prototypes/patient/04-symptom-checker.html": {
+    "mtime": 1795380024.620611,
+    "seen": 1795387454.277026,
+    "ast_hash": "f95efc279c0688eb764214f8bdb70a6a",
+    "semantic_hash": "f95efc279c0688eb764214f8bdb70a6a"
+  },
+  "design-out/prototypes/patient/05-prescriptions.html": {
+    "mtime": 1795380058.0345979,
+    "seen": 1795387454.2770271,
+    "ast_hash": "d593ccf4e4640046a367a1a0d58ade9f",
+    "semantic_hash": "d593ccf4e4640046a367a1a0d58ade9f"
+  },
+  "design-out/prototypes/patient/06-bills.html": {
+    "mtime": 1795380096.8825893,
+    "seen": 1795387454.277028,
+    "ast_hash": "ceec24a31cfcf285f76a4a3433cbf15f",
+    "semantic_hash": "ceec24a31cfcf285f76a4a3433cbf15f"
+  },
+  "design-out/prototypes/patient/07-allergies-medications.html": {
+    "mtime": 1795380140.5541985,
+    "seen": 1795387454.277028,
+    "ast_hash": "2d2870b44a87d3edf3110fd429d2f954",
+    "semantic_hash": "2d2870b44a87d3edf3110fd429d2f954"
+  },
+  "design-out/prototypes/patient/08-profile-settings.html": {
+    "mtime": 1795380174.0370893,
+    "seen": 1795387454.277029,
+    "ast_hash": "375f12b187258024a3df5f18837ac990",
+    "semantic_hash": "375f12b187258024a3df5f18837ac990"
+  },
+  "design-out/prototypes/pharmacist/01-dashboard.html": {
+    "mtime": 1795380556.0109742,
+    "seen": 1795387454.27703,
+    "ast_hash": "e8dbbe4cffed5971be6b87e4d55f30ae",
+    "semantic_hash": "e8dbbe4cffed5971be6b87e4d55f30ae"
+  },
+  "design-out/prototypes/pharmacist/02-pending-rx.html": {
+    "mtime": 1795380556.0109918,
+    "seen": 1795387454.277031,
+    "ast_hash": "81ae440b7cb1b1665da2be4aa92f9ee8",
+    "semantic_hash": "81ae440b7cb1b1665da2be4aa92f9ee8"
+  },
+  "design-out/prototypes/pharmacist/03-safety-gate.html": {
+    "mtime": 1795380632.9413466,
+    "seen": 1795387454.277032,
+    "ast_hash": "519f2beddb2538966354a9a3b21f05fa",
+    "semantic_hash": "519f2beddb2538966354a9a3b21f05fa"
+  },
+  "design-out/prototypes/pharmacist/04-dispense-bill.html": {
+    "mtime": 1795380632.941348,
+    "seen": 1795387454.277032,
+    "ast_hash": "f3db45a099ce47c2fd40db7aa38be394",
+    "semantic_hash": "f3db45a099ce47c2fd40db7aa38be394"
+  },
+  "design-out/prototypes/pharmacist/05-inventory.html": {
+    "mtime": 1795380709.311837,
+    "seen": 1795387454.2770329,
+    "ast_hash": "10e933df8baaa8c5fcf0f8716f456bac",
+    "semantic_hash": "10e933df8baaa8c5fcf0f8716f456bac"
+  },
+  "design-out/prototypes/pharmacist/06-alerts.html": {
+    "mtime": 1795380709.3114557,
+    "seen": 1795387454.277034,
+    "ast_hash": "79fbcbf656882e7553476e46d91bcefd",
+    "semantic_hash": "79fbcbf656882e7553476e46d91bcefd"
+  },
+  "design-out/prototypes/pharmacist/07-invoices.html": {
+    "mtime": 1795380770.344937,
+    "seen": 1795387454.277035,
+    "ast_hash": "9e15e1e9776475a8d6ca633d5a0aa961",
+    "semantic_hash": "9e15e1e9776475a8d6ca633d5a0aa961"
+  },
+  "design-out/prototypes/pharmacist/08-workflow-tracker.html": {
+    "mtime": 1795380770.344938,
+    "seen": 1795387454.277035,
+    "ast_hash": "5d823f24fc4f0ed2d6ea477d2b93fab2",
+    "semantic_hash": "5d823f24fc4f0ed2d6ea477d2b93fab2"
+  },
+  "medipath/Docs/PART0_COMPONENTS.md": {
+    "mtime": 1795384339.192896,
+    "seen": 1795387454.277036,
+    "ast_hash": "e9d932a549d5a76ea0776e6b545583a5",
+    "semantic_hash": "e9d932a549d5a76ea0776e6b545583a5"
+  },
+  "medipath/Docs/PART1_SCREENS.md": {
+    "mtime": 1795386447.0573022,
+    "seen": 1795387454.2770371,
+    "ast_hash": "51598c50c8df8333768bb1b91ca9acbe",
+    "semantic_hash": "51598c50c8df8333768bb1b91ca9acbe"
+  },
+  "medipath/README.md": {
+    "mtime": 1795418339.503892,
+    "seen": 1795420656.5265212,
+    "ast_hash": "b59f7acb92b8f33d0755da13998c9bcc",
+    "semantic_hash": "b59f7acb92b8f33d0755da13998c9bcc"
+  },
+  "medipath/public/robots.txt": {
+    "mtime": 1773507240.0,
+    "seen": 1795387454.277038,
+    "ast_hash": "b6216d61c03e6ce0c9aea6ca7808f7ca",
+    "semantic_hash": "b6216d61c03e6ce0c9aea6ca7808f7ca"
+  },
+  "Docs/CSE-479 Lab Project.pdf": {
+    "mtime": 1795374897.916293,
+    "seen": 1795387454.277039,
+    "ast_hash": "77d6bed246dba10921be5722f1aa12e0",
+    "semantic_hash": "77d6bed246dba10921be5722f1aa12e0"
+  },
+  "medipath/app/Http/Controllers/Admin/ApprovalController.php": {
+    "mtime": 1795387768.331523,
+    "seen": 1795389043.412651,
+    "ast_hash": "3ffba4e2bf877dc41865ca4b77ba5dd8",
+    "semantic_hash": "3ffba4e2bf877dc41865ca4b77ba5dd8"
+  },
+  "medipath/app/Http/Controllers/Admin/DashboardController.php": {
+    "mtime": 1795387803.377958,
+    "seen": 1795389043.412653,
+    "ast_hash": "95ed10baf124a91eaec3e03e8b72fb0e",
+    "semantic_hash": "95ed10baf124a91eaec3e03e8b72fb0e"
+  },
+  "medipath/app/Http/Controllers/Admin/DoctorController.php": {
+    "mtime": 1795387774.8752491,
+    "seen": 1795389043.4126542,
+    "ast_hash": "fba9d3bf64bfb6c549895cc7f7b12fe4",
+    "semantic_hash": "fba9d3bf64bfb6c549895cc7f7b12fe4"
+  },
+  "medipath/app/Http/Controllers/Admin/PatientController.php": {
+    "mtime": 1795387893.6527889,
+    "seen": 1795389043.4126542,
+    "ast_hash": "1c7a950c8a5d3c6b3a2fa771df6df46d",
+    "semantic_hash": "1c7a950c8a5d3c6b3a2fa771df6df46d"
+  },
+  "medipath/app/Http/Controllers/Admin/UserController.php": {
+    "mtime": 1795387703.9278207,
+    "seen": 1795389043.412655,
+    "ast_hash": "e3a8250e95dff878cec373fdb09a0302",
+    "semantic_hash": "e3a8250e95dff878cec373fdb09a0302"
+  },
+  "medipath/app/Http/Middleware/AdminIdleTimeout.php": {
+    "mtime": 1795389361.8395517,
+    "seen": 1795412319.8698502,
+    "ast_hash": "162e93d6459da8f5ca78f0efb8afa086",
+    "semantic_hash": "162e93d6459da8f5ca78f0efb8afa086"
+  },
+  "medipath/app/Http/Requests/Admin/ArchiveUserRequest.php": {
+    "mtime": 1795387669.4137948,
+    "seen": 1795389043.41268,
+    "ast_hash": "fdd5bdf67182b1e0e5cc1c0ad5256cb7",
+    "semantic_hash": "fdd5bdf67182b1e0e5cc1c0ad5256cb7"
+  },
+  "medipath/app/Http/Requests/Admin/ChangeUserRoleRequest.php": {
+    "mtime": 1795387669.4045303,
+    "seen": 1795389043.4126809,
+    "ast_hash": "f3963408829325ede7fdb7f6026c371c",
+    "semantic_hash": "f3963408829325ede7fdb7f6026c371c"
+  },
+  "medipath/app/Http/Requests/Admin/DoctorRequest.php": {
+    "mtime": 1795387669.413752,
+    "seen": 1795389043.412683,
+    "ast_hash": "34f87df85dfeb2c6aa03ff6913319417",
+    "semantic_hash": "34f87df85dfeb2c6aa03ff6913319417"
+  },
+  "medipath/app/Http/Requests/Admin/PatientRequest.php": {
+    "mtime": 1795387669.4174123,
+    "seen": 1795389043.412684,
+    "ast_hash": "29761c34587974d7fab61cd925942fcf",
+    "semantic_hash": "29761c34587974d7fab61cd925942fcf"
+  },
+  "medipath/app/Http/Requests/Admin/RejectApprovalRequest.php": {
+    "mtime": 1795387755.486463,
+    "seen": 1795389043.412684,
+    "ast_hash": "bcc2cb48abb8cf8c82684f3c6dc1b25d",
+    "semantic_hash": "bcc2cb48abb8cf8c82684f3c6dc1b25d"
+  },
+  "medipath/app/Http/Requests/Admin/StoreUserRequest.php": {
+    "mtime": 1795387669.4036856,
+    "seen": 1795389043.4126852,
+    "ast_hash": "2e6bd341027bd5279b184288bdc86230",
+    "semantic_hash": "2e6bd341027bd5279b184288bdc86230"
+  },
+  "medipath/app/Http/Requests/Admin/SuspendUserRequest.php": {
+    "mtime": 1795387669.4044502,
+    "seen": 1795389043.412686,
+    "ast_hash": "e669b74c367566fcbef734dbe9b1096d",
+    "semantic_hash": "e669b74c367566fcbef734dbe9b1096d"
+  },
+  "medipath/app/Http/Requests/Admin/UpdateUserRequest.php": {
+    "mtime": 1795387669.4044495,
+    "seen": 1795389043.412687,
+    "ast_hash": "d3fafc0cb5652c0e50291b84aecf9402",
+    "semantic_hash": "d3fafc0cb5652c0e50291b84aecf9402"
+  },
+  "medipath/app/Http/Requests/Admin/VerifyDoctorRequest.php": {
+    "mtime": 1795387755.4864664,
+    "seen": 1795389043.4126878,
+    "ast_hash": "bf745cedb968dd1538a7bb1ed39cb2b3",
+    "semantic_hash": "bf745cedb968dd1538a7bb1ed39cb2b3"
+  },
+  "medipath/app/Services/AdminApprovalService.php": {
+    "mtime": 1795387635.144068,
+    "seen": 1795389043.412729,
+    "ast_hash": "70edf5aa24c853bbf3130eb019c5446a",
+    "semantic_hash": "70edf5aa24c853bbf3130eb019c5446a"
+  },
+  "medipath/app/Services/AdminDoctorService.php": {
+    "mtime": 1795388522.5125196,
+    "seen": 1795389043.412729,
+    "ast_hash": "09f23dc2e97a0d98f26fa2e3970cc3ec",
+    "semantic_hash": "09f23dc2e97a0d98f26fa2e3970cc3ec"
+  },
+  "medipath/app/Services/AdminPatientService.php": {
+    "mtime": 1795388522.5136237,
+    "seen": 1795389043.4127302,
+    "ast_hash": "ff610bbcca636a2e5bf8ee3d32e8bdc2",
+    "semantic_hash": "ff610bbcca636a2e5bf8ee3d32e8bdc2"
+  },
+  "medipath/app/Services/AdminUserService.php": {
+    "mtime": 1795388522.5112474,
+    "seen": 1795389043.412731,
+    "ast_hash": "927a78b232a4a2dfe699fd3ce7090766",
+    "semantic_hash": "927a78b232a4a2dfe699fd3ce7090766"
+  },
+  "medipath/database/migrations/2026_01_01_000350_add_session_version_to_users.php": {
+    "mtime": 1795387560.2317529,
+    "seen": 1795389043.412794,
+    "ast_hash": "36766e32299a9f70d3473a06f97ae8ed",
+    "semantic_hash": "36766e32299a9f70d3473a06f97ae8ed"
+  },
+  "medipath/resources/js/Components/Admin/AdminModal.tsx": {
+    "mtime": 1795412401.0088944,
+    "seen": 1795414002.824148,
+    "ast_hash": "bf730bd81201ce02ede27b02d49907c9",
+    "semantic_hash": "bf730bd81201ce02ede27b02d49907c9"
+  },
+  "medipath/resources/js/Components/Admin/PatientPortalPreview.tsx": {
+    "mtime": 1795388242.372573,
+    "seen": 1795389043.412812,
+    "ast_hash": "5028f622a217a2318bad82778229e50b",
+    "semantic_hash": "5028f622a217a2318bad82778229e50b"
+  },
+  "medipath/resources/js/Pages/Admin/Approvals.tsx": {
+    "mtime": 1795388625.5338793,
+    "seen": 1795389043.412837,
+    "ast_hash": "dd766978121563eafdd48a3e0d6e853a",
+    "semantic_hash": "dd766978121563eafdd48a3e0d6e853a"
+  },
+  "medipath/resources/js/Pages/Admin/Dashboard.tsx": {
+    "mtime": 1795388277.802391,
+    "seen": 1795389043.412838,
+    "ast_hash": "5ed794e78d7dd7f6bddf41578a931b83",
+    "semantic_hash": "5ed794e78d7dd7f6bddf41578a931b83"
+  },
+  "medipath/resources/js/Pages/Admin/Doctors.tsx": {
+    "mtime": 1795388625.533051,
+    "seen": 1795389043.412839,
+    "ast_hash": "a82191555a5e9f99c1d5f97c3c6b53d5",
+    "semantic_hash": "a82191555a5e9f99c1d5f97c3c6b53d5"
+  },
+  "medipath/resources/js/Pages/Admin/PatientPortal.tsx": {
+    "mtime": 1795388074.239246,
+    "seen": 1795389043.412839,
+    "ast_hash": "ff4e00e7e2ab2df7dc544b46cc7722a6",
+    "semantic_hash": "ff4e00e7e2ab2df7dc544b46cc7722a6"
+  },
+  "medipath/resources/js/Pages/Admin/Patients.tsx": {
+    "mtime": 1795388625.5335093,
+    "seen": 1795389043.41284,
+    "ast_hash": "c1ac42a5607672b7eec0853e8fe9a2f4",
+    "semantic_hash": "c1ac42a5607672b7eec0853e8fe9a2f4"
+  },
+  "medipath/resources/js/Pages/Admin/Users.tsx": {
+    "mtime": 1795388625.532613,
+    "seen": 1795389043.4128408,
+    "ast_hash": "dc538b610404d21bde7f66326b3419ab",
+    "semantic_hash": "dc538b610404d21bde7f66326b3419ab"
+  },
+  "medipath/resources/js/types/admin.ts": {
+    "mtime": 1795389549.1016948,
+    "seen": 1795412319.870064,
+    "ast_hash": "7358b8533c4c00258a1d6399c0eab647",
+    "semantic_hash": "7358b8533c4c00258a1d6399c0eab647"
+  },
+  "medipath/tests/Browser/AdminScreensTest.php": {
+    "mtime": 1795388487.675717,
+    "seen": 1795389043.4128718,
+    "ast_hash": "28fbb25f422db5f0033ddd30b3f242e3",
+    "semantic_hash": "28fbb25f422db5f0033ddd30b3f242e3"
+  },
+  "medipath/tests/Feature/AdminPart2Test.php": {
+    "mtime": 1795387994.7519965,
+    "seen": 1795389043.412878,
+    "ast_hash": "c451e4a03bd53aa7e6d6241df8e7f2af",
+    "semantic_hash": "c451e4a03bd53aa7e6d6241df8e7f2af"
+  },
+  "medipath/Docs/PART2_SCREENS.md": {
+    "mtime": 1795388737.383364,
+    "seen": 1795389043.412899,
+    "ast_hash": "c8bb5c60c3f987294ce72dac5731965b",
+    "semantic_hash": "c8bb5c60c3f987294ce72dac5731965b"
+  },
+  "medipath/app/Http/Controllers/Admin/ActivityController.php": {
+    "mtime": 1795389469.361511,
+    "seen": 1795412319.8698041,
+    "ast_hash": "dd91df3419401d18d2970c6916c737e2",
+    "semantic_hash": "dd91df3419401d18d2970c6916c737e2"
+  },
+  "medipath/app/Http/Controllers/Admin/AppointmentController.php": {
+    "mtime": 1795389427.8314693,
+    "seen": 1795412319.869805,
+    "ast_hash": "16ecdc1e3eec6512dfcb96d424dff3b5",
+    "semantic_hash": "16ecdc1e3eec6512dfcb96d424dff3b5"
+  },
+  "medipath/app/Http/Controllers/Admin/DataController.php": {
+    "mtime": 1795391548.031737,
+    "seen": 1795412319.869809,
+    "ast_hash": "a7a7642f1213f1ea99420f63bdf18a56",
+    "semantic_hash": "a7a7642f1213f1ea99420f63bdf18a56"
+  },
+  "medipath/app/Http/Controllers/Admin/KnowledgeController.php": {
+    "mtime": 1795389485.4064674,
+    "seen": 1795412319.869811,
+    "ast_hash": "6c5bc1e895c02ba18fa01d28b5b99cb3",
+    "semantic_hash": "6c5bc1e895c02ba18fa01d28b5b99cb3"
+  },
+  "medipath/app/Http/Controllers/Admin/RecordController.php": {
+    "mtime": 1795389442.4346526,
+    "seen": 1795412319.869814,
+    "ast_hash": "498381483abcd234d3f2aa66500d214b",
+    "semantic_hash": "498381483abcd234d3f2aa66500d214b"
+  },
+  "medipath/app/Http/Controllers/Admin/ReportController.php": {
+    "mtime": 1795389454.703814,
+    "seen": 1795412319.869815,
+    "ast_hash": "245df837a1aa6c044edd2f5f6bd0b7d5",
+    "semantic_hash": "245df837a1aa6c044edd2f5f6bd0b7d5"
+  },
+  "medipath/app/Http/Controllers/Admin/SafetyController.php": {
+    "mtime": 1795389504.3990695,
+    "seen": 1795412319.869816,
+    "ast_hash": "686a40fe62787c452d4ef39b53ba7686",
+    "semantic_hash": "686a40fe62787c452d4ef39b53ba7686"
+  },
+  "medipath/app/Http/Controllers/Admin/SecurityController.php": {
+    "mtime": 1795389533.4974113,
+    "seen": 1795412319.869817,
+    "ast_hash": "65985da580ac61054279c7e4d8e4a8df",
+    "semantic_hash": "65985da580ac61054279c7e4d8e4a8df"
+  },
+  "medipath/app/Http/Controllers/Admin/SettingsController.php": {
+    "mtime": 1795389643.025852,
+    "seen": 1795412319.8698182,
+    "ast_hash": "d91118b40b524495e9250466bf9c258d",
+    "semantic_hash": "d91118b40b524495e9250466bf9c258d"
+  },
+  "medipath/app/Http/Controllers/Patient/AppointmentController.php": {
+    "mtime": 1795410832.7755208,
+    "seen": 1795412319.869834,
+    "ast_hash": "2c4de28ac0be01e4ca4219f03a525470",
+    "semantic_hash": "2c4de28ac0be01e4ca4219f03a525470"
+  },
+  "medipath/app/Http/Controllers/Patient/ClinicalProfileController.php": {
+    "mtime": 1795410858.989207,
+    "seen": 1795412319.869835,
+    "ast_hash": "5c00c6cf222b5e5652cbd59fb89ff687",
+    "semantic_hash": "5c00c6cf222b5e5652cbd59fb89ff687"
+  },
+  "medipath/app/Http/Controllers/Patient/DashboardController.php": {
+    "mtime": 1795409690.1442032,
+    "seen": 1795412319.869836,
+    "ast_hash": "7dd0203e7ba58b8f55a28489ef1f3748",
+    "semantic_hash": "7dd0203e7ba58b8f55a28489ef1f3748"
+  },
+  "medipath/app/Http/Controllers/Patient/DoctorBrowseController.php": {
+    "mtime": 1795410819.5137157,
+    "seen": 1795412319.869837,
+    "ast_hash": "42ce6a89201a30bd2c53d5a54b3edfeb",
+    "semantic_hash": "42ce6a89201a30bd2c53d5a54b3edfeb"
+  },
+  "medipath/app/Http/Controllers/Patient/InvoiceController.php": {
+    "mtime": 1795410847.0958982,
+    "seen": 1795412319.869838,
+    "ast_hash": "790a9c4a6c4249483f8a3b323abe4585",
+    "semantic_hash": "790a9c4a6c4249483f8a3b323abe4585"
+  },
+  "medipath/app/Http/Controllers/Patient/NotificationController.php": {
+    "mtime": 1795410872.7153068,
+    "seen": 1795412319.8698418,
+    "ast_hash": "74baab1247e0fbdcfdc80b730aafd9c9",
+    "semantic_hash": "74baab1247e0fbdcfdc80b730aafd9c9"
+  },
+  "medipath/app/Http/Controllers/Patient/PrescriptionController.php": {
+    "mtime": 1795410839.5558162,
+    "seen": 1795412319.869843,
+    "ast_hash": "9109730b6eed9b5b67c5a7bfa9b459db",
+    "semantic_hash": "9109730b6eed9b5b67c5a7bfa9b459db"
+  },
+  "medipath/app/Http/Controllers/Patient/ReviewController.php": {
+    "mtime": 1795410867.1079912,
+    "seen": 1795412319.869844,
+    "ast_hash": "f4755e37d749d45223ac6a5977616a94",
+    "semantic_hash": "f4755e37d749d45223ac6a5977616a94"
+  },
+  "medipath/app/Http/Controllers/Patient/SettingsController.php": {
+    "mtime": 1795410882.9588964,
+    "seen": 1795412319.869845,
+    "ast_hash": "ae47d8b6c2e24300d2ef076b79a09b7f",
+    "semantic_hash": "ae47d8b6c2e24300d2ef076b79a09b7f"
+  },
+  "medipath/app/Http/Controllers/Patient/SymptomCheckerController.php": {
+    "mtime": 1795412568.8631995,
+    "seen": 1795414002.823987,
+    "ast_hash": "7bf30b7e69ac10810c33aae877f73e10",
+    "semantic_hash": "7bf30b7e69ac10810c33aae877f73e10"
+  },
+  "medipath/app/Services/AdminAppointmentService.php": {
+    "mtime": 1795389370.674553,
+    "seen": 1795412319.8699079,
+    "ast_hash": "27bc400b35b0d32fa3156287f35f22de",
+    "semantic_hash": "27bc400b35b0d32fa3156287f35f22de"
+  },
+  "medipath/app/Services/AdminDataService.php": {
+    "mtime": 1795389411.394723,
+    "seen": 1795412319.86991,
+    "ast_hash": "3a312efc60cd0f16a21db36578e7195f",
+    "semantic_hash": "3a312efc60cd0f16a21db36578e7195f"
+  },
+  "medipath/app/Services/AdminReportService.php": {
+    "mtime": 1795390267.3106554,
+    "seen": 1795412319.869913,
+    "ast_hash": "ec419a868b340296661ce3db0bdb7cc3",
+    "semantic_hash": "ec419a868b340296661ce3db0bdb7cc3"
+  },
+  "medipath/app/Services/AdminSettingsService.php": {
+    "mtime": 1795391551.9533646,
+    "seen": 1795412319.869914,
+    "ast_hash": "199d6d2437e790d88d4e45bfb6242462",
+    "semantic_hash": "199d6d2437e790d88d4e45bfb6242462"
+  },
+  "medipath/app/Services/PatientBookingService.php": {
+    "mtime": 1795409682.8905852,
+    "seen": 1795412319.869923,
+    "ast_hash": "56dc634cab94c057bc0c43d7e4dac3b0",
+    "semantic_hash": "56dc634cab94c057bc0c43d7e4dac3b0"
+  },
+  "medipath/resources/js/Pages/Admin/ActivityLog.tsx": {
+    "mtime": 1795389592.2734036,
+    "seen": 1795412319.870019,
+    "ast_hash": "0a10c0110fc34a013523376a491c6e17",
+    "semantic_hash": "0a10c0110fc34a013523376a491c6e17"
+  },
+  "medipath/resources/js/Pages/Admin/Appointments.tsx": {
+    "mtime": 1795389560.323431,
+    "seen": 1795412319.8700202,
+    "ast_hash": "0502772ff8bc6054e2f5293f60252892",
+    "semantic_hash": "0502772ff8bc6054e2f5293f60252892"
+  },
+  "medipath/resources/js/Pages/Admin/Data.tsx": {
+    "mtime": 1795389655.8741996,
+    "seen": 1795412319.870023,
+    "ast_hash": "f5401c60b02e5a41e4cd011cd689c8aa",
+    "semantic_hash": "f5401c60b02e5a41e4cd011cd689c8aa"
+  },
+  "medipath/resources/js/Pages/Admin/Knowledge.tsx": {
+    "mtime": 1795389610.2733822,
+    "seen": 1795412319.870025,
+    "ast_hash": "38ec874dfa54b1cd8dae6bbd88355347",
+    "semantic_hash": "38ec874dfa54b1cd8dae6bbd88355347"
+  },
+  "medipath/resources/js/Pages/Admin/Records.tsx": {
+    "mtime": 1795389570.632707,
+    "seen": 1795412319.870028,
+    "ast_hash": "5645af86668b0d69679c080db00d17f0",
+    "semantic_hash": "5645af86668b0d69679c080db00d17f0"
+  },
+  "medipath/resources/js/Pages/Admin/Reports.tsx": {
+    "mtime": 1795391527.8073142,
+    "seen": 1795412319.870029,
+    "ast_hash": "cfdec99bf31e6a269eb196df761b7ee4",
+    "semantic_hash": "cfdec99bf31e6a269eb196df761b7ee4"
+  },
+  "medipath/resources/js/Pages/Admin/Safety.tsx": {
+    "mtime": 1795389626.4815688,
+    "seen": 1795412319.8700302,
+    "ast_hash": "ea89caca88080ce5290c4053415b779c",
+    "semantic_hash": "ea89caca88080ce5290c4053415b779c"
+  },
+  "medipath/resources/js/Pages/Admin/Security.tsx": {
+    "mtime": 1795389665.173327,
+    "seen": 1795412319.870031,
+    "ast_hash": "223b7089cdc1215d85eb0286d984872d",
+    "semantic_hash": "223b7089cdc1215d85eb0286d984872d"
+  },
+  "medipath/resources/js/Pages/Admin/Settings.tsx": {
+    "mtime": 1795391438.5159442,
+    "seen": 1795412319.870031,
+    "ast_hash": "b92e88ea7bb714aa423304f7f2d247a3",
+    "semantic_hash": "b92e88ea7bb714aa423304f7f2d247a3"
+  },
+  "medipath/resources/js/Pages/Patient/Appointments.tsx": {
+    "mtime": 1795411055.1747246,
+    "seen": 1795412319.870044,
+    "ast_hash": "362367fdbf9309b97c7a40b3e4e9b29c",
+    "semantic_hash": "362367fdbf9309b97c7a40b3e4e9b29c"
+  },
+  "medipath/resources/js/Pages/Patient/Bills.tsx": {
+    "mtime": 1795410985.907799,
+    "seen": 1795412319.870045,
+    "ast_hash": "33f3c1fc4bef6134469d1bc3b243ce44",
+    "semantic_hash": "33f3c1fc4bef6134469d1bc3b243ce44"
+  },
+  "medipath/resources/js/Pages/Patient/Booking.tsx": {
+    "mtime": 1795411055.1749222,
+    "seen": 1795412319.870046,
+    "ast_hash": "61363a15da1f19c33ed7b00155844c3c",
+    "semantic_hash": "61363a15da1f19c33ed7b00155844c3c"
+  },
+  "medipath/resources/js/Pages/Patient/ClinicalProfile.tsx": {
+    "mtime": 1795411001.2160816,
+    "seen": 1795412319.870047,
+    "ast_hash": "8d8d0e4a8db6d6522e89fcfbc485c718",
+    "semantic_hash": "8d8d0e4a8db6d6522e89fcfbc485c718"
+  },
+  "medipath/resources/js/Pages/Patient/Dashboard.tsx": {
+    "mtime": 1795410925.7241879,
+    "seen": 1795412319.870047,
+    "ast_hash": "672084e939ec8da2c8b9a999fe1a9921",
+    "semantic_hash": "672084e939ec8da2c8b9a999fe1a9921"
+  },
+  "medipath/resources/js/Pages/Patient/Doctors.tsx": {
+    "mtime": 1795411295.3386335,
+    "seen": 1795412319.870048,
+    "ast_hash": "303b20972f68dcf759b2916e624624c0",
+    "semantic_hash": "303b20972f68dcf759b2916e624624c0"
+  },
+  "medipath/resources/js/Pages/Patient/Notifications.tsx": {
+    "mtime": 1795411055.1752207,
+    "seen": 1795412319.870049,
+    "ast_hash": "ddb72b62fbbd4fad7da723e76cd555be",
+    "semantic_hash": "ddb72b62fbbd4fad7da723e76cd555be"
+  },
+  "medipath/resources/js/Pages/Patient/Prescriptions.tsx": {
+    "mtime": 1795411055.1753716,
+    "seen": 1795412319.87005,
+    "ast_hash": "daa034ce0cdd3f6ef13a8c4e16eaa27e",
+    "semantic_hash": "daa034ce0cdd3f6ef13a8c4e16eaa27e"
+  },
+  "medipath/resources/js/Pages/Patient/Reviews.tsx": {
+    "mtime": 1795411011.639761,
+    "seen": 1795412319.8700511,
+    "ast_hash": "ee71456c08fea86db884f5b9296e27cf",
+    "semantic_hash": "ee71456c08fea86db884f5b9296e27cf"
+  },
+  "medipath/resources/js/Pages/Patient/Settings.tsx": {
+    "mtime": 1795411295.3379605,
+    "seen": 1795412319.8700511,
+    "ast_hash": "3de8c7128bd3f5e48edd5cb350737c24",
+    "semantic_hash": "3de8c7128bd3f5e48edd5cb350737c24"
+  },
+  "medipath/resources/js/Pages/Patient/SymptomChecker.tsx": {
+    "mtime": 1795412568.8642576,
+    "seen": 1795414002.824209,
+    "ast_hash": "7872c6166d0a14d7c82a42af41f1ae63",
+    "semantic_hash": "7872c6166d0a14d7c82a42af41f1ae63"
+  },
+  "medipath/resources/js/types/patient.ts": {
+    "mtime": 1795412408.7441092,
+    "seen": 1795414002.8242218,
+    "ast_hash": "814f4de5aefedec45478fcfec9a1af43",
+    "semantic_hash": "814f4de5aefedec45478fcfec9a1af43"
+  },
+  "medipath/resources/views/admin/pdf/invoice.blade.php": {
+    "mtime": 1795389449.8529944,
+    "seen": 1795412319.870067,
+    "ast_hash": "d3d81f586c6e9b2c5008e74876864760",
+    "semantic_hash": "d3d81f586c6e9b2c5008e74876864760"
+  },
+  "medipath/resources/views/admin/pdf/prescription.blade.php": {
+    "mtime": 1795389449.8529997,
+    "seen": 1795412319.870068,
+    "ast_hash": "7636a7ebee92e676cca826497c948de7",
+    "semantic_hash": "7636a7ebee92e676cca826497c948de7"
+  },
+  "medipath/resources/views/admin/pdf/report.blade.php": {
+    "mtime": 1795389461.566632,
+    "seen": 1795412319.870069,
+    "ast_hash": "39051952eb139bd86b6aab7d17b8a6f4",
+    "semantic_hash": "39051952eb139bd86b6aab7d17b8a6f4"
+  },
+  "medipath/tests/Browser/AdminAdvancedScreensTest.php": {
+    "mtime": 1795389820.5278997,
+    "seen": 1795412319.870077,
+    "ast_hash": "4edbb2dcc47e0d1b1d1470c4cd77da38",
+    "semantic_hash": "4edbb2dcc47e0d1b1d1470c4cd77da38"
+  },
+  "medipath/tests/Browser/PatientScreensTest.php": {
+    "mtime": 1795413513.2487652,
+    "seen": 1795414002.824239,
+    "ast_hash": "6bf5fb21a257293bae1e14bc9a0eb5e6",
+    "semantic_hash": "6bf5fb21a257293bae1e14bc9a0eb5e6"
+  },
+  "medipath/tests/Feature/AdminPart3Test.php": {
+    "mtime": 1795391842.9100144,
+    "seen": 1795412319.870086,
+    "ast_hash": "17642b97a52608d0ad7ba398e0418ec8",
+    "semantic_hash": "17642b97a52608d0ad7ba398e0418ec8"
+  },
+  "medipath/tests/Feature/PatientPart4Test.php": {
+    "mtime": 1795411081.8336585,
+    "seen": 1795412319.8700988,
+    "ast_hash": "5bef7bdb3249ff87ef7595ebed51b63e",
+    "semantic_hash": "5bef7bdb3249ff87ef7595ebed51b63e"
+  },
+  "medipath/Docs/PART3_SCREENS.md": {
+    "mtime": 1795391873.857962,
+    "seen": 1795412319.870108,
+    "ast_hash": "ccd647d5c7b700072d8dbe4802ce5a46",
+    "semantic_hash": "ccd647d5c7b700072d8dbe4802ce5a46"
+  },
+  "medipath/Docs/PART4_SCREENS.md": {
+    "mtime": 1795411515.0100555,
+    "seen": 1795412319.8701088,
+    "ast_hash": "ca248b3406c479d3b7d71e1e2f0ccf63",
+    "semantic_hash": "ca248b3406c479d3b7d71e1e2f0ccf63"
+  },
+  "medipath/app/Services/SymptomTriageService.php": {
+    "mtime": 1795412286.8256829,
+    "seen": 1795414002.824074,
+    "ast_hash": "3d0a781ac2a8b3a8e63b1e0bf93e5404",
+    "semantic_hash": "3d0a781ac2a8b3a8e63b1e0bf93e5404"
+  },
+  "medipath/tests/Browser/PatientTriageTest.php": {
+    "mtime": 1795412636.001959,
+    "seen": 1795414002.8242402,
+    "ast_hash": "a47136629424e70b2c54ee0ef3b8a0ac",
+    "semantic_hash": "a47136629424e70b2c54ee0ef3b8a0ac"
+  },
+  "medipath/tests/Feature/PatientPart5Test.php": {
+    "mtime": 1795412458.7880569,
+    "seen": 1795414002.824259,
+    "ast_hash": "ac6455386f45b5380392f15421e22420",
+    "semantic_hash": "ac6455386f45b5380392f15421e22420"
+  },
+  "medipath/Docs/PART5_SCREENS.md": {
+    "mtime": 1795413550.764776,
+    "seen": 1795414002.824268,
+    "ast_hash": "b07e958465e9bac72ab7342481152da8",
+    "semantic_hash": "b07e958465e9bac72ab7342481152da8"
+  },
+  "medipath/app/Http/Controllers/Doctor/MedicineController.php": {
+    "mtime": 1795414312.6257076,
+    "seen": 1795415347.525972,
+    "ast_hash": "78f9a515c688f15eb5a49e6542177f25",
+    "semantic_hash": "78f9a515c688f15eb5a49e6542177f25"
+  },
+  "medipath/app/Http/Controllers/Doctor/PatientController.php": {
+    "mtime": 1795414246.15868,
+    "seen": 1795415347.525973,
+    "ast_hash": "992ede6390bcfd1def1e1ed3cf033c51",
+    "semantic_hash": "992ede6390bcfd1def1e1ed3cf033c51"
+  },
+  "medipath/app/Http/Controllers/Doctor/PrescriptionController.php": {
+    "mtime": 1795415448.6948524,
+    "seen": 1795420656.526175,
+    "ast_hash": "9ee9a201622850dd303aad4ebaa2fd6d",
+    "semantic_hash": "9ee9a201622850dd303aad4ebaa2fd6d"
+  },
+  "medipath/app/Http/Controllers/Doctor/ProfileController.php": {
+    "mtime": 1795414348.628834,
+    "seen": 1795415347.525975,
+    "ast_hash": "71db1af0eda336fc0f0d3d842ab21955",
+    "semantic_hash": "71db1af0eda336fc0f0d3d842ab21955"
+  },
+  "medipath/app/Http/Controllers/Doctor/WalkInController.php": {
+    "mtime": 1795414274.1171727,
+    "seen": 1795415347.5259762,
+    "ast_hash": "7e2b3f32d4b01d813f958334ea6c05c4",
+    "semantic_hash": "7e2b3f32d4b01d813f958334ea6c05c4"
+  },
+  "medipath/app/Http/Controllers/Doctor/WorkspaceController.php": {
+    "mtime": 1795414977.6567643,
+    "seen": 1795415347.5259771,
+    "ast_hash": "74b853d5cb2a5ef47a03179bc073bc7c",
+    "semantic_hash": "74b853d5cb2a5ef47a03179bc073bc7c"
+  },
+  "medipath/app/Services/DoctorAppointmentService.php": {
+    "mtime": 1795414185.4069107,
+    "seen": 1795415347.526062,
+    "ast_hash": "0809c7e2998aed1fefa39a834d608378",
+    "semantic_hash": "0809c7e2998aed1fefa39a834d608378"
+  },
+  "medipath/app/Services/DoctorScheduleService.php": {
+    "mtime": 1795414671.9380567,
+    "seen": 1795415347.5260649,
+    "ast_hash": "ee006e1ff95ef8eedc8c9c9beb570a67",
+    "semantic_hash": "ee006e1ff95ef8eedc8c9c9beb570a67"
+  },
+  "medipath/app/Services/PrescriptionSafetyService.php": {
+    "mtime": 1795415539.7293572,
+    "seen": 1795420656.5262878,
+    "ast_hash": "f153c5fb63ab0ddf6a53819a0823c774",
+    "semantic_hash": "f153c5fb63ab0ddf6a53819a0823c774"
+  },
+  "medipath/app/Services/WalkInRegistrationService.php": {
+    "mtime": 1795414262.0937884,
+    "seen": 1795415347.5260742,
+    "ast_hash": "317d63a02e094db4a116c366d0dd7c87",
+    "semantic_hash": "317d63a02e094db4a116c366d0dd7c87"
+  },
+  "medipath/resources/js/Pages/Doctor/Dashboard.tsx": {
+    "mtime": 1795414418.4792395,
+    "seen": 1795415347.526185,
+    "ast_hash": "dde65f9d1e144aa270c8288b22cfc526",
+    "semantic_hash": "dde65f9d1e144aa270c8288b22cfc526"
+  },
+  "medipath/resources/js/Pages/Doctor/PatientDetail.tsx": {
+    "mtime": 1795414498.979444,
+    "seen": 1795415347.526186,
+    "ast_hash": "503ca6bea73e1c9ccf20d8088a8c516d",
+    "semantic_hash": "503ca6bea73e1c9ccf20d8088a8c516d"
+  },
+  "medipath/resources/js/Pages/Doctor/Patients.tsx": {
+    "mtime": 1795414479.7387788,
+    "seen": 1795415347.526187,
+    "ast_hash": "98ba066a2cd6a3243277d182daaa87c2",
+    "semantic_hash": "98ba066a2cd6a3243277d182daaa87c2"
+  },
+  "medipath/resources/js/Pages/Doctor/PrescriptionBuilder.tsx": {
+    "mtime": 1795415954.0059495,
+    "seen": 1795420656.5264142,
+    "ast_hash": "39215534f0843881d2a8ffb21dc95b81",
+    "semantic_hash": "39215534f0843881d2a8ffb21dc95b81"
+  },
+  "medipath/resources/js/Pages/Doctor/Requests.tsx": {
+    "mtime": 1795414465.3315427,
+    "seen": 1795415347.526189,
+    "ast_hash": "26b0ce55ca5c4326f5a3e6515c8c615e",
+    "semantic_hash": "26b0ce55ca5c4326f5a3e6515c8c615e"
+  },
+  "medipath/resources/js/Pages/Doctor/Reviews.tsx": {
+    "mtime": 1795414565.7995749,
+    "seen": 1795415347.526189,
+    "ast_hash": "d74298d6074a66860e31d7ac93317784",
+    "semantic_hash": "d74298d6074a66860e31d7ac93317784"
+  },
+  "medipath/resources/js/Pages/Doctor/Schedule.tsx": {
+    "mtime": 1795414436.4029396,
+    "seen": 1795415347.52619,
+    "ast_hash": "8c2b223a7955475ae3757d986f7e1c32",
+    "semantic_hash": "8c2b223a7955475ae3757d986f7e1c32"
+  },
+  "medipath/resources/js/Pages/Doctor/Settings.tsx": {
+    "mtime": 1795414582.7950342,
+    "seen": 1795415347.526191,
+    "ast_hash": "a109d062fb807680fd106e62d977ff3d",
+    "semantic_hash": "a109d062fb807680fd106e62d977ff3d"
+  },
+  "medipath/resources/js/Pages/Doctor/WalkIn.tsx": {
+    "mtime": 1795414520.2127266,
+    "seen": 1795415347.5261922,
+    "ast_hash": "3a21aaab45aead397b3c26fc90e45b48",
+    "semantic_hash": "3a21aaab45aead397b3c26fc90e45b48"
+  },
+  "medipath/resources/js/types/doctor.ts": {
+    "mtime": 1795415500.0013754,
+    "seen": 1795420656.526459,
+    "ast_hash": "24e4bad895db34b93f942f935e8a1d36",
+    "semantic_hash": "24e4bad895db34b93f942f935e8a1d36"
+  },
+  "medipath/tests/Browser/DoctorScreensTest.php": {
+    "mtime": 1795414701.4991713,
+    "seen": 1795415347.52624,
+    "ast_hash": "acfe7dfc38530e215facfa3359603e9c",
+    "semantic_hash": "acfe7dfc38530e215facfa3359603e9c"
+  },
+  "medipath/tests/Feature/DoctorPart6Test.php": {
+    "mtime": 1795414659.1534011,
+    "seen": 1795415347.5262551,
+    "ast_hash": "322a259e8b38c3867ef9fa4380868a0d",
+    "semantic_hash": "322a259e8b38c3867ef9fa4380868a0d"
+  },
+  "medipath/Docs/PART6_SCREENS.md": {
+    "mtime": 1795415139.3984995,
+    "seen": 1795415347.526272,
+    "ast_hash": "ab6a61812a09860f50974f227b7f2428",
+    "semantic_hash": "ab6a61812a09860f50974f227b7f2428"
+  },
+  "medipath/app/Http/Controllers/Doctor/NotificationController.php": {
+    "mtime": 1795415460.7891395,
+    "seen": 1795420656.526172,
+    "ast_hash": "334866db8fafbd0252b53b94dbafae25",
+    "semantic_hash": "334866db8fafbd0252b53b94dbafae25"
+  },
+  "medipath/app/Http/Controllers/Pharmacist/InventoryController.php": {
+    "mtime": 1795416396.7488604,
+    "seen": 1795420656.526198,
+    "ast_hash": "abe4f4c6d3a864707ee0f7f1a42e0228",
+    "semantic_hash": "abe4f4c6d3a864707ee0f7f1a42e0228"
+  },
+  "medipath/app/Http/Controllers/Pharmacist/InvoiceController.php": {
+    "mtime": 1795416405.425663,
+    "seen": 1795420656.526199,
+    "ast_hash": "fc8bf83f7b1078a4f3e657b0ed50b936",
+    "semantic_hash": "fc8bf83f7b1078a4f3e657b0ed50b936"
+  },
+  "medipath/app/Http/Controllers/Pharmacist/NotificationController.php": {
+    "mtime": 1795416416.700851,
+    "seen": 1795420656.5262,
+    "ast_hash": "85325afce2e1bdffbb9256d1c30b459f",
+    "semantic_hash": "85325afce2e1bdffbb9256d1c30b459f"
+  },
+  "medipath/app/Http/Controllers/Pharmacist/PrescriptionController.php": {
+    "mtime": 1795416796.0059333,
+    "seen": 1795420656.526201,
+    "ast_hash": "22fa5f0615f30520017a015970d9f1fb",
+    "semantic_hash": "22fa5f0615f30520017a015970d9f1fb"
+  },
+  "medipath/app/Http/Controllers/Pharmacist/ProfileController.php": {
+    "mtime": 1795416416.700578,
+    "seen": 1795420656.5262022,
+    "ast_hash": "92553caba8fa045d4615ad76042a10b1",
+    "semantic_hash": "92553caba8fa045d4615ad76042a10b1"
+  },
+  "medipath/app/Http/Controllers/Pharmacist/WorkspaceController.php": {
+    "mtime": 1795416796.0052216,
+    "seen": 1795420656.526203,
+    "ast_hash": "7f2538eae769c9951120f27179e13b90",
+    "semantic_hash": "7f2538eae769c9951120f27179e13b90"
+  },
+  "medipath/app/Services/InventoryService.php": {
+    "mtime": 1795416307.5108047,
+    "seen": 1795420656.5262809,
+    "ast_hash": "b4ccc4504da2df12b5bfd4b77ae1812d",
+    "semantic_hash": "b4ccc4504da2df12b5bfd4b77ae1812d"
+  },
+  "medipath/app/Services/InvoiceService.php": {
+    "mtime": 1795416340.66345,
+    "seen": 1795420656.526282,
+    "ast_hash": "a87e037988478365c338c5a748113854",
+    "semantic_hash": "a87e037988478365c338c5a748113854"
+  },
+  "medipath/app/Services/MedicationSafetyAiService.php": {
+    "mtime": 1795415420.9212081,
+    "seen": 1795420656.526283,
+    "ast_hash": "c026578bceaf6022c0fd0aea0b7c84d8",
+    "semantic_hash": "c026578bceaf6022c0fd0aea0b7c84d8"
+  },
+  "medipath/app/Services/PharmacyDispenseService.php": {
+    "mtime": 1795417114.4603362,
+    "seen": 1795420656.526287,
+    "ast_hash": "6988ad8a8950c79f199fb0f713c308ab",
+    "semantic_hash": "6988ad8a8950c79f199fb0f713c308ab"
+  },
+  "medipath/database/migrations/2026_11_23_120000_add_part9_performance_indexes.php": {
+    "mtime": 1795417634.5533094,
+    "seen": 1795420656.5263512,
+    "ast_hash": "bf6d7d19b5a2a9858fdf0e7199f52912",
+    "semantic_hash": "bf6d7d19b5a2a9858fdf0e7199f52912"
+  },
+  "medipath/resources/js/Pages/Doctor/Notifications.tsx": {
+    "mtime": 1795415491.5198953,
+    "seen": 1795420656.52641,
+    "ast_hash": "90adfe650987aa3661dc8d8f0dd5c725",
+    "semantic_hash": "90adfe650987aa3661dc8d8f0dd5c725"
+  },
+  "medipath/resources/js/Pages/Doctor/Prescriptions.tsx": {
+    "mtime": 1795415491.519727,
+    "seen": 1795420656.5264142,
+    "ast_hash": "02d82451770a3dd0193118166cf94de9",
+    "semantic_hash": "02d82451770a3dd0193118166cf94de9"
+  },
+  "medipath/resources/js/Pages/Pharmacist/Alerts.tsx": {
+    "mtime": 1795417177.5762246,
+    "seen": 1795420656.52644,
+    "ast_hash": "0a95ed08c1f3289360700905d2e8faca",
+    "semantic_hash": "0a95ed08c1f3289360700905d2e8faca"
+  },
+  "medipath/resources/js/Pages/Pharmacist/Dashboard.tsx": {
+    "mtime": 1795416458.697267,
+    "seen": 1795420656.5264409,
+    "ast_hash": "3c80bd486422788b566d55c977e3858c",
+    "semantic_hash": "3c80bd486422788b566d55c977e3858c"
+  },
+  "medipath/resources/js/Pages/Pharmacist/Dispense.tsx": {
+    "mtime": 1795417114.4608133,
+    "seen": 1795420656.526442,
+    "ast_hash": "af2c47e40e12ca2af5ae867815e26edb",
+    "semantic_hash": "af2c47e40e12ca2af5ae867815e26edb"
+  },
+  "medipath/resources/js/Pages/Pharmacist/Inventory.tsx": {
+    "mtime": 1795416796.007056,
+    "seen": 1795420656.526443,
+    "ast_hash": "c6d5268501753677fa3220ad3e1f2933",
+    "semantic_hash": "c6d5268501753677fa3220ad3e1f2933"
+  },
+  "medipath/resources/js/Pages/Pharmacist/Invoices.tsx": {
+    "mtime": 1795416575.6373982,
+    "seen": 1795420656.526444,
+    "ast_hash": "82b0a437627f4ad945d4d1b49100a2de",
+    "semantic_hash": "82b0a437627f4ad945d4d1b49100a2de"
+  },
+  "medipath/resources/js/Pages/Pharmacist/Notifications.tsx": {
+    "mtime": 1795416601.9591527,
+    "seen": 1795420656.5264452,
+    "ast_hash": "a321b4c69052005fff3b9f7f72c125dc",
+    "semantic_hash": "a321b4c69052005fff3b9f7f72c125dc"
+  },
+  "medipath/resources/js/Pages/Pharmacist/Prescriptions.tsx": {
+    "mtime": 1795416467.0375962,
+    "seen": 1795420656.5264452,
+    "ast_hash": "01ca5c25b187e2071c92fe79bcb6df23",
+    "semantic_hash": "01ca5c25b187e2071c92fe79bcb6df23"
+  },
+  "medipath/resources/js/Pages/Pharmacist/SafetyGate.tsx": {
+    "mtime": 1795416882.5702183,
+    "seen": 1795420656.526446,
+    "ast_hash": "c808fe6aac852719e5508c33e78c8e04",
+    "semantic_hash": "c808fe6aac852719e5508c33e78c8e04"
+  },
+  "medipath/resources/js/Pages/Pharmacist/Settings.tsx": {
+    "mtime": 1795416922.4326448,
+    "seen": 1795420656.526447,
+    "ast_hash": "1c315abe146e30be0afc7455499f80cc",
+    "semantic_hash": "1c315abe146e30be0afc7455499f80cc"
+  },
+  "medipath/resources/js/Pages/Pharmacist/Workflow.tsx": {
+    "mtime": 1795416586.290336,
+    "seen": 1795420656.526448,
+    "ast_hash": "c94311cb771fa39f0a061e0ddb285f6c",
+    "semantic_hash": "c94311cb771fa39f0a061e0ddb285f6c"
+  },
+  "medipath/resources/js/types/pharmacy.ts": {
+    "mtime": 1795416449.3559906,
+    "seen": 1795420656.526463,
+    "ast_hash": "7f50520c0184ea3c40fa0f5ab03b2281",
+    "semantic_hash": "7f50520c0184ea3c40fa0f5ab03b2281"
+  },
+  "medipath/tests/Browser/DoctorPrescribingTest.php": {
+    "mtime": 1795415778.2844603,
+    "seen": 1795420656.526477,
+    "ast_hash": "cd9c4e7c384e488168bdcc9f3f969045",
+    "semantic_hash": "cd9c4e7c384e488168bdcc9f3f969045"
+  },
+  "medipath/tests/Browser/IntegrationPolishTest.php": {
+    "mtime": 1795420438.7862368,
+    "seen": 1795420656.52648,
+    "ast_hash": "87aff1df811c68b3d8cf04109e64919e",
+    "semantic_hash": "87aff1df811c68b3d8cf04109e64919e"
+  },
+  "medipath/tests/Browser/PharmacistScreensTest.php": {
+    "mtime": 1795416721.0778933,
+    "seen": 1795420656.526485,
+    "ast_hash": "8c2a24e6faddbddf601fc9aa17e906e0",
+    "semantic_hash": "8c2a24e6faddbddf601fc9aa17e906e0"
+  },
+  "medipath/tests/Feature/DoctorPart7Test.php": {
+    "mtime": 1795415530.588509,
+    "seen": 1795420656.5264971,
+    "ast_hash": "c06ce664df2633e5abee3adee94a674c",
+    "semantic_hash": "c06ce664df2633e5abee3adee94a674c"
+  },
+  "medipath/tests/Feature/EndToEndJourneyTest.php": {
+    "mtime": 1795417546.2747421,
+    "seen": 1795420656.526498,
+    "ast_hash": "e0012443aa9fe1befbefc518d9930edd",
+    "semantic_hash": "e0012443aa9fe1befbefc518d9930edd"
+  },
+  "medipath/tests/Feature/PerformanceTest.php": {
+    "mtime": 1795417646.1108463,
+    "seen": 1795420656.526508,
+    "ast_hash": "43555bc106b5a7cb266de4f94dbb51f6",
+    "semantic_hash": "43555bc106b5a7cb266de4f94dbb51f6"
+  },
+  "medipath/tests/Feature/PharmacistPart8Test.php": {
+    "mtime": 1795417129.4827287,
+    "seen": 1795420656.526509,
+    "ast_hash": "2b4bdca644a1589116127793e66fe0d6",
+    "semantic_hash": "2b4bdca644a1589116127793e66fe0d6"
+  },
+  "medipath/tests/Feature/SecurityAuditTest.php": {
+    "mtime": 1795417753.325873,
+    "seen": 1795420656.5265121,
+    "ast_hash": "9ed7b3a28524690a684e4dae786be090",
+    "semantic_hash": "9ed7b3a28524690a684e4dae786be090"
+  },
+  "medipath/Docs/PART7_SCREENS.md": {
+    "mtime": 1795416010.4441705,
+    "seen": 1795420656.526519,
+    "ast_hash": "d29fdea9c5142238435f762ce646d862",
+    "semantic_hash": "d29fdea9c5142238435f762ce646d862"
+  },
+  "medipath/Docs/PART8_SCREENS.md": {
+    "mtime": 1795417152.092135,
+    "seen": 1795420656.526519,
+    "ast_hash": "3fcc5102d49f07069faff5af8e4af038",
+    "semantic_hash": "3fcc5102d49f07069faff5af8e4af038"
+  },
+  "medipath/Docs/PART9_ACCEPTANCE.md": {
+    "mtime": 1795418311.0948691,
+    "seen": 1795420656.52652,
+    "ast_hash": "b857d271dafc261646345bd135e1b484",
+    "semantic_hash": "b857d271dafc261646345bd135e1b484"
+  }
+}

@@ -1,0 +1,224 @@
+// ============================================================================
+// Feedback set (§15): Toast, InlineError, Spinner, RetryBanner, UnsavedBar
+// plus the ConfirmModal overlay (§13) and PdfButton (§16).
+// ============================================================================
+
+.toast-stack {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: var(--mp-z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--mp-space-sm);
+  padding: var(--mp-space-md);
+  max-width: 480px;
+  margin-inline: auto;
+  pointer-events: none;
+}
+@media (min-width: 640px) {
+  .toast-stack { inset: auto var(--mp-space-lg) var(--mp-space-lg) auto; }
+}
+
+.toast,
+.toast:not(.show) {
+  display: flex;
+  align-items: center;
+  gap: var(--mp-space-md);
+  width: auto;
+  margin: 0;
+  padding: var(--mp-space-md) var(--mp-space-base);
+  border-radius: var(--mp-radius-card);
+  box-shadow: var(--mp-shadow-lg);
+  font-weight: 500;
+  font-size: 14px;
+  background: var(--mp-surface);
+  border: 1px solid var(--mp-border);
+  pointer-events: auto;
+
+  .t-ico {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 13px;
+    font-weight: 800;
+    flex: none;
+  }
+
+  .t-msg { flex: 1; min-width: 0; }
+  .t-action { white-space: nowrap; }
+  .t-close {
+    border: 0; background: transparent; cursor: pointer;
+    min-width: 32px; min-height: 32px; border-radius: 50%;
+    color: var(--mp-text-muted);
+    display: grid; place-items: center;
+  }
+}
+
+.toast-success { border-left: 4px solid var(--mp-success); }
+.toast-success .t-ico { background: var(--mp-success-weak-bg); color: var(--mp-success-text); }
+.toast-danger { border-left: 4px solid var(--mp-danger); }
+.toast-danger .t-ico { background: var(--mp-danger-weak-bg); color: var(--mp-danger-text); }
+.toast-info { border-left: 4px solid var(--mp-info); }
+.toast-info .t-ico { background: var(--mp-info-weak-bg); color: var(--mp-info-text); }
+// EMERGENCY scope only for in-app red-flag notices (§15).
+.toast-emergency { border-left: 4px solid var(--mp-emergency); }
+.toast-emergency .t-ico { background: var(--mp-emergency-weak-bg); color: var(--mp-emergency-text-on-weak); }
+
+// ---------- Spinner ----------
+.spinner {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-right-color: currentColor;
+  animation: spin .8s linear infinite;
+  display: inline-block;
+  flex: none;
+}
+.spinner-lg { width: 32px; height: 32px; border-width: 3px; }
+@keyframes spin { to { rotate: 360deg; } }
+@media (prefers-reduced-motion: reduce) { .spinner { animation-duration: 1.6s; } }
+
+.saving-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--mp-text-muted);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+// ---------- Modal / ConfirmModal (§13) ----------
+.modal-stage {
+  position: fixed;
+  inset: 0;
+  z-index: var(--mp-z-modal-backdrop);
+  display: grid;
+  place-items: center;
+  padding: var(--mp-space-md);
+  background: var(--mp-overlay);
+  overflow-y: auto;
+}
+@media (max-width: 639.98px) {
+  // Mobile: full-height bottom sheet
+  .modal-stage { padding: 0; align-items: end; }
+}
+
+.modal {
+  position: relative;
+  z-index: var(--mp-z-modal);
+  display: flex;
+  flex-direction: column;
+  width: min(560px, 100%);
+  height: auto;
+  max-height: 90vh;
+  overflow: auto;
+  background: var(--mp-surface);
+  border-radius: var(--mp-radius-card);
+  box-shadow: var(--mp-shadow-lg);
+  border: 1px solid var(--mp-border);
+}
+.modal-wide { width: min(840px, 100%); }
+
+@media (max-width: 639.98px) {
+  .modal, .modal-wide {
+    width: 100%;
+    max-height: 100%;
+    min-height: 100%;
+    border-radius: var(--mp-radius-card) var(--mp-radius-card) 0 0;
+    border-bottom: 0;
+  }
+}
+
+.modal-head {
+  display: flex;
+  gap: var(--mp-space-md);
+  align-items: flex-start;
+  padding: var(--mp-space-base);
+  border-bottom: 1px solid var(--mp-border);
+
+  .m-icon {
+    width: 40px; height: 40px;
+    border-radius: var(--mp-radius-pill);
+    display: grid; place-items: center;
+    background: var(--mp-surface-muted);
+    flex: none;
+    font-size: 18px;
+  }
+}
+
+.modal-title { font-size: 18px; font-weight: 700; color: var(--mp-text-heading); margin: 0; }
+.modal-sub { font-size: 13px; color: var(--mp-text-muted); margin-top: 2px; }
+
+.modal-body {
+  padding: var(--mp-space-base);
+  display: flex;
+  flex-direction: column;
+  gap: var(--mp-space-md);
+  flex: 1;
+}
+
+.modal-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mp-space-sm);
+  justify-content: flex-end;
+  padding: var(--mp-space-base);
+  border-top: 1px solid var(--mp-border);
+  background: var(--mp-surface-muted);
+}
+.modal-foot .btn { min-width: 120px; }
+
+.modal-x {
+  margin-left: auto;
+  min-width: var(--mp-touch);
+  min-height: var(--mp-touch);
+  border-radius: var(--mp-radius-input);
+  border: 1px solid var(--mp-border);
+  background: var(--mp-surface);
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.modal--danger { border-top: 6px solid var(--mp-danger); }
+.modal--danger .m-icon { background: var(--mp-danger-weak-bg); color: var(--mp-danger-text); }
+// EMERGENCY scope — red-flag escalation dialog only.
+.modal--emergency { border-top: 6px solid var(--mp-emergency); }
+.modal--emergency .m-icon { background: var(--mp-emergency-weak-bg); color: var(--mp-emergency-text-on-weak); }
+.modal--emergency .modal-title { color: var(--mp-emergency-text-on-weak); }
+
+.dep-counts { display: flex; flex-wrap: wrap; gap: var(--mp-space-sm); }
+
+.dep-counts .dep {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  background: var(--mp-surface-muted);
+  border: 1px solid var(--mp-border);
+  border-radius: var(--mp-radius-pill);
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--mp-text-body);
+}
+
+.typed-confirm-hint {
+  font-size: 13px;
+  color: var(--mp-text-muted);
+
+  code {
+    font-family: var(--mp-mono);
+    background: var(--mp-surface-muted);
+    border: 1px solid var(--mp-border);
+    border-radius: 4px;
+    padding: 1px 6px;
+    color: var(--mp-text-body);
+  }
+}
+
+// ---------- PdfButton (§16) ----------
+.pdf-btn .spinner { display: none; }
+.pdf-btn.is-loading .spinner { display: inline-block; }
+.pdf-btn.is-loading .txt { opacity: .7; }

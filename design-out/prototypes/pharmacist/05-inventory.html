@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Medicine Inventory (Pharmacist) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+<input type="checkbox" id="m-add" class="hidden-check modal-check">
+<input type="checkbox" id="m-restock" class="hidden-check modal-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">NT</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Pharmacy workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Pharmacy · Nadia T.</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">🏠</span>Dashboard</a>
+      <a class="s-link" href="02-pending-rx.html"><span class="ico">📥</span>Pending Rx</a>
+      <a class="s-link is-active" href="05-inventory.html" aria-current="page"><span class="ico">📦</span>Inventory</a>
+      <a class="s-link" href="06-alerts.html"><span class="ico">🔔</span>Stock &amp; Expiry<span class="cnt tabular">3</span></a>
+      <a class="s-link" href="07-invoices.html"><span class="ico">🧾</span>Invoices</a>
+      <a class="s-link" href="08-workflow-tracker.html"><span class="ico">🧭</span>Workflow</a>
+      <a class="s-link" href="../guest/05-login.html"><span class="ico">↩</span>Log out</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar"><h1>Medicine inventory</h1><label class="btn btn-primary mla" for="m-add">+ Add medicine</label></div>
+
+    <form class="filter-bar" aria-label="Inventory filters">
+      <div class="field" style="margin:0"><label class="label" for="iv-q">Search</label><input class="input" id="iv-q" type="search" placeholder="name, generic, ingredient or alias"></div>
+      <div class="field f-hide-sm" style="margin:0"><label class="label" for="iv-cat">Category</label><select class="select" id="iv-cat"><option>All</option><option>Analgesic</option><option>Antibiotic</option><option>CCB</option><option>Inhaler</option></select></div>
+      <label class="switch f-hide-sm"><input type="checkbox"><span>Only below threshold</span></label>
+      <div class="field" style="margin:0"><label class="label" for="iv-exp">Expiry window</label><select class="select" id="iv-exp"><option>Any</option><option>≤ 90 days</option><option>expired</option></select></div>
+    </form>
+
+    <section class="dataview">
+      <div class="dv-bar"><span class="dv-name">Data view · Medicines</span>
+        <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-iv" id="dv-iv-s" checked><label for="dv-iv-s">Success</label><input class="st-skeleton" type="radio" name="dv-iv" id="dv-iv-k"><label for="dv-iv-k">Skeleton</label><input class="st-empty" type="radio" name="dv-iv" id="dv-iv-e"><label for="dv-iv-e">Empty</label><input class="st-error" type="radio" name="dv-iv" id="dv-iv-r"><label for="dv-iv-r">Error</label></div></div>
+      <div class="dv-host">
+        <div data-state="success">
+          <div class="tbl-wrap"><table class="tbl">
+            <caption class="sr-only">Medicines</caption>
+            <thead><tr><th><span class="sort asc">Medicine</span></th><th>Class / ingredient</th><th>Batch · expiry</th><th>Unit</th><th>Stock vs threshold</th><th>Stock badge</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td data-label="Medicine"><strong>Amlodipine 5 mg</strong><div class="caption">Acme · <span class="mono">AP-7731</span> · exp 2027-04</div></td><td data-label="Class">CCB · amlodipine besylate</td><td data-label="Batch" class="tabular">AP-7731 · 2027-04</td><td data-label="Unit" class="num money">{{CURRENCY}} 40.00</td><td data-label="Stock"><div class="progress good" style="min-width:80px"><span style="width:92%"></span></div><span class="caption tabular">240 / min 10</span></td><td data-label="Status"><span class="badge badge-success"><span class="dot"></span>healthy</span></td><td data-label="Actions"><div class="row"><button class="btn btn-ghost">Edit</button><label class="btn btn-outline" for="m-restock" style="min-height:36px;padding:4px 12px">Restock</label></div></td></tr>
+              <tr><td data-label="Medicine"><strong>Paracetamol 500 mg</strong><div class="caption"><span class="mono">PC-118</span> · exp 2027-10</div></td><td data-label="Class">Analgesic · paracetamol</td><td data-label="Batch" class="tabular">PC-118 · 2027-10</td><td data-label="Unit" class="num money">{{CURRENCY}} 15.00</td><td data-label="Stock"><div class="progress warn"><span style="width:18%"></span></div><span class="caption tabular">22 / min 20</span></td><td data-label="Status"><span class="badge badge-warning"><span class="dot"></span>low</span></td><td data-label="Actions"><div class="row"><button class="btn btn-ghost">Edit</button><label class="btn btn-outline" for="m-restock" style="min-height:36px;padding:4px 12px">Restock</label></div></td></tr>
+              <tr><td data-label="Medicine"><strong>Salbutamol Inhaler 100mcg</strong><div class="caption"><span class="mono">SB-042</span> · exp 2026-12-14 <span style="color:var(--mp-danger-text)">(21d)</span></div></td><td data-label="Class">Bronchodilator</td><td data-label="Batch" class="tabular">SB-042 · 2026-12</td><td data-label="Unit" class="num money">{{CURRENCY}} 320.00</td><td data-label="Stock"><div class="progress bad"><span style="width:5%"></span></div><span class="caption tabular">2 / min 10</span></td><td data-label="Status"><span class="badge badge-danger"><span class="dot"></span>critical</span></td><td data-label="Actions"><div class="row"><button class="btn btn-ghost">Edit</button><label class="btn btn-primary" for="m-restock" style="min-height:36px;padding:4px 12px">Restock now</label></div></td></tr>
+              <tr><td data-label="Medicine"><strong>Insulin Glargine 100U/ml</strong></td><td data-label="Class">Antidiabetic · cold chain</td><td data-label="Batch" class="tabular">IG-77 · 2027-02</td><td data-label="Unit" class="num money">{{CURRENCY}} 1,450.00</td><td data-label="Stock"><span class="caption tabular">0 / min 6</span></td><td data-label="Status"><span class="badge badge-danger">out-of-stock</span></td><td data-label="Actions"><label class="btn btn-primary" for="m-restock" style="min-height:36px;padding:4px 12px">Restock</label></td></tr>
+              <tr><td data-label="Medicine"><strong>Amoxicillin-clav 625 mg</strong> <span class="caption">⚠ β-lactam</span></td><td data-label="Class">Antibiotic</td><td data-label="Batch" class="tabular">AP-7729 · <span style="color:var(--mp-danger-text)">expired 20 Nov</span></td><td data-label="Unit" class="num money">{{CURRENCY}} 115.00</td><td data-label="Stock"><div class="progress"><span style="width:40%"></span></div><span class="caption tabular">30</span></td><td data-label="Status"><span class="badge badge-neutral">expired — quarantine</span></td><td data-label="Actions"><button class="btn btn-ghost" style="color:var(--mp-danger-text)">Quarantine</button></td></tr>
+            </tbody>
+          </table>
+          <nav class="pager" aria-label="Pagination"><span class="caption">148 medicines · page 1/37</span><div class="pgs"><a class="pg is-on">1</a><a class="pg">2</a><a class="pg">3</a></div><a class="pg" aria-label="Next">→</a></nav></div>
+        </div>
+        <div data-state="skeleton" aria-hidden="true"><div class="card card-pad"><div class="sk sk-line" style="width:25%"></div><div class="sk sk-box"></div><div class="sk sk-box"></div><div class="sk sk-box" style="width:80%"></div></div></div>
+        <div data-state="empty"><div class="empty"><span class="glyph">📦</span><h3 class="h3">Catalogue is empty</h3><p>Add the clinic's first medicines — doctors' live search and every safety gate depend on this table.</p><label class="btn btn-primary" for="m-add">+ Add medicine</label></div></div>
+        <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt">Inventory failed to load.</span><button class="btn btn-primary">Retry</button></div></div>
+      </div>
+    </section>
+    <p class="caption">All stock changes flow through the immutable <span class="mono">stock_movements</span> ledger (prev → change → new, actor, reference) — never edited directly.</p>
+  </main>
+</div>
+
+<!-- ADD MEDICINE MODAL -->
+<div class="modal-stage" role="dialog" aria-modal="true" aria-labelledby="ma-t">
+  <div class="modal modal-wide">
+    <div class="modal-head"><span style="font-size:26px" aria-hidden="true">➕</span><div><h2 id="ma-t" class="modal-title">Add medicine</h2></div><label class="modal-x" for="m-add" aria-label="Close">✕</label></div>
+    <div class="modal-body">
+      <div class="grid tight">
+        <div class="field c-12 sm-c-6"><label class="label req" for="am-name">Brand name</label><input class="input" id="am-name" placeholder="e.g., Amlodipine 5 mg"></div>
+        <div class="field c-12 sm-c-6"><label class="label req" for="am-gen">Generic name</label><input class="input" id="am-gen"></div>
+        <div class="field c-12 sm-c-6"><label class="label req" for="am-ing">Active ingredient</label><input class="input" id="am-ing"></div>
+        <div class="field c-12 sm-c-6"><label class="label" for="am-cls">Drug class</label><input class="input" id="am-cls" placeholder="feeds allergy cross-match"></div>
+        <div class="field c-12"><label class="label" for="am-al">Brand aliases (comma separated)</label><input class="input" id="am-al"></div>
+        <div class="field c-12 sm-c-4"><label class="label req" for="am-bat">Batch</label><input class="input mono" id="am-bat"></div>
+        <div class="field c-12 sm-c-4"><label class="label req" for="am-exp">Expiry</label><input class="input" id="am-exp" type="date"></div>
+        <div class="field c-12 sm-c-4"><label class="label req" for="am-pr">Unit price ({{CURRENCY}})</label><input class="input money" id="am-pr"></div>
+        <div class="field c-12 sm-c-4"><label class="label req" for="am-st">Opening stock</label><input class="input" id="am-st" type="number" min="0"></div>
+        <div class="field c-12 sm-c-4"><label class="label req" for="am-th">Low-stock threshold</label><input class="input" id="am-th" type="number" min="1"></div>
+        <div class="field c-12 sm-c-4"><label class="label" for="am-cat">Category</label><select class="select" id="am-cat"><option>Analgesic</option><option>Antibiotic</option><option>CCB</option><option>Other</option></select></div>
+        <div class="field c-12"><label class="label" for="am-se">Common side effects</label><textarea class="textarea" id="am-se" style="min-height:60px"></textarea><span class="hint">Serious list + administration guidance have matching fields; both drive the doctor's side-effect drawer and the Rx PDF.</span></div>
+      </div>
+    </div>
+    <div class="modal-foot"><label class="btn btn-quiet" for="m-add">Cancel</label><button class="btn btn-primary">Save medicine</button><span class="saving-inline"><span class="spinner" aria-hidden="true"></span> Saving…</span></div>
+  </div>
+</div>
+
+<!-- RESTOCK MODAL -->
+<div class="modal-stage" role="dialog" aria-modal="true" aria-labelledby="mr-t">
+  <div class="modal">
+    <div class="modal-head"><span style="font-size:26px" aria-hidden="true">📦</span><div><h2 id="mr-t" class="modal-title">Restock — Salbutamol Inhaler 100mcg</h2><p class="caption">creates a stock_in ledger row; adjustment kind requires reason</p></div><label class="modal-x" for="m-restock" aria-label="Close">✕</label></div>
+    <div class="modal-body">
+      <div class="grid tight">
+        <div class="field c-6"><label class="label req" for="rs-move">Movement</label><select class="select" id="rs-move"><option selected>Stock in (purchase)</option><option>Adjustment (+)</option><option>Adjustment (−)</option></select></div>
+        <div class="field c-6"><label class="label req" for="rs-q">Quantity</label><input class="input" id="rs-q" type="number" value="60"><span class="caption tabular">2 → 62</span></div>
+        <div class="field c-12"><label class="label req" for="rs-b">Batch · expiry</label><input class="input mono" id="rs-b" value="SB-058 · exp 2028-01"></div>
+        <div class="field c-12"><label class="label" for="rs-ref">Supplier invoice ref</label><input class="input" id="rs-ref"></div>
+      </div>
+    </div>
+    <div class="modal-foot"><label class="btn btn-quiet" for="m-restock">Cancel</label><label class="btn btn-primary" for="m-restock">Apply restock</label></div>
+  </div>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Pharmacy</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link" href="01-dashboard.html">🏠 Dashboard</a><a class="nav-link" href="02-pending-rx.html">📥 Pending Rx</a><a class="nav-link is-active" href="05-inventory.html">📦 Inventory</a><a class="nav-link" href="06-alerts.html">🔔 Alerts</a><a class="nav-link" href="07-invoices.html">🧾 Invoices</a><a class="nav-link" href="08-workflow-tracker.html">🧭 Workflow</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

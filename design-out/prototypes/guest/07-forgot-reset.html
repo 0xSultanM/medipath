@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Forgot / Reset Password (Guest) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner">
+    <a class="brand" href="01-landing.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a class="nav-link" href="02-directory.html">Find Doctors</a>
+      <a class="nav-link" href="04-emergency.html">Emergency Info</a>
+    </nav>
+    <div class="row mla">
+      <label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label>
+      <a class="btn btn-ghost hide-sm" href="05-login.html">Log in</a>
+      <label class="btn btn-quiet btn-ico burger" for="drawer-nav" data-controls="drawer-nav" aria-label="Open menu">☰</label>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="container stack" style="padding-block:var(--mp-space-xl);max-width:720px;margin-inline:auto">
+  <h1>Reset your password</h1>
+
+  <div class="stepper card card-pad" aria-label="Reset progress">
+    <div class="stp is-done"><span class="dot" aria-hidden="true">✓</span><span><span class="s-name">Request</span><span class="s-sub">email submitted</span></span></div>
+    <div class="stp is-current"><span class="dot" aria-hidden="true">2</span><span><span class="s-name">Check inbox</span><span class="s-sub">token valid 30 min</span></span></div>
+    <div class="stp"><span class="dot" aria-hidden="true">3</span><span><span class="s-name">New password</span><span class="s-sub">then sign in</span></span></div>
+  </div>
+
+  <div class="grid">
+    <!-- ===== REQUEST PANEL (sent) ===== -->
+    <section class="c-12 md-c-6 card card-pad stack" style="gap:0" aria-labelledby="rq">
+      <h2 id="rq">1 · Request a reset link</h2>
+      <form>
+        <div class="field"><label class="label req" for="fr-email">Account email</label><input class="input" id="fr-email" type="email" value="farhana.k@example.com"></div>
+        <button class="btn btn-primary btn-block" type="submit">Send reset link</button>
+      </form>
+      <div class="alert alert-success" role="status"><span class="a-ico">✓</span><span><strong>Check your inbox.</strong> If an account exists for that address, a one-time reset link was sent. For privacy we never reveal whether an email is registered.</span></div>
+      <p class="caption">Link expires in 30 minutes. Didn't get it? Wait for the rate-limit window, then Retry — sending is idempotent.</p>
+    </section>
+
+    <!-- ===== RESET PANEL ===== -->
+    <section class="c-12 md-c-6 card card-pad stack" style="gap:0" aria-labelledby="rs">
+      <h2 id="rs">2 · Choose a new password</h2>
+      <p class="caption mono" style="word-break:break-all">token: reset#f3a1…8c2e · consumed: no</p>
+      <form>
+        <div class="field"><label class="label req" for="rs-pw">New password</label><input class="input" id="rs-pw" type="password" autocomplete="new-password" aria-describedby="rs-rules">
+          <ul id="rs-rules" class="caption" style="display:flex;flex-wrap:wrap;gap:10px"><li>✓ 8+ chars</li><li>✓ number</li><li>✓ symbol</li><li>✓ uppercase</li></ul>
+        </div>
+        <div class="field is-invalid"><label class="label req" for="rs-pw2">Confirm new password</label><input class="input" id="rs-pw2" type="password" autocomplete="new-password" aria-invalid="true" aria-describedby="rs-pw2-err" value="different!">
+          <span class="field-error" id="rs-pw2-err"><span aria-hidden="true">✕</span> Passwords don't match.</span>
+        </div>
+        <button class="btn btn-primary btn-block" type="submit">Update password &amp; sign in devices out</button>
+      </form>
+      <!-- Expired-token error state -->
+      <div class="retry-banner" role="alert"><span class="ico">⏱</span><span class="txt"><strong>This reset link expired or was already used.</strong> <span class="muted">Sessions cannot be revoked with an invalid token — request a fresh link.</span></span><button class="btn btn-primary">Request new link</button></div>
+      <p class="caption">On success: token marked consumed, all other sessions revoked (DB-backed sessions), user signed in on this device only, activity log entry written.</p>
+    </section>
+  </div>
+</main>
+
+<footer class="mt-xl" style="background:var(--mp-surface);border-top:1px solid var(--mp-border)">
+  <div class="container" style="padding-block:var(--mp-space-lg)"><p class="caption">Need help? <a href="05-login.html">Back to login</a> · MediPath keeps password-reset tokens hashed with a 30-minute expiry.</p></div>
+</footer>
+
+<aside class="drawer drawer--nav" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">MediPath menu</span><label class="x-close" for="drawer-nav" aria-label="Close menu">✕</label></div>
+  <nav class="stack-sm" aria-label="Mobile primary" style="margin-top:var(--mp-space-md)">
+    <a class="nav-link" href="02-directory.html">Find Doctors</a>
+    <a class="nav-link" href="04-emergency.html">Emergency Info</a>
+    <a class="btn btn-primary btn-block" href="05-login.html">Log in</a>
+    <a class="btn btn-outline btn-block" href="06-register.html">Register</a>
+    <a class="btn btn-emergency btn-block" href="04-emergency.html">🚨 Emergency — call now</a>
+  </nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

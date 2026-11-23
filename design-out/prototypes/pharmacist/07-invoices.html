@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Invoices (Pharmacist) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+<style>.rf-reason{display:none}.dataview:has(#pay-refund:checked) .rf-reason{display:block}</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+<input type="checkbox" id="m-pay" class="hidden-check modal-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">NT</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Pharmacy workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Pharmacy · Nadia T.</span>
+    <nav aria-label="Sidebar">
+      <a class="s-link" href="01-dashboard.html"><span class="ico">🏠</span>Dashboard</a>
+      <a class="s-link" href="02-pending-rx.html"><span class="ico">📥</span>Pending Rx</a>
+      <a class="s-link" href="05-inventory.html"><span class="ico">📦</span>Inventory</a>
+      <a class="s-link" href="06-alerts.html"><span class="ico">🔔</span>Alerts</a>
+      <a class="s-link is-active" href="07-invoices.html" aria-current="page"><span class="ico">🧾</span>Invoices</a>
+      <a class="s-link" href="08-workflow-tracker.html"><span class="ico">🧭</span>Workflow</a>
+      <a class="s-link" href="../guest/05-login.html"><span class="ico">↩</span>Log out</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar"><h1>Invoices</h1></div>
+
+    <section class="dataview">
+      <div class="dv-bar"><span class="dv-name">Data view · Invoices <span class="muted">(keyed by patient ID; currency snapshot per row)</span></span>
+        <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-in" id="dv-in-s" checked><label for="dv-in-s">Success</label><input class="st-skeleton" type="radio" name="dv-in" id="dv-in-k"><label for="dv-in-k">Skeleton</label><input class="st-empty" type="radio" name="dv-in" id="dv-in-e"><label for="dv-in-e">Empty</label><input class="st-error" type="radio" name="dv-in" id="dv-in-r"><label for="dv-in-r">Error</label></div></div>
+      <div class="dv-host">
+        <div data-state="success">
+          <div class="tbl-wrap"><table class="tbl">
+            <thead><tr><th>Invoice</th><th>Patient</th><th>Rx</th><th>Date</th><th>Net total</th><th>Method</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td data-label="Invoice" class="mono">INV-2026-0139</td><td data-label="Patient">Farhana Karim <span class="mono caption">PT-0119</span></td><td data-label="Rx" class="mono">Rx-2231</td><td data-label="Date" class="tabular">23 Nov</td><td data-label="Net" class="num money">{{CURRENCY}} 2,422.50</td><td data-label="Method">Cash</td><td data-label="Status"><span class="badge badge-warning"><span class="dot"></span>pending</span></td><td data-label="Actions"><div class="row"><label class="btn btn-ghost" for="m-pay">Status…</label><button class="btn btn-outline btn-pdf">⬇ PDF</button></div></td></tr>
+              <tr><td data-label="Invoice" class="mono">INV-2026-0138</td><td data-label="Patient">Mei Ling <span class="mono caption">PT-0301</span></td><td data-label="Rx" class="mono">Rx-2229</td><td data-label="Date" class="tabular">23 Nov</td><td data-label="Net" class="num money">{{CURRENCY}} 1,610.00</td><td data-label="Method">Card</td><td data-label="Status"><span class="badge badge-success"><span class="dot"></span>paid</span></td><td data-label="Actions"><div class="row"><label class="btn btn-ghost" for="m-pay">Status…</label><button class="btn btn-outline btn-pdf">⬇ PDF</button></div></td></tr>
+              <tr><td data-label="Invoice" class="mono">INV-2026-0071</td><td data-label="Patient">Tomas W. <span class="mono caption">PT-0254</span></td><td data-label="Rx" class="mono caption">—</td><td data-label="Date" class="tabular">18 Oct</td><td data-label="Net" class="num money" style="color:var(--mp-danger-text)">({{CURRENCY}} 800.00)</td><td data-label="Method">Bank transfer</td><td data-label="Status"><span class="badge badge-info">refunded</span></td><td data-label="Actions"><button class="btn btn-outline btn-pdf">⬇ PDF</button></td></tr>
+            </tbody>
+          </table>
+          <nav class="pager" aria-label="Pagination"><span class="caption">page 1/24</span><div class="pgs"><a class="pg is-on">1</a><a class="pg">2</a></div><a class="pg" aria-label="Next">→</a></nav></div>
+        </div>
+        <div data-state="skeleton" aria-hidden="true"><div class="card card-pad"><div class="sk sk-line" style="width:25%"></div><div class="sk sk-box"></div><div class="sk sk-box" style="width:80%"></div></div></div>
+        <div data-state="empty"><div class="empty"><span class="glyph">🧾</span><h3 class="h3">No invoices in this range</h3><p>Every completed dispense generates one here automatically.</p></div></div>
+        <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt">Invoices failed to load.</span><button class="btn btn-primary">Retry</button></div></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- PAYMENT STATUS MODAL -->
+<div class="modal-stage" role="dialog" aria-modal="true" aria-labelledby="mp-t">
+  <div class="modal">
+    <div class="modal-head"><span style="font-size:26px" aria-hidden="true">💳</span><div><h2 id="mp-t" class="modal-title">Payment status — <span class="mono">INV-2026-0139</span></h2><p class="caption">Farhana Karim · net {{CURRENCY}} 2,422.50 · currently pending</p></div><label class="modal-x" for="m-pay" aria-label="Close">✕</label></div>
+    <div class="modal-body">
+      <div class="field" role="radiogroup" id="pay-refund" aria-label="New status">
+        <label class="check"><input type="radio" name="pstat" hidden checked><span>Paid (mark paid_at)</span></label>
+        <label class="check"><input type="radio" name="pstat" hidden><span>Refunded</span></label>
+      </div>
+      <div class="rf-reason">
+        <div class="field"><label class="label req">Refund reason (required)</label><textarea class="textarea" style="min-height:64px" placeholder="e.g., duplicate charge confirmed with admin"></textarea><span class="hint">Refunds are visible to Admin oversight; stock reversal is a separate explicit ledger action.</span></div>
+      </div>
+    </div>
+    <div class="modal-foot"><label class="btn btn-quiet" for="m-pay">Cancel</label><label class="btn btn-primary" for="m-pay">Update status</label></div>
+  </div>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Pharmacy</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link" href="01-dashboard.html">🏠 Dashboard</a><a class="nav-link" href="02-pending-rx.html">📥 Pending Rx</a><a class="nav-link" href="05-inventory.html">📦 Inventory</a><a class="nav-link" href="06-alerts.html">🔔 Alerts</a><a class="nav-link is-active" href="07-invoices.html">🧾 Invoices</a><a class="nav-link" href="08-workflow-tracker.html">🧭 Workflow</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

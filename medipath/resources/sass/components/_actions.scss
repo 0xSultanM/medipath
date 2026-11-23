@@ -1,0 +1,186 @@
+// ============================================================================
+// Actions: buttons (§0), chips/tags (§5), status badges (§6)
+// ============================================================================
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mp-space-sm);
+  min-height: var(--mp-touch);
+  min-width: var(--mp-touch);
+  padding: var(--mp-space-sm) var(--mp-space-base);
+  border-radius: var(--mp-radius-input);
+  border: 1px solid transparent;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background var(--mp-motion-fast), border-color var(--mp-motion-fast);
+
+  &[disabled], &.is-disabled { opacity: .55; cursor: not-allowed; }
+
+  &.btn-block { width: 100%; }
+  &.btn-sm { min-height: 36px; padding: 4px var(--mp-space-md); font-size: 14px; }
+}
+
+.btn-primary { background: var(--mp-primary); color: var(--mp-on-primary); }
+.btn-primary:hover { background: var(--mp-primary-hover); color: var(--mp-on-primary); }
+.btn-primary:active { background: var(--mp-primary-active); }
+
+.btn-outline { background: transparent; color: var(--mp-primary-text); border-color: var(--mp-primary); }
+.btn-outline:hover { background: var(--mp-primary-weak-bg); color: var(--mp-primary-text); }
+
+.btn-ghost { background: transparent; color: var(--mp-primary-text); }
+.btn-ghost:hover { background: var(--mp-primary-weak-bg); color: var(--mp-primary-text); }
+
+.btn-danger { background: var(--mp-danger); color: var(--mp-on-primary); }
+.btn-danger:hover { background: var(--mp-danger-text); color: var(--mp-on-primary); }
+
+.btn-danger-outline { background: transparent; color: var(--mp-danger-text); border-color: var(--mp-danger); }
+.btn-danger-outline:hover { background: var(--mp-danger-weak-bg); color: var(--mp-danger-text); }
+
+// EMERGENCY scope — .btn-emergency appears ONLY inside emergency UI regions.
+.btn-emergency { background: var(--mp-emergency); color: var(--mp-on-emergency); }
+.btn-emergency:hover { background: var(--mp-emergency-deep); color: var(--mp-on-emergency); }
+
+.btn-quiet { background: var(--mp-surface-muted); color: var(--mp-text-body); border-color: var(--mp-border); }
+.btn-quiet:hover { background: var(--mp-border); }
+
+.btn-ico { padding: 0; width: var(--mp-touch); }
+
+// Emergency CTA — landing strip / navbar (emergency scope)
+a.cta-emergency {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mp-space-sm);
+  min-height: var(--mp-touch);
+  background: var(--mp-emergency);
+  color: var(--mp-on-emergency);
+  font-weight: 700;
+  border-radius: var(--mp-radius-input);
+  padding: var(--mp-space-sm) var(--mp-space-base);
+  text-decoration: none;
+
+  &:hover { background: var(--mp-emergency-deep); color: var(--mp-on-emergency); }
+}
+
+// ---------- Badges (§6) ----------
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: $mp-badge-h;
+  padding: 2px 10px;
+  border-radius: var(--mp-radius-pill);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+
+  .dot {
+    width: $mp-dot;
+    height: $mp-dot;
+    border-radius: 50%;
+    background: currentColor;
+    flex: none;
+  }
+
+  &.badge-sm { min-height: 20px; font-size: 11px; padding: 1px 8px; }
+}
+
+.badge-success { background: var(--mp-success-weak-bg); color: var(--mp-success-text); border-color: var(--mp-success-weak-border); }
+.badge-warning { background: var(--mp-warning-weak-bg); color: var(--mp-warning-text); border-color: var(--mp-warning-weak-border); }
+.badge-danger  { background: var(--mp-danger-weak-bg);  color: var(--mp-danger-text);  border-color: var(--mp-danger-weak-border); }
+.badge-info    { background: var(--mp-info-weak-bg);    color: var(--mp-info-text);    border-color: var(--mp-info-weak-border); }
+.badge-neutral { background: var(--mp-surface-muted);   color: var(--mp-text-muted);   border-color: var(--mp-border); }
+.badge-primary { background: var(--mp-primary-weak-bg); color: var(--mp-primary-text-on-weak); border-color: var(--mp-primary-weak-border); }
+.badge-verified { background: var(--mp-success-weak-bg); color: var(--mp-success-text); border-color: var(--mp-success-weak-border); }
+
+// Solid / outline badge variants (§6 Tone=Solid|Soft|Outline)
+.badge.is-solid { border-color: transparent; color: var(--mp-on-primary); background: var(--mp-primary); }
+.badge.is-solid.badge-success { background: var(--mp-success-solid); }
+.badge.is-solid.badge-warning { background: var(--mp-warning-solid); }
+.badge.is-solid.badge-danger { background: var(--mp-danger-solid); }
+.badge.is-solid.badge-info { background: var(--mp-info-solid); }
+.badge.is-solid.badge-neutral { background: var(--mp-neutral-solid); }
+.badge.is-outline { background: transparent; }
+.badge.is-outline.badge-success { border-color: var(--mp-success); color: var(--mp-success-text); }
+.badge.is-outline.badge-warning { border-color: var(--mp-warning); color: var(--mp-warning-text); }
+.badge.is-outline.badge-danger { border-color: var(--mp-danger); color: var(--mp-danger-text); }
+.badge.is-outline.badge-info { border-color: var(--mp-info); color: var(--mp-info-text); }
+.badge.is-outline.badge-neutral { border-color: var(--mp-border-strong); color: var(--mp-text-muted); }
+
+// Empty / error variants (§6 Data states)
+.badge.is-empty { background: transparent; border: 0; color: var(--mp-text-muted); padding-inline: 0; }
+.badge.is-unknown { background: transparent; border: 1px dashed var(--mp-border-strong); color: var(--mp-text-muted); }
+.badge.is-skeleton { display: inline-flex; width: 60px; height: $mp-badge-h; background: var(--mp-skel-base); border: 0; animation: sk-shim 1.6s linear infinite; }
+
+// EMERGENCY scope — red-flag status only.
+.badge-emergency {
+  background: var(--mp-emergency);
+  color: var(--mp-on-emergency);
+  border-color: var(--mp-emergency-deep);
+}
+
+// ---------- Chips / filter tags (§5) ----------
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mp-space-sm);
+  min-height: 36px;
+  padding: 4px 14px;
+  border: 1px solid var(--mp-border);
+  border-radius: var(--mp-radius-pill);
+  background: var(--mp-surface);
+  font-size: 14px;
+  color: var(--mp-text-body);
+
+  &.chip-select { cursor: pointer; }
+  &.chip-select:hover { border-color: var(--mp-primary); }
+  &.is-on { background: var(--mp-primary); color: var(--mp-on-primary); border-color: var(--mp-primary); font-weight: 600; }
+
+  .x {
+    display: inline-grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--mp-text-muted);
+    background: var(--mp-surface-muted);
+
+    &:hover { color: var(--mp-danger-text); }
+  }
+}
+
+.tag-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mp-space-sm);
+  min-height: 36px;
+  padding: 4px 6px 4px 14px;
+  border-radius: var(--mp-radius-pill);
+  background: var(--mp-primary-weak-bg);
+  color: var(--mp-primary-text-on-weak);
+  border: 1px solid var(--mp-primary-weak-border);
+  font-size: 14px;
+  font-weight: 500;
+
+  button {
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    min-width: 28px;
+    min-height: 28px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+
+    &:hover { background: var(--mp-primary); color: var(--mp-on-primary); }
+  }
+}
+
+.active-filters { display: flex; flex-wrap: wrap; gap: var(--mp-space-sm); align-items: center; }

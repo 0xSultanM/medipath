@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Account Pending Approval (Guest) — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner">
+    <a class="brand" href="01-landing.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a class="nav-link" href="02-directory.html">Find Doctors</a>
+      <a class="nav-link" href="04-emergency.html">Emergency Info</a>
+    </nav>
+    <div class="row mla">
+      <label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label>
+      <label class="btn btn-quiet btn-ico burger" for="drawer-nav" data-controls="drawer-nav" aria-label="Open menu">☰</label>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="container stack" style="padding-block:var(--mp-space-2xl);max-width:640px;margin-inline:auto">
+  <div class="card card-pad" style="text-align:center">
+    <span class="badge badge-warning" style="justify-content:center">Pending review</span>
+    <h1 class="mt-m" style="font-size:26px">Your application is with the clinic admin</h1>
+    <p class="muted mt-s" style="font-size:14px">Requested role: <strong data-src="db:approval_queue_items.requested_role">Doctor — Cardiology</strong> · submitted <time datetime="2026-11-22T16:42">22 Nov 2026, 4:42 PM</time>. Sign-in stays on this screen (pending-token flow) until a decision is made.</p>
+
+    <!-- 3-stage progress (Stepper component, Steps=3) -->
+    <div class="stepper mt-l" style="text-align:left" aria-label="Approval progress">
+      <div class="stp is-done"><span class="dot" aria-hidden="true">✓</span><span><span class="s-name">Submitted</span><span class="s-sub">details + license doc received</span></span></div>
+      <div class="stp is-current"><span class="dot" aria-hidden="true">2</span><span><span class="s-name">Admin review</span><span class="s-sub">usually ≤2 business days</span></span></div>
+      <div class="stp"><span class="dot" aria-hidden="true">3</span><span><span class="s-name">Activation</span><span class="s-sub">portal opens on approval</span></span></div>
+    </div>
+  </div>
+
+  <!-- Live status panel = data view ×4 -->
+  <section class="dataview" aria-label="Application status">
+    <div class="dv-bar">
+      <span class="dv-name">Data view · Status poll <span class="muted">(GET /pending/status, auto-refresh 60s)</span></span>
+      <div class="dv-switch" role="radiogroup" aria-label="Preview data state">
+        <input class="st-success" type="radio" name="dv-st" id="dv-st-s" checked><label for="dv-st-s">Success</label>
+        <input class="st-skeleton" type="radio" name="dv-st" id="dv-st-k"><label for="dv-st-k">Skeleton</label>
+        <input class="st-empty" type="radio" name="dv-st" id="dv-st-e"><label for="dv-st-e">Empty</label>
+        <input class="st-error" type="radio" name="dv-st" id="dv-st-r"><label for="dv-st-r">Error + Retry</label>
+      </div>
+    </div>
+    <div class="dv-host">
+      <div data-state="success">
+        <div class="card card-pad stack" style="gap:var(--mp-space-md)">
+          <div class="spread"><span class="muted" style="font-size:14px">Queue position</span><strong class="tabular" style="font-size:20px">3rd of 5</strong></div>
+          <div class="progress" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" aria-label="Typical review progress"><span style="width:60%"></span></div>
+          <div class="row">
+            <button class="btn btn-primary" style="flex:1"><span aria-hidden="true">⟳</span> Check status</button>
+            <button class="btn btn-quiet is-disabled" disabled aria-label="Refreshing"><span class="spinner" aria-hidden="true"></span> Checking…</button>
+            <a class="btn btn-ghost" href="05-login.html">Sign out</a>
+          </div>
+          <p class="caption" role="status" aria-live="polite">Last check: 16:52 · nothing to do — we email you the moment there's a decision.</p>
+        </div>
+        <!-- Approved preview (contextual success message) -->
+        <div class="alert alert-info mt-m" role="note"><span class="a-ico">✉</span><span>Preview when <strong>approved</strong>: this screen becomes a “Go to my workspace” button — the destination is built from your DB role, never a hardcoded route guess.</span></div>
+      </div>
+      <div data-state="skeleton" aria-hidden="true"><div class="card card-pad"><div class="sk sk-line" style="width:40%"></div><div class="sk sk-box"></div><div class="sk" style="height:44px"></div></div></div>
+      <div data-state="empty"><div class="empty"><span class="glyph">🗂</span><h3 class="h3">No pending application</h3><p>This account already has full access, or no application is attached to the session token. Sign in normally.</p><a class="btn btn-primary" href="05-login.html">Go to sign in</a></div></div>
+      <div data-state="error">
+        <div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt"><strong>Couldn't refresh status.</strong> <span class="muted">Your application is unaffected — retry, or wait for the next auto-poll.</span></span><button class="btn btn-primary">Retry</button></div>
+        <!-- Rejection reason panel (variant of success state) -->
+        <div class="card card-pad mt-m" style="border-left:4px solid var(--mp-danger)">
+          <h3 class="h3" style="color:var(--mp-danger-text)">Application not approved</h3>
+          <p class="mt-s" style="font-size:14px">Reason from reviewer: <em>“License image unreadable — page 2 cropped. Please re-upload a full scan of both pages.”</em></p>
+          <div class="row mt-m"><a class="btn btn-primary" href="06-register.html">Re-submit application</a><a class="btn btn-ghost" href="04-emergency.html">Contact support</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="mt-xl" style="background:var(--mp-surface);border-top:1px solid var(--mp-border)">
+  <div class="container" style="padding-block:var(--mp-space-lg)"><p class="caption">Every queue movement writes an append-only activity log entry; decisions notify you in-app and by email.</p></div>
+</footer>
+
+<aside class="drawer drawer--nav" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">MediPath menu</span><label class="x-close" for="drawer-nav" aria-label="Close menu">✕</label></div>
+  <nav class="stack-sm" aria-label="Mobile primary" style="margin-top:var(--mp-space-md)">
+    <a class="nav-link" href="02-directory.html">Find Doctors</a>
+    <a class="nav-link" href="04-emergency.html">Emergency Info</a>
+    <a class="btn btn-primary btn-block" href="05-login.html">Log in</a>
+    <a class="btn btn-emergency btn-block" href="04-emergency.html">🚨 Emergency — call now</a>
+  </nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>

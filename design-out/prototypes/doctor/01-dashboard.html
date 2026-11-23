@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediPath · Doctor Dashboard — 360/768/1440 responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/medi.css">
+<script src="../assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<input type="checkbox" id="drawer-nav" class="hidden-check">
+
+<header class="pub-nav">
+  <div class="container inner" style="max-width:none">
+    <label class="btn btn-quiet btn-ico burger b-role" for="drawer-nav" aria-label="Open navigation">☰</label>
+    <a class="brand" href="01-dashboard.html"><span class="logo" aria-hidden="true">M</span>MediPath</a>
+    <span class="badge badge-primary hide-sm" data-src="db:roles.label">Doctor</span> <span class="badge badge-verified hide-sm">✓ Verified</span>
+    <div class="row mla"><label class="switch"><input type="checkbox" id="mp-theme"><span class="sr-only">Dark theme</span></label><span class="avatar avatar-initials" style="width:36px;height:36px;font-size:12px" aria-hidden="true">AR</span></div>
+  </div>
+</header>
+
+<div class="app-shell" style="max-width:1440px;margin-inline:auto">
+  <aside class="side-nav" aria-label="Doctor workspace">
+    <div class="s-brand"><span aria-hidden="true" style="width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--mp-primary);color:#fff;font-weight:800;font-size:13px">M</span>MediPath</div>
+    <span class="s-role">Dr. Ayesha Rahman · <span data-src="db:specialties.name">Cardiology</span></span>
+    <nav aria-label="Sidebar">
+      <a class="s-link is-active" href="01-dashboard.html" aria-current="page"><span class="ico">🏠</span>Dashboard</a>
+      <a class="s-link" href="02-schedule-leave.html"><span class="ico">🗓</span>Schedule &amp; Leave</a>
+      <a class="s-link" href="03-requests.html"><span class="ico">📥</span>Appointment Requests<span class="cnt tabular">4</span></a>
+      <a class="s-link" href="04-patients.html"><span class="ico">🧑</span>Patients</a>
+      <a class="s-link" href="07-prescription-builder.html"><span class="ico">💊</span>Prescribe (Medicines)</a>
+      <a class="s-link" href="06-walkin.html"><span class="ico">🚪</span>Walk-In Registration</a>
+      <a class="s-link" href="08-reviews.html"><span class="ico">⭐</span>My Reviews</a>
+      <a class="s-link" href="../guest/05-login.html"><span class="ico">↩</span>Log out</a>
+    </nav>
+  </aside>
+
+  <main id="main" class="main stack">
+    <div class="topbar"><h1>Today — Sun 23 Nov 2026</h1><span class="badge badge-warning mla"><span class="dot"></span>Leave booked Wed–Fri (conference)</span></div>
+
+    <!-- 4 KPIs — data view ×4 -->
+    <section class="dataview">
+      <div class="dv-bar">
+        <span class="dv-name">Data view · Doctor KPIs <span class="muted">(server aggregation, date-scoped)</span></span>
+        <div class="dv-switch" role="radiogroup" aria-label="Preview data state"><input class="st-success" type="radio" name="dv-dk" id="dv-dk-s" checked><label for="dv-dk-s">Success</label><input class="st-skeleton" type="radio" name="dv-dk" id="dv-dk-k"><label for="dv-dk-k">Skeleton</label><input class="st-empty" type="radio" name="dv-dk" id="dv-dk-e"><label for="dv-dk-e">Empty</label><input class="st-error" type="radio" name="dv-dk" id="dv-dk-r"><label for="dv-dk-r">Error</label></div>
+      </div>
+      <div class="dv-host">
+        <div data-state="success">
+          <div class="grid">
+            <div class="kpi c-6 md-c-3"><span class="k-label">Appointments today</span><span class="k-value">6</span><span class="k-foot"><span class="k-delta flat">4 completed</span><span class="k-spark" aria-hidden="true"><svg viewBox="0 0 88 32" fill="none"><polyline points="0,24 22,18 44,20 66,12 88,8" stroke="currentColor" stroke-width="2"/></svg></span></span></div>
+            <div class="kpi c-6 md-c-3 is-alert"><span class="k-label">Pending requests</span><span class="k-value">4</span><span class="k-foot"><span class="k-delta down">oldest 3h</span></span></div>
+            <div class="kpi c-6 md-c-3"><span class="k-label">Prescriptions this week</span><span class="k-value">12</span><span class="k-foot"><span class="k-delta up">▲ +3</span><span class="k-spark" aria-hidden="true"><svg viewBox="0 0 88 32" fill="none"><polyline points="0,20 22,22 44,14 66,16 88,6" stroke="currentColor" stroke-width="2"/></svg></span></span></div>
+            <div class="kpi c-6 md-c-3"><span class="k-label">Average rating</span><span class="k-value tabular">4.8</span><span class="k-foot"><span class="stars" aria-label="4.8 out of 5">★★★★<span class="off">★</span></span><span class="caption">(56)</span></span></div>
+          </div>
+        </div>
+        <div data-state="skeleton" aria-hidden="true"><div class="grid"><div class="kpi"><span class="sk sk-line" style="width:45%"></span><span class="sk" style="height:34px"></span></div><div class="kpi"><span class="sk sk-line" style="width:45%"></span><span class="sk" style="height:34px"></span></div><div class="kpi"><span class="sk sk-line" style="width:45%"></span><span class="sk" style="height:34px"></span></div><div class="kpi"><span class="sk sk-line" style="width:45%"></span><span class="sk" style="height:34px"></span></div></div></div>
+        <div data-state="empty"><div class="empty"><span class="glyph">📊</span><h3 class="h3">First day? No metrics yet</h3><p>KPIs appear after your first approved schedule and patient.</p><a class="btn btn-outline" href="02-schedule-leave.html">Set your weekly hours</a></div></div>
+        <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt"><strong>KPI aggregation failed.</strong> <span class="muted">Requests &amp; timeline below load independently.</span></span><button class="btn btn-primary">Retry</button></div></div>
+      </div>
+    </section>
+
+    <div class="grid" style="align-items:start">
+      <!-- TODAY TIMELINE -->
+      <section class="c-12 lg-c-7 card card-pad">
+        <div class="spread"><h2 class="h4">Today's timeline</h2><a class="caption" href="02-schedule-leave.html">Edit schedule</a></div>
+        <ul class="stack-sm mt-m" style="font-size:14px">
+          <li class="row-lg" style="justify-content:flex-start;gap:var(--mp-space-md)"><span class="mono tabular" style="min-width:92px;color:var(--mp-text-muted)">09:00–09:30</span><span class="badge badge-info">Completed</span> Farhana Karim <span class="caption">BP review</span> <span class="caption mla">Rx-2231 issued</span></li>
+          <li class="row-lg" style="justify-content:flex-start;gap:var(--mp-space-md)"><span class="mono tabular" style="min-width:92px;color:var(--mp-text-muted)">10:00–10:30</span><span class="badge badge-success"><span class="dot"></span>Confirmed</span> Anwar Hussain <span class="caption">palpitations</span></li>
+          <li class="row-lg" style="justify-content:flex-start;gap:var(--mp-space-md)"><span class="mono tabular" style="min-width:92px;color:var(--mp-text-muted)">11:00–11:30</span><span class="badge badge-warning"><span class="dot"></span>Pending</span> Walk-in (claim WI-9931) <a class="btn btn-ghost" href="03-requests.html" style="min-height:32px;padding:2px 10px;font-size:13px">Accept</a></li>
+          <li class="row-lg" style="justify-content:flex-start;gap:var(--mp-space-md)"><span class="mono tabular" style="min-width:92px;color:var(--mp-text-muted)">12:00–12:30</span><span class="seat" style="background:var(--mp-warning-weak-bg);border:1px solid var(--mp-warning)"></span> <span class="caption">Lunch break (from schedule)</span></li>
+          <li class="row-lg" style="justify-content:flex-start;gap:var(--mp-space-md)"><span class="mono tabular" style="min-width:92px;color:var(--mp-text-muted)">15:00–15:30</span><span class="badge badge-success"><span class="dot"></span>Confirmed</span> Mei Ling <span class="caption">ECG report review</span></li>
+        </ul>
+        <div class="row mt-b"><a class="btn btn-primary" href="07-prescription-builder.html">Start prescription (next patient)</a><a class="btn btn-outline" href="06-walkin.html">Register walk-in</a></div>
+      </section>
+
+      <!-- PENDING REQUESTS PANEL -->
+      <section class="c-12 lg-c-5 dataview">
+        <div class="dv-bar"><span class="dv-name">Pending requests</span>
+          <div class="dv-switch"><input class="st-success" type="radio" name="dv-dr" id="dv-dr-s" checked><label for="dv-dr-s">Success</label><input class="st-skeleton" type="radio" name="dv-dr" id="dv-dr-k"><label for="dv-dr-k">Skeleton</label><input class="st-empty" type="radio" name="dv-dr" id="dv-dr-e"><label for="dv-dr-e">Empty</label><input class="st-error" type="radio" name="dv-dr" id="dv-dr-r"><label for="dv-dr-r">Error</label></div></div>
+        <div class="dv-host">
+          <div data-state="success"><ul class="list-quiet" style="font-size:14px">
+            <li><div>Mon 24 · 4:30 PM — <strong>Farhana Karim</strong><div class="caption">Follow-up · hypertension</div></div><div class="row mla"><a class="btn btn-primary" style="min-height:36px;padding:4px 12px;font-size:13px" href="03-requests.html">Accept</a></div></li>
+            <li><div>Mon 24 · 5:00 PM — <strong>Devi Rao</strong><div class="caption">Chest discomfort query</div></div><a class="btn btn-primary" style="min-height:36px;padding:4px 12px;font-size:13px" href="03-requests.html">Accept</a></li>
+            <li><div>Tue 25 · 10:00 AM — <strong>Sam Okoye</strong><div class="caption">Second opinion</div></div><a class="btn btn-outline" style="min-height:36px;padding:4px 12px;font-size:13px" href="03-requests.html">Review</a></li>
+          </ul><a class="btn btn-ghost btn-block mt-m" href="03-requests.html">Open request queue</a></div>
+          <div data-state="skeleton" aria-hidden="true"><div class="sk sk-line"></div><div class="sk sk-line" style="width:70%"></div><div class="sk sk-line" style="width:85%"></div></div>
+          <div data-state="empty"><div class="empty"><span class="glyph">✅</span><p>No pending requests — you're current.</p></div></div>
+          <div data-state="error"><div class="retry-banner" role="alert"><span class="ico">⚠</span><span class="txt">Queue failed to load</span><button class="btn btn-primary">Retry</button></div></div>
+        </div>
+      </section>
+    </div>
+    <p class="caption">Verified badge gates the whole workspace: unverified doctors land on a read-only onboarding page instead (middleware <span class="mono">EnsureDoctorVerified</span>).</p>
+  </main>
+</div>
+
+<aside class="drawer drawer--role" role="dialog" aria-label="Menu" aria-modal="false">
+  <div class="d-title"><span class="h3">Doctor workspace</span><label class="x-close" for="drawer-nav" aria-label="Close navigation">✕</label></div>
+  <nav class="stack-sm"><a class="nav-link is-active" href="01-dashboard.html">🏠 Dashboard</a><a class="nav-link" href="02-schedule-leave.html">🗓 Schedule &amp; Leave</a><a class="nav-link" href="03-requests.html">📥 Requests <span class="cnt">4</span></a><a class="nav-link" href="04-patients.html">🧑 Patients</a><a class="nav-link" href="07-prescription-builder.html">💊 Prescribe</a><a class="nav-link" href="06-walkin.html">🚪 Walk-In</a><a class="nav-link" href="08-reviews.html">⭐ My Reviews</a></nav>
+</aside>
+<label class="backdrop backdrop--nav" for="drawer-nav" aria-hidden="true"></label>
+</body>
+</html>
