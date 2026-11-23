@@ -84,3 +84,6 @@ graphify-out/.needs_update
 *.tar.gz
 coverage/
 .phpunit.cache/
+
+# Personal local demo notes (never publish)
+medipath/local-readme.md
